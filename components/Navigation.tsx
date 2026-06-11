@@ -29,6 +29,7 @@ const mobileNavSections = [
   { label: 'Find My Loan', href: '/find-my-loan', children: [] },
   { label: 'Resources', href: '/resources', children: resourcesLinks },
   { label: 'Lifestyle', href: '/lifestyle', children: lifestyleLinks },
+  { label: 'Blog', href: '/blog', children: [] },
 ]
 
 export default function Navigation() {
@@ -128,6 +129,11 @@ export default function Navigation() {
                 </div>
               </div>
             </div>
+
+            {/* Blog */}
+            <Link href="/blog" className="text-[#C4C4C4] text-sm hover:text-[#F8F8F8] transition-colors tracking-wide">
+              Blog
+            </Link>
 
             {/* Lifestyle dropdown */}
             <div className="relative group">

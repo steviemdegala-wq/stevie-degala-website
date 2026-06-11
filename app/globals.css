@@ -64,3 +64,64 @@ a, button, [role="button"] {
 ::-webkit-scrollbar-thumb:hover {
   background: #888888;
 }
+
+/* Blog prose styles */
+.blog-prose {
+  color: #C4C4C4;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.blog-prose h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #F8F8F8;
+  font-size: 1.75rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.blog-prose h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #F8F8F8;
+  font-size: 1.35rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.blog-prose p {
+  margin-bottom: 1.25rem;
+}
+.blog-prose ul, .blog-prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.blog-prose li {
+  margin-bottom: 0.4rem;
+}
+.blog-prose strong {
+  color: #F8F8F8;
+  font-weight: 600;
+}
+.blog-prose a {
+  color: #C4C4C4;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.blog-prose a:hover {
+  color: #F8F8F8;
+}
+.blog-prose blockquote {
+  border-left: 3px solid #2E2E2E;
+  padding-left: 1.25rem;
+  color: #888888;
+  font-style: italic;
+  margin: 1.5rem 0;
+}
+.blog-prose hr {
+  border-color: #2E2E2E;
+  margin: 2.5rem 0;
+}
+.blog-prose code {
+  background: #1A1A1A;
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #C4C4C4;
+}
