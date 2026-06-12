@@ -37,18 +37,17 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </svg>
             Blog
           </Link>
-          <p className="text-[#888888] text-xs uppercase tracking-widest mb-4">{post.date}</p>
-          <h1
-            className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-          >
+          <p className="text-[#888888] text-xs uppercase tracking-widest mb-4">
+            {new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+          </p>
+          <h1 className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight font-semibold">
             {post.title}
           </h1>
         </div>
       </section>
 
       {/* Content */}
-      <section className="py-14 px-6 pb-24">
+      <section className="py-14 px-6 pb-24 bg-white">
         <div className="max-w-3xl mx-auto">
           <div
             className="blog-prose"
@@ -60,10 +59,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       {/* CTA */}
       <section className="bg-[#111111] border-t border-[#2E2E2E] py-16 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <h2
-            className="text-2xl md:text-3xl text-[#F8F8F8] mb-3"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-          >
+          <h2 className="text-2xl md:text-3xl text-[#F8F8F8] mb-3 font-semibold">
             Have questions about your situation?
           </h2>
           <p className="text-[#888888] text-sm leading-relaxed mb-8 max-w-md mx-auto">

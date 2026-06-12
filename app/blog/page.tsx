@@ -15,10 +15,7 @@ export default function BlogPage() {
       <section className="py-16 md:py-24 px-6 border-b border-[#2E2E2E]">
         <div className="max-w-3xl mx-auto">
           <p className="text-[#888888] text-xs uppercase tracking-[0.2em] mb-4">Blog</p>
-          <h1
-            className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-          >
+          <h1 className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight font-semibold">
             Insights &amp; Education
           </h1>
         </div>
@@ -36,11 +33,10 @@ export default function BlogPage() {
                   href={`/blog/${post.slug}`}
                   className="block group border border-[#2E2E2E] bg-[#111111] rounded-xl p-8 hover:border-[#555555] transition-all"
                 >
-                  <p className="text-[#888888] text-xs uppercase tracking-widest mb-3">{post.date}</p>
-                  <h2
-                    className="text-[#F8F8F8] text-2xl mb-3 group-hover:text-[#C4C4C4] transition-colors"
-                    style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                  >
+                  <p className="text-[#888888] text-xs uppercase tracking-widest mb-3">
+                    {new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                  </p>
+                  <h2 className="text-[#F8F8F8] text-2xl font-semibold mb-3 group-hover:text-[#C4C4C4] transition-colors">
                     {post.title}
                   </h2>
                   <p className="text-[#888888] text-sm leading-relaxed mb-4">{post.excerpt}</p>
