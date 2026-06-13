@@ -69,7 +69,6 @@ export default function Footer() {
             <Link href="/who-i-help/homeowners" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">First-Time Buyers</Link>
             <Link href="/who-i-help/homeowners" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Refinancing</Link>
             <Link href="/who-i-help/investors" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Investors</Link>
-            <Link href="/who-i-help/investors" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">DSCR Loans</Link>
           </div>
 
         </div>
