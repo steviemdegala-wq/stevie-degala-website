@@ -1,21 +1,12 @@
 'use client'
 
-import { useState } from 'react'
 
 const conventionalRates = [
   { label: '30 Year Fixed', rate: '[Contact for rate]', apr: '[Contact for APR]', lastUpdated: '[Update regularly]' },
   { label: '15 Year Fixed', rate: '[Contact for rate]', apr: '[Contact for APR]', lastUpdated: '[Update regularly]' },
 ]
 
-const investorRates = [
-  { label: 'DSCR Loan', rate: '[Contact for rate]', apr: '[Contact for APR]', lastUpdated: '[Update regularly]' },
-]
-
 export default function RatesModule() {
-  const [activeTab, setActiveTab] = useState<'conventional' | 'investor'>('conventional')
-
-  const rates = activeTab === 'conventional' ? conventionalRates : investorRates
-
   return (
     <div>
       <h2
@@ -28,26 +19,9 @@ export default function RatesModule() {
         Rates move daily. These are current estimates to give you a starting point. Your actual rate depends on your credit, down payment, property type, and loan structure. Book a call and I will find the best rate available for your specific situation.
       </p>
 
-      {/* Tabs */}
-      <div className="flex gap-0 mb-8 border border-[#2E2E2E] w-fit rounded-xl overflow-hidden">
-        {(['conventional', 'investor'] as const).map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-6 py-3 text-sm uppercase tracking-widest transition-all ${
-              activeTab === tab
-                ? 'bg-[#F8F8F8] text-[#0A0A0A]'
-                : 'bg-transparent text-[#888888] hover:text-[#F8F8F8]'
-            }`}
-          >
-            {tab === 'conventional' ? 'Conventional' : 'Investor (DSCR)'}
-          </button>
-        ))}
-      </div>
-
       {/* Rate cards */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {rates.map((card) => (
+        {conventionalRates.map((card) => (
           <div key={card.label} className="border border-[#2E2E2E] bg-[#0A0A0A] p-8 rounded-xl">
             <p className="text-[#888888] text-xs uppercase tracking-widest mb-4">{card.label}</p>
             <div className="space-y-3">

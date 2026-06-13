@@ -57,12 +57,6 @@ export default async function RatesPage() {
         </div>
       </section>
 
-      <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <RatesModule />
-        </div>
-      </section>
-
       {/* Market Benchmark */}
       <section className="bg-[#0A0A0A] py-20 px-6 border-t border-[#2E2E2E]">
         <div className="max-w-4xl mx-auto">
@@ -121,6 +115,12 @@ export default async function RatesPage() {
               . Add <code className="text-[#C4C4C4]">FRED_API_KEY=your_key</code> to <code className="text-[#C4C4C4]">.env.local</code> to enable this section.
             </p>
           )}
+        </div>
+      </section>
+
+      <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <RatesModule />
         </div>
       </section>
 
