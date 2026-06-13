@@ -89,32 +89,20 @@ export default function Modal() {
       }}
     >
       <div
-        className="relative w-full max-w-3xl rounded-2xl border border-[#2E2E2E] bg-[#111111] p-4 md:p-6"
-        style={{ maxHeight: '90vh', overflowY: 'auto' }}
+        className="relative w-full max-w-3xl rounded-2xl border border-[#2E2E2E] bg-[#111111] overflow-hidden"
+        style={{ height: '90vh' }}
       >
         <button
           onClick={closeModal}
-          className="absolute right-4 top-4 text-[#888888] hover:text-[#F8F8F8] transition-colors text-2xl leading-none z-10"
+          className="absolute right-4 top-4 text-[#888888] hover:text-[#F8F8F8] transition-colors text-2xl leading-none z-10 bg-[#111111] rounded-full w-8 h-8 flex items-center justify-center"
           aria-label="Close"
         >
           &times;
         </button>
 
-        <div className="mb-3 pr-8">
-          <h2
-            className="text-xl text-[#F8F8F8] mb-0.5"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-          >
-            Book a Free Discovery Call
-          </h2>
-          <p className="text-[#888888] text-xs">
-            15 minutes. No pressure. Pick a time that works for you.
-          </p>
-        </div>
-
         <div
           id="my-cal-inline-discoverycall"
-          style={{ width: '100%', height: '480px', overflow: 'hidden' }}
+          style={{ width: '100%', height: '100%' }}
         />
       </div>
     </div>
