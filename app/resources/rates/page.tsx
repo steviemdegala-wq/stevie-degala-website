@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import RatesModule from '@/components/RatesModule'
 import RateChart from '@/components/RateChart'
 import BookCallButton from '@/components/BookCallButton'
 import Link from 'next/link'
@@ -151,6 +150,9 @@ export default async function RatesPage() {
                     </div>
                   </div>
                   <RateChart data={chartData} />
+                  <p className="text-[#555555] text-xs mt-4">
+                    Source: Freddie Mac Primary Mortgage Market Survey (PMMS) via FRED · Federal Reserve Bank of St. Louis · Updated weekly
+                  </p>
                 </div>
               )}
             </>
@@ -163,13 +165,6 @@ export default async function RatesPage() {
               . Add <code className="text-[#C4C4C4]">FRED_API_KEY=your_key</code> to your environment variables.
             </p>
           )}
-        </div>
-      </section>
-
-      {/* Your rate cards */}
-      <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <RatesModule />
         </div>
       </section>
 
