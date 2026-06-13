@@ -90,7 +90,7 @@ export default function Modal() {
     >
       <div
         className="relative w-full max-w-3xl rounded-2xl border border-[#2E2E2E] bg-[#111111] p-4 md:p-6"
-        style={{ height: '90vh', display: 'flex', flexDirection: 'column' }}
+        style={{ maxHeight: '90vh', overflowY: 'auto' }}
       >
         <button
           onClick={closeModal}
@@ -114,7 +114,7 @@ export default function Modal() {
 
         <div
           id="my-cal-inline-discoverycall"
-          style={{ width: '100%', flex: 1, minHeight: 0, overflow: 'hidden' }}
+          style={{ width: '100%', height: '480px', overflow: 'hidden' }}
         />
       </div>
     </div>
