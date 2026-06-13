@@ -27,6 +27,7 @@ type LoanKey =
   | 'dscr'
   | 'bankStatement'
   | 'bridge'
+  | 'doctorLoan'
 
 type LoanInfo = {
   name: string
@@ -200,6 +201,22 @@ const LOANS: Record<LoanKey, LoanInfo> = {
       'Buyers building new construction, doing major renovation, or bridging between the sale of one home and purchase of another.',
     accent: '#A58B4A',
   },
+  doctorLoan: {
+    name: 'Doctor Loan',
+    tagline: 'Low down, no PMI, student debt excluded.',
+    pros: [
+      'Low or no down payment required',
+      'No private mortgage insurance (PMI)',
+      'Student loan debt often excluded from DTI calculation',
+    ],
+    cons: [
+      'Available only to qualifying medical professionals',
+      'Typically limited to primary residence purchases',
+    ],
+    bestFor:
+      'Medical professionals (MD, DO, DDS, DMD, OD) who have strong earning potential but high student debt and limited down payment savings.',
+    accent: '#5C8AA5',
+  },
 }
 
 // ─── Questions ───────────────────────────────────────────────────────────────
@@ -306,6 +323,7 @@ function getTopLoans(answers: Answers): LoanKey[] {
     dscr: 0,
     bankStatement: 0,
     bridge: 0,
+    doctorLoan: 0,
   }
 
   // Goal
@@ -399,6 +417,9 @@ function getTopLoans(answers: Answers): LoanKey[] {
     scores.conventional += 3
     scores.fha += 2
     scores.va += 2
+    if (answers.goal === 'buy' && (answers.downPayment === 'lt3.5' || answers.downPayment === '3.5-10') && answers.credit === 'gt700') {
+      scores.doctorLoan += 14
+    }
   }
 
   // Loan amount
@@ -429,6 +450,9 @@ function getTopLoans(answers: Answers): LoanKey[] {
   }
   if (answers.goal !== 'invest' && answers.income !== 'rental') {
     scores.dscr = Math.max(0, scores.dscr - 8)
+  }
+  if (answers.goal !== 'buy') {
+    scores.doctorLoan = 0
   }
 
   return (Object.entries(scores) as [LoanKey, number][])

@@ -185,6 +185,25 @@ const loans: Record<string, LoanContent> = {
     ],
   },
 
+  'doctor-loan': {
+    name: 'Doctor Loan',
+    tagline: 'Built for medical professionals. Low down, no PMI, student debt excluded.',
+    what: 'A doctor loan — also called a physician loan — is a specialized mortgage designed for medical professionals. Lenders know that doctors graduate with heavy student debt but have strong earning potential. So they offer favorable terms: low or no down payment, no private mortgage insurance, and they often exclude student loans from your debt-to-income calculation.',
+    goodFor: [
+      'Medical doctors (MD, DO), dentists (DDS, DMD), optometrists (OD), and other licensed medical professionals',
+      'New attendings or residents who have not yet saved a large down payment',
+      'Physicians with high student loan balances that would otherwise disqualify them',
+      'Buyers who want to avoid PMI without putting down 20%',
+      'High earners who want to preserve cash for investments or practice buildout',
+    ],
+    notFor: [
+      'Non-medical professionals — this loan is restricted to qualifying healthcare fields',
+      'Buyers with poor credit — doctors still need solid credit scores to qualify',
+      'Investment property purchases — typically limited to primary residences',
+      'Anyone who would qualify for a conventional loan at better terms',
+    ],
+  },
+
   'bridge-construction': {
     name: 'Bridge & Construction Loan',
     tagline: 'Finance the build. Or bridge the gap between two homes.',

@@ -416,6 +416,7 @@ export default function HomePage() {
                 { label: 'DSCR Investor', slug: 'dscr' },
                 { label: 'Bank Statement', slug: 'bank-statement' },
                 { label: 'Bridge / Construction', slug: 'bridge-construction' },
+                { label: 'Doctor Loan', slug: 'doctor-loan' },
               ].map((loan) => (
                 <Link
                   key={loan.slug}
