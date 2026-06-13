@@ -88,13 +88,10 @@ export default function Modal() {
         display: isOpen ? 'flex' : 'none',
       }}
     >
-      <div
-        className="relative w-full max-w-3xl rounded-2xl border border-[#2E2E2E] bg-[#111111] overflow-hidden"
-        style={{ height: '90vh' }}
-      >
+      <div className="relative w-full max-w-4xl" style={{ height: '90vh' }}>
         <button
           onClick={closeModal}
-          className="absolute right-4 top-4 text-[#888888] hover:text-[#F8F8F8] transition-colors text-2xl leading-none z-10 bg-[#111111] rounded-full w-8 h-8 flex items-center justify-center"
+          className="absolute -top-8 right-0 text-[#888888] hover:text-[#F8F8F8] transition-colors text-2xl leading-none z-10"
           aria-label="Close"
         >
           &times;
@@ -102,7 +99,7 @@ export default function Modal() {
 
         <div
           id="my-cal-inline-discoverycall"
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: '100%', height: '100%', overflow: 'scroll' }}
         />
       </div>
     </div>
