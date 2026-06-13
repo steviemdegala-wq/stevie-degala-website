@@ -63,7 +63,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             Have questions about your situation?
           </h2>
           <p className="text-[#888888] text-sm leading-relaxed mb-8 max-w-md mx-auto">
-            Book a free 20-minute call and I will give you a straight answer.
+            Book a free 15-minute call and I will give you a straight answer.
           </p>
           <BookCallButton variant="solid" label="Book a Free Call" />
         </div>
