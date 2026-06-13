@@ -3,6 +3,7 @@ import './globals.css'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import Modal from '@/components/Modal'
+import StickyMobileCTA from '@/components/StickyMobileCTA'
 
 export const metadata: Metadata = {
   title: 'Stevie De Gala | Mortgage Broker in Texas, Colorado & Utah',
@@ -29,11 +30,12 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body className="pb-[72px] md:pb-0">
         <Navigation />
         <Modal />
         {children}
         <Footer />
+        <StickyMobileCTA />
       </body>
     </html>
   )
