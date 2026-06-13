@@ -17,6 +17,7 @@ export default function Footer() {
             </p>
             <p className="text-[#888888] text-xs leading-relaxed">Licensed Mortgage Broker.<br />Cash Flow Consultant.</p>
             <p className="text-[#888888] text-xs">NMLS# 2845865</p>
+            <p className="text-[#888888] text-xs">NEXA Lending</p>
             {/* TODO: Replace with real phone number */}
             <a href="tel:+10000000000" className="text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">(000) 000-0000</a>
             <p className="text-[#888888] text-xs">Texas · Colorado · Utah</p>

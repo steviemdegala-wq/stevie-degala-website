@@ -107,7 +107,7 @@ export default function Modal() {
           Book a Free Discovery Call
         </h2>
         <p className="text-[#888888] text-sm mb-6">
-          20 minutes. No pressure. Pick a time that works for you.
+          15 minutes. No pressure. Pick a time that works for you.
         </p>
 
         <div
