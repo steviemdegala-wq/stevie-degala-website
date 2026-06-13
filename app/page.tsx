@@ -46,7 +46,7 @@ export default function HomePage() {
                 className="text-5xl md:text-6xl lg:text-7xl text-[#F8F8F8] leading-tight mb-6"
                 style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
               >
-                I&apos;m Stevie. Your Cash Flow Consultant.
+                I&apos;m Stevie. Your Mortgage Consultant.
               </h1>
               <span style={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}>
                 Mortgage Broker serving Texas, Colorado, and Utah — Home loans, refinancing, DSCR loans, and cash-out refinance. NMLS# 2845865

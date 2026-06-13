@@ -15,7 +15,7 @@ export default function Footer() {
             >
               Stevie De Gala
             </p>
-            <p className="text-[#888888] text-xs leading-relaxed">Licensed Mortgage Broker.<br />Cash Flow Consultant.</p>
+            <p className="text-[#888888] text-xs leading-relaxed">Licensed Mortgage Broker.<br />Mortgage Consultant.</p>
             <p className="text-[#888888] text-xs">NMLS# 2845865</p>
             <p className="text-[#888888] text-xs">NEXA Lending</p>
             {/* TODO: Replace with real phone number */}

@@ -61,7 +61,7 @@ export default function AboutPage() {
                 I&apos;m Stevie.
               </h1>
               <p className="text-[#C4C4C4] text-xl leading-relaxed">
-                Cash flow consultant, real estate investor, pickleball player, triathlete, Filipino cook, and a person who genuinely loves helping people win.
+                Mortgage consultant, real estate investor, pickleball player, triathlete, Filipino cook, and a person who genuinely loves helping people win.
               </p>
             </div>
           </div>
