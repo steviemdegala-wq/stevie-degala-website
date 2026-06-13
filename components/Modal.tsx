@@ -89,30 +89,32 @@ export default function Modal() {
       }}
     >
       <div
-        className="relative w-full max-w-3xl rounded-2xl border border-[#2E2E2E] bg-[#111111] p-6 md:p-8"
-        style={{ maxHeight: '90vh', overflowY: 'auto' }}
+        className="relative w-full max-w-3xl rounded-2xl border border-[#2E2E2E] bg-[#111111] p-4 md:p-6"
+        style={{ height: '90vh', display: 'flex', flexDirection: 'column' }}
       >
         <button
           onClick={closeModal}
-          className="absolute right-6 top-6 text-[#888888] hover:text-[#F8F8F8] transition-colors text-2xl leading-none z-10"
+          className="absolute right-4 top-4 text-[#888888] hover:text-[#F8F8F8] transition-colors text-2xl leading-none z-10"
           aria-label="Close"
         >
           &times;
         </button>
 
-        <h2
-          className="text-2xl text-[#F8F8F8] mb-1"
-          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-        >
-          Book a Free Discovery Call
-        </h2>
-        <p className="text-[#888888] text-sm mb-6">
-          15 minutes. No pressure. Pick a time that works for you.
-        </p>
+        <div className="mb-3 pr-8">
+          <h2
+            className="text-xl text-[#F8F8F8] mb-0.5"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+          >
+            Book a Free Discovery Call
+          </h2>
+          <p className="text-[#888888] text-xs">
+            15 minutes. No pressure. Pick a time that works for you.
+          </p>
+        </div>
 
         <div
           id="my-cal-inline-discoverycall"
-          style={{ width: '100%', height: '600px', overflow: 'scroll' }}
+          style={{ width: '100%', flex: 1, minHeight: 0, overflow: 'hidden' }}
         />
       </div>
     </div>
