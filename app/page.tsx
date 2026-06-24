@@ -123,7 +123,7 @@ export default function HomePage() {
                 body: 'Clear terms, no surprises, and a real person you can call throughout the process. Better financing — and you understand exactly why.',
               },
             ].map((item) => (
-              <div key={item.step} className="border border-[#E0E0E0] bg-[#F8F8F8] p-8 rounded-xl">
+              <div key={item.step} className="border border-white/40 bg-white/90 backdrop-blur-sm p-8 rounded-xl">
                 <p className="text-[#E0E0E0] text-5xl font-bold mb-6 leading-none" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                   {item.step}
                 </p>
@@ -149,8 +149,8 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-6">
             {/* Card A — First-Time Buyers */}
             <div
-              className="card-hover bg-[#F8F8F8] px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #E0E0E0', borderLeft: '3px solid #7A9E5C' }}
+              className="card-hover bg-white/90 backdrop-blur-sm px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
+              style={{ border: '1px solid rgba(255,255,255,0.4)', borderLeft: '3px solid #7A9E5C' }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-7">
@@ -178,8 +178,8 @@ export default function HomePage() {
 
             {/* Card B — Homeowners */}
             <div
-              className="card-hover bg-[#F8F8F8] px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #E0E0E0', borderLeft: '3px solid #B8860B' }}
+              className="card-hover bg-white/90 backdrop-blur-sm px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
+              style={{ border: '1px solid rgba(255,255,255,0.4)', borderLeft: '3px solid #B8860B' }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-7">
@@ -207,8 +207,8 @@ export default function HomePage() {
 
             {/* Card C — Investors */}
             <div
-              className="card-hover bg-[#F8F8F8] px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #E0E0E0', borderLeft: '3px solid #4A7FA5' }}
+              className="card-hover bg-white/90 backdrop-blur-sm px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
+              style={{ border: '1px solid rgba(255,255,255,0.4)', borderLeft: '3px solid #4A7FA5' }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-7">
@@ -363,7 +363,7 @@ export default function HomePage() {
                 icon: <BadgeCheck size={28} className="text-[#555555] mb-5" />,
               },
             ].map((item) => (
-              <div key={item.stat} className="bg-[#F8F8F8] border border-[#E0E0E0] p-8 md:p-10 rounded-xl">
+              <div key={item.stat} className="bg-white/90 backdrop-blur-sm border border-white/40 p-8 md:p-10 rounded-xl">
                 {item.icon}
                 <h4
                   className="text-[#0A0A0A] text-xl mb-3 leading-snug"

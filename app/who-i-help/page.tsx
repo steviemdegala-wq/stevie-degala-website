@@ -34,7 +34,7 @@ export default function WhoIHelpPage() {
             {/* First-Time Buyers */}
             <Link
               href="/who-i-help/first-time"
-              className="group border border-[#E0E0E0] bg-[#F8F8F8] px-10 py-14 flex flex-col justify-between min-h-[360px] hover:bg-[#EFEFEF] transition-colors rounded-xl"
+              className="group border border-white/40 bg-white/90 backdrop-blur-sm px-10 py-14 flex flex-col justify-between min-h-[360px] hover:bg-white/95 transition-colors rounded-xl"
               style={{ borderLeft: '3px solid #7A9E5C' }}
             >
               <div>
@@ -61,7 +61,7 @@ export default function WhoIHelpPage() {
             {/* Homeowners */}
             <Link
               href="/who-i-help/homeowners"
-              className="group border border-[#E0E0E0] bg-[#F8F8F8] px-10 py-14 flex flex-col justify-between min-h-[360px] hover:bg-[#EFEFEF] transition-colors rounded-xl"
+              className="group border border-white/40 bg-white/90 backdrop-blur-sm px-10 py-14 flex flex-col justify-between min-h-[360px] hover:bg-white/95 transition-colors rounded-xl"
               style={{ borderLeft: '3px solid #B8860B' }}
             >
               <div>
@@ -88,7 +88,7 @@ export default function WhoIHelpPage() {
             {/* Investors */}
             <Link
               href="/who-i-help/investors"
-              className="group border border-[#E0E0E0] bg-[#F8F8F8] px-10 py-14 flex flex-col justify-between min-h-[360px] hover:bg-[#EFEFEF] transition-colors rounded-xl"
+              className="group border border-white/40 bg-white/90 backdrop-blur-sm px-10 py-14 flex flex-col justify-between min-h-[360px] hover:bg-white/95 transition-colors rounded-xl"
               style={{ borderLeft: '3px solid #4A7FA5' }}
             >
               <div>

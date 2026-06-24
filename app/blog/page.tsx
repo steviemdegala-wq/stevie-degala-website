@@ -31,7 +31,7 @@ export default function BlogPage() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="block group border border-[#E0E0E0] bg-[#F8F8F8] rounded-xl p-8 hover:border-[#888888] transition-all"
+                  className="block group border border-white/40 bg-white/90 backdrop-blur-sm rounded-xl p-8 hover:border-white/70 transition-all"
                 >
                   <p className="text-[#555555] text-xs uppercase tracking-widest mb-3">
                     {new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}

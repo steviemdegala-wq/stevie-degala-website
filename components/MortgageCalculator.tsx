@@ -25,7 +25,7 @@ export default function MortgageCalculator() {
     new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val)
 
   return (
-    <div className="border border-[#E0E0E0] bg-[#F8F8F8] p-8 md:p-10">
+    <div className="border border-white/40 bg-white/90 backdrop-blur-sm p-8 md:p-10">
       <p className="text-[#555555] text-xs uppercase tracking-widest mb-4">Calculator 1</p>
       <h2
         className="text-2xl md:text-3xl text-[#0A0A0A] mb-3"

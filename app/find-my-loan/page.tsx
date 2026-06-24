@@ -555,7 +555,7 @@ export default function FindMyLoanPage() {
                   <button
                     key={opt.value}
                     onClick={() => handleSelect(opt.value)}
-                    className="w-full text-left border border-[#E0E0E0] bg-[#F8F8F8] px-6 py-5 rounded-2xl hover:border-[#0A0A0A] hover:bg-[#EFEFEF] transition-all group"
+                    className="w-full text-left border border-white/40 bg-white/90 backdrop-blur-sm px-6 py-5 rounded-2xl hover:border-[#0A0A0A] hover:bg-white/95 transition-all group"
                   >
                     <span className="block text-[#0A0A0A] text-base group-hover:text-black">
                       {opt.label}
@@ -603,7 +603,7 @@ export default function FindMyLoanPage() {
                   return (
                     <div
                       key={key}
-                      className="bg-[#F8F8F8] border border-[#E0E0E0] rounded-2xl px-7 py-8"
+                      className="bg-white/90 backdrop-blur-sm border border-white/40 rounded-2xl px-7 py-8"
                       style={{ borderLeft: `3px solid ${loan.accent}` }}
                     >
                       {i === 0 && (
@@ -663,7 +663,7 @@ export default function FindMyLoanPage() {
               </div>
 
               {/* CTA — full width below both cards */}
-              <div className="border border-[#E0E0E0] bg-[#F8F8F8] rounded-2xl px-8 py-10 text-center">
+              <div className="border border-white/40 bg-white/90 backdrop-blur-sm rounded-2xl px-8 py-10 text-center">
                 <h3
                   className="text-[#0A0A0A] text-2xl md:text-3xl mb-3"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}

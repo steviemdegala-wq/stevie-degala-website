@@ -140,7 +140,7 @@ export default function AboutPage() {
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {regions.map((region) => (
-              <div key={region.title} className="card-hover border border-[#E0E0E0] bg-[#F8F8F8] p-8 rounded-xl">
+              <div key={region.title} className="card-hover border border-white/40 bg-white/90 backdrop-blur-sm p-8 rounded-xl">
                 <h3
                   className="text-xl text-[#0A0A0A] mb-4"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
@@ -175,7 +175,7 @@ export default function AboutPage() {
               'Family first, always',
               'Monopoly champion (real estate research counts)',
             ].map((item) => (
-              <div key={item} className="border border-[#E0E0E0] bg-[#F8F8F8] p-4 rounded-xl">
+              <div key={item} className="border border-white/40 bg-white/90 backdrop-blur-sm p-5 rounded-xl min-h-[120px] flex items-center justify-center text-center">
                 <p className="text-[#3A3A3A] text-sm leading-relaxed">{item}</p>
               </div>
             ))}
