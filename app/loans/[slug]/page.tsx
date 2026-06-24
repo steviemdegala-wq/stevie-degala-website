@@ -281,7 +281,7 @@ export default function LoanPage({ params }: { params: { slug: string } }) {
       <section className="py-10 px-6 pb-20">
         <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-6">
           {/* Good for */}
-          <div className="bg-[#111111] border border-[#2E2E2E] rounded-2xl p-8" style={{ borderLeft: '3px solid #5C8A5C' }}>
+          <div className="bg-[#F8F8F8] border border-[#E0E0E0] rounded-2xl p-8" style={{ borderLeft: '3px solid #5C8A5C' }}>
             <p className="text-[#5C8A5C] text-xs uppercase tracking-widest mb-5">Good fit when...</p>
             <ul className="space-y-3">
               {loan.goodFor.map((item) => (
@@ -289,14 +289,14 @@ export default function LoanPage({ params }: { params: { slug: string } }) {
                   <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#5C8A5C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-[#C4C4C4] text-sm leading-relaxed">{item}</span>
+                  <span className="text-[#3A3A3A] text-sm leading-relaxed">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Not for */}
-          <div className="bg-[#111111] border border-[#2E2E2E] rounded-2xl p-8" style={{ borderLeft: '3px solid #A55C5C' }}>
+          <div className="bg-[#F8F8F8] border border-[#E0E0E0] rounded-2xl p-8" style={{ borderLeft: '3px solid #A55C5C' }}>
             <p className="text-[#A55C5C] text-xs uppercase tracking-widest mb-5">Probably not the right fit if...</p>
             <ul className="space-y-3">
               {loan.notFor.map((item) => (
@@ -304,7 +304,7 @@ export default function LoanPage({ params }: { params: { slug: string } }) {
                   <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#A55C5C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
-                  <span className="text-[#888888] text-sm leading-relaxed">{item}</span>
+                  <span className="text-[#555555] text-sm leading-relaxed">{item}</span>
                 </li>
               ))}
             </ul>

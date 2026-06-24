@@ -22,7 +22,7 @@ export default function Footer() {
             <p className="text-[#888888] text-xs">NEXA Lending</p>
             {/* TODO: Replace with real phone number */}
             <a href="tel:+10000000000" className="text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">(000) 000-0000</a>
-            <p className="text-[#888888] text-xs">Texas · Colorado · Utah</p>
+            <p className="text-[#888888] text-xs">Texas · Colorado</p>
             <div className="flex gap-3 pt-1">
               <a href="#" aria-label="LinkedIn" className="text-[#888888] hover:text-[#F8F8F8] transition-colors" rel="noopener noreferrer">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">

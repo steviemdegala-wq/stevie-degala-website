@@ -25,46 +25,46 @@ export default function MortgageCalculator() {
     new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val)
 
   return (
-    <div className="border border-[#2E2E2E] bg-[#111111] p-8 md:p-10">
-      <p className="text-[#888888] text-xs uppercase tracking-widest mb-4">Calculator 1</p>
+    <div className="border border-[#E0E0E0] bg-[#F8F8F8] p-8 md:p-10">
+      <p className="text-[#555555] text-xs uppercase tracking-widest mb-4">Calculator 1</p>
       <h2
-        className="text-2xl md:text-3xl text-[#F8F8F8] mb-3"
+        className="text-2xl md:text-3xl text-[#0A0A0A] mb-3"
         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
       >
         Mortgage Payment Calculator
       </h2>
-      <p className="text-[#C4C4C4] text-sm leading-relaxed mb-8">
+      <p className="text-[#3A3A3A] text-sm leading-relaxed mb-8">
         Enter your loan amount, interest rate, and term to see your estimated monthly payment. A good starting point before we talk through the full picture together.
       </p>
 
       <div className="grid sm:grid-cols-3 gap-4 mb-6">
         <div>
-          <label className="block text-[#C4C4C4] text-xs uppercase tracking-widest mb-2">Loan Amount ($)</label>
+          <label className="block text-[#3A3A3A] text-xs uppercase tracking-widest mb-2">Loan Amount ($)</label>
           <input
             type="text"
             value={loanAmount}
             onChange={(e) => setLoanAmount(e.target.value)}
-            className="w-full bg-[#0A0A0A] border border-[#2E2E2E] text-[#F8F8F8] px-4 py-3 text-sm focus:outline-none focus:border-[#888888] transition-colors rounded-xl"
+            className="w-full bg-white border border-[#D0D0D0] text-[#0A0A0A] px-4 py-3 text-sm focus:outline-none focus:border-[#888888] transition-colors rounded-xl"
             placeholder="400,000"
           />
         </div>
         <div>
-          <label className="block text-[#C4C4C4] text-xs uppercase tracking-widest mb-2">Interest Rate (%)</label>
+          <label className="block text-[#3A3A3A] text-xs uppercase tracking-widest mb-2">Interest Rate (%)</label>
           <input
             type="number"
             step="0.01"
             value={interestRate}
             onChange={(e) => setInterestRate(e.target.value)}
-            className="w-full bg-[#0A0A0A] border border-[#2E2E2E] text-[#F8F8F8] px-4 py-3 text-sm focus:outline-none focus:border-[#888888] transition-colors rounded-xl"
+            className="w-full bg-white border border-[#D0D0D0] text-[#0A0A0A] px-4 py-3 text-sm focus:outline-none focus:border-[#888888] transition-colors rounded-xl"
             placeholder="6.75"
           />
         </div>
         <div>
-          <label className="block text-[#C4C4C4] text-xs uppercase tracking-widest mb-2">Loan Term (Years)</label>
+          <label className="block text-[#3A3A3A] text-xs uppercase tracking-widest mb-2">Loan Term (Years)</label>
           <select
             value={loanTerm}
             onChange={(e) => setLoanTerm(e.target.value)}
-            className="w-full bg-[#0A0A0A] border border-[#2E2E2E] text-[#F8F8F8] px-4 py-3 text-sm focus:outline-none focus:border-[#888888] transition-colors appearance-none rounded-xl"
+            className="w-full bg-white border border-[#D0D0D0] text-[#0A0A0A] px-4 py-3 text-sm focus:outline-none focus:border-[#888888] transition-colors appearance-none rounded-xl"
           >
             <option value="30">30 years</option>
             <option value="20">20 years</option>
@@ -76,23 +76,23 @@ export default function MortgageCalculator() {
 
       <button
         onClick={calculate}
-        className="bg-[#F8F8F8] text-[#0A0A0A] px-8 py-3 text-sm uppercase tracking-widest hover:bg-[#0A0A0A] hover:text-[#F8F8F8] border border-[#F8F8F8] transition-all rounded-full"
+        className="bg-[#0A0A0A] text-[#F8F8F8] px-8 py-3 text-sm uppercase tracking-widest hover:bg-[#1A1A1A] border border-[#0A0A0A] transition-all rounded-full"
       >
         Calculate
       </button>
 
       {result !== null && (
-        <div className="mt-8 border-t border-[#2E2E2E] pt-8">
-          <p className="text-[#888888] text-xs uppercase tracking-widest mb-2">Estimated Monthly Payment</p>
+        <div className="mt-8 border-t border-[#E0E0E0] pt-8">
+          <p className="text-[#555555] text-xs uppercase tracking-widest mb-2">Estimated Monthly Payment</p>
           <p
-            className="text-4xl text-[#F8F8F8] mb-4"
+            className="text-4xl text-[#0A0A0A] mb-4"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             {formatCurrency(result)}
           </p>
-          <p className="text-[#888888] text-sm">
+          <p className="text-[#555555] text-sm">
             Want to see what a lower rate could do for this number?{' '}
-            <button onClick={openModal} className="text-[#C4C4C4] underline underline-offset-4 hover:text-[#F8F8F8] transition-colors">
+            <button onClick={openModal} className="text-[#3A3A3A] underline underline-offset-4 hover:text-[#0A0A0A] transition-colors">
               Let&apos;s talk.
             </button>
           </p>

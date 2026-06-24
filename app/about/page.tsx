@@ -3,7 +3,7 @@ import Image from 'next/image'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'About Stevie De Gala, Mortgage Broker serving East Texas, Fort Collins, Denver, and Utah',
+  title: 'About Stevie De Gala, Mortgage Broker serving East Texas, Fort Collins, and Denver',
   description: "From Gilmer, Texas to Fort Collins, Colorado. I'm a mortgage broker, real estate investor, Ironman finisher, and Filipino cook who genuinely loves helping people win.",
 }
 
@@ -14,7 +14,7 @@ const timeline = [
   { label: 'BYU', content: 'Entrepreneurial Management degree, Brigham Young University.' },
   { label: 'Capstone', content: 'Ground-up self-storage development, Gilmer, TX.' },
   { label: 'After School', content: 'Commercial real estate AI underwriting software company.' },
-  { label: 'Now', content: 'Licensed mortgage broker serving TX, CO, and UT.' },
+  { label: 'Now', content: 'Licensed mortgage broker serving TX and CO.' },
 ]
 
 const regions = [
@@ -25,10 +25,6 @@ const regions = [
   {
     title: 'Northern Colorado — Fort Collins and Denver',
     body: "My wife is from Fort Collins, and that makes this community family. On weekends you will find me riding out to Horsetooth Reservoir or making the drive down to Chatfield State Park to ride with my uncle. Families and investors across Fort Collins, Loveland, and the greater Denver area get a mortgage broker who is not just licensed here. Northern Colorado is where I live.",
-  },
-  {
-    title: 'Utah — Utah County and Salt Lake City',
-    body: "My family moved here when I was in high school, I attended BYU, and some of my closest relationships were built in this state. Families and investors in Provo, Orem, and Salt Lake City get someone who knows this market and these people in a way that only comes from actually growing up here.",
   },
 ]
 
@@ -142,16 +138,16 @@ export default function AboutPage() {
           >
             Communities I Serve
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {regions.map((region) => (
-              <div key={region.title} className="card-hover border border-[#2E2E2E] bg-[#111111] p-8 rounded-xl">
+              <div key={region.title} className="card-hover border border-[#E0E0E0] bg-[#F8F8F8] p-8 rounded-xl">
                 <h3
-                  className="text-xl text-[#F8F8F8] mb-4"
+                  className="text-xl text-[#0A0A0A] mb-4"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                   {region.title}
                 </h3>
-                <p className="text-[#C4C4C4] text-sm leading-relaxed">{region.body}</p>
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">{region.body}</p>
               </div>
             ))}
           </div>
@@ -179,8 +175,8 @@ export default function AboutPage() {
               'Family first, always',
               'Monopoly champion (real estate research counts)',
             ].map((item) => (
-              <div key={item} className="border border-[#2E2E2E] bg-[#0A0A0A] p-4 rounded-xl">
-                <p className="text-[#C4C4C4] text-sm leading-relaxed">{item}</p>
+              <div key={item} className="border border-[#E0E0E0] bg-[#F8F8F8] p-4 rounded-xl">
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">{item}</p>
               </div>
             ))}
           </div>

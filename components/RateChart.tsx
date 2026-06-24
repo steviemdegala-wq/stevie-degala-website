@@ -30,8 +30,8 @@ function CustomTooltip({ active, payload, label }: any) {
   })
 
   return (
-    <div className="bg-[#1A1A1A] border border-[#2E2E2E] rounded-xl px-4 py-3 text-sm shadow-xl">
-      <p className="text-[#888888] text-xs uppercase tracking-widest mb-2">{date}</p>
+    <div className="bg-white border border-[#E0E0E0] rounded-xl px-4 py-3 text-sm shadow-xl">
+      <p className="text-[#555555] text-xs uppercase tracking-widest mb-2">{date}</p>
       {payload.map((entry: any) => (
         <p key={entry.dataKey} className="font-medium" style={{ color: entry.color }}>
           {entry.name}: {entry.value?.toFixed(2)}%
@@ -51,10 +51,10 @@ export default function RateChart({ data }: Props) {
   return (
     <ResponsiveContainer width="100%" height={320}>
       <LineChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="#2E2E2E" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="#E0E0E0" vertical={false} />
         <XAxis
           dataKey="date"
-          tick={{ fill: '#888888', fontSize: 11 }}
+          tick={{ fill: '#555555', fontSize: 11 }}
           tickLine={false}
           axisLine={false}
           interval={tickInterval}
@@ -64,7 +64,7 @@ export default function RateChart({ data }: Props) {
         />
         <YAxis
           domain={[minRate, maxRate]}
-          tick={{ fill: '#888888', fontSize: 11 }}
+          tick={{ fill: '#555555', fontSize: 11 }}
           tickLine={false}
           axisLine={false}
           tickFormatter={(val) => `${val.toFixed(1)}%`}

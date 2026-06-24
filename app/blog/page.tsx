@@ -31,16 +31,16 @@ export default function BlogPage() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="block group border border-[#2E2E2E] bg-[#111111] rounded-xl p-8 hover:border-[#555555] transition-all"
+                  className="block group border border-[#E0E0E0] bg-[#F8F8F8] rounded-xl p-8 hover:border-[#888888] transition-all"
                 >
-                  <p className="text-[#888888] text-xs uppercase tracking-widest mb-3">
+                  <p className="text-[#555555] text-xs uppercase tracking-widest mb-3">
                     {new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                   </p>
-                  <h2 className="text-[#F8F8F8] text-2xl font-semibold mb-3 group-hover:text-[#C4C4C4] transition-colors">
+                  <h2 className="text-[#0A0A0A] text-2xl font-semibold mb-3 group-hover:text-[#3A3A3A] transition-colors">
                     {post.title}
                   </h2>
-                  <p className="text-[#888888] text-sm leading-relaxed mb-4">{post.excerpt}</p>
-                  <span className="text-[#555555] text-sm group-hover:text-[#F8F8F8] transition-colors">
+                  <p className="text-[#3A3A3A] text-sm leading-relaxed mb-4">{post.excerpt}</p>
+                  <span className="text-[#555555] text-sm group-hover:text-[#0A0A0A] transition-colors">
                     Read more →
                   </span>
                 </Link>

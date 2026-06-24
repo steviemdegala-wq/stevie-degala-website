@@ -555,13 +555,13 @@ export default function FindMyLoanPage() {
                   <button
                     key={opt.value}
                     onClick={() => handleSelect(opt.value)}
-                    className="w-full text-left border border-[#2E2E2E] bg-[#111111] px-6 py-5 rounded-2xl hover:border-[#F8F8F8] hover:bg-[#1A1A1A] transition-all group"
+                    className="w-full text-left border border-[#E0E0E0] bg-[#F8F8F8] px-6 py-5 rounded-2xl hover:border-[#0A0A0A] hover:bg-[#EFEFEF] transition-all group"
                   >
-                    <span className="block text-[#F8F8F8] text-base group-hover:text-white">
+                    <span className="block text-[#0A0A0A] text-base group-hover:text-black">
                       {opt.label}
                     </span>
                     {opt.sub && (
-                      <span className="block text-[#888888] text-sm mt-0.5">
+                      <span className="block text-[#555555] text-sm mt-0.5">
                         {opt.sub}
                       </span>
                     )}
@@ -603,7 +603,7 @@ export default function FindMyLoanPage() {
                   return (
                     <div
                       key={key}
-                      className="bg-[#111111] border border-[#2E2E2E] rounded-2xl px-7 py-8"
+                      className="bg-[#F8F8F8] border border-[#E0E0E0] rounded-2xl px-7 py-8"
                       style={{ borderLeft: `3px solid ${loan.accent}` }}
                     >
                       {i === 0 && (
@@ -615,24 +615,24 @@ export default function FindMyLoanPage() {
                         </p>
                       )}
                       {i === 1 && (
-                        <p className="text-xs uppercase tracking-[0.2em] mb-3 text-[#888888]">
+                        <p className="text-xs uppercase tracking-[0.2em] mb-3 text-[#555555]">
                           Also Consider
                         </p>
                       )}
 
                       <h3
-                        className="text-[#F8F8F8] text-xl mb-1"
+                        className="text-[#0A0A0A] text-xl mb-1"
                         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                       >
                         {loan.name}
                       </h3>
-                      <p className="text-[#888888] text-sm mb-6 italic">{loan.tagline}</p>
+                      <p className="text-[#555555] text-sm mb-6 italic">{loan.tagline}</p>
 
                       <div className="mb-6">
-                        <p className="text-[#C4C4C4] text-xs uppercase tracking-[0.15em] mb-3">Pros</p>
+                        <p className="text-[#3A3A3A] text-xs uppercase tracking-[0.15em] mb-3">Pros</p>
                         <ul className="space-y-2 mb-5">
                           {loan.pros.map((pro) => (
-                            <li key={pro} className="flex items-start gap-2.5 text-[#C4C4C4] text-sm">
+                            <li key={pro} className="flex items-start gap-2.5 text-[#3A3A3A] text-sm">
                               <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#5C8A5C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                               </svg>
@@ -640,10 +640,10 @@ export default function FindMyLoanPage() {
                             </li>
                           ))}
                         </ul>
-                        <p className="text-[#C4C4C4] text-xs uppercase tracking-[0.15em] mb-3">Cons</p>
+                        <p className="text-[#3A3A3A] text-xs uppercase tracking-[0.15em] mb-3">Cons</p>
                         <ul className="space-y-2">
                           {loan.cons.map((con) => (
-                            <li key={con} className="flex items-start gap-2.5 text-[#888888] text-sm">
+                            <li key={con} className="flex items-start gap-2.5 text-[#555555] text-sm">
                               <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#A55C5C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                               </svg>
@@ -653,8 +653,8 @@ export default function FindMyLoanPage() {
                         </ul>
                       </div>
 
-                      <p className="text-[#888888] text-sm leading-relaxed border-t border-[#2E2E2E] pt-5">
-                        <span className="text-[#C4C4C4] font-medium">Best for: </span>
+                      <p className="text-[#555555] text-sm leading-relaxed border-t border-[#E0E0E0] pt-5">
+                        <span className="text-[#3A3A3A] font-medium">Best for: </span>
                         {loan.bestFor}
                       </p>
                     </div>
@@ -663,19 +663,19 @@ export default function FindMyLoanPage() {
               </div>
 
               {/* CTA — full width below both cards */}
-              <div className="border border-[#2E2E2E] bg-[#111111] rounded-2xl px-8 py-10 text-center">
+              <div className="border border-[#E0E0E0] bg-[#F8F8F8] rounded-2xl px-8 py-10 text-center">
                 <h3
-                  className="text-[#F8F8F8] text-2xl md:text-3xl mb-3"
+                  className="text-[#0A0A0A] text-2xl md:text-3xl mb-3"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                   Ready to get specific numbers?
                 </h3>
-                <p className="text-[#888888] text-sm leading-relaxed mb-8 max-w-md mx-auto">
+                <p className="text-[#3A3A3A] text-sm leading-relaxed mb-8 max-w-md mx-auto">
                   I will pull real rate quotes for your situation, compare lenders, and walk you through which option actually saves you the most money.
                 </p>
                 <button
                   onClick={openModal}
-                  className="bg-[#F8F8F8] text-[#0A0A0A] px-8 py-3.5 text-sm tracking-wide rounded-full hover:bg-[#C4C4C4] transition-colors"
+                  className="bg-[#0A0A0A] text-[#F8F8F8] px-8 py-3.5 text-sm tracking-wide rounded-full hover:bg-[#1A1A1A] transition-colors"
                 >
                   Set Up a Free Call
                 </button>

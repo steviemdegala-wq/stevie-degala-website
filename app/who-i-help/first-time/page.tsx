@@ -4,7 +4,7 @@ import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
   title: 'Home Loans for First-Time Buyers, Stevie De Gala',
-  description: 'Buying your first home in Texas, Colorado, or Utah? I walk you through every option in plain English and find the loan that makes your first home your best financial move.',
+  description: 'Buying your first home in Texas or Colorado? I walk you through every option in plain English and find the loan that makes your first home your best financial move.',
 }
 
 const cards = [
@@ -68,14 +68,14 @@ export default function FirstTimePage() {
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             {cards.map((card) => (
-              <div key={card.title} className="card-hover border border-[#2E2E2E] bg-[#0A0A0A] p-8 rounded-xl">
+              <div key={card.title} className="card-hover border border-[#E0E0E0] bg-[#F8F8F8] p-8 rounded-xl">
                 <h3
-                  className="text-xl text-[#F8F8F8] mb-4"
+                  className="text-xl text-[#0A0A0A] mb-4"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                   {card.title}
                 </h3>
-                <p className="text-[#C4C4C4] text-sm leading-relaxed">{card.body}</p>
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">{card.body}</p>
               </div>
             ))}
           </div>
@@ -93,10 +93,10 @@ export default function FirstTimePage() {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {steps.map((step) => (
-              <div key={step.num} className="border border-[#2E2E2E] bg-[#0A0A0A] p-8 rounded-xl">
-                <p className="text-4xl text-[#2E2E2E] mb-4 leading-none" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{step.num}</p>
-                <h3 className="text-lg text-[#F8F8F8] mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{step.title}</h3>
-                <p className="text-[#888888] text-sm leading-relaxed">{step.body}</p>
+              <div key={step.num} className="border border-[#E0E0E0] bg-[#F8F8F8] p-8 rounded-xl">
+                <p className="text-4xl text-[#E0E0E0] mb-4 leading-none" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{step.num}</p>
+                <h3 className="text-lg text-[#0A0A0A] mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{step.title}</h3>
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">{step.body}</p>
               </div>
             ))}
           </div>

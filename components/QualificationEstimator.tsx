@@ -20,49 +20,49 @@ export default function QualificationEstimator() {
     new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val)
 
   return (
-    <div className="border border-[#2E2E2E] bg-[#111111] p-8 md:p-10">
-      <p className="text-[#888888] text-xs uppercase tracking-widest mb-4">Calculator 3</p>
+    <div className="border border-[#E0E0E0] bg-[#F8F8F8] p-8 md:p-10">
+      <p className="text-[#555555] text-xs uppercase tracking-widest mb-4">Calculator 3</p>
       <h2
-        className="text-2xl md:text-3xl text-[#F8F8F8] mb-3"
+        className="text-2xl md:text-3xl text-[#0A0A0A] mb-3"
         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
       >
         Qualification Estimator
       </h2>
-      <p className="text-[#C4C4C4] text-sm leading-relaxed mb-8">
+      <p className="text-[#3A3A3A] text-sm leading-relaxed mb-8">
         This is a starting point, not a guarantee. Enter your annual income to get a rough estimate of your purchase range. Your full picture matters, and that is exactly what we look at together on a call.
       </p>
 
       <div className="max-w-xs mb-6">
-        <label className="block text-[#C4C4C4] text-xs uppercase tracking-widest mb-2">Annual Income ($)</label>
+        <label className="block text-[#3A3A3A] text-xs uppercase tracking-widest mb-2">Annual Income ($)</label>
         <input
           type="text"
           value={annualIncome}
           onChange={(e) => setAnnualIncome(e.target.value)}
-          className="w-full bg-[#0A0A0A] border border-[#2E2E2E] text-[#F8F8F8] px-4 py-3 text-sm focus:outline-none focus:border-[#888888] transition-colors rounded-xl"
+          className="w-full bg-white border border-[#D0D0D0] text-[#0A0A0A] px-4 py-3 text-sm focus:outline-none focus:border-[#888888] transition-colors rounded-xl"
           placeholder="120,000"
         />
       </div>
 
       <button
         onClick={calculate}
-        className="bg-[#F8F8F8] text-[#0A0A0A] px-8 py-3 text-sm uppercase tracking-widest hover:bg-[#0A0A0A] hover:text-[#F8F8F8] border border-[#F8F8F8] transition-all rounded-full"
+        className="bg-[#0A0A0A] text-[#F8F8F8] px-8 py-3 text-sm uppercase tracking-widest hover:bg-[#1A1A1A] border border-[#0A0A0A] transition-all rounded-full"
       >
         Estimate
       </button>
 
       {low !== null && high !== null && (
-        <div className="mt-8 border-t border-[#2E2E2E] pt-8">
-          <p className="text-[#888888] text-xs uppercase tracking-widest mb-2">Estimated Purchase Range</p>
+        <div className="mt-8 border-t border-[#E0E0E0] pt-8">
+          <p className="text-[#555555] text-xs uppercase tracking-widest mb-2">Estimated Purchase Range</p>
           <p
-            className="text-3xl md:text-4xl text-[#F8F8F8] mb-2"
+            className="text-3xl md:text-4xl text-[#0A0A0A] mb-2"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             {fmt(low)} – {fmt(high)}
           </p>
-          <p className="text-[#888888] text-xs mb-6">Based on 3x–4.5x annual income. Your actual range depends on your full picture.</p>
-          <p className="text-[#C4C4C4] text-sm">
+          <p className="text-[#555555] text-xs mb-6">Based on 3x–4.5x annual income. Your actual range depends on your full picture.</p>
+          <p className="text-[#3A3A3A] text-sm">
             Ready to find out exactly what you qualify for?{' '}
-            <button onClick={openModal} className="text-[#F8F8F8] underline underline-offset-4 hover:text-[#C4C4C4] transition-colors">
+            <button onClick={openModal} className="text-[#0A0A0A] underline underline-offset-4 hover:text-[#3A3A3A] transition-colors">
               Book a free call and I will walk you through it.
             </button>
           </p>

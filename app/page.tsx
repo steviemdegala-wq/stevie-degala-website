@@ -8,11 +8,11 @@ import FAQ from '@/components/FAQ'
 import { Trophy, Building2, GraduationCap, BadgeCheck, Home, Key } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Stevie De Gala | Mortgage Broker in Texas, Colorado & Utah',
-  description: 'Licensed mortgage broker in TX, CO & UT. Stevie De Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
+  title: 'Stevie De Gala | Mortgage Broker in Texas & Colorado',
+  description: 'Licensed mortgage broker in TX & CO. Stevie De Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
   openGraph: {
-    title: 'Stevie De Gala | Mortgage Broker in Texas, Colorado & Utah',
-    description: 'Licensed mortgage broker in TX, CO & UT. Stevie De Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
+    title: 'Stevie De Gala | Mortgage Broker in Texas & Colorado',
+    description: 'Licensed mortgage broker in TX & CO. Stevie De Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
     type: 'website',
   },
 }
@@ -21,9 +21,9 @@ const schema = {
   '@context': 'https://schema.org',
   '@type': 'FinancialService',
   name: 'Stevie De Gala — Mortgage Broker',
-  description: 'Licensed mortgage broker helping homeowners and real estate investors in Texas, Colorado, and Utah get better financing and stronger cash flow.',
+  description: 'Licensed mortgage broker helping homeowners and real estate investors in Texas and Colorado get better financing and stronger cash flow.',
   url: 'https://steviedegala.com',
-  areaServed: ['Texas', 'Colorado', 'Utah'],
+  areaServed: ['Texas', 'Colorado'],
   hasCredential: 'NMLS# 2845865',
   sameAs: [],
 }
@@ -49,10 +49,10 @@ export default function HomePage() {
                 I&apos;m Stevie. Your Mortgage Consultant.
               </h1>
               <span style={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}>
-                Mortgage Broker serving Texas, Colorado, and Utah — Home loans, refinancing, DSCR loans, and cash-out refinance. NMLS# 2845865
+                Mortgage Broker serving Texas and Colorado — Home loans, refinancing, DSCR loans, and cash-out refinance. NMLS# 2845865
               </span>
               <p className="text-[#C4C4C4] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
-                First-time buyers get into a home the right way. Homeowners leverage their mortgage to free up cash. Investors find financing that makes their deals work. I make all three happen — across Texas, Colorado, and Utah.
+                First-time buyers get into a home the right way. Homeowners leverage their mortgage to free up cash. Investors find financing that makes their deals work. I make all three happen — across Texas and Colorado.
               </p>
               <div className="flex flex-col items-start gap-5">
                 <BookCallButton variant="solid" />
@@ -71,7 +71,7 @@ export default function HomePage() {
               <div className="relative w-full max-w-sm md:max-w-none overflow-hidden" style={{ aspectRatio: '3/4' }}>
                 <Image
                   src="/headshot.jpg"
-                  alt="Stevie De Gala, licensed mortgage broker in Texas, Colorado, and Utah"
+                  alt="Stevie De Gala, licensed mortgage broker in Texas and Colorado"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-top grayscale"
@@ -88,7 +88,7 @@ export default function HomePage() {
       <section className="bg-[#111111] border-y border-[#2E2E2E] py-5">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-center text-[#888888] text-xs uppercase tracking-[0.25em]">
-            Licensed in Texas &nbsp;&bull;&nbsp; Colorado &nbsp;&bull;&nbsp; Utah
+            Licensed in Texas &nbsp;&bull;&nbsp; Colorado
           </p>
         </div>
       </section>
@@ -123,17 +123,17 @@ export default function HomePage() {
                 body: 'Clear terms, no surprises, and a real person you can call throughout the process. Better financing — and you understand exactly why.',
               },
             ].map((item) => (
-              <div key={item.step} className="border border-[#2E2E2E] bg-[#111111] p-8 rounded-xl">
-                <p className="text-[#2E2E2E] text-5xl font-bold mb-6 leading-none" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+              <div key={item.step} className="border border-[#E0E0E0] bg-[#F8F8F8] p-8 rounded-xl">
+                <p className="text-[#E0E0E0] text-5xl font-bold mb-6 leading-none" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                   {item.step}
                 </p>
                 <h3
-                  className="text-[#F8F8F8] text-xl mb-3"
+                  className="text-[#0A0A0A] text-xl mb-3"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                   {item.title}
                 </h3>
-                <p className="text-[#888888] text-sm leading-relaxed">{item.body}</p>
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -149,27 +149,27 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-6">
             {/* Card A — First-Time Buyers */}
             <div
-              className="card-hover bg-[#111111] px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #2E2E2E', borderLeft: '3px solid #7A9E5C' }}
+              className="card-hover bg-[#F8F8F8] px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
+              style={{ border: '1px solid #E0E0E0', borderLeft: '3px solid #7A9E5C' }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-7">
                   <Key size={18} className="text-[#7A9E5C]" />
-                  <span className="text-[#C4C4C4] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>First-Time Buyers</span>
+                  <span className="text-[#3A3A3A] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>First-Time Buyers</span>
                 </div>
                 <h3
-                  className="text-[#F8F8F8] leading-tight mb-6"
+                  className="text-[#0A0A0A] leading-tight mb-6"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)' }}
                 >
                   Your first home. Done right.
                 </h3>
-                <p className="text-[#888888] text-sm leading-relaxed">
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">
                   FHA, conventional, VA, USDA — there are more options than most people realize. I explain every one in plain English and find the loan that makes your first home your best financial move.
                 </p>
               </div>
               <Link
                 href="/who-i-help/first-time"
-                className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors mt-10 group"
+                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
               >
                 See what&apos;s possible
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -178,27 +178,27 @@ export default function HomePage() {
 
             {/* Card B — Homeowners */}
             <div
-              className="card-hover bg-[#111111] px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #2E2E2E', borderLeft: '3px solid #B8860B' }}
+              className="card-hover bg-[#F8F8F8] px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
+              style={{ border: '1px solid #E0E0E0', borderLeft: '3px solid #B8860B' }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-7">
                   <Home size={18} className="text-[#B8860B]" />
-                  <span className="text-[#C4C4C4] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Homeowners</span>
+                  <span className="text-[#3A3A3A] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Homeowners</span>
                 </div>
                 <h3
-                  className="text-[#F8F8F8] leading-tight mb-6"
+                  className="text-[#0A0A0A] leading-tight mb-6"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)' }}
                 >
                   Your home is sitting on capital.
                 </h3>
-                <p className="text-[#888888] text-sm leading-relaxed">
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">
                   Most homeowners don&apos;t realize how much equity they&apos;re leaving idle. The right refinance can pay off high-interest debt, cover college, or free up cash for whatever matters next.
                 </p>
               </div>
               <Link
                 href="/who-i-help/homeowners"
-                className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors mt-10 group"
+                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
               >
                 See what&apos;s possible
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -207,27 +207,27 @@ export default function HomePage() {
 
             {/* Card C — Investors */}
             <div
-              className="card-hover bg-[#111111] px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #2E2E2E', borderLeft: '3px solid #4A7FA5' }}
+              className="card-hover bg-[#F8F8F8] px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
+              style={{ border: '1px solid #E0E0E0', borderLeft: '3px solid #4A7FA5' }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-7">
                   <Building2 size={18} className="text-[#4A7FA5]" />
-                  <span className="text-[#C4C4C4] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Investors</span>
+                  <span className="text-[#3A3A3A] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Investors</span>
                 </div>
                 <h3
-                  className="text-[#F8F8F8] leading-tight mb-6"
+                  className="text-[#0A0A0A] leading-tight mb-6"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)' }}
                 >
                   More options. Better terms.
                 </h3>
-                <p className="text-[#888888] text-sm leading-relaxed">
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">
                   Local lenders give you a handful of choices. I compare dozens — DSCR loans, portfolio products, and creative structures built around your strategy, not a bank&apos;s checklist.
                 </p>
               </div>
               <Link
                 href="/who-i-help/investors"
-                className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors mt-10 group"
+                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
               >
                 See what&apos;s possible
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -345,33 +345,33 @@ export default function HomePage() {
               {
                 stat: 'Ironman Finisher',
                 sub: 'When the process gets hard, I know how to push through.',
-                icon: <Trophy size={28} className="text-[#888888] mb-5" />,
+                icon: <Trophy size={28} className="text-[#555555] mb-5" />,
               },
               {
                 stat: 'Ground-Up Developer',
                 sub: 'I built a self-storage facility from scratch as a senior in college.',
-                icon: <Building2 size={28} className="text-[#888888] mb-5" />,
+                icon: <Building2 size={28} className="text-[#555555] mb-5" />,
               },
               {
                 stat: 'BYU Entrepreneurial Management',
                 sub: 'My degree was built around building things, not just studying them.',
-                icon: <GraduationCap size={28} className="text-[#888888] mb-5" />,
+                icon: <GraduationCap size={28} className="text-[#555555] mb-5" />,
               },
               {
-                stat: 'Licensed in TX, CO, and UT',
-                sub: 'Three states, three communities, one consistent standard of service.',
-                icon: <BadgeCheck size={28} className="text-[#888888] mb-5" />,
+                stat: 'Licensed in TX and CO',
+                sub: 'Two states, two communities, one consistent standard of service.',
+                icon: <BadgeCheck size={28} className="text-[#555555] mb-5" />,
               },
             ].map((item) => (
-              <div key={item.stat} className="bg-[#111111] border border-[#2E2E2E] p-8 md:p-10 rounded-xl">
+              <div key={item.stat} className="bg-[#F8F8F8] border border-[#E0E0E0] p-8 md:p-10 rounded-xl">
                 {item.icon}
                 <h4
-                  className="text-[#F8F8F8] text-xl mb-3 leading-snug"
+                  className="text-[#0A0A0A] text-xl mb-3 leading-snug"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                   {item.stat}
                 </h4>
-                <p className="text-[#888888] text-sm leading-relaxed">{item.sub}</p>
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">{item.sub}</p>
               </div>
             ))}
           </div>

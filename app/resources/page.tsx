@@ -4,7 +4,7 @@ import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
   title: 'Mortgage Rates, Calculators, and Tools, Stevie De Gala',
-  description: 'Mortgage payment calculator, DTI calculator, qualification estimator, and current rates for Texas, Colorado, and Utah.',
+  description: 'Mortgage payment calculator, DTI calculator, qualification estimator, and current rates for Texas and Colorado.',
 }
 
 const cards = [
@@ -79,19 +79,19 @@ export default function ResourcesPage() {
               <Link
                 key={card.href}
                 href={card.href}
-                className="group border border-[#2E2E2E] bg-[#111111] p-8 flex flex-col justify-between min-h-[220px] hover:bg-[#1A1A1A] transition-colors rounded-xl"
+                className="group border border-[#E0E0E0] bg-[#F8F8F8] p-8 flex flex-col justify-between min-h-[220px] hover:bg-[#EFEFEF] transition-colors rounded-xl"
               >
                 <div>
-                  <p className="text-[#888888] text-xs uppercase tracking-widest mb-3">{card.label}</p>
+                  <p className="text-[#555555] text-xs uppercase tracking-widest mb-3">{card.label}</p>
                   <h3
-                    className="text-xl text-[#F8F8F8] mb-4 leading-snug"
+                    className="text-xl text-[#0A0A0A] mb-4 leading-snug"
                     style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                   >
                     {card.headline}
                   </h3>
-                  <p className="text-[#888888] text-sm leading-relaxed">{card.body}</p>
+                  <p className="text-[#3A3A3A] text-sm leading-relaxed">{card.body}</p>
                 </div>
-                <div className="mt-6 flex items-center gap-2 text-[#888888] group-hover:text-[#F8F8F8] transition-colors text-sm">
+                <div className="mt-6 flex items-center gap-2 text-[#555555] group-hover:text-[#0A0A0A] transition-colors text-sm">
                   Open
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -115,14 +115,14 @@ export default function ResourcesPage() {
           <p className="text-[#888888] mb-12">Before you make any big financing decisions.</p>
           <div className="grid sm:grid-cols-2 gap-6">
             {educationCards.map((card) => (
-              <div key={card.title} className="card-hover border border-[#2E2E2E] bg-[#111111] p-8 rounded-xl">
+              <div key={card.title} className="card-hover border border-[#E0E0E0] bg-[#F8F8F8] p-8 rounded-xl">
                 <h3
-                  className="text-xl text-[#F8F8F8] mb-4"
+                  className="text-xl text-[#0A0A0A] mb-4"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                   {card.title}
                 </h3>
-                <p className="text-[#C4C4C4] text-sm leading-relaxed">{card.body}</p>
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">{card.body}</p>
               </div>
             ))}
           </div>
