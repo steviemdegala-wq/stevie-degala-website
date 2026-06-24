@@ -17,19 +17,15 @@ const resourcesLinks = [
   { label: 'Qualification Estimator', href: '/resources/qualification-estimator' },
 ]
 
-const lifestyleLinks = [
-  { label: 'Family Recipes', href: '/lifestyle/recipes' },
-  { label: 'Restaurant Guides', href: '/lifestyle/restaurants' },
-  { label: 'Active Lifestyle', href: '/lifestyle/active' },
-]
+const PREQUALIFY_URL = 'https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos'
 
 const mobileNavSections = [
   { label: 'About', href: '/about', children: [] },
   { label: 'Who I Help', href: '/who-i-help', children: whoIHelpLinks },
   { label: 'Find My Loan', href: '/find-my-loan', children: [] },
   { label: 'Resources', href: '/resources', children: resourcesLinks },
-  { label: 'Lifestyle', href: '/lifestyle', children: lifestyleLinks },
   { label: 'Blog', href: '/blog', children: [] },
+  { label: 'Get Pre-Qualified', href: PREQUALIFY_URL, children: [] },
 ]
 
 export default function Navigation() {
@@ -135,31 +131,15 @@ export default function Navigation() {
               Blog
             </Link>
 
-            {/* Lifestyle dropdown */}
-            <div className="relative group">
-              <Link
-                href="/lifestyle"
-                className="text-[#C4C4C4] text-sm hover:text-[#F8F8F8] transition-colors tracking-wide flex items-center gap-1"
-              >
-                Lifestyle
-                <svg className="w-3 h-3 mt-px transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 hidden group-hover:block">
-                <div className="bg-[#111111] border border-[#2E2E2E] min-w-[180px] py-2 rounded-xl overflow-hidden">
-                  {lifestyleLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="block px-5 py-2.5 text-sm text-[#C4C4C4] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
+            {/* Get Pre-Qualified */}
+            <a
+              href={PREQUALIFY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C4C4C4] text-sm hover:text-[#F8F8F8] transition-colors tracking-wide"
+            >
+              Get Pre-Qualified
+            </a>
           </div>
 
           {/* Desktop CTA */}
@@ -210,14 +190,27 @@ export default function Navigation() {
             {mobileNavSections.map((section) => (
               <div key={section.href} className="border-b border-[#2E2E2E]">
                 {section.children.length === 0 ? (
-                  <Link
-                    href={section.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block font-serif text-[#F8F8F8] text-2xl py-5 hover:text-[#888888] transition-colors"
-                    style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                  >
-                    {section.label}
-                  </Link>
+                  section.href.startsWith('http') ? (
+                    <a
+                      href={section.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setMobileOpen(false)}
+                      className="block font-serif text-[#F8F8F8] text-2xl py-5 hover:text-[#888888] transition-colors"
+                      style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                    >
+                      {section.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={section.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="block font-serif text-[#F8F8F8] text-2xl py-5 hover:text-[#888888] transition-colors"
+                      style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                    >
+                      {section.label}
+                    </Link>
+                  )
                 ) : (
                   <>
                     <button

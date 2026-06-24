@@ -1,11 +1,13 @@
 import Link from 'next/link'
 
+const PREQUALIFY_URL = 'https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos'
+
 export default function Footer() {
   return (
     <footer className="border-t border-[#2E2E2E] bg-[#0A0A0A]">
       {/* Main footer columns */}
       <div className="py-14 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
 
           {/* Identity */}
           <div className="col-span-2 md:col-span-1 space-y-3">
@@ -42,7 +44,7 @@ export default function Footer() {
             <Link href="/about" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">About</Link>
             <Link href="/who-i-help" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Who I Help</Link>
             <Link href="/resources" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Resources</Link>
-            <Link href="/lifestyle" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Lifestyle</Link>
+            <a href={PREQUALIFY_URL} target="_blank" rel="noopener noreferrer" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Get Pre-Qualified</a>
           </div>
 
           {/* Resources */}
@@ -52,14 +54,6 @@ export default function Footer() {
             <Link href="/resources/mortgage-calculator" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Mortgage Calculator</Link>
             <Link href="/resources/dti-calculator" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">DTI Calculator</Link>
             <Link href="/resources/qualification-estimator" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Qualification Estimator</Link>
-          </div>
-
-          {/* Lifestyle */}
-          <div className="space-y-3">
-            <p className="text-[#F8F8F8] text-xs uppercase tracking-widest mb-4">Lifestyle</p>
-            <Link href="/lifestyle/recipes" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Family Recipes</Link>
-            <Link href="/lifestyle/restaurants" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Restaurant Guides</Link>
-            <Link href="/lifestyle/active" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Active Lifestyle</Link>
           </div>
 
           {/* Who I Help */}
