@@ -104,7 +104,7 @@ export default async function RatesPage() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white/90 backdrop-blur-sm border border-white/40 rounded-2xl p-8 flex flex-col gap-4 hover:bg-white/95 transition-colors"
+                    className="bg-white backdrop-blur-sm border border-white/40 rounded-2xl p-8 flex flex-col gap-4 hover:bg-white transition-colors"
                     style={{ borderLeft: `3px solid ${accent}` }}
                   >
                     <p className="text-[#555555] text-xs uppercase tracking-widest">{label} — National Avg</p>
@@ -132,7 +132,7 @@ export default async function RatesPage() {
 
               {/* 52-week chart */}
               {chartData.length > 0 && (
-                <div className="bg-white/90 backdrop-blur-sm border border-white/40 rounded-2xl p-6 md:p-8">
+                <div className="bg-white backdrop-blur-sm border border-white/40 rounded-2xl p-6 md:p-8">
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <p className="text-[#555555] text-xs uppercase tracking-widest mb-1">Rate Trend</p>

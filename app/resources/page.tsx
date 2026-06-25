@@ -79,7 +79,7 @@ export default function ResourcesPage() {
               <Link
                 key={card.href}
                 href={card.href}
-                className="group border border-white/40 bg-white/90 backdrop-blur-sm p-8 flex flex-col justify-between min-h-[220px] hover:bg-white/95 transition-colors rounded-xl"
+                className="card-hover group border border-white/40 bg-white backdrop-blur-sm p-8 flex flex-col justify-between min-h-[220px] rounded-xl"
               >
                 <div>
                   <p className="text-[#555555] text-xs uppercase tracking-widest mb-3">{card.label}</p>
@@ -115,7 +115,7 @@ export default function ResourcesPage() {
           <p className="text-[#888888] mb-12">Before you make any big financing decisions.</p>
           <div className="grid sm:grid-cols-2 gap-6">
             {educationCards.map((card) => (
-              <div key={card.title} className="card-hover border border-white/40 bg-white/90 backdrop-blur-sm p-8 rounded-xl">
+              <div key={card.title} className="border border-white/40 bg-white backdrop-blur-sm p-8 rounded-xl">
                 <h3
                   className="text-xl text-[#0A0A0A] mb-4"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
