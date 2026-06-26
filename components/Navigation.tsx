@@ -17,15 +17,12 @@ const resourcesLinks = [
   { label: 'Qualification Estimator', href: '/resources/qualification-estimator' },
 ]
 
-const PREQUALIFY_URL = 'https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos'
-
 const mobileNavSections = [
   { label: 'About', href: '/about', children: [] },
   { label: 'Who I Help', href: '/who-i-help', children: whoIHelpLinks },
   { label: 'Find My Loan', href: '/find-my-loan', children: [] },
   { label: 'Resources', href: '/resources', children: resourcesLinks },
   { label: 'Blog', href: '/blog', children: [] },
-  { label: 'Get Pre-Qualified', href: PREQUALIFY_URL, children: [] },
 ]
 
 export default function Navigation() {
@@ -130,23 +127,21 @@ export default function Navigation() {
             <Link href="/blog" className="text-[#C4C4C4] text-sm hover:text-[#F8F8F8] transition-colors tracking-wide">
               Blog
             </Link>
-
-            {/* Get Pre-Qualified */}
-            <a
-              href={PREQUALIFY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#C4C4C4] text-sm hover:text-[#F8F8F8] transition-colors tracking-wide"
-            >
-              Get Pre-Qualified
-            </a>
           </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:block flex-shrink-0">
+          {/* Desktop CTAs */}
+          <div className="hidden md:flex items-center gap-3 flex-shrink-0">
+            <a
+              href="https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-[#F8F8F8] text-[#F8F8F8] px-5 py-2 rounded-full text-sm hover:bg-[#F8F8F8] hover:text-[#0A0A0A] transition-all tracking-wide"
+            >
+              Get Pre-Approved
+            </a>
             <button
               onClick={openModal}
-              className="border border-[#F8F8F8] text-[#F8F8F8] px-5 py-2 rounded-full text-sm hover:bg-[#F8F8F8] hover:text-[#0A0A0A] transition-all tracking-wide"
+              className="bg-[#F8F8F8] text-[#0A0A0A] px-5 py-2 rounded-full text-sm hover:bg-[#C4C4C4] transition-all tracking-wide"
             >
               Book a Free Call
             </button>
@@ -190,27 +185,14 @@ export default function Navigation() {
             {mobileNavSections.map((section) => (
               <div key={section.href} className="border-b border-[#2E2E2E]">
                 {section.children.length === 0 ? (
-                  section.href.startsWith('http') ? (
-                    <a
-                      href={section.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setMobileOpen(false)}
-                      className="block font-serif text-[#F8F8F8] text-2xl py-5 hover:text-[#888888] transition-colors"
-                      style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                    >
-                      {section.label}
-                    </a>
-                  ) : (
-                    <Link
-                      href={section.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="block font-serif text-[#F8F8F8] text-2xl py-5 hover:text-[#888888] transition-colors"
-                      style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                    >
-                      {section.label}
-                    </Link>
-                  )
+                  <Link
+                    href={section.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block font-serif text-[#F8F8F8] text-2xl py-5 hover:text-[#888888] transition-colors"
+                    style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  >
+                    {section.label}
+                  </Link>
                 ) : (
                   <>
                     <button

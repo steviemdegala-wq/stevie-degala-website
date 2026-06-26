@@ -9,19 +9,15 @@ const faqs = [
   },
   {
     q: 'Does using a broker cost me more?',
-    a: 'No. Broker compensation is paid by the lender, not by you. In most cases, working with a broker gets you a lower rate than going directly to a bank — because you have access to wholesale pricing that retail customers never see.',
+    a: 'No — in many cases, broker compensation is paid by the lender, not you. And if you would rather pay it yourself, you typically save on fees. Either way, working with a broker almost always gets you better terms than going direct to a single bank.',
   },
   {
     q: 'How much do I need for a down payment?',
-    a: 'It depends on the loan type. VA and USDA loans require zero down for those who qualify. FHA loans start at 3.5% down. Conventional loans typically start at 5%. For investment properties, expect 20–25%. On a free call, I can tell you exactly what applies to your situation.',
-  },
-  {
-    q: 'What is the difference between pre-qualification and pre-approval?',
-    a: 'Pre-qualification is a quick estimate based on what you tell me — useful for a ballpark. Pre-approval is a formal review of your credit, income, and assets. It carries real weight with sellers and tells you exactly what you qualify for. I always recommend going straight to pre-approval.',
+    a: 'It depends on the loan type. VA and USDA loans require zero down for those who qualify. FHA loans start at 3.5% down. Conventional loans — if you were going to a bank, they would typically want 20–25% down. For investment properties, expect the same. On a free call, I can tell you exactly what applies to your situation.',
   },
   {
     q: 'Can I get a mortgage if I am self-employed?',
-    a: 'Yes. Bank statement loans and Non-QM products are designed specifically for business owners and 1099 earners. Instead of using your tax returns — which often show lower income after write-offs — lenders look at your actual cash deposits. I work with these products regularly.',
+    a: 'Yes. Bank statement loans and Non-QM products are designed specifically for business owners and 1099 earners. Instead of using your tax returns — which often show lower income after write-offs — lenders look at your actual cash deposits. I work with these products regularly. If you went to a traditional bank, they would typically want to see two years of income history, so if this is a new switch, Non-QM or bank statement loans are an effective way to move forward.',
   },
   {
     q: 'How long does the mortgage process take?',
