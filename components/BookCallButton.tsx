@@ -16,7 +16,7 @@ export default function BookCallButton({ label = 'Book a Free Call', variant = '
   const styles = {
     solid: 'bg-[#F8F8F8] text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-[#F8F8F8] border border-[#F8F8F8]',
     outline: 'border border-[#F8F8F8] text-[#F8F8F8] hover:bg-[#F8F8F8] hover:text-[#0A0A0A]',
-    light: 'bg-[#0A0A0A] text-[#0A0A0A] border border-[#0A0A0A] hover:bg-[#F8F8F8] hover:border-[#0A0A0A]',
+    light: 'bg-[#0A0A0A] text-[#F8F8F8] border border-[#0A0A0A] hover:bg-transparent hover:text-[#0A0A0A]',
   }
 
   // For light variant (on white background)
