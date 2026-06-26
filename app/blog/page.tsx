@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/posts'
+import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
   title: 'Blog — Stevie De Gala',
@@ -13,11 +14,24 @@ export default function BlogPage() {
   return (
     <main className="pt-16 md:pt-20 min-h-screen bg-[#0A0A0A]">
       <section className="py-16 md:py-24 px-6 border-b border-[#2E2E2E]">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-[#888888] text-xs uppercase tracking-[0.2em] mb-4">Blog</p>
-          <h1 className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight font-semibold">
-            Insights &amp; Education
-          </h1>
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+          <div>
+            <p className="text-[#888888] text-xs uppercase tracking-[0.2em] mb-4">Blog</p>
+            <h1 className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight font-semibold">
+              Insights &amp; Education
+            </h1>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 flex-shrink-0">
+            <a
+              href="https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 text-sm uppercase tracking-widest font-medium transition-all rounded-full bg-[#F8F8F8] text-[#0A0A0A] border border-[#F8F8F8] hover:bg-[#0A0A0A] hover:text-[#F8F8F8]"
+            >
+              Get Pre-Approved
+            </a>
+            <BookCallButton variant="outline" label="Book a Free Call" />
+          </div>
         </div>
       </section>
 
@@ -31,15 +45,15 @@ export default function BlogPage() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="card-hover block group border border-white/40 bg-white backdrop-blur-sm rounded-xl p-8"
+                  className="card-white block group border border-[#E5E5E5] bg-white rounded-xl p-8 hover:border-[#999999] transition-all"
                 >
-                  <p className="text-[#555555] text-xs uppercase tracking-widest mb-3">
+                  <p className="text-[#888888] text-xs uppercase tracking-widest mb-3">
                     {new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                   </p>
-                  <h2 className="text-[#0A0A0A] text-2xl font-semibold mb-3 group-hover:text-[#3A3A3A] transition-colors">
+                  <h2 className="text-[#F8F8F8] text-2xl font-semibold mb-3 group-hover:text-[#444444] transition-colors">
                     {post.title}
                   </h2>
-                  <p className="text-[#3A3A3A] text-sm leading-relaxed mb-4">{post.excerpt}</p>
+                  <p className="text-[#888888] text-sm leading-relaxed mb-4">{post.excerpt}</p>
                   <span className="text-[#555555] text-sm group-hover:text-[#0A0A0A] transition-colors">
                     Read more →
                   </span>

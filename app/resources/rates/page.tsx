@@ -104,27 +104,27 @@ export default async function RatesPage() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white backdrop-blur-sm border border-white/40 rounded-2xl p-8 flex flex-col gap-4 hover:bg-white transition-colors"
+                    className="card-white bg-white border border-[#E5E5E5] rounded-2xl p-8 flex flex-col gap-4 hover:bg-[#F5F5F5] transition-colors"
                     style={{ borderLeft: `3px solid ${accent}` }}
                   >
-                    <p className="text-[#555555] text-xs uppercase tracking-widest">{label} — National Avg</p>
+                    <p className="text-[#888888] text-xs uppercase tracking-widest">{label} — National Avg</p>
                     {data ? (
                       <>
-                        <p className="text-5xl text-[#0A0A0A]" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                        <p className="text-5xl text-[#F8F8F8]" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                           {data.rate.toFixed(2)}%
                         </p>
                         <div className="flex items-center gap-2">
-                          <span className={`text-sm font-medium ${data.change <= 0 ? 'text-[#5C8A5C]' : 'text-[#A55C5C]'}`}>
+                          <span className={`text-sm font-medium ${data.change <= 0 ? 'text-[#7A9E5C]' : 'text-[#A55C5C]'}`}>
                             {data.change > 0 ? '+' : ''}{data.change.toFixed(2)}%
                           </span>
-                          <span className="text-[#555555] text-xs">vs. 4 weeks ago</span>
+                          <span className="text-[#888888] text-xs">vs. 4 weeks ago</span>
                         </div>
-                        <p className="text-[#555555] text-xs">
+                        <p className="text-[#888888] text-xs">
                           As of {new Date(data.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} · Freddie Mac PMMS
                         </p>
                       </>
                     ) : (
-                      <p className="text-[#555555] text-sm">Data unavailable</p>
+                      <p className="text-[#888888] text-sm">Data unavailable</p>
                     )}
                   </a>
                 ))}
@@ -132,25 +132,25 @@ export default async function RatesPage() {
 
               {/* 52-week chart */}
               {chartData.length > 0 && (
-                <div className="bg-white backdrop-blur-sm border border-white/40 rounded-2xl p-6 md:p-8">
+                <div className="card-white bg-white border border-[#E5E5E5] rounded-2xl p-6 md:p-8">
                   <div className="flex items-center justify-between mb-6">
                     <div>
-                      <p className="text-[#555555] text-xs uppercase tracking-widest mb-1">Rate Trend</p>
-                      <p className="text-[#0A0A0A] text-sm">Past 52 weeks · Hover to see rate on any date</p>
+                      <p className="text-[#888888] text-xs uppercase tracking-widest mb-1">Rate Trend</p>
+                      <p className="text-[#F8F8F8] text-sm">Past 52 weeks · Hover to see rate on any date</p>
                     </div>
                     <div className="flex items-center gap-5">
-                      <span className="flex items-center gap-1.5 text-xs text-[#555555]">
+                      <span className="flex items-center gap-1.5 text-xs text-[#888888]">
                         <span className="w-3 h-0.5 rounded bg-[#7A9E5C] inline-block" />
                         30-Year
                       </span>
-                      <span className="flex items-center gap-1.5 text-xs text-[#555555]">
+                      <span className="flex items-center gap-1.5 text-xs text-[#888888]">
                         <span className="w-3 h-0.5 rounded bg-[#4A7FA5] inline-block" />
                         15-Year
                       </span>
                     </div>
                   </div>
                   <RateChart data={chartData} />
-                  <p className="text-[#777777] text-xs mt-4">
+                  <p className="text-[#555555] text-xs mt-4">
                     Source: Freddie Mac Primary Mortgage Market Survey (PMMS) via FRED · Federal Reserve Bank of St. Louis · Updated weekly
                   </p>
                 </div>

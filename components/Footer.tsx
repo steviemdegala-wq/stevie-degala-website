@@ -21,7 +21,7 @@ export default function Footer() {
             <p className="text-[#888888] text-xs">NMLS# 2845865</p>
             <p className="text-[#888888] text-xs">NEXA Lending</p>
             <a href="tel:+18065082666" className="text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">(806) 508-2666</a>
-            <p className="text-[#888888] text-xs">Texas · Colorado · Utah</p>
+            <p className="text-[#888888] text-xs">Texas · Colorado</p>
             <div className="flex gap-3 pt-1">
               <a href="#" aria-label="LinkedIn" className="text-[#888888] hover:text-[#F8F8F8] transition-colors" rel="noopener noreferrer">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">

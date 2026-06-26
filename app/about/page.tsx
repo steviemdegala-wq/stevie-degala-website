@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const timeline = [
   { label: 'East Texas', content: 'Grew up in Gilmer, TX. Family dealership, lawn mowing, snack box hustle.' },
-  { label: 'High School', content: "Family moved to Utah for dad's kidney transplant." },
+  { label: 'High School', content: "Family relocated for dad's kidney transplant." },
   { label: 'Mission', content: 'Church mission in Mexico.' },
   { label: 'BYU', content: 'Entrepreneurial Management degree, Brigham Young University.' },
   { label: 'Capstone', content: 'Ground-up self-storage development, Gilmer, TX.' },
@@ -75,7 +75,7 @@ export default function AboutPage() {
           </h2>
           {[
             "Gilmer, Texas shaped me. Growing up in a small East Texas town meant growing up surrounded by family, and family meant work. My dad and grandfather ran HM Dodd Motor Company, and I spent as much time there as I could. Before I was old enough to drive, I was mowing lawns and running a snack box route to local salons. Gilmer taught me that you earn what you get.",
-            "In high school, my family moved to Utah so my dad could receive a kidney transplant. That season of life taught me more about sacrifice and resilience than anything else ever has. After high school, I served a church mission in Mexico. Those years changed how I see people and changed how I show up for them.",
+            "In high school, my family relocated so my dad could receive a kidney transplant. That season of life taught me more about sacrifice and resilience than anything else ever has. After high school, I served a church mission in Mexico. Those years changed how I see people and changed how I show up for them.",
             "At Brigham Young University, I studied Entrepreneurial Management. My senior capstone was not a paper or a presentation. My senior capstone was a self-storage facility I developed from the ground up back home in Gilmer, Texas. That project confirmed everything I already believed about real estate.",
             "Since graduating, I have worked in a commercial real estate AI company focused on underwriting and invested in multifamily properties. Now I bring all of that together as a licensed mortgage broker. My clients get someone who has sat on both sides of the table, and who knows exactly what good financing looks like.",
           ].map((para, i) => (
@@ -140,14 +140,14 @@ export default function AboutPage() {
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {regions.map((region) => (
-              <div key={region.title} className="border border-white/40 bg-white backdrop-blur-sm p-8 rounded-xl">
+              <div key={region.title} className="card-hover border border-[#2E2E2E] bg-[#111111] p-8 rounded-xl">
                 <h3
-                  className="text-xl text-[#0A0A0A] mb-4"
+                  className="text-xl text-[#F8F8F8] mb-4"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                   {region.title}
                 </h3>
-                <p className="text-[#3A3A3A] text-sm leading-relaxed">{region.body}</p>
+                <p className="text-[#C4C4C4] text-sm leading-relaxed">{region.body}</p>
               </div>
             ))}
           </div>
@@ -175,8 +175,8 @@ export default function AboutPage() {
               'Family first, always',
               'Monopoly champion (real estate research counts)',
             ].map((item) => (
-              <div key={item} className="border border-white/40 bg-white backdrop-blur-sm p-5 rounded-xl min-h-[120px] flex items-center justify-center text-center">
-                <p className="text-[#3A3A3A] text-sm leading-relaxed">{item}</p>
+              <div key={item} className="border border-[#2E2E2E] bg-[#0A0A0A] p-4 rounded-xl flex items-center justify-center text-center">
+                <p className="text-[#C4C4C4] text-sm leading-relaxed">{item}</p>
               </div>
             ))}
           </div>
