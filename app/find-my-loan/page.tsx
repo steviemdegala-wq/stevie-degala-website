@@ -663,7 +663,7 @@ export default function FindMyLoanPage() {
               </div>
 
               {/* CTA — full width below both cards */}
-              <div className="card-white border border-[#E5E5E5] bg-white rounded-2xl px-8 py-10 text-center">
+              <div className="border border-[#E5E5E5] bg-white rounded-2xl px-8 py-10 text-center">
                 <h3
                   className="text-[#0A0A0A] text-2xl md:text-3xl mb-3"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}

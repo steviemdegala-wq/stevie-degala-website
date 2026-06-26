@@ -115,22 +115,27 @@ export default function HomePage() {
               Simple. Transparent. On your side.
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 step: '01',
-                title: 'Tell me your goals',
-                body: 'A free 15-minute call — no forms to fill out beforehand, no pressure. Just an honest conversation about where you are and where you want to go.',
+                title: 'Free call',
+                body: 'A free 15-minute call — no forms beforehand, no pressure. Just an honest conversation about where you are and where you want to go.',
               },
               {
                 step: '02',
+                title: 'I review your picture',
+                body: 'Credit, income, savings — I look at the full picture and tell you honestly what you qualify for and which loan type fits best.',
+              },
+              {
+                step: '03',
                 title: 'I shop the market',
                 body: 'I compare rates and structures across 30+ lenders on your behalf. You get options, not a take-it-or-leave-it offer from a single bank.',
               },
               {
-                step: '03',
+                step: '04',
                 title: 'You close with confidence',
-                body: 'Clear terms, no surprises, and a real person you can call throughout the process. Better financing — and you understand exactly why.',
+                body: 'Clear terms, no surprises, and a real person you can call throughout the process. You always know where things stand.',
               },
             ].map((item) => (
               <div key={item.step} className="border border-white/40 bg-white backdrop-blur-sm p-8 rounded-xl">
