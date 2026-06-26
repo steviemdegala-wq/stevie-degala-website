@@ -84,12 +84,12 @@ export default function ResourcesPage() {
                 <div>
                   <p className="text-[#888888] text-xs uppercase tracking-widest mb-3">{card.label}</p>
                   <h3
-                    className="text-xl text-[#F8F8F8] mb-4 leading-snug"
+                    className="text-xl text-[#0A0A0A] mb-4 leading-snug"
                     style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                   >
                     {card.headline}
                   </h3>
-                  <p className="text-[#888888] text-sm leading-relaxed">{card.body}</p>
+                  <p className="text-[#555555] text-sm leading-relaxed">{card.body}</p>
                 </div>
                 <div className="mt-6 flex items-center gap-2 text-[#888888] group-hover:text-[#0A0A0A] transition-colors text-sm">
                   Open
@@ -117,12 +117,12 @@ export default function ResourcesPage() {
             {educationCards.map((card) => (
               <div key={card.title} className="card-white card-hover border border-[#E5E5E5] bg-white p-8 rounded-xl">
                 <h3
-                  className="text-xl text-[#F8F8F8] mb-4"
+                  className="text-xl text-[#0A0A0A] mb-4"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                   {card.title}
                 </h3>
-                <p className="text-[#C4C4C4] text-sm leading-relaxed">{card.body}</p>
+                <p className="text-[#444444] text-sm leading-relaxed">{card.body}</p>
               </div>
             ))}
           </div>

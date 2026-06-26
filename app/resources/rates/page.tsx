@@ -110,7 +110,7 @@ export default async function RatesPage() {
                     <p className="text-[#888888] text-xs uppercase tracking-widest">{label} — National Avg</p>
                     {data ? (
                       <>
-                        <p className="text-5xl text-[#F8F8F8]" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                        <p className="text-5xl text-[#0A0A0A]" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                           {data.rate.toFixed(2)}%
                         </p>
                         <div className="flex items-center gap-2">
@@ -136,7 +136,7 @@ export default async function RatesPage() {
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <p className="text-[#888888] text-xs uppercase tracking-widest mb-1">Rate Trend</p>
-                      <p className="text-[#F8F8F8] text-sm">Past 52 weeks · Hover to see rate on any date</p>
+                      <p className="text-[#444444] text-sm">Past 52 weeks · Hover to see rate on any date</p>
                     </div>
                     <div className="flex items-center gap-5">
                       <span className="flex items-center gap-1.5 text-xs text-[#888888]">

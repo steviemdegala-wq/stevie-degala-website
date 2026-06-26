@@ -34,13 +34,13 @@ export default function WhoIHelpPage() {
             {/* First-Time Buyers */}
             <Link
               href="/who-i-help/first-time"
-              className="card-hover group border border-white/40 bg-white backdrop-blur-sm px-10 py-14 flex flex-col justify-between min-h-[360px] rounded-xl"
+              className="card-white card-hover group border border-[#E5E5E5] bg-white px-10 py-14 flex flex-col justify-between min-h-[360px] hover:bg-[#F5F5F5] transition-colors rounded-xl"
               style={{ borderLeft: '3px solid #7A9E5C' }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-7">
                   <Key size={18} className="text-[#7A9E5C]" />
-                  <span className="text-[#3A3A3A] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>First-Time Buyers</span>
+                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>First-Time Buyers</span>
                 </div>
                 <h2
                   className="text-[#0A0A0A] leading-tight mb-5"
@@ -48,11 +48,11 @@ export default function WhoIHelpPage() {
                 >
                   Your first home. Done right.
                 </h2>
-                <p className="text-[#3A3A3A] text-sm leading-relaxed">
+                <p className="text-[#555555] text-sm leading-relaxed">
                   Buying for the first time is exciting and overwhelming. I walk you through every option, help you avoid costly mistakes, and find the loan that makes your first home your best financial move.
                 </p>
               </div>
-              <div className="inline-flex items-center gap-2 text-[#555555] text-sm group-hover:text-[#0A0A0A] transition-colors mt-10">
+              <div className="inline-flex items-center gap-2 text-[#888888] text-sm group-hover:text-[#0A0A0A] transition-colors mt-10">
                 Learn more
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>
@@ -61,13 +61,13 @@ export default function WhoIHelpPage() {
             {/* Homeowners */}
             <Link
               href="/who-i-help/homeowners"
-              className="card-hover group border border-white/40 bg-white backdrop-blur-sm px-10 py-14 flex flex-col justify-between min-h-[360px] rounded-xl"
+              className="card-white card-hover group border border-[#E5E5E5] bg-white px-10 py-14 flex flex-col justify-between min-h-[360px] hover:bg-[#F5F5F5] transition-colors rounded-xl"
               style={{ borderLeft: '3px solid #B8860B' }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-7">
                   <Home size={18} className="text-[#B8860B]" />
-                  <span className="text-[#3A3A3A] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Homeowners</span>
+                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Homeowners</span>
                 </div>
                 <h2
                   className="text-[#0A0A0A] leading-tight mb-5"
@@ -75,11 +75,11 @@ export default function WhoIHelpPage() {
                 >
                   Your home is sitting on capital.
                 </h2>
-                <p className="text-[#3A3A3A] text-sm leading-relaxed">
+                <p className="text-[#555555] text-sm leading-relaxed">
                   Refinances and cash-out refinances. I shop dozens of lenders so you get the best rate and structure — and free up cash that was just sitting there.
                 </p>
               </div>
-              <div className="inline-flex items-center gap-2 text-[#555555] text-sm group-hover:text-[#0A0A0A] transition-colors mt-10">
+              <div className="inline-flex items-center gap-2 text-[#888888] text-sm group-hover:text-[#0A0A0A] transition-colors mt-10">
                 Learn more
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>
@@ -88,13 +88,13 @@ export default function WhoIHelpPage() {
             {/* Investors */}
             <Link
               href="/who-i-help/investors"
-              className="card-hover group border border-white/40 bg-white backdrop-blur-sm px-10 py-14 flex flex-col justify-between min-h-[360px] rounded-xl"
+              className="card-white card-hover group border border-[#E5E5E5] bg-white px-10 py-14 flex flex-col justify-between min-h-[360px] hover:bg-[#F5F5F5] transition-colors rounded-xl"
               style={{ borderLeft: '3px solid #4A7FA5' }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-7">
                   <Building2 size={18} className="text-[#4A7FA5]" />
-                  <span className="text-[#3A3A3A] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Investors</span>
+                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Investors</span>
                 </div>
                 <h2
                   className="text-[#0A0A0A] leading-tight mb-5"
@@ -102,11 +102,11 @@ export default function WhoIHelpPage() {
                 >
                   More options. Better terms.
                 </h2>
-                <p className="text-[#3A3A3A] text-sm leading-relaxed">
+                <p className="text-[#555555] text-sm leading-relaxed">
                   DSCR loans, portfolio products, and creative structures built around your strategy. A broker who has been in the deal, not just behind a desk.
                 </p>
               </div>
-              <div className="inline-flex items-center gap-2 text-[#555555] text-sm group-hover:text-[#0A0A0A] transition-colors mt-10">
+              <div className="inline-flex items-center gap-2 text-[#888888] text-sm group-hover:text-[#0A0A0A] transition-colors mt-10">
                 Learn more
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>

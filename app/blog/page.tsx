@@ -50,10 +50,10 @@ export default function BlogPage() {
                   <p className="text-[#888888] text-xs uppercase tracking-widest mb-3">
                     {new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                   </p>
-                  <h2 className="text-[#F8F8F8] text-2xl font-semibold mb-3 group-hover:text-[#444444] transition-colors">
+                  <h2 className="text-[#0A0A0A] text-2xl font-semibold mb-3 group-hover:text-[#444444] transition-colors">
                     {post.title}
                   </h2>
-                  <p className="text-[#888888] text-sm leading-relaxed mb-4">{post.excerpt}</p>
+                  <p className="text-[#555555] text-sm leading-relaxed mb-4">{post.excerpt}</p>
                   <span className="text-[#555555] text-sm group-hover:text-[#0A0A0A] transition-colors">
                     Read more →
                   </span>
