@@ -55,7 +55,17 @@ export default function HomePage() {
                 First-time buyers get into a home the right way. Homeowners leverage their mortgage to free up cash. Investors find financing that makes their deals work. I make all three happen — across Texas and Colorado.
               </p>
               <div className="flex flex-col items-start gap-5">
-                <BookCallButton variant="solid" />
+                <div className="flex flex-wrap items-center gap-3">
+                  <a
+                    href="https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-8 py-4 text-sm uppercase tracking-widest font-medium transition-all rounded-full bg-[#F8F8F8] text-[#0A0A0A] border border-[#F8F8F8] hover:bg-[#0A0A0A] hover:text-[#F8F8F8]"
+                  >
+                    Get Pre-Approved
+                  </a>
+                  <BookCallButton variant="outline" label="Book a Free Call" />
+                </div>
                 <Link
                   href="/find-my-loan"
                   className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors group"
@@ -421,7 +431,7 @@ export default function HomePage() {
                 <Link
                   key={loan.slug}
                   href={`/loans/${loan.slug}`}
-                  className="group bg-[#111111] border border-[#2E2E2E] px-5 py-4 rounded-lg hover:border-[#888888] hover:bg-[#1A1A1A] transition-all flex items-center justify-between"
+                  className="card-white group bg-white border border-[#E5E5E5] px-5 py-4 rounded-lg hover:border-[#888888] hover:bg-[#F5F5F5] transition-all flex items-center justify-between"
                 >
                   <span className="text-[#888888] text-sm group-hover:text-[#F8F8F8] transition-colors">{loan.label}</span>
                   <span className="text-[#555555] text-xs group-hover:text-[#888888] group-hover:translate-x-0.5 transition-all">→</span>

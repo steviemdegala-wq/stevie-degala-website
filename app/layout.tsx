@@ -4,6 +4,7 @@ import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import Modal from '@/components/Modal'
 import StickyMobileCTA from '@/components/StickyMobileCTA'
+import LeadCapturePopup from '@/components/LeadCapturePopup'
 
 export const metadata: Metadata = {
   title: 'Stevie De Gala | Mortgage Broker in Texas & Colorado',
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body className="pb-[72px] md:pb-0">
         <Navigation />
         <Modal />
+        <LeadCapturePopup />
         {children}
         <Footer />
         <StickyMobileCTA />
