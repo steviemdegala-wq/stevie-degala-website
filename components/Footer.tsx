@@ -54,9 +54,8 @@ export default function Footer() {
           {/* Who I Help */}
           <div className="space-y-3">
             <p className="text-[#F8F8F8] text-xs uppercase tracking-widest mb-4">Who I Help</p>
+            <Link href="/who-i-help/first-time" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">First-Time Buyers</Link>
             <Link href="/who-i-help/homeowners" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Homeowners</Link>
-            <Link href="/who-i-help/homeowners" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">First-Time Buyers</Link>
-            <Link href="/who-i-help/homeowners" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Refinancing</Link>
             <Link href="/who-i-help/investors" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Investors</Link>
           </div>
 
