@@ -4,7 +4,7 @@ const CRM_URL = 'https://crm-two-beta-90.vercel.app'
 
 export async function POST(req: NextRequest) {
   const body = await req.json()
-  const { phone, email, source } = body
+  const { name, phone, email, source } = body
 
   if (!phone && !email) {
     return NextResponse.json({ error: 'Phone or email required' }, { status: 400 })
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
         'Cookie': sessionCookie,
       },
       body: JSON.stringify({
-        name: 'Website Lead',
+        name: name || 'Website Lead',
         phone: phone ?? '',
         email: email ?? '',
         stage: 'New Lead',
