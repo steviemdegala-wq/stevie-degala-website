@@ -39,7 +39,7 @@ export default function Footer() {
             <Link href="/who-i-help" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Who I Help</Link>
             <Link href="/resources" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Resources</Link>
             <Link href="/blog" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Blog</Link>
-            <a href={PREQUALIFY_URL} target="_blank" rel="noopener noreferrer" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Get Pre-Approved</a>
+            <a href={PREQUALIFY_URL} target="_blank" rel="noopener noreferrer" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Get Pre-Qualified</a>
           </div>
 
           {/* Resources */}

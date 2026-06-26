@@ -43,12 +43,12 @@ a, button, [role="button"] {
 
 /* Card hover lift */
 .card-hover {
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10);
-  border-color: #aaaaaa;
+  transform: translateY(-4px);
+  border-color: #888888;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
 }
 
 /* Scrollbar */
@@ -65,6 +65,15 @@ a, button, [role="button"] {
 ::-webkit-scrollbar-thumb:hover {
   background: #888888;
 }
+
+/* White card — text color overrides */
+.card-white .text-\[\#F8F8F8\],
+.card-white .text-\[\#E8E8E8\] { color: #0A0A0A !important; }
+.card-white .text-\[\#C4C4C4\] { color: #444444 !important; }
+.card-white .text-\[\#888888\] { color: #666666 !important; }
+.card-white .text-\[\#555555\] { color: #999999 !important; }
+.card-white .border-\[\#2E2E2E\] { border-color: #E5E5E5 !important; }
+.card-white .divide-\[\#2E2E2E\] > * + * { border-color: #E5E5E5 !important; }
 
 /* Blog prose styles */
 .blog-prose {

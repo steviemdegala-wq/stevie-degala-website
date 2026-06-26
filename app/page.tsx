@@ -62,7 +62,7 @@ export default function HomePage() {
                     rel="noopener noreferrer"
                     className="inline-block px-8 py-4 text-sm uppercase tracking-widest font-medium transition-all rounded-full bg-[#F8F8F8] text-[#0A0A0A] border border-[#F8F8F8] hover:bg-[#0A0A0A] hover:text-[#F8F8F8]"
                   >
-                    Get Pre-Approved
+                    Get Pre-Qualified
                   </a>
                   <BookCallButton variant="outline" label="Book a Free Call" />
                 </div>

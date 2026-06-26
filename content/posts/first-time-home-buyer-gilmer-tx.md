@@ -28,7 +28,7 @@ As a first time home buyer in Gilmer, TX, you have more loan choices than you mi
 
 A down payment is the chunk of the home price you pay upfront in cash, with the rest covered by your loan. A lot of first time buyers assume they need twenty percent saved up before they can even start looking. That is simply not true anymore. Between FHA, conventional, USDA, and VA programs, many buyers in Gilmer get into a home with little to no money down. The right number for you depends on your loan type, your credit, and your monthly budget, and that is exactly the kind of thing we can map out together before you start touring homes.
 
-## Getting Pre Approved Before You Shop
+## Getting Pre Qualified Before You Shop
 
 Pre approval means a lender reviews your income, credit, and debts, and tells you how much home you can comfortably afford and what your estimated monthly payment looks like. Doing this before you start looking at homes in Gilmer gives you a few big advantages. You will know your real budget, you will look more serious to sellers, and you will not waste time falling in love with a home that is outside your reach. In a smaller market like Gilmer, where good listings can move quickly, having your pre approval ready can make all the difference.
 
@@ -50,7 +50,7 @@ FHA loans often work with scores as low as 580, and some lenders go even lower w
 **How long does it take to close on a home in Gilmer?**
 Most loans close in about thirty to forty five days from the time you go under contract, though it can vary depending on the loan type and how quickly paperwork comes back.
 
-**Should I get pre approved before I start looking at homes?**
+**Should I get pre qualified before I start looking at homes?**
 Yes, always. Pre approval shows you your real budget and makes your offer stronger when you find the right home, especially in a smaller market where good homes do not stay listed for long.
 
 Loan programs, rates, and limits change. Always confirm current details before making any decisions. Stevie De Gala, NMLS# 2845865. Equal Housing Lender.

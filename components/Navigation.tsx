@@ -137,7 +137,7 @@ export default function Navigation() {
               rel="noopener noreferrer"
               className="border border-[#F8F8F8] text-[#F8F8F8] px-5 py-2 rounded-full text-sm hover:bg-[#F8F8F8] hover:text-[#0A0A0A] transition-all tracking-wide"
             >
-              Get Pre-Approved
+              Get Pre-Qualified
             </a>
             <button
               onClick={openModal}
