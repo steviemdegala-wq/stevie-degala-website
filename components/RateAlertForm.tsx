@@ -6,9 +6,17 @@ export default function RateAlertForm() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    // TODO: wire to Mailchimp, ConvertKit, or your CRM
+    try {
+      await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'rate-alert' }),
+      })
+    } catch {
+      // fail silently
+    }
     setSubmitted(true)
   }
 
