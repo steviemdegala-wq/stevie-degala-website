@@ -159,27 +159,27 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-6">
             {/* Card A — First-Time Buyers */}
             <div
-              className="card-hover bg-[#111111] px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #2E2E2E', borderLeft: '3px solid #7A9E5C' }}
+              className="card-hover bg-white px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
+              style={{ border: '1px solid #E5E5E5', borderLeft: '3px solid #7A9E5C' }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-7">
                   <Key size={18} className="text-[#7A9E5C]" />
-                  <span className="text-[#C4C4C4] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>First-Time Buyers</span>
+                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>First-Time Buyers</span>
                 </div>
                 <h3
-                  className="text-[#F8F8F8] leading-tight mb-6"
+                  className="text-[#0A0A0A] leading-tight mb-6"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)' }}
                 >
                   Your first home. Done right.
                 </h3>
-                <p className="text-[#888888] text-sm leading-relaxed">
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">
                   FHA, conventional, VA, USDA — there are more options than most people realize. I explain every one in plain English and find the loan that makes your first home your best financial move.
                 </p>
               </div>
               <Link
                 href="/who-i-help/first-time"
-                className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors mt-10 group"
+                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
               >
                 See what&apos;s possible
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -188,27 +188,27 @@ export default function HomePage() {
 
             {/* Card B — Homeowners */}
             <div
-              className="card-hover bg-[#111111] px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #2E2E2E', borderLeft: '3px solid #B8860B' }}
+              className="card-hover bg-white px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
+              style={{ border: '1px solid #E5E5E5', borderLeft: '3px solid #B8860B' }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-7">
                   <Home size={18} className="text-[#B8860B]" />
-                  <span className="text-[#C4C4C4] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Homeowners</span>
+                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Homeowners</span>
                 </div>
                 <h3
-                  className="text-[#F8F8F8] leading-tight mb-6"
+                  className="text-[#0A0A0A] leading-tight mb-6"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)' }}
                 >
                   Your home is sitting on capital.
                 </h3>
-                <p className="text-[#888888] text-sm leading-relaxed">
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">
                   Most homeowners don&apos;t realize how much equity they&apos;re leaving idle. The right refinance can pay off high-interest debt, cover college, or free up cash for whatever matters next.
                 </p>
               </div>
               <Link
                 href="/who-i-help/homeowners"
-                className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors mt-10 group"
+                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
               >
                 See what&apos;s possible
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -217,27 +217,27 @@ export default function HomePage() {
 
             {/* Card C — Investors */}
             <div
-              className="card-hover bg-[#111111] px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #2E2E2E', borderLeft: '3px solid #4A7FA5' }}
+              className="card-hover bg-white px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
+              style={{ border: '1px solid #E5E5E5', borderLeft: '3px solid #4A7FA5' }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-7">
                   <Building2 size={18} className="text-[#4A7FA5]" />
-                  <span className="text-[#C4C4C4] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Investors</span>
+                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Investors</span>
                 </div>
                 <h3
-                  className="text-[#F8F8F8] leading-tight mb-6"
+                  className="text-[#0A0A0A] leading-tight mb-6"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)' }}
                 >
                   More options. Better terms.
                 </h3>
-                <p className="text-[#888888] text-sm leading-relaxed">
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">
                   Local lenders give you a handful of choices. I compare dozens — DSCR loans, portfolio products, and creative structures built around your strategy, not a bank&apos;s checklist.
                 </p>
               </div>
               <Link
                 href="/who-i-help/investors"
-                className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors mt-10 group"
+                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
               >
                 See what&apos;s possible
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
