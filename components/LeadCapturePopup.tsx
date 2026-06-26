@@ -128,7 +128,7 @@ export default function LeadCapturePopup() {
               </button>
             </form>
             <p className="text-[#555555] text-[10px] mt-4 text-center leading-relaxed">
-              By submitting, you agree to be contacted by Stevie De Gala, NMLS# 2845865. This is an advertisement. Not a commitment to lend.
+              By submitting, you agree to be contacted by Stevie De Gala, NMLS# 2845865.
             </p>
           </>
         )}
