@@ -70,12 +70,12 @@ export default function HomeownersPage() {
             {cards.map((card) => (
               <div key={card.title} className="card-white card-hover border border-[#E5E5E5] bg-white p-8 rounded-xl">
                 <h3
-                  className="text-xl text-[#F8F8F8] mb-4"
+                  className="text-xl text-[#0A0A0A] mb-4"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                   {card.title}
                 </h3>
-                <p className="text-[#C4C4C4] text-sm leading-relaxed">{card.body}</p>
+                <p className="text-[#444444] text-sm leading-relaxed">{card.body}</p>
               </div>
             ))}
           </div>
@@ -94,9 +94,9 @@ export default function HomeownersPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {steps.map((step) => (
               <div key={step.num} className="card-white card-hover border border-[#E5E5E5] bg-white p-8 rounded-xl">
-                <p className="text-4xl text-[#D0D0D0] mb-4 leading-none" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{step.num}</p>
-                <h3 className="text-lg text-[#F8F8F8] mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{step.title}</h3>
-                <p className="text-[#888888] text-sm leading-relaxed">{step.body}</p>
+                <p className="text-4xl text-[#0A0A0A] font-bold mb-4 leading-none" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{step.num}</p>
+                <h3 className="text-lg text-[#0A0A0A] mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{step.title}</h3>
+                <p className="text-[#555555] text-sm leading-relaxed">{step.body}</p>
               </div>
             ))}
           </div>
@@ -113,7 +113,7 @@ export default function HomeownersPage() {
             Let&apos;s find out what your home can do for you.
           </h2>
           <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">
-            A free 20-minute call costs nothing and could save you thousands.
+            A free 15-minute call costs nothing and could save you thousands.
           </p>
           <BookCallButton variant="solid" />
         </div>

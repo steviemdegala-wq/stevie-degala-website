@@ -120,7 +120,7 @@ export default function HomePage() {
               {
                 step: '01',
                 title: 'Tell me your goals',
-                body: 'A free 20-minute call — no forms to fill out beforehand, no pressure. Just an honest conversation about where you are and where you want to go.',
+                body: 'A free 15-minute call — no forms to fill out beforehand, no pressure. Just an honest conversation about where you are and where you want to go.',
               },
               {
                 step: '02',
@@ -475,7 +475,7 @@ export default function HomePage() {
             Better financing starts with one conversation.
           </h2>
           <p className="text-[#1A1A1A] text-lg mb-10 leading-relaxed">
-            A free 20-minute call is all it takes to find out whether smarter capital can change your financial picture.
+            A free 15-minute call is all it takes to find out whether smarter capital can change your financial picture.
           </p>
           <BookCallButton variant="light" />
         </div>

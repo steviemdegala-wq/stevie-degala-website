@@ -139,7 +139,7 @@ export default function ResourcesPage() {
             Have questions about your situation?
           </h2>
           <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">
-            Run the numbers, then let&apos;s talk. A free 20-minute call is all it takes to turn a rough estimate into a real plan.
+            Run the numbers, then let&apos;s talk. A free 15-minute call is all it takes to turn a rough estimate into a real plan.
           </p>
           <BookCallButton variant="solid" />
         </div>
