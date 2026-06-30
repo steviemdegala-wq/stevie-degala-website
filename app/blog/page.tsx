@@ -2,11 +2,29 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/posts'
 import BookCallButton from '@/components/BookCallButton'
+import PDFViewer from '@/components/PDFViewer'
 
 export const metadata: Metadata = {
   title: 'Blog — Stevie De Gala',
   description: 'Mortgage tips, real estate insights, and financial education from Stevie De Gala.',
 }
+
+const pdfResources = [
+  {
+    title: "Mortgage Stevie's Weekly Update — ETX",
+    excerpt: "The latest mortgage market update for East Texas. Rates, trends, and what to watch this week.",
+    file: "/Mortgage Stevie's Weekly Update ETX.pdf",
+    label: 'East Texas',
+    date: 'June 30, 2025',
+  },
+  {
+    title: "Mortgage Stevie's Weekly Update — NOCO",
+    excerpt: "The latest mortgage market update for Northern Colorado. Rates, trends, and what to watch this week.",
+    file: "/Mortgage Stevie's Weekly Update NOCO.pdf",
+    label: 'Northern Colorado',
+    date: 'June 30, 2025',
+  },
+]
 
 export default function BlogPage() {
   const posts = getAllPosts()
@@ -36,7 +54,10 @@ export default function BlogPage() {
       </section>
 
       <section className="py-16 px-6 pb-24">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto space-y-6">
+
+          <PDFViewer pdfs={pdfResources} />
+
           {posts.length === 0 ? (
             <p className="text-[#888888]">No posts yet. Check back soon.</p>
           ) : (
