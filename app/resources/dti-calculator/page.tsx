@@ -4,7 +4,7 @@ import BookCallButton from '@/components/BookCallButton'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'DTI Calculator, Stevie De Gala',
+  title: 'DTI Calculator, Stevie de Gala',
   description: 'Calculate your debt-to-income ratio to see where you stand with lenders.',
 }
 

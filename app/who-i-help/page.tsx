@@ -4,7 +4,7 @@ import BookCallButton from '@/components/BookCallButton'
 import { Home, Building2, Key } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Who I Help, Stevie De Gala',
+  title: 'Who I Help, Stevie de Gala',
   description: 'Whether you are buying your first home or building your real estate portfolio, I shop the market on your behalf to find the best financing available.',
 }
 

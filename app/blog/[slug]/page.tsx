@@ -12,7 +12,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const post = getPost(params.slug)
   if (!post) return {}
   return {
-    title: `${post.title} — Stevie De Gala`,
+    title: `${post.title} — Stevie de Gala`,
     description: post.excerpt,
   }
 }

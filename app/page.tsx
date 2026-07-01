@@ -8,11 +8,11 @@ import FAQ from '@/components/FAQ'
 import { Trophy, Building2, GraduationCap, BadgeCheck, Home, Key } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Stevie De Gala | Mortgage Broker in Texas & Colorado',
-  description: 'Licensed mortgage broker in TX & CO. Stevie De Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
+  title: 'Stevie de Gala | Mortgage Broker in Texas & Colorado',
+  description: 'Licensed mortgage broker in TX & CO. Stevie de Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
   openGraph: {
-    title: 'Stevie De Gala | Mortgage Broker in Texas & Colorado',
-    description: 'Licensed mortgage broker in TX & CO. Stevie De Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
+    title: 'Stevie de Gala | Mortgage Broker in Texas & Colorado',
+    description: 'Licensed mortgage broker in TX & CO. Stevie de Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
     type: 'website',
   },
 }
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'FinancialService',
-  name: 'Stevie De Gala — Mortgage Broker',
+  name: 'Stevie de Gala — Mortgage Broker',
   description: 'Licensed mortgage broker helping homeowners and real estate investors in Texas and Colorado get better financing and stronger cash flow.',
   url: 'https://steviedegala.com',
   areaServed: ['Texas', 'Colorado'],
@@ -81,7 +81,7 @@ export default function HomePage() {
               <div className="relative w-full max-w-sm md:max-w-none overflow-hidden" style={{ aspectRatio: '3/4' }}>
                 <Image
                   src="/headshot.jpg"
-                  alt="Stevie De Gala, licensed mortgage broker in Texas and Colorado"
+                  alt="Stevie de Gala, licensed mortgage broker in Texas and Colorado"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-top grayscale"

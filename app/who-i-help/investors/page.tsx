@@ -3,7 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'Investment Property Financing and DSCR Loans, Stevie De Gala',
+  title: 'Investment Property Financing and DSCR Loans, Stevie de Gala',
   description: 'DSCR loans, investment property financing, and portfolio strategy in Texas and Colorado. A broker who has been in the deal, not just behind a desk.',
 }
 

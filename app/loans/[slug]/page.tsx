@@ -234,7 +234,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const loan = loans[params.slug]
   if (!loan) return {}
   return {
-    title: `${loan.name} — Stevie De Gala`,
+    title: `${loan.name} — Stevie de Gala`,
     description: loan.tagline,
   }
 }

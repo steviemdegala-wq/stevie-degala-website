@@ -58,6 +58,6 @@ Not necessarily. FHA loans can start as low as 3.5% down, and VA loans can go to
 **What if I am self employed?**
 Self employed buyers can still qualify. It just takes a bit more documentation, and I know which lenders are more comfortable working with non W2 income.
 
-Loan programs, rates, and limits change. Always confirm current details before making any decisions. Stevie De Gala, NMLS# 2845865. Equal Housing Lender.
+Loan programs, rates, and limits change. Always confirm current details before making any decisions. Stevie de Gala, NMLS# 2845865. Equal Housing Lender.
 
 If you are ready to see what you qualify for, [find your loan here](/find-my-loan) and let's get started.

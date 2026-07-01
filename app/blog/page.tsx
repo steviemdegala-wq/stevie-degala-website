@@ -5,8 +5,8 @@ import BookCallButton from '@/components/BookCallButton'
 import PDFViewer from '@/components/PDFViewer'
 
 export const metadata: Metadata = {
-  title: 'Blog — Stevie De Gala',
-  description: 'Mortgage tips, real estate insights, and financial education from Stevie De Gala.',
+  title: 'Blog — Stevie de Gala',
+  description: 'Mortgage tips, real estate insights, and financial education from Stevie de Gala.',
 }
 
 const pdfResources = [

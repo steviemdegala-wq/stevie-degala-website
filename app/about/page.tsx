@@ -3,7 +3,7 @@ import Image from 'next/image'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'About Stevie De Gala, Mortgage Broker serving East Texas, Fort Collins, and Denver',
+  title: 'About Stevie de Gala, Mortgage Broker serving East Texas, Fort Collins, and Denver',
   description: "From Gilmer, Texas to Fort Collins, Colorado. I'm a mortgage broker, real estate investor, Ironman finisher, and Filipino cook who genuinely loves helping people win.",
 }
 
@@ -39,7 +39,7 @@ export default function AboutPage() {
             <div className="relative overflow-hidden" style={{ aspectRatio: '3/4', maxWidth: '420px' }}>
               <Image
                 src="/headshot.jpg"
-                alt="Stevie De Gala"
+                alt="Stevie de Gala"
                 fill
                 sizes="(max-width: 768px) 100vw, 420px"
                 className="object-cover object-top grayscale"

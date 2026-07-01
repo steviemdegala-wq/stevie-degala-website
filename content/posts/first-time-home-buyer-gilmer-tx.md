@@ -53,6 +53,6 @@ Most loans close in about thirty to forty five days from the time you go under c
 **Should I get pre qualified before I start looking at homes?**
 Yes, always. Pre approval shows you your real budget and makes your offer stronger when you find the right home, especially in a smaller market where good homes do not stay listed for long.
 
-Loan programs, rates, and limits change. Always confirm current details before making any decisions. Stevie De Gala, NMLS# 2845865. Equal Housing Lender.
+Loan programs, rates, and limits change. Always confirm current details before making any decisions. Stevie de Gala, NMLS# 2845865. Equal Housing Lender.
 
 Ready to take the next step toward owning your first home in Gilmer? Head over to [/find-my-loan](/find-my-loan) and let's find the right loan for you.

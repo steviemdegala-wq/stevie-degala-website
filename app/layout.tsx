@@ -7,11 +7,11 @@ import StickyMobileCTA from '@/components/StickyMobileCTA'
 import LeadCapturePopup from '@/components/LeadCapturePopup'
 
 export const metadata: Metadata = {
-  title: 'Stevie De Gala | Mortgage Broker in Texas & Colorado',
-  description: 'Licensed mortgage broker in TX & CO. Stevie De Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
+  title: 'Stevie de Gala | Mortgage Broker in Texas & Colorado',
+  description: 'Licensed mortgage broker in TX & CO. Stevie de Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
   openGraph: {
-    title: 'Stevie De Gala | Mortgage Broker in Texas & Colorado',
-    description: 'Licensed mortgage broker in TX & CO. Stevie De Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
+    title: 'Stevie de Gala | Mortgage Broker in Texas & Colorado',
+    description: 'Licensed mortgage broker in TX & CO. Stevie de Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
     type: 'website',
   },
 }

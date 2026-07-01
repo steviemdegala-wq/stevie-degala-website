@@ -4,7 +4,7 @@ import BookCallButton from '@/components/BookCallButton'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Qualification Estimator, Stevie De Gala',
+  title: 'Qualification Estimator, Stevie de Gala',
   description: 'Get a rough estimate of your home purchase range based on your annual income.',
 }
 

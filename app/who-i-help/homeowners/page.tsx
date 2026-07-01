@@ -3,7 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'Home Loans and Refinancing for Homeowners, Stevie De Gala',
+  title: 'Home Loans and Refinancing for Homeowners, Stevie de Gala',
   description: 'First-time home loans, refinancing, and cash-out refinance in Texas and Colorado. I shop dozens of lenders so you get the best rate available.',
 }
 

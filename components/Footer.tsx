@@ -15,7 +15,7 @@ export default function Footer() {
               className="text-[#F8F8F8] text-base"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
-              Stevie De Gala
+              Stevie de Gala
             </p>
             <p className="text-[#888888] text-xs leading-relaxed">Licensed Mortgage Broker.<br />Mortgage Consultant.</p>
             <p className="text-[#888888] text-xs">NMLS# 2845865</p>
@@ -69,7 +69,7 @@ export default function Footer() {
             <p className="text-[#888888] text-xs leading-relaxed max-w-xl">
               Rates shown are estimates and are subject to change. Contact me for a personalized quote based on your full financial picture.
             </p>
-            <p className="text-[#888888] text-xs flex-shrink-0">© 2025 Stevie De Gala</p>
+            <p className="text-[#888888] text-xs flex-shrink-0">© 2025 Stevie de Gala</p>
           </div>
           {/* Compliance bar */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2 border-t border-[#1E1E1E]">
@@ -84,7 +84,7 @@ export default function Footer() {
               <span className="text-[#555555] text-[10px] uppercase tracking-widest leading-tight">Equal Housing<br/>Lender</span>
             </div>
             <p className="text-[#555555] text-[10px] leading-relaxed">
-              Excellent Lending with Stevie De Gala &nbsp;·&nbsp; (806) 508-2666 &nbsp;·&nbsp; NMLS# 2845865 &nbsp;·&nbsp; NEXA Lending &nbsp;·&nbsp; This website is for informational purposes and constitutes an advertisement. Not a commitment to lend. All loans subject to credit approval.
+              Excellent Lending with Stevie de Gala &nbsp;·&nbsp; (806) 508-2666 &nbsp;·&nbsp; NMLS# 2845865 &nbsp;·&nbsp; NEXA Lending &nbsp;·&nbsp; This website is for informational purposes and constitutes an advertisement. Not a commitment to lend. All loans subject to credit approval.
             </p>
           </div>
         </div>

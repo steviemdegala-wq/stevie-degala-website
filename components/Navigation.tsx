@@ -57,7 +57,7 @@ export default function Navigation() {
             className="font-serif text-[#F8F8F8] text-lg md:text-xl hover:text-[#C4C4C4] transition-colors flex-shrink-0"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
-            Stevie De Gala
+            Stevie de Gala
           </Link>
 
           {/* Desktop center links */}
@@ -170,7 +170,7 @@ export default function Navigation() {
               className="font-serif text-[#F8F8F8] text-xl"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
-              Stevie De Gala
+              Stevie de Gala
             </Link>
             <button
               onClick={() => setMobileOpen(false)}
