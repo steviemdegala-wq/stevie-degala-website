@@ -32,6 +32,12 @@ const cards = [
     headline: 'Qualification Range',
     body: 'A starting point. Enter your annual income to get a rough estimate of your purchase range.',
   },
+  {
+    href: '/resources/loan-checklists',
+    label: 'Checklist',
+    headline: 'Loan Checklists',
+    body: 'Know exactly what documents to gather before you apply. Conventional and FHA checklists ready to download.',
+  },
 ]
 
 const educationCards = [
@@ -74,7 +80,7 @@ export default function ResourcesPage() {
       {/* Tool cards */}
       <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {cards.map((card) => (
               <Link
                 key={card.href}

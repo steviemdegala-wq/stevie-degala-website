@@ -15,6 +15,7 @@ const resourcesLinks = [
   { label: 'Mortgage Calculator', href: '/resources/mortgage-calculator' },
   { label: 'DTI Calculator', href: '/resources/dti-calculator' },
   { label: 'Qualification Estimator', href: '/resources/qualification-estimator' },
+  { label: 'Loan Checklists', href: '/resources/loan-checklists' },
 ]
 
 const mobileNavSections = [
