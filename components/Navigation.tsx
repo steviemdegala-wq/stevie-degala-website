@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { useModalStore } from '@/lib/modalStore'
 
 const whoIHelpLinks = [
-  { label: 'First-Time Buyers', href: '/who-i-help/first-time' },
-  { label: 'Homeowners', href: '/who-i-help/homeowners' },
+  { label: 'Medical Professionals', href: '/who-i-help/medical-professionals' },
+  { label: 'Veterans', href: '/who-i-help/veterans' },
   { label: 'Investors', href: '/who-i-help/investors' },
 ]
 
