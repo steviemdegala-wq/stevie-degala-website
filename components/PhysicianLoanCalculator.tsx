@@ -65,6 +65,7 @@ const DEGREE_OPTIONS = [
 ]
 
 const FICO_OPTIONS = [
+  { value: 'below680', label: 'Below 680' },
   { value: '680', label: '680 – 699' },
   { value: '700', label: '700+' },
 ]
@@ -94,7 +95,8 @@ export default function PhysicianLoanCalculator() {
   const rateVal = parseFloat(rate) || 0
   const loanAmount = homeVal - downVal
   const ltv = homeVal > 0 ? Math.round((loanAmount / homeVal) * 100) : 0
-  const ficoNum = parseInt(fico) || 0
+  const ficoBelowMin = fico === 'below680'
+  const ficoNum = ficoBelowMin ? 0 : (parseInt(fico) || 0)
   const isResident = degree === 'resident'
 
   const qualifyingPrograms = PROGRAMS.filter((p) => {
@@ -239,13 +241,25 @@ export default function PhysicianLoanCalculator() {
         <div>
           {qualifyingPrograms.length === 0 ? (
             <div className="border border-[#2E2E2E] rounded-xl p-6">
-              <p className="text-[#F8F8F8] text-sm font-medium mb-2">No matching programs for these parameters.</p>
-              <p className="text-[#888888] text-sm leading-relaxed">
-                This could mean your LTV exceeds program limits, the loan amount is above program maximums, or your credential or FICO range does not meet the current program floor. A quick call can clarify exactly where you stand and what adjustments would open additional options.
-              </p>
-              <div className="mt-4">
-                <BookCallButton variant="outline" />
-              </div>
+              {ficoBelowMin ? (
+                <>
+                  <p className="text-[#F8F8F8] text-sm font-medium mb-3">Physician loan programs require a minimum 680 credit score.</p>
+                  <p className="text-[#888888] text-sm leading-relaxed mb-4">
+                    Below 680, physician-specific programs are not available — but that does not mean you are out of options. An <a href="/loans/fha" className="text-[#5C8AA5] hover:underline">FHA loan</a> allows credit scores as low as 580 with 3.5% down and is worth looking at while you work toward the 680 threshold. Once you hit 680, we can revisit physician programs and likely get you into a much better structure.
+                  </p>
+                  <p className="text-[#555555] text-xs leading-relaxed mb-4">
+                    Credit scores can often be improved in 60–90 days with targeted steps. A quick call can tell you exactly where you stand and what would move the number.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-[#F8F8F8] text-sm font-medium mb-2">No matching programs for these parameters.</p>
+                  <p className="text-[#888888] text-sm leading-relaxed mb-4">
+                    This could mean your LTV exceeds program limits, the loan amount is above program maximums, or your credential does not meet the current program requirements. A quick call can clarify exactly where you stand and what adjustments would open additional options.
+                  </p>
+                </>
+              )}
+              <BookCallButton variant="outline" />
             </div>
           ) : (
             <div>
