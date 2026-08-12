@@ -66,9 +66,76 @@ const qualifyingProfessions = [
   { degree: 'Resident / Fellow', title: 'Medical Residents, Fellows & Interns with qualifying degree' },
 ]
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Who qualifies for a physician loan in Northern Colorado?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Qualifying professions include MD, DO, DDS, DMD, OD, PharmD, DVM, DPM, CRNA, PA, RN, NP, CNS, DC, and medical residents, fellows, and interns with a qualifying degree. Physician loan programs in Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance are available to all of these credential holders.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can a medical resident or fellow get a physician loan before their first paycheck?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Many physician loan programs accept a signed employment contract in lieu of pay stubs or W-2s. This means residents and fellows relocating to Northern Colorado can qualify and close on a home before their attending salary begins.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do physician loans require a down payment?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most physician loan programs allow purchases with 0 to 10 percent down. Many medical professionals in Northern Colorado close with zero down payment, keeping their savings available for other needs.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is private mortgage insurance required on a physician loan?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Physician loans waive PMI entirely for qualifying medical professionals, even with a low or zero down payment. This saves hundreds of dollars per month compared to a conventional loan at the same down payment level.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does student loan debt affect my ability to qualify for a physician loan in Colorado?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Physician loan programs treat student debt differently than conventional lenders. Many programs exclude deferred student loans entirely from the debt-to-income calculation, or use your actual income-driven repayment payment rather than a calculated percentage of the balance. This significantly increases how much home you can qualify for.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I refinance out of a physician loan into a conventional loan later?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. A physician loan is not a permanent commitment. Once your student debt is paid down, your savings have grown, or it makes financial sense to switch, you can refinance into a conventional loan with better long-term terms. The physician loan gets you into the home now without waiting years to meet conventional requirements.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the difference between a physician loan and a conventional loan in Fort Collins?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'A conventional loan requires 20 percent down to avoid PMI, counts your full student loan payment against your DTI, and does not account for your career trajectory. A physician loan allows zero down with no PMI, excludes or reduces student debt in the DTI calculation, and is designed specifically for the financial profile of medical professionals. On a $750,000 home in Northern Colorado, the physician loan typically results in less total cash out of pocket over five years compared to both conventional and FHA options.',
+      },
+    },
+  ],
+}
+
 export default function MedicalProfessionalsPage() {
   return (
     <main className="pt-16 md:pt-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       {/* Hero */}
       <section className="bg-[#0A0A0A] py-24 md:py-32 px-6">

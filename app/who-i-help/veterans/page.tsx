@@ -53,9 +53,76 @@ const eligibilityGroups = [
   { group: 'Surviving Spouses', detail: 'Unremarried spouses of veterans who died in service or from a service-connected disability' },
 ]
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Who is eligible for a VA loan in Northern Colorado?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'VA loan eligibility extends to veterans discharged under other than dishonorable conditions, active duty service members, National Guard and Reserve members with at least six years of service or those called to active duty, and surviving spouses of veterans who died in service or from a service-connected disability. Veterans purchasing homes in Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance may all qualify.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is a down payment required for a VA loan in Fort Collins or Timnath?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Eligible veterans and active duty service members can purchase a home in Northern Colorado with zero down payment using a VA loan. There is no PMI requirement either, making the VA loan one of the most cost-effective financing options available.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the VA funding fee and when is it waived?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The VA funding fee is a one-time fee that helps sustain the VA loan program. For a first-time VA loan buyer with no down payment, it is currently 2.15 percent of the loan amount and can be rolled into the loan balance. The fee is waived entirely for veterans with a service-connected disability rating of 10 percent or greater, and for surviving spouses of veterans who died in service or from a service-connected disability.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use my VA loan benefit more than once?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. VA loan benefits can be used multiple times throughout your lifetime. As long as you have remaining entitlement — or you sell a previous home and restore your entitlement — you can use a VA loan again for a new purchase or refinance.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is there a loan limit on VA loans in Northern Colorado?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For veterans with full entitlement, there is no official cap on how much you can borrow with a VA loan in Larimer or Weld County, as long as your income supports the payment and the lender approves the file. Loan limits only apply if you have remaining entitlement from a prior VA loan that was not paid off.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can a veteran use a VA loan for new construction in Windsor or Timnath?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. VA loans can be used for new construction in Windsor, Timnath, and other Northern Colorado communities. New construction VA loans require a VA-approved appraisal and typically a one-year builder warranty. The process has a few additional steps compared to an existing home purchase, but it is a common path for veterans buying in Northern Colorado\'s growing communities.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is a VA IRRRL streamline refinance?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The VA Interest Rate Reduction Refinance Loan, or IRRRL, is a streamlined refinance available to homeowners who already have a VA loan. It is designed to lower your interest rate and monthly payment with minimal paperwork, no appraisal in most cases, and no income verification. If you have an existing VA loan in Northern Colorado and rates have dropped, an IRRRL can reduce your payment quickly.',
+      },
+    },
+  ],
+}
+
 export default function VeteransPage() {
   return (
     <main className="pt-16 md:pt-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       {/* Hero */}
       <section className="bg-[#0A0A0A] py-24 md:py-32 px-6">
