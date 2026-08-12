@@ -25,7 +25,7 @@ const schema = {
   name: 'Stevie de Gala — Medical Professional Loan Consultant',
   description:
     "Northern Colorado's premier physician loan and VA loan specialist. Serving medical professionals, veterans, and real estate investors across Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance.",
-  url: 'https://mortgagetv.com',
+  url: 'https://mortgagestevie.com',
   areaServed: [
     { '@type': 'City', name: 'Fort Collins', containedInPlace: { '@type': 'State', name: 'Colorado' } },
     { '@type': 'City', name: 'Greeley', containedInPlace: { '@type': 'State', name: 'Colorado' } },

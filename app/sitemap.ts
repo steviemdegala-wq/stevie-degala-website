@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/posts'
 
-const baseUrl = 'https://mortgagetv.com'
+const baseUrl = 'https://mortgagestevie.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts()
