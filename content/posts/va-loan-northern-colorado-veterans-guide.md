@@ -6,7 +6,7 @@ excerpt: "VA loans give eligible veterans and active duty service members the mo
 
 If you have served in the U.S. military and you are buying a home in Northern Colorado, you likely have access to the most powerful mortgage benefit available to any borrower. Zero down payment. No private mortgage insurance. Rates that compete with anything in the market.
 
-The problem is that too many veterans either do not know the full extent of what they have earned, or they walk into a lender that talks them out of it in favor of a conventional product. This post covers the VA loan in full — what it is, how it works in the Fort Collins and Northern Colorado market, who qualifies, and what to watch out for.
+The problem is that too many veterans either do not know the full extent of what they have earned, or they walk into a lender that talks them out of it in favor of a conventional product. This post covers the [VA loan](/loans/va) in full — what it is, how it works in the Fort Collins and Northern Colorado market, who qualifies, and what to watch out for.
 
 ## What a VA Loan Is
 
@@ -72,6 +72,8 @@ The funding fee on that same loan, rolled in, adds a smaller amount to the balan
 
 Northern Colorado also has a significant veteran and active duty military population, with connections to Buckley Space Force Base, the National Guard, and veterans of multiple service branches who have settled along the Front Range for its quality of life, outdoor access, and job market. If you are among them, this market is worth knowing well before you buy.
 
+[See how I work with veterans and active duty military specifically](/who-i-help/veterans), including the step-by-step process from COE to closing.
+
 ## VA Loan Programs Available to You
 
 ### VA Purchase Loan
@@ -128,4 +130,4 @@ A service-connected disability rating of 10% or greater waives the VA funding fe
 
 Loan programs, rates, and limits change. Always confirm current details before making any decisions. Stevie de Gala, NMLS# 2845865. Equal Housing Lender.
 
-If you served and you are ready to find out what you qualify for in Northern Colorado, [book a free 15-minute call](/find-my-loan) and I will pull your COE and walk you through the numbers.
+If you served and you are ready to find out what you qualify for in Northern Colorado, [book a free 15-minute call](/find-my-loan) and I will pull your COE and walk you through the numbers. You can also [review the full VA loan details](/loans/va) or [see how I work with veterans](/who-i-help/veterans).

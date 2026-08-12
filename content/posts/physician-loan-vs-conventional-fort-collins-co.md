@@ -6,7 +6,7 @@ excerpt: "If you are a doctor, nurse, or other medical professional buying a hom
 
 If you are a medical professional buying a home in Fort Collins, Greeley, Loveland, or anywhere in Northern Colorado, you have probably already figured out that your financial profile does not fit the standard mortgage mold. You earn well. You also have student debt. You may be early in your career. And you may not have had the time — or the need — to accumulate a large down payment.
 
-Conventional loans were designed for a different kind of borrower. Physician loans were designed for you.
+Conventional loans were designed for a different kind of borrower. [Physician loans](/loans/doctor-loan) were designed for you.
 
 Here is a straightforward comparison of both products, what each one actually costs in a Northern Colorado market, and how to think through which one fits your situation.
 
@@ -81,6 +81,8 @@ Home prices in Fort Collins, Loveland, and the growing towns of Timnath, Windsor
 
 Medical professionals at UCHealth, Banner Health, Poudre Valley Hospital, McKee Medical Center, and the other healthcare employers along the Northern Colorado Front Range are buying in these markets regularly. The physician loan programs I work with are well-suited to this price range, and I have seen them make a real difference for buyers who would have spent another year or two saving under conventional guidelines.
 
+If you want to go deeper on how I work with medical professionals specifically, [see what the process looks like](/who-i-help/medical-professionals).
+
 ## When a Conventional Loan Might Still Make Sense
 
 Physician loans are not always the better choice. If you have a 20% down payment saved, a conventional loan removes PMI from the equation and often comes with a lower rate. If your student debt is paid down and your DTI calculates cleanly on a conventional basis, you may find that the conventional product gives you better terms.
@@ -108,4 +110,4 @@ More than most people realize — and the terms vary significantly between them.
 
 Loan programs, rates, and limits change. Always confirm current details before making any decisions. Stevie de Gala, NMLS# 2845865. Equal Housing Lender.
 
-If you are a medical professional buying in Northern Colorado and want to see both scenarios with real numbers, [book a free 15-minute call](/find-my-loan) and I will pull the comparison for your specific situation.
+If you are a medical professional buying in Northern Colorado and want to see both scenarios with real numbers, [book a free 15-minute call](/find-my-loan) and I will pull the comparison for your specific situation. You can also [learn more about how I work with medical professionals](/who-i-help/medical-professionals) or [see full physician loan details](/loans/doctor-loan).

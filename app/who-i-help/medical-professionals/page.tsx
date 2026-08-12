@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
+import PhysicianLoanCalculator from '@/components/PhysicianLoanCalculator'
 
 export const metadata: Metadata = {
   title: 'Physician Loans for Medical Professionals | Northern Colorado | Stevie de Gala',
@@ -326,6 +327,13 @@ export default function MedicalProfessionalsPage() {
           <p className="text-[#888888] text-sm mt-6 leading-relaxed max-w-3xl border-l-2 border-[#2E2E2E] pl-4">
             One more thing worth knowing: a physician loan is not a forever decision. Once your student debt is paid down, your savings have grown, or it simply makes financial sense to switch — you can refinance into a conventional loan with better long-term terms. It gets you into the home now, on your terms, without waiting years to meet a conventional lender&apos;s checklist.
           </p>
+        </div>
+      </section>
+
+      {/* Calculator */}
+      <section className="bg-[#0A0A0A] py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <PhysicianLoanCalculator />
         </div>
       </section>
 
