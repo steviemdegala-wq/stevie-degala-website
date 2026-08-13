@@ -130,12 +130,26 @@ const faqSchema = {
   ],
 }
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mortgagestevie.com' },
+    { '@type': 'ListItem', position: 2, name: 'Who I Help', item: 'https://mortgagestevie.com/who-i-help' },
+    { '@type': 'ListItem', position: 3, name: 'Medical Professionals', item: 'https://mortgagestevie.com/who-i-help/medical-professionals' },
+  ],
+}
+
 export default function MedicalProfessionalsPage() {
   return (
     <main className="pt-16 md:pt-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Hero */}

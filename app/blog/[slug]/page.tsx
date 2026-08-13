@@ -14,6 +14,13 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${post.title} — Stevie de Gala`,
     description: post.excerpt,
+    openGraph: {
+      title: `${post.title} — Stevie de Gala`,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.date,
+      authors: ['Stevie de Gala'],
+    },
   }
 }
 
@@ -23,8 +30,46 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   const html = marked.parse(post.content) as string
 
+  const baseUrl = 'https://mortgagestevie.com'
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    url: `${baseUrl}/blog/${post.slug}`,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${baseUrl}/blog/${post.slug}` },
+    author: {
+      '@type': 'Person',
+      name: 'Stevie de Gala',
+      url: `${baseUrl}/about`,
+      hasCredential: 'NMLS# 2845865',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Stevie de Gala — Medical Professional Loan Consultant',
+      url: baseUrl,
+      logo: { '@type': 'ImageObject', url: `${baseUrl}/opengraph-image` },
+    },
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `${baseUrl}/blog/${post.slug}` },
+    ],
+  }
+
   return (
     <main className="pt-16 md:pt-20 min-h-screen bg-[#0A0A0A]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
       {/* Header */}
       <section className="py-16 md:py-24 px-6 border-b border-[#2E2E2E]">
         <div className="max-w-3xl mx-auto">
