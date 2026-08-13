@@ -122,41 +122,31 @@ export default function Navigation() {
                 </svg>
               </button>
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 hidden group-hover:block">
-                <div className="bg-[#111111] border border-[#2E2E2E] min-w-[200px] py-2 rounded-xl overflow-hidden">
-                  {/* Primary specialty loans */}
+                <div className="bg-[#111111] border border-[#2E2E2E] min-w-[260px] py-2 rounded-xl overflow-hidden">
+                  {/* Specialty loans */}
+                  <p className="px-5 pt-1 pb-1.5 text-[#555555] text-[10px] uppercase tracking-[0.2em]">Specialty</p>
                   {primaryLoanLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="flex items-center justify-between px-5 py-2.5 text-sm text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
+                      className="flex items-center gap-2 px-5 py-2.5 text-sm text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
                     >
+                      <span className="text-[#7A9E5C] text-xs">★</span>
                       {link.label}
-                      <span className="ml-3 text-[#7A9E5C] text-xs uppercase tracking-widest">Specialty</span>
                     </Link>
                   ))}
-                  {/* Divider + More Loans flyout */}
-                  <div className="border-t border-[#2E2E2E] mt-1 pt-1">
-                    <div className="relative group/more">
-                      <button className="w-full flex items-center justify-between px-5 py-2.5 text-sm text-[#888888] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap bg-transparent border-none cursor-pointer">
-                        More Loans
-                        <svg className="w-3 h-3 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                        </svg>
-                      </button>
-                      <div className="absolute left-full top-0 ml-1 hidden group-hover/more:block">
-                        <div className="bg-[#111111] border border-[#2E2E2E] min-w-[200px] py-2 rounded-xl overflow-hidden">
-                          {otherLoanLinks.map((link) => (
-                            <Link
-                              key={link.href}
-                              href={link.href}
-                              className="block px-5 py-2.5 text-sm text-[#C4C4C4] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
-                            >
-                              {link.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+                  {/* All other loans */}
+                  <div className="border-t border-[#2E2E2E] mt-1.5 pt-1.5">
+                    <p className="px-5 pb-1.5 text-[#555555] text-[10px] uppercase tracking-[0.2em]">More Loans</p>
+                    {otherLoanLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="block px-5 py-2 text-sm text-[#C4C4C4] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
