@@ -49,8 +49,10 @@ const localBusinessSchema = {
     { '@type': 'City', name: 'Windsor', containedInPlace: { '@type': 'State', name: 'Colorado' } },
     { '@type': 'City', name: 'Severance', containedInPlace: { '@type': 'State', name: 'Colorado' } },
   ],
+  telephone: '+18065082666',
   contactPoint: {
     '@type': 'ContactPoint',
+    telephone: '+18065082666',
     contactType: 'customer service',
     url: 'https://mortgagestevie.com/find-my-loan',
     areaServed: 'US',
@@ -129,6 +131,7 @@ const personSchema = {
     'DSCR loans for investors',
     'Northern Colorado real estate market',
   ],
+  telephone: '+18065082666',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Timnath',
