@@ -10,9 +10,12 @@ const whoIHelpLinks = [
   { label: 'Investors', href: '/who-i-help/investors' },
 ]
 
-const loansLinks = [
+const primaryLoanLinks = [
   { label: 'Physician Loan', href: '/loans/doctor-loan' },
   { label: 'VA Loan', href: '/loans/va' },
+]
+
+const otherLoanLinks = [
   { label: 'FHA Loan', href: '/loans/fha' },
   { label: 'Conventional', href: '/loans/conventional' },
   { label: 'Jumbo', href: '/loans/jumbo' },
@@ -23,6 +26,8 @@ const loansLinks = [
   { label: 'USDA', href: '/loans/usda' },
   { label: 'Bridge & Construction', href: '/loans/bridge-construction' },
 ]
+
+const loansLinks = [...primaryLoanLinks, ...otherLoanLinks]
 
 const resourcesLinks = [
   { label: 'Current Rates', href: '/resources/rates' },
@@ -110,9 +115,7 @@ export default function Navigation() {
 
             {/* Loans dropdown */}
             <div className="relative group">
-              <button
-                className="text-[#C4C4C4] text-sm hover:text-[#F8F8F8] transition-colors tracking-wide flex items-center gap-1 bg-transparent border-none cursor-pointer"
-              >
+              <button className="text-[#C4C4C4] text-sm hover:text-[#F8F8F8] transition-colors tracking-wide flex items-center gap-1 bg-transparent border-none cursor-pointer">
                 Loans
                 <svg className="w-3 h-3 mt-px transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -120,15 +123,41 @@ export default function Navigation() {
               </button>
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 hidden group-hover:block">
                 <div className="bg-[#111111] border border-[#2E2E2E] min-w-[200px] py-2 rounded-xl overflow-hidden">
-                  {loansLinks.map((link) => (
+                  {/* Primary specialty loans */}
+                  {primaryLoanLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="block px-5 py-2.5 text-sm text-[#C4C4C4] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
+                      className="flex items-center justify-between px-5 py-2.5 text-sm text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
                     >
                       {link.label}
+                      <span className="ml-3 text-[#7A9E5C] text-xs uppercase tracking-widest">Specialty</span>
                     </Link>
                   ))}
+                  {/* Divider + More Loans flyout */}
+                  <div className="border-t border-[#2E2E2E] mt-1 pt-1">
+                    <div className="relative group/more">
+                      <button className="w-full flex items-center justify-between px-5 py-2.5 text-sm text-[#888888] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap bg-transparent border-none cursor-pointer">
+                        More Loans
+                        <svg className="w-3 h-3 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                      <div className="absolute left-full top-0 ml-1 hidden group-hover/more:block">
+                        <div className="bg-[#111111] border border-[#2E2E2E] min-w-[200px] py-2 rounded-xl overflow-hidden">
+                          {otherLoanLinks.map((link) => (
+                            <Link
+                              key={link.href}
+                              href={link.href}
+                              className="block px-5 py-2.5 text-sm text-[#C4C4C4] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
+                            >
+                              {link.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
