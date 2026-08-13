@@ -19,13 +19,28 @@ export const metadata: Metadata = {
   },
 }
 
-const schema = {
+const localBusinessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'FinancialService',
+  '@type': ['FinancialService', 'LocalBusiness'],
   name: 'Stevie de Gala — Medical Professional Loan Consultant',
+  alternateName: 'Mortgage Stevie',
   description:
-    "Northern Colorado's premier physician loan and VA loan specialist. Serving medical professionals, veterans, and real estate investors across Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance.",
+    "Northern Colorado's premier physician loan and VA loan specialist. Serving medical professionals, veterans, and real estate investors across Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. NMLS# 2845865.",
   url: 'https://mortgagestevie.com',
+  logo: 'https://mortgagestevie.com/opengraph-image',
+  image: 'https://mortgagestevie.com/opengraph-image',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Timnath',
+    addressRegion: 'CO',
+    postalCode: '80547',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 40.5217,
+    longitude: -104.9811,
+  },
   areaServed: [
     { '@type': 'City', name: 'Fort Collins', containedInPlace: { '@type': 'State', name: 'Colorado' } },
     { '@type': 'City', name: 'Greeley', containedInPlace: { '@type': 'State', name: 'Colorado' } },
@@ -34,8 +49,92 @@ const schema = {
     { '@type': 'City', name: 'Windsor', containedInPlace: { '@type': 'State', name: 'Colorado' } },
     { '@type': 'City', name: 'Severance', containedInPlace: { '@type': 'State', name: 'Colorado' } },
   ],
-  hasCredential: 'NMLS# 2845865',
-  sameAs: [],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    url: 'https://mortgagestevie.com/find-my-loan',
+    areaServed: 'US',
+    availableLanguage: 'English',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Mortgage Loan Programs',
+    itemListElement: [
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Physician Loan', url: 'https://mortgagestevie.com/loans/doctor-loan' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'VA Home Loan', url: 'https://mortgagestevie.com/loans/va' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'FHA Loan', url: 'https://mortgagestevie.com/loans/fha' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Conventional Loan', url: 'https://mortgagestevie.com/loans/conventional' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Jumbo Loan', url: 'https://mortgagestevie.com/loans/jumbo' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'USDA Loan', url: 'https://mortgagestevie.com/loans/usda' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Refinance', url: 'https://mortgagestevie.com/loans/refinance' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'HELOC', url: 'https://mortgagestevie.com/loans/heloc' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'DSCR Loan', url: 'https://mortgagestevie.com/loans/dscr' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Bank Statement Loan', url: 'https://mortgagestevie.com/loans/bank-statement' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Bridge & Construction Loan', url: 'https://mortgagestevie.com/loans/bridge-construction' } },
+    ],
+  },
+  knowsAbout: [
+    'Physician loans',
+    'Doctor loans',
+    'VA home loans',
+    'DSCR loans',
+    'FHA loans',
+    'Conventional loans',
+    'Jumbo loans',
+    'USDA loans',
+    'Mortgage refinancing',
+    'HELOC',
+    'Bank statement loans',
+    'Medical professional mortgages',
+    'Northern Colorado real estate',
+    'Fort Collins mortgage',
+    'Greeley mortgage',
+    'Loveland mortgage',
+  ],
+  founder: {
+    '@type': 'Person',
+    name: 'Stevie de Gala',
+    jobTitle: 'Mortgage Loan Consultant',
+    hasCredential: 'NMLS# 2845865',
+    url: 'https://mortgagestevie.com/about',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Stevie de Gala — Medical Professional Loan Consultant',
+    },
+  },
+  priceRange: '$$',
+}
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Stevie de Gala',
+  jobTitle: 'Mortgage Loan Consultant',
+  description:
+    'Northern Colorado mortgage broker specializing in physician loans and VA loans for medical professionals and veterans. Based in Timnath, CO. NMLS# 2845865.',
+  url: 'https://mortgagestevie.com/about',
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'license',
+    name: 'NMLS# 2845865',
+    recognizedBy: {
+      '@type': 'Organization',
+      name: 'Nationwide Multistate Licensing System',
+    },
+  },
+  knowsAbout: [
+    'Physician loans',
+    'VA home loans',
+    'Medical professional mortgages',
+    'DSCR loans for investors',
+    'Northern Colorado real estate market',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Timnath',
+    addressRegion: 'CO',
+    addressCountry: 'US',
+  },
 }
 
 const MEDICAL_PROFESSIONS = [
@@ -62,9 +161,14 @@ export default function HomePage() {
   return (
     <main>
       <Script
-        id="schema-org"
+        id="schema-local-business"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <Script
+        id="schema-person"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
 
       {/* Hero */}
