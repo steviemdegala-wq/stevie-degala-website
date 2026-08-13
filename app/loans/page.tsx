@@ -35,6 +35,12 @@ const specialtyLoans = [
     description:
       'Zero down, no PMI, competitive government-backed rates. Available to veterans, active duty, National Guard, Reserves, and eligible surviving spouses.',
   },
+  {
+    href: '/loans/investor-loc',
+    label: 'Investor Line of Credit',
+    description:
+      'Revolving credit lines for real estate investors. Access capital quickly for acquisitions, renovations, or bridging gaps between deals — without refinancing your existing portfolio.',
+  },
 ]
 
 const otherLoans = [

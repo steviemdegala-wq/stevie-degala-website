@@ -13,6 +13,7 @@ const whoIHelpLinks = [
 const primaryLoanLinks = [
   { label: 'Physician Loan', href: '/loans/doctor-loan' },
   { label: 'VA Loan', href: '/loans/va' },
+  { label: 'Investor Line of Credit', href: '/loans/investor-loc' },
 ]
 
 const otherLoanLinks = [
@@ -135,18 +136,28 @@ export default function Navigation() {
                       {link.label}
                     </Link>
                   ))}
-                  {/* All other loans */}
-                  <div className="border-t border-[#2E2E2E] mt-1.5 pt-1.5">
-                    <p className="px-5 pb-1.5 text-[#555555] text-[10px] uppercase tracking-[0.2em]">More Loans</p>
-                    {otherLoanLinks.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className="block px-5 py-2 text-sm text-[#C4C4C4] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
+                  {/* More loans — hover to expand */}
+                  <div className="group/more border-t border-[#2E2E2E] mt-1.5">
+                    <div className="flex items-center justify-between px-5 py-2.5 cursor-default">
+                      <p className="text-[#555555] text-[10px] uppercase tracking-[0.2em]">More Loans</p>
+                      <svg
+                        className="w-3 h-3 text-[#555555] transition-transform group-hover/more:rotate-90"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
                       >
-                        {link.label}
-                      </Link>
-                    ))}
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                    <div className="hidden group-hover/more:block pb-1">
+                      {otherLoanLinks.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className="block px-5 py-2 text-sm text-[#C4C4C4] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
