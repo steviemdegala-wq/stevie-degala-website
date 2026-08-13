@@ -22,8 +22,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/who-i-help/veterans`, lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
     { url: `${baseUrl}/who-i-help/investors`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     // Loan pages — primary niche first
+    { url: `${baseUrl}/loans`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/loans/doctor-loan`, lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
     { url: `${baseUrl}/loans/va`, lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
+    { url: `${baseUrl}/loans/investor-loc`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/loans/conventional`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/loans/fha`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/loans/jumbo`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
@@ -33,6 +35,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/loans/dscr`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${baseUrl}/loans/bank-statement`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/loans/bridge-construction`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+    // Resources
+    { url: `${baseUrl}/resources/loan-checklists`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
   ]
 
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({

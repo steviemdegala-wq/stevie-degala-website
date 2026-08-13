@@ -6,6 +6,69 @@ export const metadata: Metadata = {
   title: 'About Stevie de Gala | Northern Colorado Medical Professional Loan Consultant',
   description:
     "I specialize in physician loans and VA loans because both are personal. My dad was on dialysis for eight years. My grandfather earned his U.S. citizenship after serving in WWII. This work is not a niche strategy — it is a way to give back. NMLS# 2845865",
+  openGraph: {
+    title: 'About Stevie de Gala | NMLS# 2845865 | Northern Colorado Mortgage Broker',
+    description: 'Physician loan and VA loan specialist in Timnath, CO. NMLS# 2845865. Licensed in Colorado and Texas.',
+    type: 'profile',
+  },
+}
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Stevie de Gala',
+  url: 'https://mortgagestevie.com/about',
+  image: 'https://mortgagestevie.com/headshot.jpg',
+  jobTitle: 'Mortgage Broker',
+  description:
+    'Licensed mortgage broker specializing in physician loans and VA loans in Northern Colorado. Based in Timnath, CO. NMLS# 2845865.',
+  telephone: '+18065082666',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Timnath',
+    addressRegion: 'CO',
+    postalCode: '80547',
+    addressCountry: 'US',
+  },
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'license',
+    name: 'NMLS# 2845865',
+    recognizedBy: {
+      '@type': 'Organization',
+      name: 'Nationwide Multistate Licensing System (NMLS)',
+      url: 'https://www.nmlsconsumeraccess.org',
+    },
+  },
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Brigham Young University',
+    sameAs: 'https://www.byu.edu',
+  },
+  knowsAbout: [
+    'Physician Loans', 'VA Loans', 'FHA Loans', 'Conventional Loans', 'Jumbo Loans',
+    'DSCR Loans', 'Bank Statement Loans', 'HELOC', 'Mortgage Refinance',
+    'Northern Colorado Real Estate', 'Medical Professional Home Financing',
+    'Investor Real Estate Financing', 'Debt-to-Income Ratio', 'Student Loan Treatment in Mortgages',
+  ],
+  areaServed: [
+    'Fort Collins, CO', 'Greeley, CO', 'Loveland, CO', 'Timnath, CO',
+    'Windsor, CO', 'Severance, CO', 'Gilmer, TX', 'Longview, TX',
+  ],
+  worksFor: {
+    '@type': 'Organization',
+    name: 'NEXA Mortgage',
+  },
+  sameAs: ['https://mortgagestevie.com'],
+}
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mortgagestevie.com' },
+    { '@type': 'ListItem', position: 2, name: 'About', item: 'https://mortgagestevie.com/about' },
+  ],
 }
 
 const timeline = [
@@ -33,6 +96,8 @@ const regions = [
 export default function AboutPage() {
   return (
     <main className="pt-16 md:pt-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Hero */}
       <section className="bg-[#0A0A0A] py-20 md:py-28 px-6">
