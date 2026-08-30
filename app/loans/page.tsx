@@ -17,8 +17,8 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mortgagestevie.com' },
-    { '@type': 'ListItem', position: 2, name: 'Loans', item: 'https://mortgagestevie.com/loans' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.mortgagestevie.com' },
+    { '@type': 'ListItem', position: 2, name: 'Loans', item: 'https://www.mortgagestevie.com/loans' },
   ],
 }
 

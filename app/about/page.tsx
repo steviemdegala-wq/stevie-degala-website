@@ -17,8 +17,8 @@ const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Stevie de Gala',
-  url: 'https://mortgagestevie.com/about',
-  image: 'https://mortgagestevie.com/headshot.jpg',
+  url: 'https://www.mortgagestevie.com/about',
+  image: 'https://www.mortgagestevie.com/headshot.jpg',
   jobTitle: 'Mortgage Broker',
   description:
     'Licensed mortgage broker specializing in medical professional loans and investor funding in Northern Colorado. Based in Timnath, CO. NMLS# 2845865.',
@@ -61,15 +61,19 @@ const personSchema = {
     '@type': 'Organization',
     name: 'NEXA Mortgage',
   },
-  sameAs: ['https://mortgagestevie.com'],
+  sameAs: [
+    'https://www.mortgagestevie.com',
+    'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2845865',
+    'https://www.facebook.com/stevie.degala/',
+  ],
 }
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mortgagestevie.com' },
-    { '@type': 'ListItem', position: 2, name: 'About', item: 'https://mortgagestevie.com/about' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.mortgagestevie.com' },
+    { '@type': 'ListItem', position: 2, name: 'About', item: 'https://www.mortgagestevie.com/about' },
   ],
 }
 
