@@ -21,7 +21,7 @@ const primaryLoanLinks = [
 ]
 
 const otherLoanLinks = [
-  { label: 'Investor Line of Credit', href: '/loans/investor-line-of-credit' },
+  { label: 'Private / Hard Money', href: '/loans/investor-line-of-credit' },
   { label: 'FHA Loan', href: '/loans/fha' },
   { label: 'Conventional', href: '/loans/conventional' },
   { label: 'Jumbo', href: '/loans/jumbo' },

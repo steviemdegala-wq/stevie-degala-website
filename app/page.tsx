@@ -191,7 +191,7 @@ export default function HomePage() {
                 Medical professional loan specialist and investor line of credit broker serving Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. Physician loans, nurse loans, dentist loans. NMLS# 2845865
               </span>
               <p className="text-[#C4C4C4] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
-                Zero down loans for doctors, nurses, dentists, NPs, and all licensed healthcare professionals. Revolving investor lines of credit up to $10M for Northern Colorado real estate investors.
+                Zero down loans for doctors, nurses, dentists, NPs, and many licensed healthcare professionals. Revolving investor lines of credit up to $10M for Northern Colorado real estate investors.
               </p>
               <div className="flex flex-col items-start gap-5">
                 <div className="flex flex-wrap items-center gap-3">
@@ -323,10 +323,10 @@ export default function HomePage() {
                 </p>
               </div>
               <Link
-                href="/who-i-help/medical-professionals"
+                href="/loans/doctor-loan"
                 className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
               >
-                See what&apos;s possible
+                See if you qualify
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
             </div>
@@ -352,10 +352,10 @@ export default function HomePage() {
                 </p>
               </div>
               <Link
-                href="/who-i-help/investors"
+                href="/loans/investor-line-of-credit"
                 className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
               >
-                See what&apos;s possible
+                Calculate your line
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
             </div>
@@ -384,7 +384,7 @@ export default function HomePage() {
                 href="/loans/fix-and-flip"
                 className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
               >
-                See what&apos;s possible
+                Make your next offer
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
             </div>
@@ -488,6 +488,67 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Split-Audience CTA */}
+      <section className="bg-[#0A0A0A] py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-center text-[#888888] text-xs uppercase tracking-[0.25em] mb-10">Who Are You?</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Medical Professional */}
+            <div className="border border-[#5C8AA5]/40 bg-[#0D1519] rounded-2xl px-8 py-10 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-5">
+                  <Stethoscope size={16} className="text-[#5C8AA5]" />
+                  <span className="text-[#5C8AA5] text-xs uppercase tracking-[0.2em]">Medical Professional</span>
+                </div>
+                <h3
+                  className="text-2xl text-[#F8F8F8] leading-tight mb-4"
+                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                >
+                  MD, DO, NP, RN, PA, DDS, PharmD, CRNA, and more
+                </h3>
+                <ul className="space-y-2 mb-8">
+                  {['Zero down payment', 'No PMI at any loan size', 'Student debt excluded from DTI', 'Employment contract accepted for residents'].map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-[#888888] text-sm">
+                      <svg className="w-3.5 h-3.5 flex-shrink-0 text-[#5C8AA5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <BookCallButton variant="outline" label="Book a Free Call — Medical" />
+            </div>
+            {/* Real Estate Investor */}
+            <div className="border border-[#B8860B]/40 bg-[#160F00] rounded-2xl px-8 py-10 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-5">
+                  <Building2 size={16} className="text-[#B8860B]" />
+                  <span className="text-[#B8860B] text-xs uppercase tracking-[0.2em]">Real Estate Investor</span>
+                </div>
+                <h3
+                  className="text-2xl text-[#F8F8F8] leading-tight mb-4"
+                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                >
+                  Fix & Flip, BRRRR, Buy-and-Hold, 1031 Exchange
+                </h3>
+                <ul className="space-y-2 mb-8">
+                  {['Pre-approved revolving lines up to $10M', 'Close deals in ~10 days', 'No financing contingency on offers', 'High 8s–9% — cheaper than hard money'].map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-[#888888] text-sm">
+                      <svg className="w-3.5 h-3.5 flex-shrink-0 text-[#B8860B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <BookCallButton variant="outline" label="Book a Free Call — Investor" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="bg-[#0A0A0A] py-24 px-6">
         <div className="max-w-3xl mx-auto">
@@ -553,7 +614,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-16 items-start mb-16">
             {/* Left — copy */}
             <div>
-              <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Physician Loans</p>
+              <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Medical Professional Loans</p>
               <h2
                 className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight mb-5"
                 style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
@@ -561,7 +622,7 @@ export default function HomePage() {
                 Is This You?
               </h2>
               <p className="text-[#888888] text-lg leading-relaxed mb-7">
-                If you are in one of these professions, you likely qualify for a physician loan — a mortgage built specifically for your situation: high earning potential, significant student debt, and limited time to save a down payment.
+                If you are in one of these professions, you likely qualify for a medical professional loan — zero down, no PMI, and student debt excluded from your DTI, because your earning potential is the asset, not your savings account.
               </p>
               <ul className="space-y-3 mb-10">
                 {[
@@ -582,7 +643,7 @@ export default function HomePage() {
                 href="/loans/doctor-loan"
                 className="inline-flex items-center gap-3 border border-[#F8F8F8] text-[#F8F8F8] px-7 py-3.5 text-sm tracking-wide hover:bg-[#F8F8F8] hover:text-[#0A0A0A] transition-all group rounded-full"
               >
-                Learn About Physician Loans
+                See If You Qualify
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
             </div>

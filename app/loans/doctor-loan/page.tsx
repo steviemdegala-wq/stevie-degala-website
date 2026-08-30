@@ -3,9 +3,9 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'Physician Loan (Doctor Loan) | Northern Colorado | Stevie de Gala',
+  title: 'Medical Professional Loan | Physician Loan | Northern Colorado | Stevie de Gala',
   description:
-    'Physician loans for MD, DO, DDS, PharmD, NP, PA, CRNA, and more in Northern Colorado. Zero down, no PMI, student debt excluded from DTI. Fort Collins, Greeley, Loveland, Timnath, Windsor, Severance. NMLS# 2845865',
+    'Medical professional loans for MD, DO, NP, RN, PA, DDS, PharmD, CRNA, and more in Northern Colorado. Zero down, no PMI, student debt excluded from DTI. Fort Collins, Greeley, Loveland, Timnath, Windsor. NMLS# 2845865',
 }
 
 const features = [
@@ -50,10 +50,10 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What is a physician loan?',
+      name: 'What is a medical professional loan (physician loan)?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A physician loan — also called a doctor loan — is a portfolio mortgage product designed specifically for medical professionals. Unlike conventional loans, physician loans allow zero or low down payments with no PMI, treat student loan debt more favorably in the DTI calculation, and often accept a signed employment contract as income documentation. They are available to MDs, DOs, dentists, pharmacists, nurses, PAs, and other qualifying healthcare professionals.',
+        text: 'A medical professional loan — commonly called a physician loan or doctor loan — is a portfolio mortgage product designed specifically for licensed healthcare professionals. Unlike conventional loans, these programs allow zero or low down payments with no PMI, treat student loan debt more favorably in the DTI calculation, and often accept a signed employment contract as income documentation. They are available to MDs, DOs, dentists, pharmacists, nurses, NPs, PAs, CRNAs, and many other qualifying healthcare professionals.',
       },
     },
     {
@@ -113,7 +113,7 @@ const breadcrumbSchema = {
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mortgagestevie.com' },
     { '@type': 'ListItem', position: 2, name: 'Loans', item: 'https://mortgagestevie.com/loans' },
-    { '@type': 'ListItem', position: 3, name: 'Physician Loan', item: 'https://mortgagestevie.com/loans/doctor-loan' },
+    { '@type': 'ListItem', position: 3, name: 'Medical Professional Loan', item: 'https://mortgagestevie.com/loans/doctor-loan' },
   ],
 }
 
@@ -138,7 +138,7 @@ export default function DoctorLoanPage() {
             </svg>
             Home
           </Link>
-          <p className="text-[#888888] text-xs uppercase tracking-widest mb-6">Physician Loan — Northern Colorado</p>
+          <p className="text-[#888888] text-xs uppercase tracking-widest mb-6">Medical Professional Loan — Northern Colorado</p>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
@@ -161,7 +161,7 @@ export default function DoctorLoanPage() {
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
-            What makes a physician loan different.
+            What makes a medical professional loan different.
           </h2>
           <p className="text-[#C4C4C4] leading-relaxed mb-12 max-w-2xl">
             Four structural advantages that a conventional loan does not offer — regardless of your credit or income.
@@ -192,10 +192,10 @@ export default function DoctorLoanPage() {
                 className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-6"
                 style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
               >
-                Who qualifies for a physician loan?
+                Who qualifies for a medical professional loan?
               </h2>
               <p className="text-[#888888] leading-relaxed mb-8">
-                The label covers far more than physicians. Any of the following credentials qualify — along with residents, fellows, and interns with a qualifying degree in progress.
+                The product covers far more than physicians. Any of the following credentials qualify — along with residents, fellows, and interns with a qualifying degree in progress.
               </p>
               <div className="grid grid-cols-2 gap-3">
                 {professions.map((p) => (
@@ -290,10 +290,10 @@ export default function DoctorLoanPage() {
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
-            See which physician loan program fits your situation.
+            See which medical professional loan program fits your situation.
           </h2>
           <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">
-            A free 15-minute call to review your credentials, credit, and loan size — and compare physician loan options against conventional side by side.
+            A free 15-minute call to review your credentials, credit, and loan size — and compare medical professional loan options against conventional side by side.
           </p>
           <BookCallButton variant="solid" />
         </div>
