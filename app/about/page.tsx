@@ -3,12 +3,12 @@ import Image from 'next/image'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'About Stevie de Gala | Northern Colorado Medical Professional Loan Consultant',
+  title: 'About Stevie de Gala | Medical Professional Loans & Investor Funding | Northern Colorado',
   description:
-    "I specialize in physician loans and VA loans because both are personal. My dad was on dialysis for eight years. My grandfather earned his U.S. citizenship after serving in WWII. This work is not a niche strategy — it is a way to give back. NMLS# 2845865",
+    "I specialize in medical professional loans and investor funding because both are personal. My dad was on dialysis for eight years. I developed a self-storage facility from the ground up and raised capital for multifamily — I work with investors because I am one. NMLS# 2845865",
   openGraph: {
     title: 'About Stevie de Gala | NMLS# 2845865 | Northern Colorado Mortgage Broker',
-    description: 'Physician loan and VA loan specialist in Timnath, CO. NMLS# 2845865. Licensed in Colorado and Texas.',
+    description: 'Medical professional loan and investor funding specialist in Timnath, CO. NMLS# 2845865. Licensed in Colorado and Texas.',
     type: 'profile',
   },
 }
@@ -21,7 +21,7 @@ const personSchema = {
   image: 'https://mortgagestevie.com/headshot.jpg',
   jobTitle: 'Mortgage Broker',
   description:
-    'Licensed mortgage broker specializing in physician loans and VA loans in Northern Colorado. Based in Timnath, CO. NMLS# 2845865.',
+    'Licensed mortgage broker specializing in medical professional loans and investor funding in Northern Colorado. Based in Timnath, CO. NMLS# 2845865.',
   telephone: '+18065082666',
   address: {
     '@type': 'PostalAddress',
@@ -46,10 +46,12 @@ const personSchema = {
     sameAs: 'https://www.byu.edu',
   },
   knowsAbout: [
-    'Physician Loans', 'VA Loans', 'FHA Loans', 'Conventional Loans', 'Jumbo Loans',
-    'DSCR Loans', 'Bank Statement Loans', 'HELOC', 'Mortgage Refinance',
-    'Northern Colorado Real Estate', 'Medical Professional Home Financing',
-    'Investor Real Estate Financing', 'Debt-to-Income Ratio', 'Student Loan Treatment in Mortgages',
+    'Physician Loans', 'Medical Professional Loans', 'Investor Line of Credit',
+    'Fix and Flip Financing', 'Private Hard Money Lending', 'DSCR Loans',
+    'FHA Loans', 'Conventional Loans', 'Jumbo Loans', 'Bank Statement Loans',
+    'HELOC', 'Mortgage Refinance', 'Northern Colorado Real Estate',
+    'Real Estate Development', 'Multifamily Capital Raising',
+    'Debt-to-Income Ratio', 'Student Loan Treatment in Mortgages',
   ],
   areaServed: [
     'Fort Collins, CO', 'Greeley, CO', 'Loveland, CO', 'Timnath, CO',
@@ -78,8 +80,8 @@ const timeline = [
   { label: 'Mission', content: 'Church mission in Mexico.' },
   { label: 'BYU', content: 'Entrepreneurial Management degree, Brigham Young University.' },
   { label: 'Capstone', content: 'Ground-up self-storage development, Gilmer, TX — senior year.' },
-  { label: 'After School', content: 'Commercial real estate AI underwriting software company.' },
-  { label: 'Now', content: 'Licensed mortgage broker specializing in physician loans and VA loans in Northern Colorado. NMLS# 2845865' },
+  { label: 'After School', content: 'Commercial real estate AI underwriting company. Analyzed deals daily. Raised capital for multifamily projects.' },
+  { label: 'Now', content: 'Licensed mortgage broker specializing in medical professional loans and investor funding across Fort Collins, Timnath, Windsor, Loveland, and Northern Colorado. NMLS# 2845865' },
 ]
 
 const regions = [
@@ -129,7 +131,7 @@ export default function AboutPage() {
                 Mortgage consultant, real estate investor, Ironman finisher, Filipino cook, and a person who genuinely loves helping people win.
               </p>
               <p className="text-[#888888] text-base leading-relaxed">
-                I specialize in physician loans and VA loans. Both are personal to me in ways that have nothing to do with business strategy — and everything to do with the people who shaped my life.
+                I specialize in medical professional loans and investor funding. Both are personal — one grew out of watching my dad survive a decade of dialysis, the other out of developing real estate before I had a degree to hang on the wall.
               </p>
             </div>
           </div>
@@ -166,23 +168,23 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Veterans */}
+            {/* Investors */}
             <div>
               <h2
                 className="text-2xl md:text-3xl text-[#F8F8F8] leading-tight mb-6"
                 style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
               >
-                Why I specialize in veterans.
+                Why I work with real estate investors.
               </h2>
               <div className="space-y-5 text-[#C4C4C4] text-base leading-relaxed">
                 <p>
-                  My grandfather came from the Philippines and joined the U.S. Army. He served in guerrilla warfare in World War II — and after the war, he earned his U.S. citizenship. That document meant something entirely different to him than it does to people who were born with it. He chose this country, and then he fought for it.
+                  My senior capstone at BYU was not a case study. It was a self-storage facility I developed from the ground up back home in Gilmer, Texas. Site selection, entitlements, construction, lease-up — I worked through the entire development process before I had a diploma. That project changed how I think about real estate from the inside out.
                 </p>
                 <p>
-                  Several of my cousins have served since then. I grew up understanding that freedom is not abstract. It is paid for by real people who choose to stand between us and danger.
+                  After graduation, I worked at a commercial real estate AI company focused on underwriting — which meant spending every day analyzing deals, modeling returns, and understanding how sophisticated investors evaluate risk and capital structure. I also raised capital for multifamily projects during that time. I know what it takes to put a deal together from both sides of the table.
                 </p>
                 <p className="text-[#888888]">
-                  When I work with veterans on VA loans, I am not processing a transaction. I am trying to give something back — to a group that already gave far more than most people ever will.
+                  When I help investors structure lines of credit or fix and flip financing, I am not guessing at what they need. I have done the work. I understand the timeline pressure, the capital stack, and what it means to have funding that actually moves when the deal does. That is why this work fits.
                 </p>
               </div>
             </div>
@@ -204,7 +206,7 @@ export default function AboutPage() {
             "Gilmer, Texas shaped me. Growing up in a small East Texas town meant growing up surrounded by family, and family meant work. My dad and grandfather ran HM Dodd Motor Company, and I spent as much time there as I could. Before I was old enough to drive, I was mowing lawns and running a snack box route to local salons. Gilmer taught me that you earn what you get.",
             "In high school, my family relocated so my dad could receive a kidney transplant. He had been on dialysis for eight years — polycystic kidney disease, and everything that came with it. I watched my parents navigate that with grace, and I watched the people who cared for him do their jobs with a level of dedication I have never forgotten. After high school, I served a church mission in Mexico. Those years changed how I see people and how I show up for them.",
             "At Brigham Young University, I studied Entrepreneurial Management. My senior capstone was not a paper or a presentation. It was a self-storage facility I developed from the ground up back home in Gilmer, Texas. That project confirmed everything I already believed about real estate.",
-            "Since graduating, I have worked in a commercial real estate AI company focused on underwriting and invested in multifamily properties. Now I bring all of that together as a licensed mortgage broker — specializing in the people and the loan programs I care most about.",
+            "Since graduating, I worked at a commercial real estate AI company focused on deal underwriting and raised capital for multifamily projects. I saw how deals get structured, how capital moves, and where financing either opens doors or closes them. Now I bring all of that into mortgage brokering — focusing on the two client profiles I understand most: medical professionals navigating their first home purchase, and investors who need capital that moves as fast as their deals do.",
           ].map((para, i) => (
             <p key={i} className="text-[#C4C4C4] text-lg leading-relaxed">
               {para}
