@@ -298,11 +298,11 @@ export default function HomePage() {
       <section className="bg-[#0A0A0A] py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <p className="text-center text-[#C4C4C4] mb-20 leading-relaxed mx-auto max-w-2xl" style={{ fontSize: '1.3rem' }}>
-            Most lenders don&apos;t understand your financial picture. High student debt, an income that just started, or earned VA benefits — I specialize in the loans built for exactly where you are.
+            Most lenders don&apos;t understand your financial picture. High student debt, a career just starting, or a real estate portfolio that moves faster than a bank can underwrite — I specialize in the loans built for exactly where you are.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
 
-            {/* Card A — Medical Professionals */}
+            {/* Card A — Doctor Loans */}
             <div
               className="card-hover bg-white px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
               style={{ border: '1px solid #E5E5E5', borderLeft: '3px solid #5C8AA5' }}
@@ -310,7 +310,7 @@ export default function HomePage() {
               <div>
                 <div className="flex items-center gap-2 mb-7">
                   <Stethoscope size={18} className="text-[#5C8AA5]" />
-                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Medical Professionals</span>
+                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Doctor Loans</span>
                 </div>
                 <h3
                   className="text-[#0A0A0A] leading-tight mb-6"
@@ -331,36 +331,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Card B — Veterans */}
-            <div
-              className="card-hover bg-white px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #E5E5E5', borderLeft: '3px solid #7A9E5C' }}
-            >
-              <div>
-                <div className="flex items-center gap-2 mb-7">
-                  <Shield size={18} className="text-[#7A9E5C]" />
-                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Veterans</span>
-                </div>
-                <h3
-                  className="text-[#0A0A0A] leading-tight mb-6"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)' }}
-                >
-                  You earned zero down. Let&apos;s use it.
-                </h3>
-                <p className="text-[#3A3A3A] text-sm leading-relaxed">
-                  VA loans give eligible service members and veterans the most powerful home buying benefit available — zero down, no PMI, and competitive rates backed by the U.S. government.
-                </p>
-              </div>
-              <Link
-                href="/who-i-help/veterans"
-                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
-              >
-                See what&apos;s possible
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </Link>
-            </div>
-
-            {/* Card C — Investors */}
+            {/* Card B — Investor Funding */}
             <div
               className="card-hover bg-white px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
               style={{ border: '1px solid #E5E5E5', borderLeft: '3px solid #4A7FA5' }}
@@ -368,20 +339,49 @@ export default function HomePage() {
               <div>
                 <div className="flex items-center gap-2 mb-7">
                   <Building2 size={18} className="text-[#4A7FA5]" />
-                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Investors</span>
+                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Investor Funding</span>
                 </div>
                 <h3
                   className="text-[#0A0A0A] leading-tight mb-6"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)' }}
                 >
-                  More options. Better terms.
+                  Capital ready when the deal is.
                 </h3>
                 <p className="text-[#3A3A3A] text-sm leading-relaxed">
-                  Local lenders give you a handful of choices. I compare dozens — DSCR loans, portfolio products, and creative structures built around your strategy, not a bank&apos;s checklist.
+                  Investor lines of credit give you revolving access to capital for multifamily and commercial acquisitions in Fort Collins and Denver — draw, close, repay, repeat. No new loan approval each time.
                 </p>
               </div>
               <Link
                 href="/who-i-help/investors"
+                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
+              >
+                See what&apos;s possible
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </Link>
+            </div>
+
+            {/* Card C — Fix & Flip */}
+            <div
+              className="card-hover bg-white px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
+              style={{ border: '1px solid #E5E5E5', borderLeft: '3px solid #B8860B' }}
+            >
+              <div>
+                <div className="flex items-center gap-2 mb-7">
+                  <Trophy size={18} className="text-[#B8860B]" />
+                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Fix &amp; Flip</span>
+                </div>
+                <h3
+                  className="text-[#0A0A0A] leading-tight mb-6"
+                  style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)' }}
+                >
+                  Move fast. Make offers. Win deals.
+                </h3>
+                <p className="text-[#3A3A3A] text-sm leading-relaxed">
+                  A fix and flip line of credit means your next offer is not contingent on financing approval. You make the call, draw the funds, and close — while bank-dependent buyers are still waiting.
+                </p>
+              </div>
+              <Link
+                href="/loans/fix-and-flip"
                 className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
               >
                 See what&apos;s possible
@@ -635,13 +635,14 @@ export default function HomePage() {
             <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-6">Looking for Another Loan?</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {[
+                { label: 'Fix & Flip Line of Credit', slug: 'fix-and-flip' },
+                { label: 'DSCR Investor', slug: 'dscr' },
                 { label: 'Conventional', slug: 'conventional' },
                 { label: 'FHA', slug: 'fha' },
                 { label: 'USDA', slug: 'usda' },
                 { label: 'Jumbo', slug: 'jumbo' },
                 { label: 'Refinance', slug: 'refinance' },
                 { label: 'HELOC / Home Equity', slug: 'heloc' },
-                { label: 'DSCR Investor', slug: 'dscr' },
                 { label: 'Bank Statement', slug: 'bank-statement' },
                 { label: 'Bridge / Construction', slug: 'bridge-construction' },
               ].map((loan) => (
@@ -693,7 +694,7 @@ export default function HomePage() {
             Better financing starts with one conversation.
           </h2>
           <p className="text-[#1A1A1A] text-lg mb-10 leading-relaxed">
-            A free 15-minute call is all it takes to find out whether a physician loan, VA loan, or another structure gives you the best financial outcome.
+            A free 15-minute call is all it takes to find out whether a physician loan, investor line of credit, fix and flip line, or another structure gives you the best financial outcome.
           </p>
           <BookCallButton variant="light" />
         </div>

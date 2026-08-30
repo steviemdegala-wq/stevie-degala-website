@@ -6,6 +6,7 @@ import { useModalStore } from '@/lib/modalStore'
 
 const servicesLinks = [
   { label: 'Investor Line of Credit', href: '/loans/investor-line-of-credit' },
+  { label: 'Fix & Flip Line of Credit', href: '/loans/fix-and-flip' },
   { label: 'Physician Loans', href: '/loans/doctor-loan' },
 ]
 
@@ -17,6 +18,7 @@ const whoIHelpLinks = [
 
 const primaryLoanLinks = [
   { label: 'Investor Line of Credit', href: '/loans/investor-line-of-credit' },
+  { label: 'Fix & Flip Line of Credit', href: '/loans/fix-and-flip' },
   { label: 'Physician Loan', href: '/loans/doctor-loan' },
 ]
 
