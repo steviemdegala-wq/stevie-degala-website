@@ -4,51 +4,51 @@ import Script from 'next/script'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'Investor Line of Credit | Northern Colorado Real Estate | Stevie de Gala',
+  title: 'Investor Line of Credit | Fix & Flip Financing | Northern Colorado | Stevie de Gala',
   description:
-    'Revolving lines of credit for real estate investors in Fort Collins, Timnath, Windsor, Loveland, and Greeley. Access capital for acquisitions, renovations, and deal flow without refinancing. NMLS# 2845865',
+    'Pre-approved revolving lines of credit for fix and flip investors in Fort Collins, Timnath, Windsor, Loveland, and Greeley. Close in ~10 days. Up to $10M. NMLS# 2845865',
   openGraph: {
-    title: 'Investor Line of Credit | Northern Colorado Real Estate | Stevie de Gala',
+    title: 'Investor Line of Credit | Fix & Flip Financing | Northern Colorado | Stevie de Gala',
     description:
-      'Revolving investor credit lines for Northern Colorado real estate. Move fast on deals without tying up your portfolio.',
+      'Pre-approved revolving credit for fix and flip investors in Northern Colorado. Draw, flip, repay, repeat. Up to $10M.',
   },
 }
 
 const features = [
   {
-    title: 'Revolving Access to Capital',
-    body: 'Draw, repay, and redraw as deals come and go. Unlike a term loan, a line of credit stays available — so you can move quickly on acquisitions without waiting on a new approval each time.',
+    title: 'Pre-Approved and Ready to Draw',
+    body: 'Get approved once for a line up to $10M. When a deal comes in, you draw — no new application, no underwriting delay. That speed is what makes your offer competitive against all-cash buyers.',
   },
   {
-    title: 'No Need to Refinance Your Portfolio',
-    body: 'Tapping a line of credit lets you access capital without touching the rates or terms on your existing properties. Your long-term debt structure stays intact while you fund short-term needs.',
+    title: 'Non-Contingent Offers',
+    body: 'Because the capital is pre-approved and available, you can write non-contingent offers on distressed properties. In a market where speed is leverage, that is a structural advantage most buyers cannot match.',
   },
   {
-    title: 'Qualification Based on Portfolio Strength',
-    body: 'Investor lines are typically underwritten on the value and cash flow of your real estate portfolio — not just your personal income. Strong equity and rental income are your primary assets here.',
+    title: 'Covers Acquisition and Renovation',
+    body: 'One draw funds the purchase. A second covers the rehab. You are not juggling multiple loan products or waiting on a new approval mid-project — the line handles the full deal cycle.',
   },
   {
-    title: 'Flexible Use of Funds',
-    body: 'Use the line for a down payment on a new acquisition, to fund a renovation before refinancing, to cover holding costs between deals, or to bridge a gap in a 1031 exchange timeline.',
+    title: 'Draw, Flip, Repay, Repeat',
+    body: 'Close, renovate, sell, pay back the line, and move to the next deal — all without reapplying. The revolving structure is designed for investors who do this consistently, not once.',
   },
 ]
 
 const useCases = [
   {
-    title: 'Acquisition Bridge',
-    body: 'Spot a deal but your capital is deployed elsewhere. Draw on the line to close quickly, then refinance or sell to pay it back.',
+    title: 'Distressed Property Acquisitions',
+    body: 'Draw on the line to close quickly on undervalued properties before they hit the open market or go to the next buyer in line.',
   },
   {
-    title: 'BRRRR Renovations',
-    body: 'Fund the rehab phase of a Buy-Rehab-Rent-Refinance-Repeat cycle without a new hard money loan each time.',
+    title: 'Acquisition + Full Rehab',
+    body: 'Fund both the purchase and the renovation from a single pre-approved line. No separate hard money loan. No mid-project financing gaps.',
   },
   {
-    title: '1031 Exchange Timing',
-    body: 'Cover the gap between selling one property and closing on a replacement to protect your exchange timeline.',
+    title: 'BRRRR Path',
+    body: 'Use the line for Buy-Rehab. Once the property is stabilized and rented, refinance with a DSCR loan and pay the line back down — ready for the next project.',
   },
   {
-    title: 'Portfolio Scaling',
-    body: 'Use the line as a consistent source of down payment capital as you grow, without liquidating positions.',
+    title: 'Running Multiple Projects',
+    body: 'If your line is large enough, you can fund more than one deal at a time. Draw for project A while project B is still under rehab — without waiting on either to close.',
   },
 ]
 
@@ -58,58 +58,58 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What is an investor line of credit?',
+      name: 'What is an investor line of credit for fix and flip?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'An investor line of credit is a revolving credit facility secured by real estate assets or portfolio equity. Unlike a term loan, you draw funds as needed, repay them, and draw again — making it a flexible capital tool for active real estate investors. It functions similarly to a HELOC but is structured for investment purposes rather than personal home equity.',
+        text: 'An investor line of credit for fix and flip is a pre-approved revolving credit facility that lets you draw capital for property acquisitions and renovations, then repay it when you sell — and draw again on the next deal. Unlike a single-project hard money loan, the line stays open and available, so you are not reapplying every time. You get approved once and execute repeatedly.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How does an investor line of credit differ from a HELOC?',
+      name: 'How much can I access with a fix and flip line of credit in Northern Colorado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A HELOC is secured by your primary residence and used for personal needs. An investor line of credit is secured by investment property equity or your broader portfolio and is used for real estate investing activities. The qualification process, loan-to-value limits, and use of funds differ meaningfully between the two products.',
+        text: 'Lines go up to $10 million depending on your experience and deal history. More experienced investors with a documented track record of completed flips typically qualify for larger lines at better rates. Fort Collins, Timnath, Windsor, and Loveland offer strong deal flow and strong ARVs — both factors that support higher line approvals.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How much can I access with an investor line of credit in Northern Colorado?',
+      name: 'What are the current rates on a fix and flip line of credit?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Lines go up to $10 million depending on your experience and portfolio strength. Credit limits are determined by your portfolio equity, cash flow, credit profile, and investment track record. Fort Collins, Timnath, and Windsor properties have appreciated significantly, meaning many Northern Colorado investors have more available equity than they realize. More experienced investors with documented deal history typically qualify for larger lines at better rates.',
+        text: 'Current rates are in the high 8s to 9% range depending on experience and deal profile. That is meaningfully lower than traditional hard money, which typically runs 10–15% or higher. The revolving structure also means you are only paying interest on what you have drawn, not on the full line.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Do I need to refinance my properties to get an investor line of credit?',
+      name: 'How fast can I close with a fix and flip line of credit?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. One of the key advantages of an investor line is that it does not require refinancing your existing properties. You preserve the rates and terms on your current loans while unlocking access to the equity you have built. This is particularly valuable for investors who locked in low rates and do not want to disturb them.',
+        text: 'Typically around 10 days once a deal is under contract. Because the line is pre-approved, there is no new underwriting for each transaction — the lender is reviewing the specific deal, not re-qualifying you as a borrower. That speed lets you write non-contingent offers and compete with cash buyers on distressed properties.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can I use an investor line of credit for a down payment on a new rental property?',
+      name: 'How does a fix and flip line of credit compare to hard money?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Using a line of credit for a down payment on an investment property is one of the most common applications. The draw comes from your line, you close on the new property, then you repay the line from cash flow or a refinance once the property is stabilized. It is one of the primary tools active investors use to scale without waiting to accumulate down payments from scratch.',
+        text: 'Hard money loans are single-project: you apply, close, execute, repay, and start over for the next deal. A revolving line of credit is pre-approved — you draw and repay repeatedly without reapplying. Hard money rates typically run 10–15%+. The line runs in the high 8s–9%. For investors doing consistent volume, the line is faster, cheaper, and less administratively burdensome.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What types of real estate investors use this product in Northern Colorado?',
+      name: 'Can I use the line for both acquisition and renovation costs?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Investor lines of credit are most common among active investors with existing portfolios — BRRRR investors, fix-and-flip operators scaling to rental holds, and physicians or professionals who use real estate as a wealth-building vehicle alongside their career income. Windsor, Severance, Timnath, and the broader Weld and Larimer County markets offer strong opportunities given the active new construction and sustained rental demand.',
+        text: 'Yes. You can draw for the purchase and draw again for the renovation — or structure a single draw that covers both. The line is designed to handle the full fix and flip cycle, not just one piece of it.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How is an investor line of credit different from a fix and flip line?',
+      name: 'What fix and flip markets in Northern Colorado does this cover?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'An investor line of credit is typically designed for buy-and-hold investors who want revolving capital to acquire or reposition rental properties. A fix and flip line is optimized for short-term acquisition and renovation with a defined exit. The structures overlap in some cases, but the underwriting focus and draw terms differ. I help investors identify which product fits their specific deal flow.',
+        text: 'I work with investors across Fort Collins, Timnath, Windsor, Loveland, Greeley, and Severance. Each market has a different mix of distressed inventory, ARV ceiling, and buyer demand. Fort Collins has the strongest ARVs driven by CSU and employment density. Windsor and Timnath have active appreciation from new construction adjacency. Greeley and Loveland offer lower acquisition costs with solid rental and resale demand.',
       },
     },
   ],
@@ -140,7 +140,7 @@ export default function InvestorLineOfCreditPage() {
             </svg>
             All Loans
           </Link>
-          <p className="text-[#888888] text-xs uppercase tracking-widest mb-6">Investor Line of Credit — Northern Colorado</p>
+          <p className="text-[#888888] text-xs uppercase tracking-widest mb-6">Investor Line of Credit — Fix &amp; Flip — Northern Colorado</p>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
@@ -148,10 +148,10 @@ export default function InvestorLineOfCreditPage() {
             Capital that moves as fast as your deals do.
           </h1>
           <p className="text-[#C4C4C4] text-xl leading-relaxed max-w-2xl mb-6">
-            A revolving line of credit backed by your portfolio equity. Draw when you need it, repay when you can, and keep your long-term debt structure exactly where you want it.
+            A pre-approved revolving line of credit for fix and flip investors. Get approved once, draw on each deal, repay when you sell, and move to the next one — without reapplying every time.
           </p>
           <p className="text-[#888888] text-sm max-w-2xl leading-relaxed mb-10">
-            Serving real estate investors across Fort Collins, Greeley, Loveland, Timnath, Windsor, Severance, and throughout Northern Colorado.
+            Serving fix and flip investors across Fort Collins, Greeley, Loveland, Timnath, Windsor, Severance, and Northern Colorado.
           </p>
           {/* Loan terms snapshot */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px border border-[#2E2E2E] rounded-xl overflow-hidden">
@@ -175,10 +175,10 @@ export default function InvestorLineOfCreditPage() {
       <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-            Why investors use a line of credit.
+            Why fix and flip investors use a line of credit.
           </h2>
           <p className="text-[#C4C4C4] leading-relaxed mb-12 max-w-2xl">
-            The investors who scale fastest are not the ones with the most cash — they are the ones who have access to capital exactly when they need it.
+            The investors who close more deals are not the ones with the most cash — they are the ones with capital already approved and ready to deploy when the deal shows up.
           </p>
           <div className="grid md:grid-cols-2 gap-6">
             {features.map((f) => (
@@ -217,14 +217,14 @@ export default function InvestorLineOfCreditPage() {
         <div className="max-w-4xl mx-auto">
           <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Who It&apos;s For</p>
           <h2 className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-8" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-            Best fit for active investors with an existing portfolio.
+            Built for investors doing consistent deal volume.
           </h2>
           <div className="space-y-4 mb-10">
             {[
-              { label: 'Existing equity', detail: 'The line is secured by portfolio equity. The more you have built across Fort Collins, Timnath, Windsor, and Northern Colorado, the more capital is available to you.' },
-              { label: 'Active deal flow', detail: 'If you are acquiring, renovating, or repositioning properties consistently, the revolving structure earns its keep — you are not resetting approval each time.' },
-              { label: 'Long-term hold strategy', detail: 'Investors who plan to hold properties and build passive income use the line to grow without disrupting existing loans or the rates locked on current properties.' },
-              { label: 'Physicians and professionals with investment portfolios', detail: 'High-income professionals who invest alongside their career often have significant equity but limited liquid capital. A line bridges that gap efficiently.' },
+              { label: 'Active fix and flip operators', detail: 'If you are closing multiple projects per year in Fort Collins, Timnath, Windsor, or the broader Northern Colorado market, the revolving structure means you are not starting from zero on capital every time.' },
+              { label: 'Investors transitioning from hard money', detail: 'If you have completed several deals and want to stop paying 10–15%+ on single-project hard money loans, a pre-approved line at high 8s–9% is the next step.' },
+              { label: 'BRRRR operators', detail: 'Use the line for the buy-and-rehab phase, then refinance into a DSCR loan once the property is stabilized and rented. Pay the line back down and repeat.' },
+              { label: 'Physicians and high-income professionals flipping on the side', detail: 'High income gives you the qualification strength. A pre-approved line lets you act when deals show up without pulling capital from your practice or primary home.' },
             ].map((item) => (
               <div key={item.label} className="border-b border-[#2E2E2E] pb-4 grid md:grid-cols-3 gap-4">
                 <span className="text-[#F8F8F8] text-sm font-medium">{item.label}</span>
@@ -262,10 +262,10 @@ export default function InvestorLineOfCreditPage() {
       <section className="bg-[#111111] border-t border-[#2E2E2E] py-24 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-            Ready to put your portfolio equity to work?
+            Ready to stop reapplying on every deal?
           </h2>
           <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">
-            A free 15-minute call to look at your portfolio, calculate available equity, and structure a line that matches how you actually invest.
+            A free 15-minute call to look at your deal history, determine your line size, and get you set up to close your next flip in 10 days.
           </p>
           <BookCallButton variant="solid" />
         </div>
