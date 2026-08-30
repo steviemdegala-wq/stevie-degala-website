@@ -348,7 +348,7 @@ export default function HomePage() {
                   Capital ready when the deal is.
                 </h3>
                 <p className="text-[#3A3A3A] text-sm leading-relaxed">
-                  Investor lines of credit give you revolving access to capital for multifamily and commercial acquisitions in Fort Collins and Denver — draw, close, repay, repeat. No new loan approval each time.
+                  Investor lines of credit give you revolving access to capital for multifamily and commercial acquisitions in Fort Collins, Greeley, Loveland, and Northern Colorado — draw, close, repay, repeat. No new loan approval each time.
                 </p>
               </div>
               <Link
@@ -615,7 +615,7 @@ export default function HomePage() {
                   Many physicians invest in real estate. An investor line of credit is how they fund it.
                 </h3>
                 <p className="text-[#888888] text-sm leading-relaxed">
-                  A revolving investor line of credit gives you standing capital to acquire multifamily and commercial properties in Fort Collins and Denver — without refinancing your primary home or waiting on a new loan each time.
+                  A revolving investor line of credit gives you standing capital to acquire multifamily and commercial properties in Fort Collins, Greeley, Loveland, and Northern Colorado — without refinancing your primary home or waiting on a new loan each time.
                 </p>
               </div>
               <div className="flex md:justify-end">

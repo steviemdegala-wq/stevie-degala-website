@@ -49,4 +49,4 @@ No. VA loans can be used for first time buyers, repeat buyers, and even refinanc
 
 Loan programs, rates, and limits change. Always confirm current details before making any decisions. Stevie De Gala, NMLS# 2845865. Equal Housing Lender.
 
-If you are a real estate investor in Northern Colorado looking for flexible capital, explore [investor lines of credit for Fort Collins and Denver](/loans/investor-line-of-credit) — one of the most powerful tools for acquiring multifamily and commercial properties in competitive Colorado markets.
+If you are a real estate investor in Northern Colorado looking for flexible capital, explore [investor lines of credit for Northern Colorado](/loans/investor-line-of-credit) — one of the most powerful tools for acquiring multifamily and commercial properties across Fort Collins, Greeley, Loveland, and Windsor.

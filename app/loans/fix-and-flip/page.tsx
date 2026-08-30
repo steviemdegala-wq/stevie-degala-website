@@ -4,11 +4,11 @@ import Script from 'next/script'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'Fix and Flip Line of Credit | Fort Collins & Denver | Stevie de Gala',
+  title: 'Fix and Flip Line of Credit | Northern Colorado | Stevie de Gala',
   description:
-    'Fix and flip lines of credit for real estate investors in Fort Collins and Denver. Make faster offers, skip financing contingencies, and close before bank-dependent buyers can respond. NMLS# 2845865',
+    'Fix and flip lines of credit for real estate investors in Fort Collins, Greeley, Loveland, Windsor, and Northern Colorado. Make faster offers, skip financing contingencies, and close before bank-dependent buyers can respond. NMLS# 2845865',
   openGraph: {
-    title: 'Fix and Flip Line of Credit | Fort Collins & Denver | Stevie de Gala',
+    title: 'Fix and Flip Line of Credit | Northern Colorado | Stevie de Gala',
     description:
       'A revolving fix and flip credit line means your next offer does not wait on a bank. Move fast, win deals, close with confidence.',
   },
@@ -31,7 +31,7 @@ const faqSchema = {
       name: 'How does a fix and flip line of credit help me make stronger offers?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'When you have an approved line of credit, you can make non-contingent or fast-close offers — the kind sellers prefer. Buyers who depend on bank financing at the time of the offer typically need 30-45 days and include financing contingencies. With a line of credit already in place, you can offer a 10-14 day close with no financing contingency, which makes your offer structurally stronger regardless of price. In competitive markets like Fort Collins and Denver, that speed advantage wins deals.',
+        text: 'When you have an approved line of credit, you can make non-contingent or fast-close offers — the kind sellers prefer. Buyers who depend on bank financing at the time of the offer typically need 30-45 days and include financing contingencies. With a line of credit already in place, you can offer a 10-14 day close with no financing contingency, which makes your offer structurally stronger regardless of price. Across Northern Colorado — Fort Collins, Greeley, Loveland, Windsor — that speed advantage wins deals.',
       },
     },
     {
@@ -52,10 +52,10 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
-      name: 'Can I use a fix and flip line of credit in Fort Collins or Denver?',
+      name: 'Can I use a fix and flip line of credit in Northern Colorado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Both markets are active for fix and flip investing. Fort Collins has strong buyer demand for renovated properties near CSU and along the I-25 corridor. Denver has a deep pool of distressed inventory in transitional neighborhoods, and buyers who move quickly consistently outperform those waiting on traditional financing. I work with investors in both markets and can structure a line around your specific deal flow.',
+        text: 'Yes. Northern Colorado is active for fix and flip investing. Fort Collins has strong buyer demand for renovated properties near CSU and along the I-25 corridor. Greeley offers lower acquisition costs with consistent rental demand tied to UNC and local employment. Windsor and Loveland have growing pools of value-add inventory as the region expands. I work with investors across Northern Colorado and can structure a line around your specific deal flow.',
       },
     },
     {
@@ -175,7 +175,7 @@ export default function FixAndFlipPage() {
             Sellers do not wait. Bank buyers lose.
           </h2>
           <p className="text-[#C4C4C4] text-lg leading-relaxed mb-12 max-w-3xl">
-            In Fort Collins and Denver, well-priced distressed and value-add properties move fast. The investors who consistently win are not the ones with the highest offer — they are the ones with committed capital who can close in two weeks and remove the financing contingency. A fix and flip line of credit is how you become that buyer.
+            Across Northern Colorado — Fort Collins, Greeley, Loveland, Windsor — well-priced distressed and value-add properties move fast. The investors who consistently win are not the ones with the highest offer — they are the ones with committed capital who can close in two weeks and remove the financing contingency. A fix and flip line of credit is how you become that buyer.
           </p>
 
           {/* Comparison table */}
@@ -246,24 +246,24 @@ export default function FixAndFlipPage() {
       {/* Local Markets */}
       <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <p className="text-[#888888] text-xs uppercase tracking-widest mb-4">Northern Colorado &amp; Denver</p>
+          <p className="text-[#888888] text-xs uppercase tracking-widest mb-4">Northern Colorado Markets</p>
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-10 leading-tight"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
-            These markets reward speed. Here is why.
+            Northern Colorado rewards speed. Here is why.
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-[#0A0A0A] border border-[#2E2E2E] p-8 rounded-xl">
               <p className="text-[#888888] text-xs uppercase tracking-widest mb-3">Fort Collins</p>
               <p className="text-[#C4C4C4] text-sm leading-relaxed">
-                Fort Collins has a deep pool of 1960s–1990s single-family and small multifamily inventory that trades at a discount to updated properties. CSU-driven rental demand means renovated units rent quickly and sell at a premium. Investors with fast capital consistently acquire at better prices than those financing through conventional channels — sellers know the difference between a real offer and a contingent one.
+                Fort Collins has a deep pool of 1960s–1990s single-family and small multifamily inventory that trades at a discount to updated properties. CSU-driven rental demand means renovated units rent quickly and sell at a premium. Investors with fast capital consistently acquire at better prices — sellers know the difference between a real offer and a contingent one.
               </p>
             </div>
             <div className="bg-[#0A0A0A] border border-[#2E2E2E] p-8 rounded-xl">
-              <p className="text-[#888888] text-xs uppercase tracking-widest mb-3">Denver Metro</p>
+              <p className="text-[#888888] text-xs uppercase tracking-widest mb-3">Greeley, Windsor &amp; Loveland</p>
               <p className="text-[#C4C4C4] text-sm leading-relaxed">
-                Denver&apos;s transitional neighborhoods — Westwood, Montbello, Globeville, Villa Park — continue to offer value-add inventory at meaningful discounts to the broader market. Deals move in days, not weeks. Institutional buyers and experienced local flippers operate with pre-established capital, and they outbid bank-dependent investors not on price, but on terms. A fix and flip line puts you in their tier.
+                Greeley offers lower acquisition costs with consistent rental demand from UNC and local industry — making it one of the strongest cash-flow markets in Northern Colorado. Windsor and Loveland have growing value-add inventory as the region expands east and south. In all three markets, fast-close offers with no financing contingency structurally outperform bank-dependent bids regardless of price.
               </p>
             </div>
           </div>
@@ -309,7 +309,7 @@ export default function FixAndFlipPage() {
                 Holding multifamily or commercial? You want an investor line of credit instead.
               </h2>
               <p className="text-[#888888] text-sm leading-relaxed">
-                Fix and flip lines are optimized for short-term acquisitions and renovation. For buy-and-hold multifamily and commercial acquisitions in Fort Collins and Denver, an investor line of credit is the right tool — secured by your portfolio equity and sized for long-term deployment.
+                Fix and flip lines are optimized for short-term acquisitions and renovation. For buy-and-hold multifamily and commercial acquisitions across Northern Colorado, an investor line of credit is the right tool — secured by your portfolio equity and sized for long-term deployment.
               </p>
             </div>
             <div className="flex md:justify-end">
