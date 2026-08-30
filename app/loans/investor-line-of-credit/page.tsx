@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 
 const features = [
   {
-    title: 'Pre-Approved and Ready to Draw',
-    body: 'Get approved once for a line up to $10M. When a deal comes in, you draw — no new application, no underwriting delay. That speed is what makes your offer competitive against all-cash buyers.',
+    title: 'Pre-Approved Borrower, In-House Deal Review',
+    body: 'You get pre-approved as a borrower for a line up to $10M. Each deal still gets appraised and underwritten — but the appraiser and underwriting team are in-house. No coordinating with third parties. No waiting on external timelines. That is why ~10 days is achievable.',
   },
   {
     title: 'Non-Contingent Offers',
@@ -29,7 +29,7 @@ const features = [
   },
   {
     title: 'Draw, Flip, Repay, Repeat',
-    body: 'Close, renovate, sell, pay back the line, and move to the next deal — all without reapplying. The revolving structure is designed for investors who do this consistently, not once.',
+    body: 'Close, renovate, sell, pay back the line, and move to the next deal. Your borrower pre-approval carries forward — each new deal goes through in-house appraisal and underwriting, but the whole cycle moves in days, not weeks.',
   },
 ]
 
@@ -61,7 +61,7 @@ const faqSchema = {
       name: 'What is an investor line of credit for fix and flip?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'An investor line of credit for fix and flip is a pre-approved revolving credit facility that lets you draw capital for property acquisitions and renovations, then repay it when you sell — and draw again on the next deal. Unlike a single-project hard money loan, the line stays open and available, so you are not reapplying every time. You get approved once and execute repeatedly.',
+        text: 'An investor line of credit for fix and flip is a hybrid revolving credit facility. You get pre-approved as a borrower for a line up to $10M — your financial profile, experience, and track record are underwritten once. Each deal you fund with the line still goes through appraisal and underwriting, but because the appraiser and underwriting team are in-house, the process compresses to ~10 days instead of 30–45. You are pre-approved and the infrastructure is internal — that combination is what makes the speed possible.',
       },
     },
     {
@@ -85,7 +85,7 @@ const faqSchema = {
       name: 'How fast can I close with a fix and flip line of credit?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Typically around 10 days once a deal is under contract. Because the line is pre-approved, there is no new underwriting for each transaction — the lender is reviewing the specific deal, not re-qualifying you as a borrower. That speed lets you write non-contingent offers and compete with cash buyers on distressed properties.',
+        text: 'Typically around 10 days once a deal is under contract. Each deal still goes through in-house appraisal and underwriting — but because the entire team is internal rather than third-party, the timeline compresses dramatically. You are already pre-approved as a borrower, so the deal review is the only remaining step. That is what makes a ~10-day close realistic and non-contingent offers credible.',
       },
     },
     {
@@ -93,7 +93,7 @@ const faqSchema = {
       name: 'How does a fix and flip line of credit compare to hard money?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Hard money loans are single-project: you apply, close, execute, repay, and start over for the next deal. A revolving line of credit is pre-approved — you draw and repay repeatedly without reapplying. Hard money rates typically run 10–15%+. The line runs in the high 8s–9%. For investors doing consistent volume, the line is faster, cheaper, and less administratively burdensome.',
+        text: 'Hard money is a single-project loan with external appraisers and underwriters — each deal starts from scratch, which is why timelines run 3–4 weeks or more. The fix and flip line of credit is a hybrid: you are pre-approved as a borrower, and each deal goes through in-house appraisal and underwriting. Because the entire team is internal, the timeline compresses to ~10 days. Hard money rates typically run 10–15%+. The line runs in the high 8s–9%. For investors doing consistent deal volume, the line is faster, cheaper, and built for repeat execution.',
       },
     },
     {
@@ -148,7 +148,7 @@ export default function InvestorLineOfCreditPage() {
             Capital that moves as fast as your deals do.
           </h1>
           <p className="text-[#C4C4C4] text-xl leading-relaxed max-w-2xl mb-6">
-            A pre-approved revolving line of credit for fix and flip investors. Get approved once, draw on each deal, repay when you sell, and move to the next one — without reapplying every time.
+            A hybrid revolving line of credit for fix and flip investors. Get pre-approved as a borrower, then close each deal in ~10 days with in-house appraisal and underwriting — repay when you sell and cycle to the next project.
           </p>
           <p className="text-[#888888] text-sm max-w-2xl leading-relaxed mb-10">
             Serving fix and flip investors across Fort Collins, Greeley, Loveland, Timnath, Windsor, Severance, and Northern Colorado.
@@ -262,7 +262,7 @@ export default function InvestorLineOfCreditPage() {
       <section className="bg-[#111111] border-t border-[#2E2E2E] py-24 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-            Ready to stop reapplying on every deal?
+            Ready to close your next deal in 10 days?
           </h2>
           <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">
             A free 15-minute call to look at your deal history, determine your line size, and get you set up to close your next flip in 10 days.

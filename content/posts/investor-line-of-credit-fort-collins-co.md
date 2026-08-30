@@ -1,18 +1,18 @@
 ---
 title: "Fix and Flip Line of Credit in Fort Collins, CO: Revolving Capital for Northern Colorado Investors"
 date: "2026-08-29"
-excerpt: "Fort Collins distressed properties move fast. A pre-approved revolving line of credit lets you write non-contingent offers and close in ~10 days — without reapplying every time a new deal surfaces."
+excerpt: "Fort Collins distressed properties move fast. A hybrid investor line of credit pre-approves you as a borrower, then closes each deal in ~10 days with in-house appraisal and underwriting — no waiting on third-party timelines."
 ---
 
 Fort Collins is one of the most active fix and flip markets on Colorado's Front Range. CSU enrollment, healthcare sector employment, and sustained in-migration create consistent buyer demand across price points — which means renovated properties move. The challenge isn't finding buyers. It's having capital ready when the right distressed property shows up.
 
-An [investor line of credit](/loans/investor-line-of-credit) solves that problem. You get pre-approved for a revolving facility up to $10M, draw when a deal comes in, fund the acquisition and renovation, sell, repay the line, and do it again — without reapplying each time.
+An [investor line of credit](/loans/investor-line-of-credit) solves that problem. It's a hybrid structure: you get pre-approved as a borrower for a facility up to $10M, and each deal you fund still goes through appraisal and underwriting — but because the appraiser and underwriting team are in-house, the whole process closes in ~10 days. Draw, fund the acquisition and renovation, sell, repay the line, and cycle to the next deal.
 
 ## Why Revolving Capital Beats Hard Money in Fort Collins
 
 Hard money is project-by-project. You apply, close, execute, repay, and start over. That cycle adds weeks and administrative overhead to every deal. If a distressed property hits the market and you need to move fast, you're starting from scratch on financing.
 
-A pre-approved revolving line changes the equation. Your capital is already approved. When a deal surfaces in Fort Collins — whether it's an off-market distressed single-family, a dated duplex near campus, or a value-add multi — you draw, close, and execute. No new application. No new underwriting for you as a borrower.
+The hybrid line changes the equation. You are pre-approved as a borrower — your financial profile, experience, and track record are underwritten once. When a deal surfaces in Fort Collins — off-market distressed single-family, dated duplex near campus, value-add multi — you draw, the in-house team appraises and underwrites the deal, and you close. Because the entire process is internal rather than coordinated across third parties, ~10 days is realistic instead of 30–45.
 
 Hard money rates in Colorado typically run 10–15%+. The line runs in the high 8s to 9% depending on experience and deal profile. On a six-month hold with a $300,000 draw, that rate difference is $3,000–$9,000 per deal.
 
@@ -59,10 +59,10 @@ First-time investors can still qualify for a line, though the initial facility i
 ## Frequently Asked Questions
 
 **How is a fix and flip line of credit different from hard money?**
-Hard money is a single-project loan — you apply, close, execute, repay, and start over. A fix and flip line of credit is pre-approved and revolving — you draw and repay repeatedly without reapplying. Hard money rates run 10–15%+. The line runs in the high 8s–9%. For investors doing consistent volume, the line is faster and cheaper.
+Hard money is a single-project loan with external appraisers and underwriters — each deal starts from scratch, which is why timelines run 3–4 weeks or longer. The fix and flip line of credit is a hybrid: you are pre-approved as a borrower, and each deal goes through in-house appraisal and underwriting. Because everything is internal rather than third-party, the timeline compresses to ~10 days. Hard money rates run 10–15%+. The line runs in the high 8s–9%.
 
 **How fast can I close on a Fort Collins deal with the line?**
-Typically around 10 days once a deal is under contract. The pre-approval means no new borrower underwriting — the lender is reviewing the specific deal. That speed lets you compete with cash buyers on distressed properties.
+Typically around 10 days once a deal is under contract. Each deal still gets appraised and underwritten — but the appraiser and underwriting team are in-house. No coordinating external timelines. That is what makes ~10 days achievable and non-contingent offers credible.
 
 **How much can I access for Fort Collins fix and flips?**
 Lines go up to $10M depending on experience and deal history. The right number depends on your track record, deal profile, and how many projects you plan to run simultaneously. The way to get a real number is to review your situation together — I do that at no cost.

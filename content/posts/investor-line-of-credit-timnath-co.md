@@ -16,7 +16,7 @@ Timnath sits directly adjacent to the Windsor and Fort Collins markets and benef
 
 **New construction adjacency creates ARV support.** Timnath's active new construction developments set pricing benchmarks that renovated existing properties can compete against. A well-executed renovation in a desirable Timnath neighborhood can price in range with new construction at a lower per-square-foot cost — which is exactly where buyers who want quality without new-build prices land.
 
-**Limited distressed inventory means speed matters.** Timnath doesn't have a large volume of distressed properties. When one surfaces — an estate, a deferred-maintenance home, an investor offloading — it doesn't stay available long. Capital that's already approved moves faster than capital that needs to be underwritten.
+**Limited distressed inventory means speed matters.** Timnath doesn't have a large volume of distressed properties. When one surfaces — an estate, a deferred-maintenance home, an investor offloading — it doesn't stay available long. Pre-approved borrower status combined with in-house appraisal and underwriting is what compresses the close to ~10 days.
 
 ## The Non-Contingent Offer Advantage in Timnath
 
@@ -24,7 +24,7 @@ In a market with limited distressed inventory and competitive buyers, the terms 
 
 For sellers in a motivated position — estate situations, out-of-state owners, investors looking to recycle capital — certainty has a dollar value. A non-contingent offer at slightly below asking frequently wins over a higher financed offer with a longer timeline and contingency risk.
 
-Hard money can't give you that. By the time hard money is underwriting a new project, the deal may be gone. The revolving line is already approved.
+Hard money uses external appraisers and underwriters — each deal starts from scratch and timelines run 3–4 weeks. With the in-house team, the same deal review closes in ~10 days.
 
 ## Timnath Fix and Flip Math
 
@@ -62,7 +62,7 @@ Investors who are newer to the market can qualify for a smaller initial line. Ex
 ## Frequently Asked Questions
 
 **How fast can I close on a Timnath fix and flip with the line?**
-Typically around 10 days once under contract. The pre-approval handles borrower underwriting — the lender reviews the specific Timnath property and deal. That speed is what makes non-contingent offers on distressed properties viable.
+Typically around 10 days once under contract. Each deal still gets appraised and underwritten — but the appraiser and underwriting team are in-house. No external coordination. That internal process is what makes ~10 days achievable and non-contingent offers on Timnath distressed properties viable.
 
 **What rates should I expect on a Timnath fix and flip line?**
 Current rates are in the high 8s to 9% range depending on experience and deal profile. That compares to 10–15%+ for single-project hard money. On a $350,000 draw over five months, the rate difference is material margin.
