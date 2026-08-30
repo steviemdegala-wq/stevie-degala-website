@@ -5,24 +5,48 @@ import BookCallButton from '@/components/BookCallButton'
 import PDFViewer from '@/components/PDFViewer'
 
 export const metadata: Metadata = {
-  title: 'Blog — Stevie de Gala',
-  description: 'Mortgage tips, real estate insights, and financial education from Stevie de Gala.',
+  title: 'Blog — Physician Loans, VA Loans & Northern Colorado Mortgage Insights | Stevie de Gala',
+  description:
+    'Mortgage education for medical professionals, veterans, and real estate investors in Northern Colorado. Physician loan guides, VA loan breakdowns, market updates for Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance.',
 }
 
 const pdfResources = [
   {
-    title: "Mortgage Stevie's Weekly Update — ETX",
+    title: "Mortgage Stevie's Weekly Update — Northern Colorado",
+    excerpt: "The latest mortgage market update for Northern Colorado. Rates, trends, and what to watch this week in Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance.",
+    file: "/Mortgage Stevie's Weekly Update NOCO.pdf",
+    label: 'Northern Colorado',
+    date: 'June 30, 2025',
+  },
+  {
+    title: "Mortgage Stevie's Weekly Update — East Texas",
     excerpt: "The latest mortgage market update for East Texas. Rates, trends, and what to watch this week.",
     file: "/Mortgage Stevie's Weekly Update ETX.pdf",
     label: 'East Texas',
     date: 'June 30, 2025',
   },
+]
+
+const topics = [
   {
-    title: "Mortgage Stevie's Weekly Update — NOCO",
-    excerpt: "The latest mortgage market update for Northern Colorado. Rates, trends, and what to watch this week.",
-    file: "/Mortgage Stevie's Weekly Update NOCO.pdf",
-    label: 'Northern Colorado',
-    date: 'June 30, 2025',
+    label: 'Physician Loans',
+    description: 'Low down, no PMI, student debt excluded.',
+    href: '/who-i-help/medical-professionals',
+  },
+  {
+    label: 'VA Loans',
+    description: 'Zero down, no PMI, earned benefits.',
+    href: '/who-i-help/veterans',
+  },
+  {
+    label: 'Northern Colorado Markets',
+    description: 'Fort Collins, Greeley, Loveland, Timnath, Windsor & Severance.',
+    href: '/who-i-help',
+  },
+  {
+    label: 'Real Estate Investing',
+    description: 'DSCR loans, portfolio strategy, and creative structures.',
+    href: '/who-i-help/investors',
   },
 ]
 
@@ -31,13 +55,21 @@ export default function BlogPage() {
 
   return (
     <main className="pt-16 md:pt-20 min-h-screen bg-[#0A0A0A]">
+
+      {/* Header */}
       <section className="py-16 md:py-24 px-6 border-b border-[#2E2E2E]">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div>
-            <p className="text-[#888888] text-xs uppercase tracking-[0.2em] mb-4">Blog</p>
-            <h1 className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight font-semibold">
+            <p className="text-[#888888] text-xs uppercase tracking-[0.2em] mb-4">Northern Colorado</p>
+            <h1
+              className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight mb-4"
+              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            >
               Insights &amp; Education
             </h1>
+            <p className="text-[#888888] text-base leading-relaxed max-w-xl">
+              Mortgage guides for medical professionals, veterans, and investors — focused on Northern Colorado and the loan programs that matter most to each group.
+            </p>
           </div>
           <div className="flex flex-wrap items-center gap-3 flex-shrink-0">
             <a
@@ -53,6 +85,30 @@ export default function BlogPage() {
         </div>
       </section>
 
+      {/* Topic Navigation */}
+      <section className="border-b border-[#2E2E2E] py-10 px-6 bg-[#111111]">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-6">Browse by Topic</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {topics.map((topic) => (
+              <Link
+                key={topic.label}
+                href={topic.href}
+                className="group border border-[#2E2E2E] bg-[#0A0A0A] hover:border-[#555555] hover:bg-[#1A1A1A] transition-all px-5 py-4 rounded-xl"
+              >
+                <p className="text-[#F8F8F8] text-sm font-medium mb-1 group-hover:text-white transition-colors">
+                  {topic.label}
+                </p>
+                <p className="text-[#555555] text-xs leading-relaxed group-hover:text-[#888888] transition-colors">
+                  {topic.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Posts + PDFs */}
       <section className="py-16 px-6 pb-24">
         <div className="max-w-3xl mx-auto space-y-6">
 
@@ -82,8 +138,10 @@ export default function BlogPage() {
               ))}
             </div>
           )}
+
         </div>
       </section>
+
     </main>
   )
 }

@@ -10,10 +10,29 @@ const servicesLinks = [
 ]
 
 const whoIHelpLinks = [
-  { label: 'First-Time Buyers', href: '/who-i-help/first-time' },
-  { label: 'Homeowners', href: '/who-i-help/homeowners' },
+  { label: 'Medical Professionals', href: '/who-i-help/medical-professionals' },
+  { label: 'Veterans', href: '/who-i-help/veterans' },
   { label: 'Investors', href: '/who-i-help/investors' },
 ]
+
+const primaryLoanLinks = [
+  { label: 'Investor Line of Credit', href: '/loans/investor-line-of-credit' },
+  { label: 'Physician Loan', href: '/loans/doctor-loan' },
+]
+
+const otherLoanLinks = [
+  { label: 'FHA Loan', href: '/loans/fha' },
+  { label: 'Conventional', href: '/loans/conventional' },
+  { label: 'Jumbo', href: '/loans/jumbo' },
+  { label: 'DSCR', href: '/loans/dscr' },
+  { label: 'Refinance', href: '/loans/refinance' },
+  { label: 'HELOC', href: '/loans/heloc' },
+  { label: 'Bank Statement', href: '/loans/bank-statement' },
+  { label: 'USDA', href: '/loans/usda' },
+  { label: 'Bridge & Construction', href: '/loans/bridge-construction' },
+]
+
+const loansLinks = [...primaryLoanLinks, ...otherLoanLinks]
 
 const resourcesLinks = [
   { label: 'Current Rates', href: '/resources/rates' },
@@ -27,6 +46,7 @@ const mobileNavSections = [
   { label: 'About', href: '/about', children: [] },
   { label: 'Services', href: '/find-my-loan', children: servicesLinks },
   { label: 'Who I Help', href: '/who-i-help', children: whoIHelpLinks },
+  { label: 'Loans', href: '/loans', children: loansLinks },
   { label: 'Find My Loan', href: '/find-my-loan', children: [] },
   { label: 'Resources', href: '/resources', children: resourcesLinks },
   { label: 'Blog', href: '/blog', children: [] },
@@ -120,6 +140,55 @@ export default function Navigation() {
                       {link.label}
                     </Link>
                   ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Loans dropdown */}
+            <div className="relative group">
+              <button className="text-[#C4C4C4] text-sm hover:text-[#F8F8F8] transition-colors tracking-wide flex items-center gap-1 bg-transparent border-none cursor-pointer">
+                Loans
+                <svg className="w-3 h-3 mt-px transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 hidden group-hover:block">
+                <div className="bg-[#111111] border border-[#2E2E2E] min-w-[260px] py-2 rounded-xl overflow-hidden">
+                  {/* Specialty loans */}
+                  <p className="px-5 pt-1 pb-1.5 text-[#555555] text-[10px] uppercase tracking-[0.2em]">Specialty</p>
+                  {primaryLoanLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="flex items-center gap-2 px-5 py-2.5 text-sm text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
+                    >
+                      <span className="text-[#7A9E5C] text-xs">★</span>
+                      {link.label}
+                    </Link>
+                  ))}
+                  {/* More loans — hover to expand */}
+                  <div className="group/more border-t border-[#2E2E2E] mt-1.5">
+                    <div className="flex items-center justify-between px-5 py-2.5 cursor-default">
+                      <p className="text-[#555555] text-[10px] uppercase tracking-[0.2em]">More Loans</p>
+                      <svg
+                        className="w-3 h-3 text-[#555555] transition-transform group-hover/more:rotate-90"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                    <div className="hidden group-hover/more:block pb-1">
+                      {otherLoanLinks.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className="block px-5 py-2 text-sm text-[#C4C4C4] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { marked } from 'marked'
 import { getAllPosts, getPost } from '@/lib/posts'
 import BookCallButton from '@/components/BookCallButton'
@@ -14,6 +15,13 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${post.title} — Stevie de Gala`,
     description: post.excerpt,
+    openGraph: {
+      title: `${post.title} — Stevie de Gala`,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.date,
+      authors: ['Stevie de Gala'],
+    },
   }
 }
 
@@ -23,8 +31,46 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   const html = marked.parse(post.content) as string
 
+  const baseUrl = 'https://mortgagestevie.com'
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    url: `${baseUrl}/blog/${post.slug}`,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${baseUrl}/blog/${post.slug}` },
+    author: {
+      '@type': 'Person',
+      name: 'Stevie de Gala',
+      url: `${baseUrl}/about`,
+      hasCredential: 'NMLS# 2845865',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Stevie de Gala — Medical Professional Loan Consultant',
+      url: baseUrl,
+      logo: { '@type': 'ImageObject', url: `${baseUrl}/opengraph-image` },
+    },
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `${baseUrl}/blog/${post.slug}` },
+    ],
+  }
+
   return (
     <main className="pt-16 md:pt-20 min-h-screen bg-[#0A0A0A]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
       {/* Header */}
       <section className="py-16 md:py-24 px-6 border-b border-[#2E2E2E]">
         <div className="max-w-3xl mx-auto">
@@ -53,6 +99,29 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             className="blog-prose"
             dangerouslySetInnerHTML={{ __html: html }}
           />
+        </div>
+      </section>
+
+      {/* Author Bio */}
+      <section className="bg-[#0A0A0A] border-t border-[#2E2E2E] py-10 px-6">
+        <div className="max-w-3xl mx-auto flex items-start gap-5">
+          <Image
+            src="/headshot.jpg"
+            alt="Stevie de Gala"
+            width={56}
+            height={56}
+            className="rounded-full object-cover object-top grayscale flex-shrink-0"
+          />
+          <div>
+            <p className="text-[#F8F8F8] text-sm font-medium mb-0.5">Stevie de Gala</p>
+            <p className="text-[#555555] text-xs uppercase tracking-widest mb-2">NMLS# 2845865 · Mortgage Broker · Northern Colorado</p>
+            <p className="text-[#888888] text-sm leading-relaxed">
+              Physician loan and VA loan specialist serving Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. Licensed in Colorado and Texas.{' '}
+              <Link href="/about" className="text-[#C4C4C4] hover:text-[#F8F8F8] transition-colors underline underline-offset-2">
+                About Stevie →
+              </Link>
+            </p>
+          </div>
         </div>
       </section>
 
