@@ -23,6 +23,8 @@ const nextConfig = {
       { source: '/blog/va-loans-gladewater-tx', destination: '/who-i-help/veterans', permanent: true },
       // Investor LOC canonical — investor-loc redirects to investor-line-of-credit
       { source: '/loans/investor-loc', destination: '/loans/investor-line-of-credit', permanent: true },
+      // Review shortlink — update destination to GBP "Ask for reviews" URL when available
+      { source: '/reviews', destination: 'https://share.google/ghtLWfMHpWsjIlLz4', permanent: false },
     ]
   },
 }

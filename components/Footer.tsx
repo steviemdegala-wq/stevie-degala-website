@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 const PREQUALIFY_URL = 'https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos'
+const REVIEW_URL = 'https://share.google/ghtLWfMHpWsjIlLz4'
 
 export default function Footer() {
   return (
@@ -22,6 +23,7 @@ export default function Footer() {
             <p className="text-[#888888] text-xs">NEXA Lending</p>
             <a href="tel:+18065082666" className="text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">(806) 508-2666</a>
             <p className="text-[#888888] text-xs">Texas · Colorado</p>
+            <a href={REVIEW_URL} target="_blank" rel="noopener noreferrer" className="text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">⭐ Leave a Google Review</a>
             <div className="flex gap-3 pt-1">
               <a href="https://www.facebook.com/stevie.degala/" target="_blank" aria-label="Facebook" className="text-[#888888] hover:text-[#F8F8F8] transition-colors" rel="noopener noreferrer">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
