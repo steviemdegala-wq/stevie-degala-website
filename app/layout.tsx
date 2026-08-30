@@ -7,7 +7,7 @@ import StickyMobileCTA from '@/components/StickyMobileCTA'
 import LeadCapturePopup from '@/components/LeadCapturePopup'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mortgagestevie.com'),
+  metadataBase: new URL('https://www.mortgagestevie.com'),
   title: 'Stevie de Gala | Physician Loans & Investor Funding — Northern Colorado',
   description: 'Physician loans and investor lines of credit for Northern Colorado — Fort Collins, Timnath, Windsor, Loveland, Greeley. Licensed mortgage broker. NMLS# 2845865',
   openGraph: {

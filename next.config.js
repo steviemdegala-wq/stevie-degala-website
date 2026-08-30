@@ -18,6 +18,9 @@ const nextConfig = {
       { source: '/blog/va-loan-fort-collins-loveland-veterans', destination: '/loans/doctor-loan', permanent: true },
       { source: '/blog/va-loan-northern-colorado-veterans-guide', destination: '/who-i-help/investors', permanent: true },
       { source: '/blog/va-loan-windsor-severance-co', destination: '/loans/investor-line-of-credit', permanent: true },
+      // Remaining VA posts (TX)
+      { source: '/blog/va-loans-gilmer-tx', destination: '/who-i-help/veterans', permanent: true },
+      { source: '/blog/va-loans-gladewater-tx', destination: '/who-i-help/veterans', permanent: true },
       // Investor LOC canonical — investor-loc redirects to investor-line-of-credit
       { source: '/loans/investor-loc', destination: '/loans/investor-line-of-credit', permanent: true },
     ]
