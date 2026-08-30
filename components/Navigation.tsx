@@ -4,16 +4,15 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useModalStore } from '@/lib/modalStore'
 
-const servicesLinks = [
-  { label: 'Investor Line of Credit', href: '/loans/investor-line-of-credit' },
-  { label: 'Fix & Flip Line of Credit', href: '/loans/fix-and-flip' },
-  { label: 'Physician Loans', href: '/loans/doctor-loan' },
+const whoIHelpSpecialty = [
+  { label: 'Medical Professionals', href: '/who-i-help/medical-professionals' },
+  { label: 'Investors', href: '/who-i-help/investors' },
 ]
 
-const whoIHelpLinks = [
-  { label: 'Medical Professionals', href: '/who-i-help/medical-professionals' },
+const whoIHelpOther = [
   { label: 'Veterans', href: '/who-i-help/veterans' },
-  { label: 'Investors', href: '/who-i-help/investors' },
+  { label: 'First-Time Buyers', href: '/who-i-help/first-time' },
+  { label: 'Homeowners', href: '/who-i-help/homeowners' },
 ]
 
 const primaryLoanLinks = [
@@ -46,8 +45,7 @@ const resourcesLinks = [
 
 const mobileNavSections = [
   { label: 'About', href: '/about', children: [] },
-  { label: 'Services', href: '/find-my-loan', children: servicesLinks },
-  { label: 'Who I Help', href: '/who-i-help', children: whoIHelpLinks },
+  { label: 'Who I Help', href: '/who-i-help', children: [...whoIHelpSpecialty, ...whoIHelpOther] },
   { label: 'Loans', href: '/loans', children: loansLinks },
   { label: 'Find My Loan', href: '/find-my-loan', children: [] },
   { label: 'Resources', href: '/resources', children: resourcesLinks },
@@ -95,31 +93,6 @@ export default function Navigation() {
               About
             </Link>
 
-            {/* Services dropdown */}
-            <div className="relative group">
-              <button
-                className="text-[#C4C4C4] text-sm hover:text-[#F8F8F8] transition-colors tracking-wide flex items-center gap-1"
-              >
-                Services
-                <svg className="w-3 h-3 mt-px transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 hidden group-hover:block">
-                <div className="bg-[#111111] border border-[#2E2E2E] min-w-[220px] py-2 rounded-xl overflow-hidden">
-                  {servicesLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="block px-5 py-2.5 text-sm text-[#C4C4C4] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-
             {/* Who I Help dropdown */}
             <div className="relative group">
               <Link
@@ -132,16 +105,30 @@ export default function Navigation() {
                 </svg>
               </Link>
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 hidden group-hover:block">
-                <div className="bg-[#111111] border border-[#2E2E2E] min-w-[160px] py-2 rounded-xl overflow-hidden">
-                  {whoIHelpLinks.map((link) => (
+                <div className="bg-[#111111] border border-[#2E2E2E] min-w-[200px] py-2 rounded-xl overflow-hidden">
+                  <p className="px-5 pt-2 pb-1.5 text-[#555555] text-[10px] uppercase tracking-[0.2em]">Specialties</p>
+                  {whoIHelpSpecialty.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="block px-5 py-2.5 text-sm text-[#C4C4C4] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
+                      className="flex items-center gap-2 px-5 py-2.5 text-sm text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
                     >
+                      <span className="text-[#7A9E5C] text-xs">★</span>
                       {link.label}
                     </Link>
                   ))}
+                  <div className="border-t border-[#2E2E2E] mt-1.5">
+                    <p className="px-5 pt-2 pb-1.5 text-[#555555] text-[10px] uppercase tracking-[0.2em]">Other Clients</p>
+                    {whoIHelpOther.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="block px-5 py-2 text-sm text-[#C4C4C4] hover:text-[#F8F8F8] hover:bg-[#1A1A1A] transition-colors whitespace-nowrap"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

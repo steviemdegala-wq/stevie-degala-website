@@ -8,13 +8,13 @@ import FAQ from '@/components/FAQ'
 import { Trophy, Building2, GraduationCap, BadgeCheck, Stethoscope, Shield } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Stevie de Gala | Northern Colorado Medical Professional Loan Consultant',
+  title: 'Stevie de Gala | Physician Loans & Investor Funding — Northern Colorado',
   description:
-    "Northern Colorado's premier medical professional loan consultant. Physician loans, VA loans, and specialized mortgage solutions for doctors, nurses, and healthcare professionals in Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. NMLS# 2845865",
+    "Physician loans and investor lines of credit for Northern Colorado — Fort Collins, Timnath, Windsor, Loveland, Greeley. Zero down for doctors. Revolving capital for real estate investors. NMLS# 2845865",
   openGraph: {
-    title: 'Stevie de Gala | Northern Colorado Medical Professional Loan Consultant',
+    title: 'Stevie de Gala | Physician Loans & Investor Funding — Northern Colorado',
     description:
-      "Northern Colorado's premier medical professional loan consultant. Physician loans, VA loans, and specialized mortgage solutions for doctors, nurses, and healthcare professionals in Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. NMLS# 2845865",
+      "Physician loans and investor lines of credit for Northern Colorado — Fort Collins, Timnath, Windsor, Loveland, Greeley. Zero down for doctors. Revolving capital for real estate investors. NMLS# 2845865",
     type: 'website',
   },
 }
@@ -22,10 +22,10 @@ export const metadata: Metadata = {
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['FinancialService', 'LocalBusiness'],
-  name: 'Stevie de Gala — Medical Professional Loan Consultant',
+  name: 'Stevie de Gala — Physician Loans & Investor Funding',
   alternateName: 'Mortgage Stevie',
   description:
-    "Northern Colorado's premier physician loan and VA loan specialist. Serving medical professionals, veterans, and real estate investors across Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. NMLS# 2845865.",
+    "Northern Colorado mortgage broker specializing in physician loans for medical professionals and investor lines of credit for real estate investors. Serving Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. NMLS# 2845865.",
   url: 'https://mortgagestevie.com',
   logo: 'https://mortgagestevie.com/opengraph-image',
   image: 'https://mortgagestevie.com/opengraph-image',
@@ -101,7 +101,7 @@ const localBusinessSchema = {
     url: 'https://mortgagestevie.com/about',
     worksFor: {
       '@type': 'Organization',
-      name: 'Stevie de Gala — Medical Professional Loan Consultant',
+      name: 'Stevie de Gala — Physician Loans & Investor Funding',
     },
   },
   priceRange: '$$',
@@ -113,7 +113,7 @@ const personSchema = {
   name: 'Stevie de Gala',
   jobTitle: 'Mortgage Loan Consultant',
   description:
-    'Northern Colorado mortgage broker specializing in physician loans and VA loans for medical professionals and veterans. Based in Timnath, CO. NMLS# 2845865.',
+    'Northern Colorado mortgage broker specializing in physician loans for medical professionals and investor lines of credit for real estate investors. Based in Timnath, CO. NMLS# 2845865.',
   url: 'https://mortgagestevie.com/about',
   hasCredential: {
     '@type': 'EducationalOccupationalCredential',
@@ -185,13 +185,13 @@ export default function HomePage() {
                 className="text-5xl md:text-6xl lg:text-7xl text-[#F8F8F8] leading-tight mb-6"
                 style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
               >
-                Northern Colorado&apos;s Medical Professional Loan Consultant.
+                Physician Loans & Investor Funding — Northern Colorado.
               </h1>
               <span style={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}>
-                Physician loan specialist serving Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. VA loans and medical professional loans. NMLS# 2845865
+                Physician loan specialist and investor line of credit broker serving Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. NMLS# 2845865
               </span>
               <p className="text-[#C4C4C4] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
-                I specialize in physician loans and VA loans — mortgage solutions built around the unique financial profile of medical professionals and veterans in Northern Colorado.
+                Zero down physician loans for medical professionals. Revolving investor lines of credit for real estate investors. Both built for Northern Colorado.
               </p>
               <div className="flex flex-col items-start gap-5">
                 <div className="flex flex-wrap items-center gap-3">
@@ -396,7 +396,7 @@ export default function HomePage() {
               href="/about"
               className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors group"
             >
-              Why physician loans and VA loans are personal to me
+              Why I specialize in physician loans and investor funding
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </Link>
           </div>
