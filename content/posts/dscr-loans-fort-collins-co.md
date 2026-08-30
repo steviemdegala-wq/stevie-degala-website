@@ -79,4 +79,4 @@ DSCR loans are designed for investors, so most lenders are comfortable with borr
 
 Loan programs, rates, and limits change. Always confirm current details before making any decisions. Stevie De Gala, NMLS# 2845865. Equal Housing Lender.
 
-Ready to explore DSCR loans in Fort Collins CO? Stevie would love to help you run the numbers on your next investment property. [Find your loan today.](/find-my-loan)
+Ready to explore DSCR loans in Fort Collins? [Review the investor line of credit](/loans/investor-line-of-credit) if you want revolving capital alongside your DSCR portfolio, or [explore fix and flip lines of credit](/loans/fix-and-flip) if you're also buying distressed properties. To run the numbers on a specific Fort Collins investment, [book a free call](/find-my-loan).

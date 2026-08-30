@@ -73,4 +73,4 @@ Some lenders will approve loans with a DSCR below 1.0, sometimes as low as 0.75 
 
 Loan programs, rates, and limits change. Always confirm current details before making any decisions. Stevie De Gala, NMLS# 2845865. Equal Housing Lender.
 
-Ready to explore DSCR loans for your next Timnath investment property? I would love to help you run the numbers. [Let's get started.](/find-my-loan)
+Ready to explore DSCR loans for a Timnath investment property? [Review the investor line of credit](/loans/investor-line-of-credit) if you want revolving capital to fund acquisitions and renovations across your portfolio, or [see fix and flip financing options](/loans/fix-and-flip) if you're targeting distressed properties. To run the numbers on a specific deal, [book a free call](/find-my-loan).

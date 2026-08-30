@@ -77,4 +77,4 @@ Many DSCR loans close in 21 to 30 days. Because there is no waiting on employmen
 
 Loan programs, rates, and limits change. Always confirm current details before making any decisions. Stevie De Gala, NMLS# 2845865. Equal Housing Lender.
 
-Ready to run the numbers on a Windsor rental property? Let's find out if a DSCR loan is the right fit for your next investment. [Get started at /find-my-loan](/find-my-loan) and I will walk you through it, no pressure at all.
+Ready to run the numbers on a Windsor rental property? [Review the investor line of credit](/loans/investor-line-of-credit) if you want revolving capital to move fast on multiple deals, or [see fix and flip financing options](/loans/fix-and-flip) if you're targeting distressed Weld County properties. To discuss a specific deal, [book a free call](/find-my-loan).
