@@ -524,13 +524,13 @@ export default function HomePage() {
               <div>
                 <div className="flex items-center gap-2 mb-5">
                   <Building2 size={16} className="text-[#B8860B]" />
-                  <span className="text-[#B8860B] text-xs uppercase tracking-[0.2em]">Real Estate Investor</span>
+                  <span className="text-[#B8860B] text-xs uppercase tracking-[0.2em]">Fix &amp; Flip Line of Credit</span>
                 </div>
                 <h3
                   className="text-2xl text-[#F8F8F8] leading-tight mb-4"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
-                  Fix & Flip, BRRRR, Buy-and-Hold, 1031 Exchange
+                  Pre-approved capital. Non-contingent offers. Deals that close.
                 </h3>
                 <ul className="space-y-2 mb-8">
                   {['Pre-approved revolving lines up to $10M', 'Close deals in ~10 days', 'No financing contingency on offers', 'High 8s–9% — cheaper than hard money'].map((item) => (
