@@ -8,11 +8,11 @@ import FAQ from '@/components/FAQ'
 import { Trophy, Building2, GraduationCap, BadgeCheck, Home, Key } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Stevie de Gala | Mortgage Broker in Texas & Colorado',
-  description: 'Licensed mortgage broker in TX & CO. Stevie de Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
+  title: 'Stevie de Gala | Investor Line of Credit & Physician Loans — Colorado',
+  description: 'Investor lines of credit for multifamily and commercial real estate in Fort Collins and Denver. Physician loans for Colorado medical professionals. Licensed mortgage broker — NMLS# 2845865.',
   openGraph: {
-    title: 'Stevie de Gala | Mortgage Broker in Texas & Colorado',
-    description: 'Licensed mortgage broker in TX & CO. Stevie de Gala helps homeowners and real estate investors get cheaper capital, better cash flow, and smarter financing. NMLS# 2845865',
+    title: 'Stevie de Gala | Investor Line of Credit & Physician Loans — Colorado',
+    description: 'Investor lines of credit for multifamily and commercial real estate in Fort Collins and Denver. Physician loans for Colorado medical professionals. Licensed mortgage broker — NMLS# 2845865.',
     type: 'website',
   },
 }
@@ -46,13 +46,13 @@ export default function HomePage() {
                 className="text-5xl md:text-6xl lg:text-7xl text-[#F8F8F8] leading-tight mb-6"
                 style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
               >
-                I&apos;m Stevie. Your Mortgage Consultant.
+                Capital for Colorado Real Estate Investors. Specialized Loans for Physicians.
               </h1>
               <span style={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}>
-                Mortgage Broker serving Texas and Colorado — Home loans, refinancing, DSCR loans, and cash-out refinance. NMLS# 2845865
+                Investor line of credit for multifamily and commercial real estate in Fort Collins and Denver. Physician loans for Colorado medical professionals. NMLS# 2845865
               </span>
               <p className="text-[#C4C4C4] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
-                First-time buyers get into a home the right way. Homeowners leverage their mortgage to free up cash. Investors find financing that makes their deals work. I make all three happen — across Texas and Colorado.
+                I help multifamily and commercial real estate investors in Fort Collins and Denver access flexible lines of credit — and help Colorado medical professionals secure physician loans built around their career trajectory. Licensed broker across Texas and Colorado.
               </p>
               <div className="flex flex-col items-start gap-5">
                 <div className="flex flex-wrap items-center gap-3">
@@ -421,17 +421,17 @@ export default function HomePage() {
             {/* Right — loan type grid */}
             <div className="grid grid-cols-2 gap-2">
               {[
+                { label: 'Investor Line of Credit', slug: 'investor-line-of-credit' },
+                { label: 'Physician Loans', slug: 'doctor-loan' },
+                { label: 'DSCR Investor', slug: 'dscr' },
                 { label: 'Conventional', slug: 'conventional' },
                 { label: 'FHA', slug: 'fha' },
-                { label: 'VA Loan', slug: 'va' },
                 { label: 'USDA', slug: 'usda' },
                 { label: 'Jumbo', slug: 'jumbo' },
                 { label: 'Refinance', slug: 'refinance' },
                 { label: 'HELOC / Home Equity', slug: 'heloc' },
-                { label: 'DSCR Investor', slug: 'dscr' },
                 { label: 'Bank Statement', slug: 'bank-statement' },
                 { label: 'Bridge / Construction', slug: 'bridge-construction' },
-                { label: 'Doctor Loan', slug: 'doctor-loan' },
               ].map((loan) => (
                 <Link
                   key={loan.slug}

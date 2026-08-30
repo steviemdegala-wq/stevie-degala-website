@@ -13,12 +13,14 @@ const checklists = [
     description: 'Everything you need to gather before applying for a Conventional or FHA loan — income documents, asset statements, ID, and more.',
     href: '/checklists/conventional-and-fha-checklist.pdf',
     label: 'Checklist',
+    aspectRatio: '1470 / 1184',
   },
   {
     title: 'VA Loan Prequalification Checklist',
     description: 'Documents veterans and active-duty service members need to prequalify for a VA loan — service records, income verification, and more.',
     href: '/checklists/va-loan-prequalification-checklist.pdf',
     label: 'Checklist',
+    aspectRatio: '612 / 792',
   },
 ]
 
@@ -79,7 +81,7 @@ export default function LoanChecklistsPage() {
                 <iframe
                   src={item.href}
                   className="w-full"
-                  style={{ height: '780px' }}
+                  style={{ aspectRatio: item.aspectRatio }}
                   title={item.title}
                 />
               </div>

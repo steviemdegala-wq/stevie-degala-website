@@ -86,4 +86,4 @@ Yes. As long as you have remaining entitlement or have paid off a previous VA lo
 
 Loan programs, rates, and limits change. Always confirm current details before making any decisions. Stevie De Gala, NMLS# 2845865. Equal Housing Lender.
 
-You served, and you earned this benefit. If you are ready to put your VA loan to work in Longview, Stevie is here to help you every step of the way. [Find your loan today.](/find-my-loan)
+If you are a real estate investor looking to grow your portfolio, learn how [investor lines of credit can help you acquire multifamily and commercial properties](/loans/investor-line-of-credit) across Texas and Colorado.

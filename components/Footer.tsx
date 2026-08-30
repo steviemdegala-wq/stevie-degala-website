@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="border-t border-[#2E2E2E] bg-[#0A0A0A]">
       {/* Main footer columns */}
       <div className="py-14 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-10">
 
           {/* Identity */}
           <div className="col-span-2 md:col-span-1 space-y-3">
@@ -29,6 +29,15 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
+          </div>
+
+          {/* Services */}
+          <div className="space-y-3">
+            <p className="text-[#F8F8F8] text-xs uppercase tracking-widest mb-4">Services</p>
+            <Link href="/loans/investor-line-of-credit" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Investor Line of Credit</Link>
+            <Link href="/loans/doctor-loan" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Physician Loans</Link>
+            <Link href="/loans/dscr" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">DSCR Investor Loans</Link>
+            <Link href="/find-my-loan" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Find My Loan</Link>
           </div>
 
           {/* Pages */}

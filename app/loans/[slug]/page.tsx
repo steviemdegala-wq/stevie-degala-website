@@ -14,6 +14,26 @@ type LoanContent = {
 }
 
 const loans: Record<string, LoanContent> = {
+  'investor-line-of-credit': {
+    name: 'Investor Line of Credit',
+    tagline: 'Flexible capital to acquire multifamily and commercial properties in Fort Collins and Denver.',
+    what: 'An investor line of credit is a revolving credit facility secured against real estate equity or assets, designed specifically for real estate investors. Unlike a traditional mortgage that finances a single property, a line of credit gives you standing buying power — so when a multifamily unit or commercial property comes available in Fort Collins or Denver, you can move fast without waiting on a new loan approval. Draw what you need, repay it, and draw again. It is one of the most flexible tools in an active investor\'s arsenal.',
+    goodFor: [
+      'Multifamily investors acquiring 2–20+ unit properties in Fort Collins, Denver, and the Front Range',
+      'Commercial real estate investors who need speed-to-close to win competitive deals',
+      'Investors building a portfolio and want a revolving capital source to fund multiple acquisitions',
+      'Experienced investors with existing equity who want to leverage it without selling',
+      'Buyers who need bridge capital while permanent financing is arranged',
+      'Investors targeting the Northern Colorado and Denver metro markets where inventory moves fast',
+    ],
+    notFor: [
+      'First-time buyers — this product is designed for experienced real estate investors',
+      'Primary residence purchases — investor lines of credit are for investment properties only',
+      'Investors without existing equity or assets to collateralize the line',
+      'Anyone who needs long-term fixed-rate financing — this is a flexible, shorter-term tool',
+    ],
+  },
+
   conventional: {
     name: 'Conventional Loan',
     tagline: 'The most common home loan. No government backing required.',
