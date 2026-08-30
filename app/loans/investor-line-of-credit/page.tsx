@@ -77,7 +77,7 @@ const faqSchema = {
       name: 'How much can I access with an investor line of credit in Northern Colorado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Credit limits depend on the equity in your portfolio, the cash flow of your properties, your credit profile, and lender guidelines. Lines for investors in Northern Colorado typically range from $100,000 to several million depending on portfolio size. Fort Collins, Timnath, and Windsor properties have appreciated significantly, meaning many investors have more available equity than they realize.',
+        text: 'Lines go up to $10 million depending on your experience and portfolio strength. Credit limits are determined by your portfolio equity, cash flow, credit profile, and investment track record. Fort Collins, Timnath, and Windsor properties have appreciated significantly, meaning many Northern Colorado investors have more available equity than they realize. More experienced investors with documented deal history typically qualify for larger lines at better rates.',
       },
     },
     {
@@ -150,9 +150,24 @@ export default function InvestorLineOfCreditPage() {
           <p className="text-[#C4C4C4] text-xl leading-relaxed max-w-2xl mb-6">
             A revolving line of credit backed by your portfolio equity. Draw when you need it, repay when you can, and keep your long-term debt structure exactly where you want it.
           </p>
-          <p className="text-[#888888] text-sm max-w-2xl leading-relaxed">
+          <p className="text-[#888888] text-sm max-w-2xl leading-relaxed mb-10">
             Serving real estate investors across Fort Collins, Greeley, Loveland, Timnath, Windsor, Severance, and throughout Northern Colorado.
           </p>
+          {/* Loan terms snapshot */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px border border-[#2E2E2E] rounded-xl overflow-hidden">
+            {[
+              { label: 'Line Size', value: 'Up to $10M' },
+              { label: 'Close Timeline', value: '~10 days' },
+              { label: 'Current Rate', value: 'High 8s–9%' },
+              { label: 'Structure', value: 'Pre-approved revolving' },
+            ].map((item) => (
+              <div key={item.label} className="bg-[#111111] px-6 py-5">
+                <p className="text-[#555555] text-[10px] uppercase tracking-[0.2em] mb-1">{item.label}</p>
+                <p className="text-[#F8F8F8] text-lg font-medium" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{item.value}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-[#555555] text-xs mt-3">Rate varies by experience and deal profile. Terms subject to lender approval. NMLS# 2845865.</p>
         </div>
       </section>
 

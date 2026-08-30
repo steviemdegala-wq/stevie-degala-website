@@ -185,13 +185,13 @@ export default function HomePage() {
                 className="text-5xl md:text-6xl lg:text-7xl text-[#F8F8F8] leading-tight mb-6"
                 style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
               >
-                Physician Loans & Investor Funding — Northern Colorado.
+                Medical Professional Loans & Investor Funding — Northern Colorado.
               </h1>
               <span style={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}>
-                Physician loan specialist and investor line of credit broker serving Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. NMLS# 2845865
+                Medical professional loan specialist and investor line of credit broker serving Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. Physician loans, nurse loans, dentist loans. NMLS# 2845865
               </span>
               <p className="text-[#C4C4C4] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
-                Zero down physician loans for medical professionals. Revolving investor lines of credit for real estate investors. Both built for Northern Colorado.
+                Zero down loans for doctors, nurses, dentists, NPs, and all licensed healthcare professionals. Revolving investor lines of credit up to $10M for Northern Colorado real estate investors.
               </p>
               <div className="flex flex-col items-start gap-5">
                 <div className="flex flex-wrap items-center gap-3">
@@ -310,7 +310,7 @@ export default function HomePage() {
               <div>
                 <div className="flex items-center gap-2 mb-7">
                   <Stethoscope size={18} className="text-[#5C8AA5]" />
-                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Doctor Loans</span>
+                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Medical Professional Loans</span>
                 </div>
                 <h3
                   className="text-[#0A0A0A] leading-tight mb-6"
@@ -319,7 +319,7 @@ export default function HomePage() {
                   The loan built for your career.
                 </h3>
                 <p className="text-[#3A3A3A] text-sm leading-relaxed">
-                  Physician loans offer low or no down payment, no PMI, and student loan debt excluded from your DTI — because your earning potential is the asset, not your savings account.
+                  For MDs, DOs, nurses, NPs, dentists, pharmacists, PAs, and more — zero down, no PMI, and student loan debt excluded from your DTI. Your earning potential is the asset, not your savings account.
                 </p>
               </div>
               <Link

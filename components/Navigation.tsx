@@ -16,12 +16,12 @@ const whoIHelpOther = [
 ]
 
 const primaryLoanLinks = [
-  { label: 'Investor Line of Credit', href: '/loans/investor-line-of-credit' },
   { label: 'Fix & Flip Line of Credit', href: '/loans/fix-and-flip' },
-  { label: 'Physician Loan', href: '/loans/doctor-loan' },
+  { label: 'Medical Professional Loans', href: '/loans/doctor-loan' },
 ]
 
 const otherLoanLinks = [
+  { label: 'Investor Line of Credit', href: '/loans/investor-line-of-credit' },
   { label: 'FHA Loan', href: '/loans/fha' },
   { label: 'Conventional', href: '/loans/conventional' },
   { label: 'Jumbo', href: '/loans/jumbo' },

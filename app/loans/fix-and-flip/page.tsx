@@ -39,7 +39,7 @@ const faqSchema = {
       name: 'What is the difference between a fix and flip line of credit and hard money?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Hard money loans are single-use, asset-based loans that go through full underwriting for each deal — higher rates (typically 10-15%+), origination points, and a new process every time. A fix and flip line of credit is underwritten once and then revolves: draw, repay, and draw again without starting over. Over time, a line is typically cheaper and faster than stacking hard money loans deal after deal.',
+        text: 'Hard money loans are single-use, asset-based loans that go through full underwriting for each deal — typically 10–15%+ rates plus 2–4 origination points per deal, plus a new process every time. A fix and flip line of credit is underwritten once and then revolves: draw, repay, and draw again without starting over. Current rates on a fix and flip line run in the high 8s to 9% depending on your experience — meaningfully lower than hard money stacked deal after deal.',
       },
     },
     {
@@ -63,7 +63,7 @@ const faqSchema = {
       name: 'How quickly can I access funds once the line is approved?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Once your line is established, draws are typically available within 24-72 hours — sometimes same-day depending on the lender and draw amount. This is the core advantage: the underwriting work is done upfront, so draws are operational rather than analytical. Compare that to a new loan, which restarts the full approval process each time.',
+        text: 'Once your line is established, draws are typically available within 24–72 hours. The pre-approved revolving structure means your closing timeline on a new deal is around 10 days — compared to 30–45 days for bank financing. The underwriting work is done upfront, so each draw is operational rather than a new application.',
       },
     },
   ],
@@ -102,21 +102,21 @@ const comparison = [
     timeline: '30–45 days',
     contingency: 'Required',
     reuse: 'New application each deal',
-    cost: 'Lower rate, high time cost',
+    cost: 'Lower rate, very high time cost',
   },
   {
     scenario: 'Hard money loan',
     timeline: '7–14 days',
     contingency: 'Usually removed',
     reuse: 'New loan each deal',
-    cost: '10–15%+ rate + 2–4 points',
+    cost: '10–15%+ rate + 2–4 points per deal',
   },
   {
     scenario: 'Fix & Flip Line of Credit',
-    timeline: '24–72 hours after approval',
+    timeline: 'Close in ~10 days',
     contingency: 'Removed',
     reuse: 'Revolves — draw and repay',
-    cost: 'One-time underwriting, competitive draws',
+    cost: 'High 8s–9% depending on experience. Up to $10M.',
   },
 ]
 
@@ -151,7 +151,7 @@ export default function FixAndFlipPage() {
           <p className="text-[#C4C4C4] text-xl leading-relaxed max-w-2xl mb-8">
             A fix and flip line of credit means your next offer is not contingent on financing approval. The capital is already in place. You identify the deal, draw the funds, and close — while bank-dependent buyers are still filling out applications.
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 mb-12">
             <BookCallButton variant="solid" label="Talk About Your Next Flip" />
             <Link
               href="/loans/investor-line-of-credit"
@@ -161,6 +161,21 @@ export default function FixAndFlipPage() {
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </Link>
           </div>
+          {/* Loan terms snapshot */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px border border-[#2E2E2E] rounded-xl overflow-hidden">
+            {[
+              { label: 'Line Size', value: 'Up to $10M' },
+              { label: 'Close Timeline', value: '~10 days' },
+              { label: 'Current Rate', value: 'High 8s–9%' },
+              { label: 'Structure', value: 'Pre-approved revolving' },
+            ].map((item) => (
+              <div key={item.label} className="bg-[#111111] px-6 py-5">
+                <p className="text-[#555555] text-[10px] uppercase tracking-[0.2em] mb-1">{item.label}</p>
+                <p className="text-[#F8F8F8] text-lg font-medium" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{item.value}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-[#555555] text-xs mt-3">Rate varies by experience and deal profile. Terms subject to lender approval. NMLS# 2845865.</p>
         </div>
       </section>
 
