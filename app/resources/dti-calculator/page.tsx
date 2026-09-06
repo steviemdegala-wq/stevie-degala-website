@@ -6,6 +6,9 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'DTI Calculator, Stevie de Gala',
   description: 'Calculate your debt-to-income ratio to see where you stand with lenders.',
+  alternates: {
+    canonical: '/resources/dti-calculator',
+  },
 }
 
 export default function DTICalculatorPage() {

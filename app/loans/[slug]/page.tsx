@@ -256,6 +256,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${loan.name} — Stevie de Gala`,
     description: loan.tagline,
+    alternates: {
+      canonical: `/loans/${params.slug}`,
+    },
   }
 }
 

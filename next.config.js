@@ -9,6 +9,13 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // www → non-www (canonical domain)
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.mortgagestevie.com' }],
+        destination: 'https://mortgagestevie.com/:path*',
+        permanent: true,
+      },
       // Deprecated VA loan URLs
       { source: '/loans/va', destination: '/', permanent: true },
       { source: '/blog/va-loans-longview-tx', destination: '/loans/investor-line-of-credit', permanent: true },
@@ -23,7 +30,7 @@ const nextConfig = {
       { source: '/blog/va-loans-gladewater-tx', destination: '/who-i-help/veterans', permanent: true },
       // Investor LOC canonical — investor-loc redirects to investor-line-of-credit
       { source: '/loans/investor-loc', destination: '/loans/investor-line-of-credit', permanent: true },
-      // Review shortlink — update destination to GBP "Ask for reviews" URL when available
+      // Review shortlink
       { source: '/reviews', destination: 'https://share.google/ghtLWfMHpWsjIlLz4', permanent: false },
     ]
   },

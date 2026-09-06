@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/posts'
 
-const baseUrl = 'https://www.mortgagestevie.com'
+const baseUrl = 'https://mortgagestevie.com'
 
 // Slugs that have 301/308 redirects — excluded from sitemap
 const REDIRECTED_BLOG_SLUGS = new Set([

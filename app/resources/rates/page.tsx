@@ -6,6 +6,9 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Current Mortgage Rates — Stevie de Gala',
   description: 'Current conventional mortgage rate estimates for Texas and Colorado.',
+  alternates: {
+    canonical: '/resources/rates',
+  },
 }
 
 type RateData = { rate: number; change: number; date: string } | null

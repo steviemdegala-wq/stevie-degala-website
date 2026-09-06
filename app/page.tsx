@@ -17,6 +17,9 @@ export const metadata: Metadata = {
       "Physician loans and investor lines of credit for Northern Colorado — Fort Collins, Timnath, Windsor, Loveland, Greeley. Zero down for doctors. Revolving capital for real estate investors. NMLS# 2845865",
     type: 'website',
   },
+  alternates: {
+    canonical: '/',
+  },
 }
 
 const localBusinessSchema = {

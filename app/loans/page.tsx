@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'Home Loan Programs | Northern Colorado | Stevie de Gala',
   description:
     'Physician loans, VA loans, FHA, conventional, jumbo, DSCR, HELOC, refinance, bank statement, USDA, and bridge loans in Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. NMLS# 2845865',
+  alternates: {
+    canonical: '/loans',
+  },
   openGraph: {
     title: 'Home Loan Programs | Northern Colorado | Stevie de Gala',
     description:

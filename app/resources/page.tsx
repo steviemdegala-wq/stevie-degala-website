@@ -5,6 +5,9 @@ import BookCallButton from '@/components/BookCallButton'
 export const metadata: Metadata = {
   title: 'Mortgage Rates, Calculators, and Tools, Stevie de Gala',
   description: 'Mortgage payment calculator, DTI calculator, qualification estimator, and current rates for Texas and Colorado.',
+  alternates: {
+    canonical: '/resources',
+  },
 }
 
 const cards = [

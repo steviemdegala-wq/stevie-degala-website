@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: 'Who I Help | Stevie de Gala — Medical Professionals, Veterans & Investors',
   description:
     'Physician loans for medical professionals, VA loans for veterans, and investment financing for real estate investors in Northern Colorado. Fort Collins, Greeley, Loveland, Timnath, Windsor, Severance.',
+  alternates: {
+    canonical: '/who-i-help',
+  },
 }
 
 export default function WhoIHelpPage() {

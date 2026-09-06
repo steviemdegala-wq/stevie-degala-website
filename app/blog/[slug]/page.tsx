@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { marked } from 'marked'
@@ -15,6 +16,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${post.title} — Stevie de Gala`,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${params.slug}`,
+    },
     openGraph: {
       title: `${post.title} — Stevie de Gala`,
       description: post.excerpt,
@@ -27,7 +31,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = getPost(params.slug)
-  if (!post) return null
+  if (!post) notFound()
 
   const html = marked.parse(post.content) as string
 
