@@ -1,10 +1,10 @@
 ---
 title: "What Is a DSCR Loan and Why Investors Love It"
 date: "2026-06-11"
-excerpt: "Most people qualify for a mortgage using their personal income. DSCR loans flip that on its head — the property qualifies itself."
+excerpt: "Most people qualify for a mortgage using their personal income. DSCR loans flip that on its head. The property qualifies itself."
 ---
 
-Most people qualify for a mortgage using their personal income. DSCR loans flip that on its head — the property qualifies itself.
+Most people qualify for a mortgage using their personal income. DSCR loans flip that on its head. The property qualifies itself.
 
 ## What Does DSCR Stand For?
 
@@ -14,16 +14,16 @@ The formula is simple:
 
 > DSCR = Monthly Rent ÷ Monthly Mortgage Payment
 
-A DSCR of 1.0 means the rent exactly covers the payment. Most lenders want to see 1.1 or higher — meaning the property earns at least 10% more than it costs to carry.
+A DSCR of 1.0 means the rent exactly covers the payment. Most lenders want to see 1.1 or higher, meaning the property earns at least 10% more than it costs to carry.
 
 ## Why Investors Use DSCR Loans
 
-Traditional mortgages look at your W-2, your tax returns, and your personal debt-to-income ratio. For investors — especially self-employed ones — that process gets complicated fast.
+Traditional mortgages look at your W-2, your tax returns, and your personal debt-to-income ratio. For investors, especially self-employed ones, that process gets complicated fast.
 
 DSCR loans cut through all of that. The lender looks at the property, not your pay stubs. That means:
 
-- **Self-employed borrowers qualify more easily** — your write-offs don't hurt you
-- **Portfolio growth isn't capped** by personal income limits
+- **Self-employed borrowers qualify more easily.** Your write-offs do not hurt you.
+- **Portfolio growth is not capped** by personal income limits
 - **Faster closings** because the documentation is simpler
 
 ## Who This Loan Is Built For
@@ -35,11 +35,11 @@ DSCR loans work best for:
 - Short-term rental (Airbnb/VRBO) buyers in strong markets
 - Business owners with complex tax returns
 
-They are not ideal for primary residence purchases or buyers who want the lowest possible rate — conventional loans still win on rate for owner-occupied homes.
+They are not ideal for primary residence purchases or buyers who want the lowest possible rate. Conventional loans still win on rate for owner-occupied homes.
 
 ## What to Expect
 
-Down payments typically start at 20–25%. Rates are slightly higher than conventional because the lender is taking on more risk. But for the right investor, the trade-off is worth it — you can close more deals, faster, without your personal income being the bottleneck.
+Down payments typically start at 20 to 25%. Rates are slightly higher than conventional because the lender is taking on more risk. But for the right investor, the trade-off is worth it. You can close more deals, faster, without your personal income being the bottleneck.
 
 ---
 
