@@ -21,7 +21,7 @@ export default function MortgageCalculatorPage() {
           </Link>
           <h1
             className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight mb-6"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Mortgage Payment Calculator
           </h1>
@@ -41,7 +41,7 @@ export default function MortgageCalculatorPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="text-3xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Want to see what a lower rate looks like?
           </h2>

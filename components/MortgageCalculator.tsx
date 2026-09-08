@@ -29,7 +29,7 @@ export default function MortgageCalculator() {
       <p className="text-[#555555] text-xs uppercase tracking-widest mb-4">Calculator 1</p>
       <h2
         className="text-2xl md:text-3xl text-[#0A0A0A] mb-3"
-        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+        style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
       >
         Mortgage Payment Calculator
       </h2>
@@ -86,7 +86,7 @@ export default function MortgageCalculator() {
           <p className="text-[#555555] text-xs uppercase tracking-widest mb-2">Estimated Monthly Payment</p>
           <p
             className="text-4xl text-[#0A0A0A] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             {formatCurrency(result)}
           </p>

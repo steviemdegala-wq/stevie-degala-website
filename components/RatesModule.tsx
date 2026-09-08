@@ -11,7 +11,7 @@ export default function RatesModule() {
     <div>
       <h2
         className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+        style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
       >
         Current Rates
       </h2>

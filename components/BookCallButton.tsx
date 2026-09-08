@@ -8,7 +8,7 @@ interface Props {
   className?: string
 }
 
-export default function BookCallButton({ label = 'Book a Free Call', variant = 'solid', className = '' }: Props) {
+export default function BookCallButton({ label = 'Get in Touch', variant = 'solid', className = '' }: Props) {
   const { openModal } = useModalStore()
 
   const base = 'inline-block px-8 py-4 text-sm uppercase tracking-widest font-medium transition-all cursor-pointer rounded-full'

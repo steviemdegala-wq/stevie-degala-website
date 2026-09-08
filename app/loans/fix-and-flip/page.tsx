@@ -144,7 +144,7 @@ export default function FixAndFlipPage() {
           <p className="text-[#888888] text-xs uppercase tracking-widest mb-6">Fix &amp; Flip Line of Credit</p>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Stop waiting on a bank. Make the offer. Win the deal.
           </h1>
@@ -154,10 +154,10 @@ export default function FixAndFlipPage() {
           <div className="flex flex-wrap gap-4 mb-12">
             <BookCallButton variant="solid" label="Talk About Your Next Flip" />
             <Link
-              href="/loans/investor-line-of-credit"
+              href="/loans/private-hard-money"
               className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors group"
             >
-              Also: Investor Line of Credit
+              Also: Private / Hard Money
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </Link>
           </div>
@@ -171,7 +171,7 @@ export default function FixAndFlipPage() {
             ].map((item) => (
               <div key={item.label} className="bg-[#111111] px-6 py-5">
                 <p className="text-[#555555] text-[10px] uppercase tracking-[0.2em] mb-1">{item.label}</p>
-                <p className="text-[#F8F8F8] text-lg font-medium" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{item.value}</p>
+                <p className="text-[#F8F8F8] text-lg font-medium" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>{item.value}</p>
               </div>
             ))}
           </div>
@@ -185,7 +185,7 @@ export default function FixAndFlipPage() {
           <p className="text-[#888888] text-xs uppercase tracking-widest mb-4">The Speed Advantage</p>
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-6 leading-tight"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Sellers do not wait. Bank buyers lose.
           </h2>
@@ -238,7 +238,7 @@ export default function FixAndFlipPage() {
           <p className="text-[#888888] text-xs uppercase tracking-widest mb-4">Why a Line of Credit</p>
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-12 leading-tight"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             How a revolving line changes the math on every deal.
           </h2>
@@ -247,7 +247,7 @@ export default function FixAndFlipPage() {
               <div key={item.title} className="border border-[#2E2E2E] bg-[#111111] p-8 rounded-xl">
                 <h3
                   className="text-[#F8F8F8] text-lg mb-3 leading-snug"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                 >
                   {item.title}
                 </h3>
@@ -264,7 +264,7 @@ export default function FixAndFlipPage() {
           <p className="text-[#888888] text-xs uppercase tracking-widest mb-4">Northern Colorado Markets</p>
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-10 leading-tight"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Northern Colorado rewards speed. Here is why.
           </h2>
@@ -291,7 +291,7 @@ export default function FixAndFlipPage() {
           <p className="text-[#888888] text-xs uppercase tracking-widest mb-4">Common Questions</p>
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-10 leading-tight"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             How fix and flip lines actually work.
           </h2>
@@ -300,7 +300,7 @@ export default function FixAndFlipPage() {
               <div key={item.name} className="py-6">
                 <h3
                   className="text-[#F8F8F8] text-base mb-3 leading-snug"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                 >
                   {item.name}
                 </h3>
@@ -311,7 +311,7 @@ export default function FixAndFlipPage() {
         </div>
       </section>
 
-      {/* Related: Investor Line of Credit */}
+      {/* Related: Private Hard Money */}
       <section className="bg-[#111111] border-y border-[#2E2E2E] py-16 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-10 items-center">
@@ -319,20 +319,20 @@ export default function FixAndFlipPage() {
               <p className="text-[#888888] text-xs uppercase tracking-widest mb-3">Related Product</p>
               <h2
                 className="text-2xl md:text-3xl text-[#F8F8F8] leading-tight mb-3"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
-                Holding multifamily or commercial? You want an investor line of credit instead.
+                Only doing one deal? Private hard money may be the right fit.
               </h2>
               <p className="text-[#888888] text-sm leading-relaxed">
-                Fix and flip lines are optimized for short-term acquisitions and renovation. For buy-and-hold multifamily and commercial acquisitions across Northern Colorado, an investor line of credit is the right tool — secured by your portfolio equity and sized for long-term deployment.
+                A fix and flip line is optimized for investors running multiple deals per year. For one-off acquisitions, first-time flippers, or properties that don&apos;t qualify for a revolving line, private hard money closes just as fast — deal by deal.
               </p>
             </div>
             <div className="flex md:justify-end">
               <Link
-                href="/loans/investor-line-of-credit"
+                href="/loans/private-hard-money"
                 className="inline-flex items-center gap-3 border border-[#F8F8F8] text-[#F8F8F8] px-7 py-3.5 text-sm tracking-wide hover:bg-[#F8F8F8] hover:text-[#0A0A0A] transition-all group rounded-full"
               >
-                Investor Line of Credit
+                Private / Hard Money
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
             </div>
@@ -345,14 +345,14 @@ export default function FixAndFlipPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Let&apos;s set up your line before the next deal comes around.
           </h2>
           <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">
             The best time to get a line of credit approved is before you need it. A free 15-minute call is all it takes to find out what you qualify for and what the line could look like for your deal flow.
           </p>
-          <BookCallButton variant="solid" label="Book a Free Call" />
+          <BookCallButton variant="solid" label="Get in Touch" />
         </div>
       </section>
     </main>

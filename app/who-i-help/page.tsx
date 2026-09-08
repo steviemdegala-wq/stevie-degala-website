@@ -21,7 +21,7 @@ export default function WhoIHelpPage() {
           <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Northern Colorado</p>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             The right financing changes everything. I am here to find it.
           </h1>
@@ -49,7 +49,7 @@ export default function WhoIHelpPage() {
                 </div>
                 <h2
                   className="text-[#0A0A0A] leading-tight mb-5"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.75rem, 2.5vw, 2.5rem)' }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 'clamp(1.75rem, 2.5vw, 2.5rem)' }}
                 >
                   The loan built for your career.
                 </h2>
@@ -76,7 +76,7 @@ export default function WhoIHelpPage() {
                 </div>
                 <h2
                   className="text-[#0A0A0A] leading-tight mb-5"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.75rem, 2.5vw, 2.5rem)' }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 'clamp(1.75rem, 2.5vw, 2.5rem)' }}
                 >
                   You earned zero down. Let&apos;s use it.
                 </h2>
@@ -103,7 +103,7 @@ export default function WhoIHelpPage() {
                 </div>
                 <h2
                   className="text-[#0A0A0A] leading-tight mb-5"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.75rem, 2.5vw, 2.5rem)' }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 'clamp(1.75rem, 2.5vw, 2.5rem)' }}
                 >
                   More options. Better terms.
                 </h2>
@@ -126,7 +126,7 @@ export default function WhoIHelpPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Not sure which path fits you?
           </h2>

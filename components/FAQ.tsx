@@ -42,7 +42,7 @@ export default function FAQ() {
           >
             <span
               className="text-[#F8F8F8] text-base leading-snug group-hover:text-[#C4C4C4] transition-colors"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
             >
               {faq.q}
             </span>

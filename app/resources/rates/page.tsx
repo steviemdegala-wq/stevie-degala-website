@@ -70,7 +70,7 @@ export default async function RatesPage() {
           </Link>
           <h1
             className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight mb-6"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Current Rates
           </h1>
@@ -86,7 +86,7 @@ export default async function RatesPage() {
           <p className="text-[#888888] text-xs uppercase tracking-[0.2em] mb-3">Market Benchmark</p>
           <h2
             className="text-3xl text-[#F8F8F8] mb-3"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Where rates stand nationally
           </h2>
@@ -113,7 +113,7 @@ export default async function RatesPage() {
                     <p className="text-[#888888] text-xs uppercase tracking-widest">{label} — National Avg</p>
                     {data ? (
                       <>
-                        <p className="text-5xl text-[#0A0A0A]" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+                        <p className="text-5xl text-[#0A0A0A]" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
                           {data.rate.toFixed(2)}%
                         </p>
                         <div className="flex items-center gap-2">
@@ -176,7 +176,7 @@ export default async function RatesPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="text-3xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Want the best rate available for your situation?
           </h2>

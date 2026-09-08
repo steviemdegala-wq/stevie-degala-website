@@ -11,7 +11,7 @@ export default function StickyMobileCTA() {
         onClick={openModal}
         className="w-full bg-[#F8F8F8] text-[#0A0A0A] py-3.5 text-sm uppercase tracking-widest font-medium rounded-full hover:bg-[#C4C4C4] transition-colors"
       >
-        Book a Free Call
+        Get in Touch
       </button>
     </div>
   )

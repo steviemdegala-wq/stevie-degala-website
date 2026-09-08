@@ -150,7 +150,7 @@ export default function VeteransPage() {
           <p className="text-[#888888] text-xs uppercase tracking-widest mb-6">For Veterans & Active Duty — Northern Colorado</p>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             You earned this benefit. Let&apos;s make sure you actually use it.
           </h1>
@@ -168,7 +168,7 @@ export default function VeteransPage() {
         <div className="max-w-7xl mx-auto">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             VA loan programs I work with.
           </h2>
@@ -180,7 +180,7 @@ export default function VeteransPage() {
               <div key={card.title} className="card-white card-hover border border-[#E5E5E5] bg-white p-8 rounded-xl">
                 <h3
                   className="text-xl text-[#0A0A0A] mb-4"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                 >
                   {card.title}
                 </h3>
@@ -199,7 +199,7 @@ export default function VeteransPage() {
               <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Why VA</p>
               <h2
                 className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-6"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 No down payment. No PMI. No comparison.
               </h2>
@@ -232,7 +232,7 @@ export default function VeteransPage() {
               <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Who Qualifies</p>
               <h2
                 className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-6"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 Who is eligible for a VA loan?
               </h2>
@@ -276,15 +276,15 @@ export default function VeteransPage() {
         <div className="max-w-7xl mx-auto">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-12"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             How it works.
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {steps.map((step) => (
               <div key={step.num} className="card-white card-hover border border-[#E5E5E5] bg-white p-8 rounded-xl">
-                <p className="text-4xl text-[#0A0A0A] font-bold mb-4 leading-none" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{step.num}</p>
-                <h3 className="text-lg text-[#0A0A0A] mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{step.title}</h3>
+                <p className="text-4xl text-[#0A0A0A] font-bold mb-4 leading-none" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>{step.num}</p>
+                <h3 className="text-lg text-[#0A0A0A] mb-3" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>{step.title}</h3>
                 <p className="text-[#555555] text-sm leading-relaxed">{step.body}</p>
               </div>
             ))}
@@ -297,7 +297,7 @@ export default function VeteransPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Your VA benefit does not expire. But the right market window does.
           </h2>

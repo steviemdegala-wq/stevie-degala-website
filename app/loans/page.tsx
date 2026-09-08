@@ -114,7 +114,7 @@ export default function LoansPage() {
           <p className="text-[#888888] text-xs uppercase tracking-widest mb-6">Loan Programs — Northern Colorado</p>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Every loan program available. Two that I specialize in.
           </h1>
@@ -133,7 +133,7 @@ export default function LoansPage() {
           <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Where I Specialize</p>
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Physician loans and VA loans.
           </h2>
@@ -151,7 +151,7 @@ export default function LoansPage() {
                   <span className="text-[#7A9E5C] text-base leading-none">★</span>
                   <h3
                     className="text-xl text-[#0A0A0A] group-hover:text-[#0A0A0A]"
-                    style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                   >
                     {loan.label}
                   </h3>
@@ -172,7 +172,7 @@ export default function LoansPage() {
           <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">All Programs</p>
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             More loan programs.
           </h2>
@@ -188,7 +188,7 @@ export default function LoansPage() {
               >
                 <h3
                   className="text-lg text-[#F8F8F8] mb-3"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                 >
                   {loan.label}
                 </h3>
@@ -207,7 +207,7 @@ export default function LoansPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Not sure which program fits?
           </h2>

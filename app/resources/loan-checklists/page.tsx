@@ -42,7 +42,7 @@ export default function LoanChecklistsPage() {
           <p className="text-[#888888] text-xs uppercase tracking-widest mb-4">Document Prep</p>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Loan Checklists
           </h1>
@@ -61,7 +61,7 @@ export default function LoanChecklistsPage() {
                 <p className="text-[#888888] text-xs uppercase tracking-widest mb-2">{item.label}</p>
                 <h2
                   className="text-2xl md:text-3xl text-[#F8F8F8] mb-3"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                 >
                   {item.title}
                 </h2>
@@ -95,7 +95,7 @@ export default function LoanChecklistsPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Ready to start the process?
           </h2>

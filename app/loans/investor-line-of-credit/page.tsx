@@ -143,7 +143,7 @@ export default function InvestorLineOfCreditPage() {
           <p className="text-[#888888] text-xs uppercase tracking-widest mb-6">Investor Line of Credit — Fix &amp; Flip — Northern Colorado</p>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Capital that moves as fast as your deals do.
           </h1>
@@ -163,7 +163,7 @@ export default function InvestorLineOfCreditPage() {
             ].map((item) => (
               <div key={item.label} className="bg-[#111111] px-6 py-5">
                 <p className="text-[#555555] text-[10px] uppercase tracking-[0.2em] mb-1">{item.label}</p>
-                <p className="text-[#F8F8F8] text-lg font-medium" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{item.value}</p>
+                <p className="text-[#F8F8F8] text-lg font-medium" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>{item.value}</p>
               </div>
             ))}
           </div>
@@ -174,7 +174,7 @@ export default function InvestorLineOfCreditPage() {
       {/* Features */}
       <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
             Why fix and flip investors use a line of credit.
           </h2>
           <p className="text-[#C4C4C4] leading-relaxed mb-12 max-w-2xl">
@@ -183,7 +183,7 @@ export default function InvestorLineOfCreditPage() {
           <div className="grid md:grid-cols-2 gap-6">
             {features.map((f) => (
               <div key={f.title} className="card-white card-hover border border-[#E5E5E5] bg-white p-8 rounded-xl">
-                <h3 className="text-xl text-[#0A0A0A] mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{f.title}</h3>
+                <h3 className="text-xl text-[#0A0A0A] mb-4" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>{f.title}</h3>
                 <p className="text-[#444444] text-sm leading-relaxed">{f.body}</p>
               </div>
             ))}
@@ -195,7 +195,7 @@ export default function InvestorLineOfCreditPage() {
       <section className="bg-[#0A0A0A] py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">How Investors Use It</p>
-          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
             Four common applications.
           </h2>
           <p className="text-[#C4C4C4] leading-relaxed mb-12 max-w-2xl">
@@ -204,7 +204,7 @@ export default function InvestorLineOfCreditPage() {
           <div className="grid md:grid-cols-2 gap-6">
             {useCases.map((u) => (
               <div key={u.title} className="border border-[#2E2E2E] bg-[#111111] p-8 rounded-xl">
-                <h3 className="text-lg text-[#F8F8F8] mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{u.title}</h3>
+                <h3 className="text-lg text-[#F8F8F8] mb-3" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>{u.title}</h3>
                 <p className="text-[#888888] text-sm leading-relaxed">{u.body}</p>
               </div>
             ))}
@@ -216,7 +216,7 @@ export default function InvestorLineOfCreditPage() {
       <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Who It&apos;s For</p>
-          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-8" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-8" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
             Built for investors doing consistent deal volume.
           </h2>
           <div className="space-y-4 mb-10">
@@ -244,7 +244,7 @@ export default function InvestorLineOfCreditPage() {
       {/* FAQ */}
       <section className="bg-[#0A0A0A] py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-12" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-12" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
             Frequently asked questions.
           </h2>
           <div className="space-y-6">
@@ -261,7 +261,7 @@ export default function InvestorLineOfCreditPage() {
       {/* CTA */}
       <section className="bg-[#111111] border-t border-[#2E2E2E] py-24 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
             Ready to close your next deal in 10 days?
           </h2>
           <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">

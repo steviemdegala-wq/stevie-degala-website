@@ -21,7 +21,7 @@ const primaryLoanLinks = [
 ]
 
 const otherLoanLinks = [
-  { label: 'Private / Hard Money', href: '/loans/investor-line-of-credit' },
+  { label: 'Private / Hard Money', href: '/loans/private-hard-money' },
   { label: 'FHA Loan', href: '/loans/fha' },
   { label: 'Conventional', href: '/loans/conventional' },
   { label: 'Jumbo', href: '/loans/jumbo' },
@@ -74,7 +74,7 @@ export default function Navigation() {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          scrolled ? 'bg-[#0A0A0A] border-b border-[#2E2E2E]' : 'bg-transparent'
+          scrolled ? 'bg-[#0A0A0A] border-b border-[#2E2E2E]' : 'bg-[#0A0A0A]/75 backdrop-blur-md'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 md:h-20">
@@ -82,7 +82,7 @@ export default function Navigation() {
           <Link
             href="/"
             className="font-serif text-[#F8F8F8] text-lg md:text-xl hover:text-[#C4C4C4] transition-colors flex-shrink-0"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Stevie de Gala
           </Link>
@@ -233,7 +233,7 @@ export default function Navigation() {
               onClick={openModal}
               className="bg-[#F8F8F8] text-[#0A0A0A] px-5 py-2 rounded-full text-sm hover:bg-[#C4C4C4] transition-all tracking-wide"
             >
-              Book a Free Call
+              Get in Touch
             </button>
           </div>
 
@@ -258,7 +258,7 @@ export default function Navigation() {
               href="/"
               onClick={() => setMobileOpen(false)}
               className="font-serif text-[#F8F8F8] text-xl"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
             >
               Stevie de Gala
             </Link>
@@ -279,7 +279,7 @@ export default function Navigation() {
                     href={section.href}
                     onClick={() => setMobileOpen(false)}
                     className="block font-serif text-[#F8F8F8] text-2xl py-5 hover:text-[#888888] transition-colors"
-                    style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                   >
                     {section.label}
                   </Link>
@@ -288,7 +288,7 @@ export default function Navigation() {
                     <button
                       onClick={() => setMobileExpanded(mobileExpanded === section.label ? null : section.label)}
                       className="w-full flex items-center justify-between font-serif text-[#F8F8F8] text-2xl py-5 hover:text-[#888888] transition-colors text-left"
-                      style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                      style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                     >
                       {section.label}
                       <svg
@@ -328,7 +328,7 @@ export default function Navigation() {
               onClick={() => { setMobileOpen(false); openModal() }}
               className="border border-[#F8F8F8] text-[#F8F8F8] px-6 py-4 text-sm hover:bg-[#F8F8F8] hover:text-[#0A0A0A] transition-all tracking-widest uppercase mt-6 rounded-full"
             >
-              Book a Free Call
+              Get in Touch
             </button>
           </div>
         </div>

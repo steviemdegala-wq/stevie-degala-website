@@ -89,7 +89,7 @@ export default function LeadCapturePopup() {
           <div className="text-center py-4">
             <p
               className="text-2xl text-[#F8F8F8] mb-3"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
             >
               Got it.
             </p>
@@ -102,7 +102,7 @@ export default function LeadCapturePopup() {
             <p className="text-[#888888] text-xs uppercase tracking-[0.2em] mb-3">Free Rate Estimate</p>
             <h2
               className="text-2xl md:text-3xl text-[#F8F8F8] leading-tight mb-3"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
             >
               See what rate you actually qualify for.
             </h2>

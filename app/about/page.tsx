@@ -127,7 +127,7 @@ export default function AboutPage() {
               <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-5">Northern Colorado</p>
               <h1
                 className="text-5xl md:text-6xl text-[#F8F8F8] mb-6 leading-tight"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 I&apos;m Stevie.
               </h1>
@@ -152,7 +152,7 @@ export default function AboutPage() {
             <div>
               <h2
                 className="text-2xl md:text-3xl text-[#F8F8F8] leading-tight mb-6"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 Why I specialize in medical professionals.
               </h2>
@@ -176,7 +176,7 @@ export default function AboutPage() {
             <div>
               <h2
                 className="text-2xl md:text-3xl text-[#F8F8F8] leading-tight mb-6"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 Why I work with real estate investors.
               </h2>
@@ -202,7 +202,7 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto space-y-8">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-10"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Where I Come From
           </h2>
@@ -224,7 +224,7 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto">
           <h2
             className="text-3xl text-[#F8F8F8] mb-12"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             The Path
           </h2>
@@ -250,7 +250,7 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto">
           <blockquote
             className="text-2xl md:text-3xl text-[#F8F8F8] leading-relaxed mb-8 italic"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             &ldquo;Going through the mortgage process myself, the biggest frustration was not the paperwork. The biggest frustration was the silence. Not knowing what was happening, not being able to reach anyone. My practice exists to fix exactly that.&rdquo;
           </blockquote>
@@ -265,7 +265,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-12"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Communities I Serve
           </h2>
@@ -274,7 +274,7 @@ export default function AboutPage() {
               <div key={region.title} className="card-hover border border-[#2E2E2E] bg-[#0A0A0A] p-8 rounded-xl">
                 <h3
                   className="text-xl text-[#F8F8F8] mb-4"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                 >
                   {region.title}
                 </h3>
@@ -290,7 +290,7 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto">
           <h2
             className="text-3xl text-[#F8F8F8] mb-6"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Outside the Office
           </h2>
@@ -319,7 +319,7 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             No pressure. No pitch.
           </h2>

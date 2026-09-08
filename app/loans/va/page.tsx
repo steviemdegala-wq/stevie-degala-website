@@ -146,7 +146,7 @@ export default function VALoanPage() {
           <p className="text-[#888888] text-xs uppercase tracking-widest mb-6">VA Loan — Northern Colorado</p>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             The most powerful home buying benefit available. You already earned it.
           </h1>
@@ -164,7 +164,7 @@ export default function VALoanPage() {
         <div className="max-w-7xl mx-auto">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Four benefits no conventional loan can match.
           </h2>
@@ -176,7 +176,7 @@ export default function VALoanPage() {
               <div key={b.title} className="card-white card-hover border border-[#E5E5E5] bg-white p-8 rounded-xl">
                 <h3
                   className="text-xl text-[#0A0A0A] mb-4"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                 >
                   {b.title}
                 </h3>
@@ -192,7 +192,7 @@ export default function VALoanPage() {
         <div className="max-w-7xl mx-auto">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             VA loan programs available to you.
           </h2>
@@ -204,7 +204,7 @@ export default function VALoanPage() {
               <div key={p.title} className="card-white card-hover border border-[#E5E5E5] bg-white p-8 rounded-xl">
                 <h3
                   className="text-xl text-[#0A0A0A] mb-4"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                 >
                   {p.title}
                 </h3>
@@ -223,7 +223,7 @@ export default function VALoanPage() {
               <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Who Qualifies</p>
               <h2
                 className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-6"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 Eligibility is broader than most veterans realize.
               </h2>
@@ -244,7 +244,7 @@ export default function VALoanPage() {
               <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Disability Rating</p>
               <h2
                 className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-6"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 A disability rating changes your cost picture.
               </h2>
@@ -277,7 +277,7 @@ export default function VALoanPage() {
         <div className="max-w-4xl mx-auto">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-12"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Frequently asked questions.
           </h2>
@@ -297,7 +297,7 @@ export default function VALoanPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Your VA benefit does not expire. But the right market window does.
           </h2>

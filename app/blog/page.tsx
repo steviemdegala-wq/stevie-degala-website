@@ -63,7 +63,7 @@ export default function BlogPage() {
             <p className="text-[#888888] text-xs uppercase tracking-[0.2em] mb-4">Northern Colorado</p>
             <h1
               className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight mb-4"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
             >
               Insights &amp; Education
             </h1>
@@ -80,7 +80,7 @@ export default function BlogPage() {
             >
               Get Pre-Qualified
             </a>
-            <BookCallButton variant="outline" label="Book a Free Call" />
+            <BookCallButton variant="outline" label="Get in Touch" />
           </div>
         </div>
       </section>

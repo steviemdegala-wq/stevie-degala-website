@@ -123,7 +123,7 @@ export default function PhysicianLoanCalculator() {
       <p className="text-[#888888] text-xs uppercase tracking-widest mb-2">Physician Loan</p>
       <h3
         className="text-2xl md:text-3xl text-[#F8F8F8] mb-2"
-        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+        style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
       >
         Which programs do I qualify for?
       </h3>
@@ -286,7 +286,7 @@ export default function PhysicianLoanCalculator() {
                       )}
                       <h4
                         className={`text-lg mb-4 ${p.highlight ? 'text-[#0A0A0A]' : 'text-[#F8F8F8]'}`}
-                        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                        style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                       >
                         {p.name}
                       </h4>

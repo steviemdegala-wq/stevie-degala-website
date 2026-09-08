@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1 space-y-3">
             <p
               className="text-[#F8F8F8] text-base"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
             >
               Stevie de Gala
             </p>
@@ -36,7 +36,6 @@ export default function Footer() {
           {/* Services */}
           <div className="space-y-3">
             <p className="text-[#F8F8F8] text-xs uppercase tracking-widest mb-4">Services</p>
-            <Link href="/loans/investor-line-of-credit" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Investor Line of Credit</Link>
             <Link href="/loans/fix-and-flip" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Fix &amp; Flip Line of Credit</Link>
             <Link href="/loans/doctor-loan" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Physician Loans</Link>
             <Link href="/loans/dscr" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">DSCR Investor Loans</Link>

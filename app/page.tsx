@@ -5,7 +5,8 @@ import Script from 'next/script'
 import BookCallButton from '@/components/BookCallButton'
 import RateAlertForm from '@/components/RateAlertForm'
 import FAQ from '@/components/FAQ'
-import { Trophy, Building2, GraduationCap, BadgeCheck, Stethoscope, Shield } from 'lucide-react'
+import MedicalProfessionsTicker from '@/components/MedicalProfessionsTicker'
+import { Building2, Stethoscope } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Stevie de Gala | Physician Loans & Investor Funding — Northern Colorado',
@@ -158,25 +159,6 @@ const personSchema = {
   },
 }
 
-const MEDICAL_PROFESSIONS = [
-  'Doctor of Medicine (MD)',
-  'Doctor of Osteopathy (DO)',
-  'Doctor of Dental Science or Surgery (DDS)',
-  'Doctor of Dental Medicine (DMD)',
-  'Doctor of Ophthalmology (MD or DO)',
-  'Doctor of Optometry (OD)',
-  'Doctor of Psychiatry (MD or DO)',
-  'Doctor of Pharmacy (PharmD)',
-  'Doctor of Veterinary Medicine (DVM or VMD)',
-  'Doctor of Podiatric Medicine (DPM)',
-  'Certified Registered Nurse Anesthetist (CRNA)',
-  'Physician Assistant (PA)',
-  'Registered Nurse (RN)',
-  'Nurse Practitioner (NP)',
-  'Clinical Nurse Specialist (CNS)',
-  'Chiropractor (DC)',
-  'Medical Residents, Fellows & Interns',
-]
 
 export default function HomePage() {
   return (
@@ -193,61 +175,77 @@ export default function HomePage() {
       />
 
       {/* Hero */}
-      <section className="min-h-screen bg-[#0A0A0A] flex items-center pt-16 md:pt-20">
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-            {/* Text */}
-            <div className="order-2 md:order-1 py-12 md:py-0">
-              <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-5">Northern Colorado</p>
-              <h1
-                className="text-5xl md:text-6xl lg:text-7xl text-[#F8F8F8] leading-tight mb-6"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-              >
-                Medical Professional Loans & Investor Funding — Northern Colorado.
-              </h1>
-              <span style={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}>
-                Medical professional loan specialist and investor line of credit broker serving Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. Physician loans, nurse loans, dentist loans. NMLS# 2845865
-              </span>
-              <p className="text-[#C4C4C4] text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
-                Zero down loans for doctors, nurses, dentists, NPs, and many licensed healthcare professionals. Revolving investor lines of credit up to $10M for Northern Colorado real estate investors.
-              </p>
-              <div className="flex flex-col items-start gap-5">
-                <div className="flex flex-wrap items-center gap-3">
-                  <a
-                    href="https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-8 py-4 text-sm uppercase tracking-widest font-medium transition-all rounded-full bg-[#F8F8F8] text-[#0A0A0A] border border-[#F8F8F8] hover:bg-[#0A0A0A] hover:text-[#F8F8F8]"
-                  >
-                    Get Pre-Qualified
-                  </a>
-                  <BookCallButton variant="outline" label="Book a Free Call" />
-                </div>
-                <Link
-                  href="/find-my-loan"
-                  className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors group"
-                >
-                  Not sure which loan fits?
-                  <span className="group-hover:translate-x-1 transition-transform">Find out →</span>
-                </Link>
-              </div>
-            </div>
+      <section className="min-h-screen bg-[#0A0A0A] relative overflow-hidden flex items-center pt-20">
+        {/* Photo — right half, full section height, no border */}
+        <div className="hidden md:block absolute right-0 inset-y-0 w-1/2 pointer-events-none">
+          <Image
+            src="/headshot.jpg"
+            alt="Stevie de Gala, physician loan consultant serving Northern Colorado — Fort Collins, Greeley, Loveland, Timnath"
+            fill
+            sizes="50vw"
+            className="object-cover object-top grayscale"
+            quality={90}
+            priority
+          />
+          {/* Fade photo into dark background on the left */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #0A0A0A 0%, #0A0A0A 5%, transparent 45%)' }} />
+          {/* Bottom fade */}
+          <div className="absolute inset-x-0 bottom-0 h-32" style={{ background: 'linear-gradient(to top, #0A0A0A, transparent)' }} />
+        </div>
 
-            {/* Photo */}
-            <div className="order-1 md:order-2 flex justify-end">
-              <div className="relative w-full max-w-sm md:max-w-none overflow-hidden" style={{ aspectRatio: '3/4' }}>
-                <Image
-                  src="/headshot.jpg"
-                  alt="Stevie de Gala, physician loan consultant serving Northern Colorado — Fort Collins, Greeley, Loveland, Timnath"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top grayscale"
-                  quality={90}
-                  priority
-                />
+        {/* Text — left side */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-16 md:py-28">
+          <div className="max-w-xl">
+            <p className="text-[#555555] text-xs uppercase tracking-[0.3em] mb-7 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#555555] inline-block" />
+              Northern Colorado
+            </p>
+            <h1
+              className="text-5xl md:text-6xl lg:text-[4.5rem] text-[#F8F8F8] leading-[1.05] mb-6"
+              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+            >
+              Medical Professional Loans & Investor Funding.
+            </h1>
+            <span style={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}>
+              Medical professional loan specialist and investor line of credit broker serving Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance, Northern Colorado. Physician loans, nurse loans, dentist loans. NMLS# 2845865
+            </span>
+            <p className="text-[#888888] text-base md:text-lg leading-relaxed mb-10 max-w-md">
+              Zero down loans for doctors, nurses, dentists, NPs, and many licensed healthcare professionals. Revolving investor lines of credit up to $10M for Northern Colorado real estate investors.
+            </p>
+            <div className="flex flex-col items-start gap-5">
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-8 py-3.5 text-sm font-medium transition-all rounded-full bg-[#F8F8F8] text-[#0A0A0A] hover:bg-[#DCDCDC]"
+                >
+                  Get Pre-Qualified
+                </a>
+                <BookCallButton variant="outline" label="Get in Touch" />
               </div>
+              <Link
+                href="/find-my-loan"
+                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#F8F8F8] transition-colors group"
+              >
+                Not sure which loan fits?
+                <span className="group-hover:translate-x-1 transition-transform">Find out →</span>
+              </Link>
             </div>
           </div>
+        </div>
+
+        {/* Mobile photo */}
+        <div className="md:hidden absolute inset-0 pointer-events-none">
+          <Image
+            src="/headshot.jpg"
+            alt="Stevie de Gala"
+            fill
+            sizes="100vw"
+            className="object-cover object-top grayscale opacity-20"
+            quality={80}
+            priority
+          />
         </div>
       </section>
 
@@ -260,369 +258,195 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="bg-[#0A0A0A] py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">The Process</p>
-            <h2
-              className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-            >
-              Simple. Transparent. On your side.
-            </h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                step: '01',
-                title: 'Free call',
-                body: 'A free 15-minute call — no forms beforehand, no pressure. Just an honest conversation about where you are and where you want to go.',
-              },
-              {
-                step: '02',
-                title: 'I review your picture',
-                body: 'Credit, income, savings — I look at the full picture and tell you honestly what you qualify for and which loan type fits best.',
-              },
-              {
-                step: '03',
-                title: 'I shop the market',
-                body: 'I compare rates and structures across 30+ lenders on your behalf. You get options, not a take-it-or-leave-it offer from a single bank.',
-              },
-              {
-                step: '04',
-                title: 'You close with confidence',
-                body: 'Clear terms, no surprises, and a real person you can call throughout the process. You always know where things stand.',
-              },
-            ].map((item) => (
-              <div key={item.step} className="border border-white/40 bg-white backdrop-blur-sm p-8 rounded-xl">
-                <p className="text-[#0A0A0A] text-5xl font-bold mb-6 leading-none" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-                  {item.step}
-                </p>
-                <h3
-                  className="text-[#0A0A0A] text-xl mb-3"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                >
-                  {item.title}
-                </h3>
-                <p className="text-[#3A3A3A] text-sm leading-relaxed">{item.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Three-Track Value Block */}
-      <section className="bg-[#0A0A0A] py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-center text-[#C4C4C4] mb-20 leading-relaxed mx-auto max-w-2xl" style={{ fontSize: '1.3rem' }}>
-            Most lenders don&apos;t understand your financial picture. High student debt, a career just starting, or a real estate portfolio that moves faster than a bank can underwrite — I specialize in the loans built for exactly where you are.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
+      {/* Who I Help */}
+      <section className="bg-[#0A0A0A] py-20 px-6 border-t border-[#1A1A1A]">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-center text-[#444444] text-xs uppercase tracking-[0.25em] mb-4">Who I Help</p>
+          <h2
+            className="text-center text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-12"
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+          >
+            Built for your specific situation.
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
 
-            {/* Card A — Doctor Loans */}
-            <div
-              className="card-hover bg-white px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #E5E5E5', borderLeft: '3px solid #5C8AA5' }}
-            >
-              <div>
-                <div className="flex items-center gap-2 mb-7">
-                  <Stethoscope size={18} className="text-[#5C8AA5]" />
-                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Medical Professional Loans</span>
+            {/* Medical Professional */}
+            <div className="rounded-2xl overflow-hidden border border-[#303030]" style={{ background: 'linear-gradient(160deg, #2E2E2E 0%, #181818 40%, #0A0A0A 100%)' }}>
+              <div className="px-8 pt-10 pb-8">
+                <div className="flex items-center gap-2 mb-6">
+                  <Stethoscope size={14} className="text-[#888888]" />
+                  <span className="text-[#888888] text-xs uppercase tracking-[0.2em]">Medical Professional</span>
                 </div>
                 <h3
-                  className="text-[#0A0A0A] leading-tight mb-6"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)' }}
+                  className="text-3xl text-[#F8F8F8] leading-tight mb-4"
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                 >
-                  The loan built for your career.
+                  Medical Professional Home Loans
                 </h3>
-                <p className="text-[#3A3A3A] text-sm leading-relaxed">
-                  For MDs, DOs, nurses, NPs, dentists, pharmacists, PAs, and more — zero down, no PMI, and student loan debt excluded from your DTI. Your earning potential is the asset, not your savings account.
+                <p className="text-[#555555] text-sm leading-relaxed mb-6 max-w-sm">
+                  Built for MDs, DOs, NPs, RNs, PAs, dentists, pharmacists, CRNAs, and more. Zero down, no PMI, student loan debt excluded from DTI.
                 </p>
+                <Link
+                  href="/who-i-help/medical-professionals"
+                  className="inline-block border border-[#F8F8F8] text-[#F8F8F8] px-7 py-3 text-sm tracking-wide hover:bg-[#F8F8F8] hover:text-[#0A0A0A] transition-all rounded-full"
+                >
+                  Learn More
+                </Link>
               </div>
-              <Link
-                href="/loans/doctor-loan"
-                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
-              >
-                See if you qualify
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </Link>
+              <div className="mx-8 mb-8 bg-[#0E0E0E] border border-[#1E1E1E] rounded-xl p-5">
+                <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+                  {[
+                    { label: 'Down Payment', val: '0%' },
+                    { label: 'PMI Required', val: 'None' },
+                    { label: 'Student Debt in DTI', val: 'Excluded' },
+                    { label: 'Max Loan Size', val: '$2M+' },
+                  ].map((item) => (
+                    <div key={item.label}>
+                      <p className="text-[#444444] text-xs mb-1">{item.label}</p>
+                      <p className="text-[#C4C4C4] text-sm font-medium">{item.val}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Card B — Investor Funding */}
-            <div
-              className="card-hover bg-white px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #E5E5E5', borderLeft: '3px solid #4A7FA5' }}
-            >
-              <div>
-                <div className="flex items-center gap-2 mb-7">
-                  <Building2 size={18} className="text-[#4A7FA5]" />
-                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Investor Funding</span>
+            {/* Real Estate Investor */}
+            <div className="rounded-2xl overflow-hidden border border-[#303030]" style={{ background: 'linear-gradient(160deg, #0A0A0A 0%, #141414 40%, #262626 100%)' }}>
+              <div className="px-8 pt-10 pb-8">
+                <div className="flex items-center gap-2 mb-6">
+                  <Building2 size={14} className="text-[#888888]" />
+                  <span className="text-[#888888] text-xs uppercase tracking-[0.2em]">Real Estate Investor</span>
                 </div>
                 <h3
-                  className="text-[#0A0A0A] leading-tight mb-6"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)' }}
+                  className="text-3xl text-[#F8F8F8] leading-tight mb-4"
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                 >
-                  Capital ready when the deal is.
+                  Investor Funding
                 </h3>
-                <p className="text-[#3A3A3A] text-sm leading-relaxed">
-                  Investor lines of credit give you revolving access to capital for multifamily and commercial acquisitions in Fort Collins, Greeley, Loveland, and Northern Colorado — draw, close, repay, repeat. No new loan approval each time.
+                <p className="text-[#555555] text-sm leading-relaxed mb-6 max-w-sm">
+                  Pre-approved capital for Northern Colorado real estate investors. Draw, close, repay, repeat — no new loan approval required.
                 </p>
-              </div>
-              <Link
-                href="/loans/investor-line-of-credit"
-                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
-              >
-                Calculate your line
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </Link>
-            </div>
-
-            {/* Card C — Fix & Flip */}
-            <div
-              className="card-hover bg-white px-10 py-14 flex flex-col justify-between min-h-[380px] rounded-xl"
-              style={{ border: '1px solid #E5E5E5', borderLeft: '3px solid #B8860B' }}
-            >
-              <div>
-                <div className="flex items-center gap-2 mb-7">
-                  <Trophy size={18} className="text-[#B8860B]" />
-                  <span className="text-[#555555] font-medium tracking-[0.15em]" style={{ fontSize: '1.1rem' }}>Fix &amp; Flip</span>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {[
+                    { label: 'Fix & Flip Line of Credit' },
+                    { label: 'Hard Money / Private Funding' },
+                    { label: 'DSCR Loan' },
+                  ].map((p) => (
+                    <Link
+                      key={p.label}
+                      href="/loans/fix-and-flip"
+                      className="text-xs border border-[#333333] text-[#888888] px-3 py-1.5 rounded-full hover:border-[#555555] hover:text-[#C4C4C4] transition-colors"
+                    >
+                      {p.label}
+                    </Link>
+                  ))}
                 </div>
-                <h3
-                  className="text-[#0A0A0A] leading-tight mb-6"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(1.6rem, 2.5vw, 2.5rem)' }}
+                <Link
+                  href="/who-i-help/investors"
+                  className="inline-block border border-[#F8F8F8] text-[#F8F8F8] px-7 py-3 text-sm tracking-wide hover:bg-[#F8F8F8] hover:text-[#0A0A0A] transition-all rounded-full"
                 >
-                  Move fast. Make offers. Win deals.
-                </h3>
-                <p className="text-[#3A3A3A] text-sm leading-relaxed">
-                  A fix and flip line of credit means your next offer is not contingent on financing approval. You make the call, draw the funds, and close — while bank-dependent buyers are still waiting.
-                </p>
+                  Learn More
+                </Link>
               </div>
-              <Link
-                href="/loans/fix-and-flip"
-                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#0A0A0A] transition-colors mt-10 group"
-              >
-                Make your next offer
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </Link>
+              <div className="mx-8 mb-8 bg-[#0E0E0E] border border-[#1E1E1E] rounded-xl p-5">
+                <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+                  {[
+                    { label: 'Loan Size', val: 'Up to $10M' },
+                    { label: 'Close Time', val: '~10 Days' },
+                    { label: 'Max ARV', val: 'Up to 70%' },
+                    { label: 'Rate', val: 'High 8s–9%' },
+                  ].map((item) => (
+                    <div key={item.label}>
+                      <p className="text-[#444444] text-xs mb-1">{item.label}</p>
+                      <p className="text-[#C4C4C4] text-sm font-medium">{item.val}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
           </div>
-
-          <div className="mt-12 text-center">
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors group"
-            >
-              Why I specialize in physician loans and investor funding
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </Link>
-          </div>
-
         </div>
       </section>
 
       {/* Broker vs Bank */}
-      <section className="bg-[#111111] border-y border-[#2E2E2E] py-24 px-6">
-        <div className="max-w-5xl mx-auto">
+      <section className="bg-[#0A0A0A] py-24 px-6 border-t border-[#1A1A1A]">
+        <div className="max-w-4xl mx-auto">
           <div className="mb-12 text-center">
-            <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Why a Broker</p>
+            <p className="text-[#444444] text-xs uppercase tracking-[0.25em] mb-4">Why a Broker</p>
             <h2
               className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-4"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
             >
-              Your bank is not shopping for you.
+              The bank is not shopping for you.
             </h2>
-            <p className="text-[#888888] text-lg max-w-2xl mx-auto leading-relaxed">
-              When you go directly to a bank, you get one offer. A broker shops the entire market on your behalf and brings you the best option available.
+            <p className="text-[#555555] text-base max-w-xl mx-auto leading-relaxed">
+              When you go to a bank, you get one offer — theirs. A broker shops 250+ lenders and brings you the best one.
             </p>
           </div>
 
-          {/* Comparison table */}
-          <div className="rounded-2xl overflow-hidden border border-[#2E2E2E]">
-            {/* Column headers */}
-            <div className="grid grid-cols-2 bg-[#1A1A1A] border-b border-[#2E2E2E]">
-              <div className="px-7 py-4 border-r border-[#2E2E2E]">
-                <p className="text-[#888888] text-xs uppercase tracking-widest">Going Direct to a Bank</p>
+          {/* 3-column comparison table */}
+          <div className="rounded-2xl overflow-hidden border border-[#1E1E1E]">
+            {/* Header */}
+            <div className="grid grid-cols-[1fr_140px_190px]">
+              <div className="px-6 py-4 bg-[#111111] border-b border-r border-[#1E1E1E]">
+                <p className="text-[#888888] text-xs uppercase tracking-widest">Feature</p>
               </div>
-              <div className="px-7 py-4">
-                <p className="text-[#F8F8F8] text-xs uppercase tracking-widest">Working with Stevie</p>
+              <div className="py-4 bg-[#111111] border-b border-r border-[#1E1E1E] flex items-center justify-center">
+                <p className="text-[#888888] text-xs uppercase tracking-widest">A Bank</p>
+              </div>
+              <div className="py-5 bg-[#F8F8F8] border-b border-[#F8F8F8] flex items-center justify-center">
+                <p className="text-[#0A0A0A] text-xs uppercase tracking-widest font-medium whitespace-nowrap">Working with Stevie</p>
               </div>
             </div>
 
             {[
-              {
-                bank: 'One lender. One set of products. One offer.',
-                broker: '30+ lenders compared side by side on your behalf.',
-              },
-              {
-                bank: 'Retail pricing — set by the bank for the bank.',
-                broker: 'Wholesale pricing — more competitive than retail.',
-              },
-              {
-                bank: 'Limited loan types — mostly what they sell in-house.',
-                broker: 'Every loan type: FHA, VA, USDA, Jumbo, DSCR, Non-QM, and more.',
-              },
-              {
-                bank: 'Physician loans? Usually only one option if any.',
-                broker: 'Multiple physician loan programs compared — best terms win.',
-              },
-              {
-                bank: 'Closing costs are what they are.',
-                broker: 'Multiple lenders compete — best total cost wins.',
-              },
-              {
-                bank: 'Their loan officer works for the bank.',
-                broker: 'I work for you. Not the lender. Not the bank.',
-              },
-              {
-                bank: 'You do the shopping. Alone.',
-                broker: 'You relax. I do the shopping.',
-              },
+              { feature: 'Lenders accessed',          bank: '1',     broker: '250+' },
+              { feature: 'Rate shopping',              bank: '✕',     broker: '✓' },
+              { feature: 'Wholesale pricing',          bank: '✕',     broker: '✓' },
+              { feature: 'Physician loan programs',    bank: 'Rare',  broker: '✓' },
+              { feature: 'DSCR & investor products',   bank: 'Rare',  broker: '✓' },
+              { feature: 'Closing cost competition',   bank: 'Rare',  broker: '✓' },
+              { feature: 'Works for you',              bank: '✕',     broker: '✓' },
             ].map((row, i) => (
-              <div
-                key={i}
-                className={`grid grid-cols-2 border-b border-[#2E2E2E] last:border-b-0 ${i % 2 === 0 ? 'bg-[#0A0A0A]' : 'bg-[#111111]'}`}
-              >
-                <div className="px-7 py-5 border-r border-[#2E2E2E] flex items-start gap-3">
-                  <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#555555]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                  <span className="text-[#888888] text-sm leading-relaxed">{row.bank}</span>
+              <div key={i} className="grid grid-cols-[1fr_140px_190px] border-b border-[#1A1A1A] last:border-b-0">
+                <div className="px-6 py-4 bg-[#111111] border-r border-[#1A1A1A] flex items-center">
+                  <span className="text-[#888888] text-sm">{row.feature}</span>
                 </div>
-                <div className="px-7 py-5 flex items-start gap-3">
-                  <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#5C8A5C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-[#C4C4C4] text-sm leading-relaxed">{row.broker}</span>
+                <div className="py-4 bg-[#111111] border-r border-[#1A1A1A] flex items-center justify-center">
+                  <span className={`text-sm ${row.bank === '✓' ? 'text-[#C4C4C4]' : row.bank === '✕' ? 'text-[#2E2E2E]' : 'text-[#444444]'}`}>
+                    {row.bank}
+                  </span>
+                </div>
+                <div className="py-4 bg-[#1C1C1C] flex items-center justify-center">
+                  <span className="text-sm text-[#E8E8E8] font-medium">{row.broker}</span>
                 </div>
               </div>
             ))}
-          </div>
-
-          <p className="text-[#888888] text-xs mt-6 text-center">
-            Broker compensation is paid by the lender — not by you. My job is to find you the best deal, not the one that pays me the most.
-          </p>
-        </div>
-      </section>
-
-      {/* Split-Audience CTA */}
-      <section className="bg-[#0A0A0A] py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-[#888888] text-xs uppercase tracking-[0.25em] mb-10">Who Are You?</p>
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Medical Professional */}
-            <div className="border border-[#5C8AA5]/40 bg-[#0D1519] rounded-2xl px-8 py-10 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-2 mb-5">
-                  <Stethoscope size={16} className="text-[#5C8AA5]" />
-                  <span className="text-[#5C8AA5] text-xs uppercase tracking-[0.2em]">Medical Professional</span>
-                </div>
-                <h3
-                  className="text-2xl text-[#F8F8F8] leading-tight mb-4"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                >
-                  MD, DO, NP, RN, PA, DDS, PharmD, CRNA, and more
-                </h3>
-                <ul className="space-y-2 mb-8">
-                  {['Zero down payment', 'No PMI at any loan size', 'Student debt excluded from DTI', 'Employment contract accepted for residents'].map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-[#888888] text-sm">
-                      <svg className="w-3.5 h-3.5 flex-shrink-0 text-[#5C8AA5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <BookCallButton variant="outline" label="Book a Free Call — Medical" />
-            </div>
-            {/* Real Estate Investor */}
-            <div className="border border-[#B8860B]/40 bg-[#160F00] rounded-2xl px-8 py-10 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-2 mb-5">
-                  <Building2 size={16} className="text-[#B8860B]" />
-                  <span className="text-[#B8860B] text-xs uppercase tracking-[0.2em]">Fix &amp; Flip Line of Credit</span>
-                </div>
-                <h3
-                  className="text-2xl text-[#F8F8F8] leading-tight mb-4"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                >
-                  Pre-approved capital. Non-contingent offers. Deals that close.
-                </h3>
-                <ul className="space-y-2 mb-8">
-                  {['Pre-approved revolving lines up to $10M', 'Close deals in ~10 days', 'No financing contingency on offers', 'High 8s–9% — cheaper than hard money'].map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-[#888888] text-sm">
-                      <svg className="w-3.5 h-3.5 flex-shrink-0 text-[#B8860B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <BookCallButton variant="outline" label="Book a Free Call — Investor" />
-            </div>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="bg-[#0A0A0A] py-24 px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-12">
-            <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Common Questions</p>
-            <h2
-              className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-            >
-              Questions people ask before they call.
-            </h2>
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-[220px_1fr] gap-16 items-start">
+            <div className="md:sticky md:top-32">
+              <h2
+                className="text-[3.5rem] md:text-[4.5rem] leading-none text-[#F8F8F8] font-normal"
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+              >
+                FAQ
+              </h2>
+            </div>
+            <div className="border-t border-[#2E2E2E] pt-2">
+              <FAQ />
+            </div>
           </div>
-          <FAQ />
         </div>
       </section>
 
-      {/* Credibility Stats */}
-      <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              {
-                stat: 'Ironman Finisher',
-                sub: 'When the process gets hard, I know how to push through.',
-                icon: <Trophy size={28} className="text-[#555555] mb-5" />,
-              },
-              {
-                stat: 'Ground-Up Developer',
-                sub: 'I built a self-storage facility from scratch as a senior in college.',
-                icon: <Building2 size={28} className="text-[#555555] mb-5" />,
-              },
-              {
-                stat: 'BYU Entrepreneurial Management',
-                sub: 'My degree was built around building things, not just studying them.',
-                icon: <GraduationCap size={28} className="text-[#555555] mb-5" />,
-              },
-              {
-                stat: 'Licensed in TX and CO',
-                sub: 'Primary market: Northern Colorado. Also licensed in East Texas.',
-                icon: <BadgeCheck size={28} className="text-[#555555] mb-5" />,
-              },
-            ].map((item) => (
-              <div key={item.stat} className="bg-white backdrop-blur-sm border border-white/40 p-8 md:p-10 rounded-xl">
-                {item.icon}
-                <h4
-                  className="text-[#0A0A0A] text-xl mb-3 leading-snug"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                >
-                  {item.stat}
-                </h4>
-                <p className="text-[#3A3A3A] text-sm leading-relaxed">{item.sub}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Is This You? — Physician Loans */}
       <section className="bg-[#0A0A0A] py-24 px-6">
@@ -635,7 +459,7 @@ export default function HomePage() {
               <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Medical Professional Loans</p>
               <h2
                 className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight mb-5"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 Is This You?
               </h2>
@@ -650,7 +474,7 @@ export default function HomePage() {
                   'Available to residents and fellows',
                 ].map((benefit) => (
                   <li key={benefit} className="flex items-center gap-3 text-[#C4C4C4] text-sm">
-                    <svg className="w-4 h-4 flex-shrink-0 text-[#5C8AA5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="w-4 h-4 flex-shrink-0 text-[#888888]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     {benefit}
@@ -666,51 +490,12 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Right — professions list */}
-            <div className="grid grid-cols-1 gap-2">
-              {MEDICAL_PROFESSIONS.map((profession) => (
-                <div
-                  key={profession}
-                  className="bg-[#111111] border border-[#2E2E2E] px-5 py-3 rounded-lg flex items-center gap-3"
-                >
-                  <svg className="w-3.5 h-3.5 flex-shrink-0 text-[#5C8AA5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-[#C4C4C4] text-sm">{profession}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Investor Line of Credit highlight */}
-          <div className="border border-[#4A7FA5]/30 bg-[#111111] rounded-2xl px-8 md:px-12 py-10 mb-16">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <p className="text-[#4A7FA5] text-xs uppercase tracking-[0.25em] mb-4">Also an Investor?</p>
-                <h3
-                  className="text-2xl md:text-3xl text-[#F8F8F8] leading-tight mb-4"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                >
-                  Many physicians invest in real estate. An investor line of credit is how they fund it.
-                </h3>
-                <p className="text-[#888888] text-sm leading-relaxed">
-                  A revolving investor line of credit gives you standing capital to acquire multifamily and commercial properties in Fort Collins, Greeley, Loveland, and Northern Colorado — without refinancing your primary home or waiting on a new loan each time.
-                </p>
-              </div>
-              <div className="flex md:justify-end">
-                <Link
-                  href="/loans/investor-line-of-credit"
-                  className="inline-flex items-center gap-3 border border-[#4A7FA5] text-[#4A7FA5] px-7 py-3.5 text-sm tracking-wide hover:bg-[#4A7FA5] hover:text-[#0A0A0A] transition-all group rounded-full"
-                >
-                  Explore Investor Lines of Credit
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </Link>
-              </div>
-            </div>
+            {/* Right — professions ticker */}
+            <MedicalProfessionsTicker />
           </div>
 
           {/* Looking for Another Loan? */}
-          <div>
+          <div className="mt-20 pt-14 border-t border-[#1A1A1A]">
             <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-6">Looking for Another Loan?</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {[
@@ -748,7 +533,7 @@ export default function HomePage() {
               <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-3">Rate Watch</p>
               <h2
                 className="text-2xl md:text-3xl text-[#F8F8F8] leading-tight mb-3"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 Rates change daily. Know when they drop.
               </h2>
@@ -768,7 +553,7 @@ export default function HomePage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="text-4xl md:text-5xl text-[#0A0A0A] mb-4 leading-tight"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Better financing starts with one conversation.
           </h2>

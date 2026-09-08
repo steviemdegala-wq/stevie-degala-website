@@ -284,7 +284,7 @@ export default function LoanPage({ params }: { params: { slug: string } }) {
           </Link>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             {loan.name}
           </h1>
@@ -340,7 +340,7 @@ export default function LoanPage({ params }: { params: { slug: string } }) {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="text-2xl md:text-3xl text-[#F8F8F8] mb-3"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Not sure if this is the right loan for you?
           </h2>
@@ -348,7 +348,7 @@ export default function LoanPage({ params }: { params: { slug: string } }) {
             Take the loan finder quiz or book a free call. I will look at your full picture and tell you exactly what makes sense.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <BookCallButton variant="solid" label="Book a Free Call" />
+            <BookCallButton variant="solid" label="Get in Touch" />
             <Link
               href="/find-my-loan"
               className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors group"

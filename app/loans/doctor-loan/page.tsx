@@ -141,7 +141,7 @@ export default function DoctorLoanPage() {
           <p className="text-[#888888] text-xs uppercase tracking-widest mb-6">Medical Professional Loan — Northern Colorado</p>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             The mortgage built for how medical professionals actually earn.
           </h1>
@@ -159,7 +159,7 @@ export default function DoctorLoanPage() {
         <div className="max-w-7xl mx-auto">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             What makes a medical professional loan different.
           </h2>
@@ -171,7 +171,7 @@ export default function DoctorLoanPage() {
               <div key={f.title} className="card-white card-hover border border-[#E5E5E5] bg-white p-8 rounded-xl">
                 <h3
                   className="text-xl text-[#0A0A0A] mb-4"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                 >
                   {f.title}
                 </h3>
@@ -190,7 +190,7 @@ export default function DoctorLoanPage() {
               <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Qualifying Credentials</p>
               <h2
                 className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-6"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 Who qualifies for a medical professional loan?
               </h2>
@@ -202,7 +202,7 @@ export default function DoctorLoanPage() {
                   <div key={p.degree} className="flex items-baseline gap-3">
                     <span
                       className="text-[#555555] text-xs uppercase tracking-widest flex-shrink-0"
-                      style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                      style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                     >
                       {p.degree}
                     </span>
@@ -216,7 +216,7 @@ export default function DoctorLoanPage() {
               <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Residents & Fellows</p>
               <h2
                 className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-6"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 You do not have to wait until you are attending.
               </h2>
@@ -268,7 +268,7 @@ export default function DoctorLoanPage() {
         <div className="max-w-4xl mx-auto">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-12"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             Frequently asked questions.
           </h2>
@@ -288,7 +288,7 @@ export default function DoctorLoanPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
             See which medical professional loan program fits your situation.
           </h2>

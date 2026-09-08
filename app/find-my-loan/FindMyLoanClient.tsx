@@ -532,7 +532,7 @@ export default function FindMyLoanPage() {
             <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-3">Loan Matcher</p>
             <h1
               className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-2"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
             >
               Find the loan that fits your life.
             </h1>
@@ -562,7 +562,7 @@ export default function FindMyLoanPage() {
             <div>
               <h2
                 className="text-2xl md:text-3xl text-[#F8F8F8] mb-7 leading-snug"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 {currentQ.question}
               </h2>
@@ -605,7 +605,7 @@ export default function FindMyLoanPage() {
             <div>
               <h2
                 className="text-2xl md:text-3xl text-[#F8F8F8] mb-2 leading-snug"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
               >
                 Based on your answers, here are your best fits.
               </h2>
@@ -639,7 +639,7 @@ export default function FindMyLoanPage() {
 
                       <h3
                         className="text-[#F8F8F8] text-xl mb-1"
-                        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                        style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                       >
                         {loan.name}
                       </h3>
@@ -690,7 +690,7 @@ export default function FindMyLoanPage() {
               <div className="border border-[#E5E5E5] bg-white rounded-2xl px-8 py-10 text-center">
                 <h3
                   className="text-[#0A0A0A] text-2xl md:text-3xl mb-3"
-                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
                 >
                   Ready to get specific numbers?
                 </h3>
