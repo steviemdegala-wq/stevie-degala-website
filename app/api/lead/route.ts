@@ -127,6 +127,39 @@ function buildLeadOverview(body: Record<string, any>) {
     .filter((item) => item.value)
 }
 
+function buildLeadSummary(body: Record<string, any>) {
+  const requestType = VALUE_LABELS[body.request_type] ?? body.request_type ?? 'Website inquiry'
+  const overview = buildLeadOverview(body)
+  const suggestions = Array.isArray(body.suggested_paths) ? body.suggested_paths : []
+  return [
+    `Find My Loan submission: ${requestType}`,
+    ...overview.map(({ label, value }) => `${label}: ${value}`),
+    ...(suggestions.length ? ['Suggested paths:', ...suggestions.map((item: unknown) => `* ${String(item)}`)] : []),
+    ...(body.requires_planning_call ? ['Planning call recommended because available funds may need a closer review.'] : []),
+  ].join('\n')
+}
+
+function inferLoanType(body: Record<string, any>) {
+  const highlights = body.deal_highlights ?? {}
+  const details = [
+    formatAnswer('purchase_use', highlights.purchase_use),
+    formatAnswer('investment_asset', highlights.investment_asset),
+    formatAnswer('refi_use', highlights.refi_use),
+    formatAnswer('refi_goal', highlights.refi_goal),
+  ].filter(Boolean)
+  const requestType = VALUE_LABELS[body.request_type] ?? body.request_type ?? 'Website inquiry'
+  return details.length ? `${requestType}: ${details.join(', ')}` : String(requestType)
+}
+
+function inferLoanAmount(body: Record<string, any>) {
+  const highlights = body.deal_highlights ?? {}
+  const raw = highlights.purchase_price ?? highlights.value ?? highlights.business_amount
+  if (typeof raw === 'number' && Number.isFinite(raw)) return raw
+  if (typeof raw !== 'string') return 0
+  const parsed = Number(raw.replace(/[^0-9.]/g, ''))
+  return Number.isFinite(parsed) ? parsed : 0
+}
+
 async function sendLeadNotification(body: Record<string, any>) {
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) {
@@ -231,6 +264,11 @@ export async function POST(req: NextRequest) {
         email: email ?? '',
         stage: 'New Lead',
         source: source ?? 'website',
+        role: 'Borrower',
+        tags: ['Find My Loan', VALUE_LABELS[requestType] ?? requestType].filter(Boolean),
+        loanType: inferLoanType(body),
+        loanAmount: inferLoanAmount(body),
+        notes: buildLeadSummary(body),
       }),
     })
 
