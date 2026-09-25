@@ -224,18 +224,29 @@ async function sendLeadNotification(body: Record<string, any>) {
   return true
 }
 
+function normalizeUsPhone(value: unknown) {
+  let digits = String(value ?? '').replace(/\D/g, '')
+  if (digits.length === 11 && digits.startsWith('1')) digits = digits.slice(1)
+  if (!/^\d{10}$/.test(digits)) return null
+  if (!/[2-9]/.test(digits[0]) || !/[2-9]/.test(digits[3]) || /^(\d)\1{9}$/.test(digits)) return null
+  return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`
+}
+
 export async function POST(req: NextRequest) {
   const body = await req.json()
   const contact = body.contact ?? body
   const { name, phone, email } = contact
+  const normalizedPhone = normalizeUsPhone(phone)
   const requestType = typeof body.request_type === 'string' ? body.request_type : ''
   const source = requestType
     ? `website-find-my-loan:${requestType}`
     : body.source
 
-  if (!phone && !email) {
-    return NextResponse.json({ error: 'Phone or email required' }, { status: 400 })
+  if (!normalizedPhone) {
+    return NextResponse.json({ error: 'A valid 10-digit US phone number is required' }, { status: 400 })
   }
+  if (body.contact && typeof body.contact === 'object') body.contact.phone = normalizedPhone
+  else body.phone = normalizedPhone
 
   try {
     // Authenticate with CRM
@@ -260,7 +271,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         name: name || 'Website Lead',
-        phone: phone ?? '',
+        phone: normalizedPhone,
         email: email ?? '',
         stage: 'New Lead',
         source: source ?? 'website',
