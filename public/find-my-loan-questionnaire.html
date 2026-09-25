@@ -18,7 +18,7 @@
     .brand-panel{position:relative;background:var(--ink);color:#fff;padding:34px 46px 42px;display:flex;flex-direction:column;overflow:hidden;min-height:100vh}
     .brand-panel:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,.58) 48%,#090909 100%),url('/headshot.jpg') center 36%/cover no-repeat;filter:grayscale(1);opacity:.72}
     .brand-panel:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.12),rgba(0,0,0,.48));pointer-events:none}
-    .brand{font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;letter-spacing:-.02em;position:relative;z-index:1}
+    .brand{font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;letter-spacing:-.02em;position:relative;z-index:1;color:inherit;text-decoration:none;width:max-content}
     .eyebrow{margin:auto 0 18px;text-transform:uppercase;letter-spacing:.22em;font-size:.74rem;color:#a8a49e;position:relative;z-index:1}
     .brand-copy{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.55rem,4.2vw,5rem);line-height:.96;letter-spacing:-.055em;max-width:9ch;margin:0;position:relative;z-index:1}
     .brand-copy em{color:var(--accent-light);font-weight:normal}
@@ -89,7 +89,7 @@
 <body>
   <div class="app">
     <aside class="brand-panel" aria-label="Mortgage Stevie">
-      <div class="brand">Mortgage Stevie</div>
+      <a class="brand" href="/" target="_top" aria-label="Mortgage Stevie home">Mortgage Stevie</a>
       <p class="eyebrow">Mortgage &amp; investor funding</p>
       <p class="brand-copy">Clarity for your <em>next move.</em></p>
       <div class="trust"><span>Guided match</span><span>No hard credit pull</span></div>

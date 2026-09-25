@@ -25,13 +25,18 @@ The payload includes:
 
 ## Automated email notification
 
-To add an email later, extend `app/api/lead/route.ts` after the CRM request succeeds. Send the email from this server route, not from the questionnaire HTML, so the provider API key remains private.
+The lead route sends a concise borrower and deal summary through the Resend API. Email delivery runs on the server and is independent from CRM delivery, so one service can fail without blocking the questionnaire.
 
-Recommended environment variables:
+Add these environment variables to the Vercel project:
 
 ```text
-LEAD_NOTIFICATION_EMAIL=your@email.com
-EMAIL_PROVIDER_API_KEY=your_private_provider_key
+RESEND_API_KEY=re_your_private_key
+LEAD_NOTIFICATION_EMAIL=steviemdegala@gmail.com
+LEAD_FROM_EMAIL=Mortgage Stevie <onboarding@resend.dev>
 ```
 
-Use `body.contact`, `body.request_type`, `body.deal_highlights`, and `body.suggested_paths` to build the email summary. Keep email delivery inside its own `try` block so a provider outage does not block the user from seeing the questionnaire result.
+`LEAD_NOTIFICATION_EMAIL` and `LEAD_FROM_EMAIL` have matching defaults in the code, but keeping them in Vercel makes future changes easier. `RESEND_API_KEY` is required and must remain a secret.
+
+For initial testing, Resend's `onboarding@resend.dev` sender can be used with the email address associated with the Resend account. For long-term production delivery, verify a sending domain in Resend and change `LEAD_FROM_EMAIL` to an address on that domain, such as `Mortgage Stevie <leads@mortgagestevie.com>`.
+
+The email includes the borrower's name, phone, email, request type, relevant property and timing details, key deal numbers, credit range, suggested financing paths, and planning-call status. It intentionally sends a high-level summary instead of an unfiltered data dump.
