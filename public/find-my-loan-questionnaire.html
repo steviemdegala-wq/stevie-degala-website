@@ -47,9 +47,15 @@
     .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     label{display:grid;gap:8px;font-size:.82rem;font-weight:700;color:#4c4945}
     label.full{grid-column:1/-1}
-    input,textarea,gmp-place-autocomplete{width:100%;border:1px solid var(--line);background:#fff;border-radius:13px;padding:15px 16px;color:var(--ink);outline:none}
+    input,textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:13px;padding:15px 16px;color:var(--ink);outline:none}
     input:focus,textarea:focus{border-color:#555;box-shadow:0 0 0 3px rgba(0,0,0,.08)}
     textarea{min-height:112px;resize:vertical}
+    .address-wrap{position:relative}
+    .address-suggestions{position:absolute;z-index:20;top:calc(100% + 7px);left:0;right:0;display:none;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:0 18px 40px rgba(0,0,0,.14);overflow:hidden}
+    .address-suggestions.show{display:block}
+    .address-suggestion{width:100%;border:0;border-bottom:1px solid #ececec;background:#fff;padding:13px 15px;text-align:left;color:var(--ink);font-size:.9rem;line-height:1.35}
+    .address-suggestion:last-child{border-bottom:0}
+    .address-suggestion:hover,.address-suggestion:focus-visible{background:#f2f2f2;outline:none}
     .next{margin-top:22px;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:15px 22px;font-weight:750;min-width:148px;display:inline-flex;justify-content:center;align-items:center;gap:10px}
     .next:disabled{opacity:.4;cursor:not-allowed}
     .intro-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
@@ -115,6 +121,7 @@
   </script>
   <script>
     const state={path:null,answers:{},history:[],current:'intro'};
+    const moneyInputFields=new Set(['purchase_price','renovation_costs','construction_costs','land_cost','arv','funds_available','value','balance']);
     const screen=document.querySelector('#screen'),back=document.querySelector('#back'),progress=document.querySelector('#progress'),stepCount=document.querySelector('#stepCount');
     const credit=[['740+','740 or higher · Excellent'],['700-739','700–739 · Good'],['660-699','660–699 · Fair'],['below660','Below 660'],['unsure','I’m not sure']];
     const primaryTimelines=[['shopping','Just shopping'],['preapproval','I want to get pre-approved'],['month','Need to close within 30 days'],['two-weeks','Need funding in under 2 weeks']];
@@ -196,7 +203,8 @@
     function show(key,push=true){if(push&&state.current!=='intro')state.history.push(state.current);else if(push&&state.current==='intro')state.history.push('intro');state.current=key;updateChrome();const item=questionFor(key);screen.innerHTML=`<div class="fade"><p class="kicker">${state.path?label(state.path):'Start here'}</p><h1>${item.title}</h1><p class="lede">${item.sub}</p>${item.options?options(item.options,key):form(item.form,key)}${key==='start'?'<button class="quiet-route" data-path="business" type="button">Need private money or non-real-estate funding?</button>':''}</div>`;wire(key);if(key==='address'&&state.answers.investment_asset!=='construction')initAddressAutocomplete()}
     function label(v){return ({purchase:'Purchase',refinance:'Refinance',sell:'Sell',business:'Other funding'})[v]||v}
     function options(arr,key){return `<div class="answers ${arr.length===4?'grid':''}">${arr.map(([v,t,s])=>`<button class="choice" type="button" data-value="${v}"><span><strong>${t}</strong>${s?`<small>${s}</small>`:''}</span><span class="arrow">→</span></button>`).join('')}</div>`}
-    function form(fields,key){return `<form id="questionForm"><div class="form-grid">${fields.map(([name,ph,type,req])=>`<label class="${fields.length===1?'full':''}">${ph}${type==='textarea'?`<textarea name="${name}" ${req?'required':''}>${state.answers[name]||''}</textarea>`:type==='address'?`<span id="googleAddressHost"><input id="propertyLocation" name="${name}" type="text" value="${state.answers[name]||''}" autocomplete="street-address" ${req?'required':''}></span><span class="address-note" id="addressNote">Google address suggestions will appear as you type.</span>`:`<input name="${name}" type="${type}" value="${state.answers[name]||''}" ${req?'required':''} ${type==='number'?'min="0" inputmode="decimal"':''}>`}</label>`).join('')}</div><button class="next" type="submit">Continue <span>→</span></button></form>`}
+    function formattedMoneyInput(value){const digits=String(value||'').replace(/[^0-9]/g,'');return digits?Number(digits).toLocaleString('en-US'):''}
+    function form(fields,key){return `<form id="questionForm"><div class="form-grid">${fields.map(([name,ph,type,req])=>{const isMoney=moneyInputFields.has(name);const value=isMoney?formattedMoneyInput(state.answers[name]):state.answers[name]||'';return `<label class="${fields.length===1?'full':''}">${ph}${type==='textarea'?`<textarea name="${name}" ${req?'required':''}>${value}</textarea>`:type==='address'?`<span class="address-wrap"><input id="propertyLocation" name="${name}" type="text" value="${value}" autocomplete="street-address" placeholder="Start typing the property address" ${req?'required':''}><span class="address-suggestions" id="addressSuggestions" role="listbox"></span></span><span class="address-note" id="addressNote">Google address suggestions will appear as you type.</span>`:`<input name="${name}" type="${isMoney?'text':type}" value="${value}" ${req?'required':''} ${isMoney?'inputmode="numeric" data-money="true"':type==='number'?'min="0" inputmode="decimal"':''}>`}</label>`}).join('')}</div><button class="next" type="submit">Continue <span>→</span></button></form>`}
     function loadGooglePlaces(key){
       if(window.google?.maps?.importLibrary)return Promise.resolve();
       if(window.googlePlacesLoading)return window.googlePlacesLoading;
@@ -210,23 +218,24 @@
       return window.googlePlacesLoading;
     }
     async function initAddressAutocomplete(){
-      const host=document.querySelector('#googleAddressHost'),note=document.querySelector('#addressNote');
-      if(!host)return;
+      const input=document.querySelector('#propertyLocation'),suggestions=document.querySelector('#addressSuggestions'),note=document.querySelector('#addressNote');
+      if(!input||!suggestions)return;
       const key=window.STEVIE_CONFIG?.googleMapsApiKey||'';
       if(!key){if(note)note.textContent='Enter the address manually. Google autocomplete activates when your Maps key is added.';return}
       try{
         await loadGooglePlaces(key);
-        const {PlaceAutocompleteElement}=await google.maps.importLibrary('places');
-        const widget=new PlaceAutocompleteElement();
-        widget.placeholder='Start typing the property address';
-        widget.includedRegionCodes=['us'];
-        const hidden=document.createElement('input');hidden.type='hidden';hidden.name='location';hidden.required=true;hidden.value=state.answers.location||'';
-        widget.addEventListener('gmp-select',async event=>{const place=event.placePrediction.toPlace();await place.fetchFields({fields:['formattedAddress']});hidden.value=place.formattedAddress||'';state.answers.location=hidden.value});
-        host.replaceChildren(widget,hidden);
+        const {AutocompleteSuggestion,AutocompleteSessionToken}=await google.maps.importLibrary('places');
+        let token=new AutocompleteSessionToken(),timer,latest=[];
+        const close=()=>{suggestions.classList.remove('show');suggestions.replaceChildren();latest=[]};
+        const select=async prediction=>{const place=prediction.toPlace();await place.fetchFields({fields:['formattedAddress']});input.value=place.formattedAddress||prediction.text?.toString()||input.value;state.answers.location=input.value;token=new AutocompleteSessionToken();close()};
+        const render=items=>{suggestions.replaceChildren();latest=items.map(item=>item.placePrediction).filter(Boolean);latest.forEach(prediction=>{const button=document.createElement('button');button.type='button';button.className='address-suggestion';button.setAttribute('role','option');button.textContent=prediction.text?.toString()||[prediction.mainText?.toString(),prediction.secondaryText?.toString()].filter(Boolean).join(', ');button.onclick=()=>select(prediction);suggestions.appendChild(button)});suggestions.classList.toggle('show',latest.length>0)};
+        input.addEventListener('input',()=>{state.answers.location=input.value;clearTimeout(timer);const query=input.value.trim();if(query.length<3){close();return}timer=setTimeout(async()=>{try{const response=await AutocompleteSuggestion.fetchAutocompleteSuggestions({input:query,includedRegionCodes:['us'],sessionToken:token});render(response.suggestions||[]);if(note)note.textContent=latest.length?'Choose an address from Google or continue with what you entered.':'No Google matches yet. Keep typing or enter the address manually.'}catch(error){close();if(note)note.textContent='Google suggestions are unavailable right now. You can still enter the address manually.'}},220)});
+        input.addEventListener('keydown',event=>{if(event.key==='Enter'&&latest[0]){event.preventDefault();select(latest[0])}});
+        input.addEventListener('blur',()=>setTimeout(close,180));
         if(note)note.textContent='Powered by Google Places.';
       }catch(error){if(note)note.textContent='Google suggestions are unavailable right now. Enter the address manually.'}
     }
-    function wire(key){document.querySelectorAll('[data-value]').forEach(b=>b.onclick=()=>answer(key,b.dataset.value));document.querySelectorAll('[data-path]').forEach(b=>b.onclick=()=>{state.path=b.dataset.path;state.answers.start=b.dataset.path;state.history.push('intro');show('business_purpose',false)});const f=document.querySelector('#questionForm');if(f)f.onsubmit=async e=>{e.preventDefault();const data=new FormData(f);for(const [k,v] of data)state.answers[k]=v;if(key==='contact'){const button=f.querySelector('button');button.disabled=true;button.textContent='Saving your details...';await submitLead()}advance(key)}}
+    function wire(key){document.querySelectorAll('[data-value]').forEach(b=>b.onclick=()=>answer(key,b.dataset.value));document.querySelectorAll('[data-path]').forEach(b=>b.onclick=()=>{state.path=b.dataset.path;state.answers.start=b.dataset.path;state.history.push('intro');show('business_purpose',false)});document.querySelectorAll('[data-money]').forEach(input=>input.addEventListener('input',()=>{input.value=formattedMoneyInput(input.value)}));const f=document.querySelector('#questionForm');if(f)f.onsubmit=async e=>{e.preventDefault();const data=new FormData(f);for(const [k,v] of data)state.answers[k]=v;if(key==='contact'){const button=f.querySelector('button');button.disabled=true;button.textContent='Saving your details...';await submitLead()}advance(key)}}
     function answer(key,value){if(key==='start')state.path=value;state.answers[key]=value;advance(key)}
     function advance(key){const next=normalizeNext(key,routeFor(key));if(next==='result')result();else show(next)}
     function numberValue(key){const value=Number(String(state.answers[key]||'').replace(/[^0-9.]/g,''));return Number.isFinite(value)?value:0}
