@@ -4,7 +4,12 @@ const CRM_URL = 'https://crm-two-beta-90.vercel.app'
 
 export async function POST(req: NextRequest) {
   const body = await req.json()
-  const { name, phone, email, source } = body
+  const contact = body.contact ?? body
+  const { name, phone, email } = contact
+  const requestType = typeof body.request_type === 'string' ? body.request_type : ''
+  const source = requestType
+    ? `website-find-my-loan:${requestType}`
+    : body.source
 
   if (!phone && !email) {
     return NextResponse.json({ error: 'Phone or email required' }, { status: 400 })

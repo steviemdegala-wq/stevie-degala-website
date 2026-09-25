@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="A guided mortgage, investment funding, and selling strategy questionnaire from Stevie de Gala.">
+  <title>Find My Best Next Move | Stevie de Gala</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090909'/%3E%3Cpath d='M14 30 32 15l18 15v20H14z' fill='none' stroke='%23f4f4f4' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M25 50V36h14v14' fill='none' stroke='%23bdbdbd' stroke-width='4'/%3E%3C/svg%3E">
+  <style>
+    :root{--ink:#090909;--paper:#f5f5f5;--muted:#707070;--line:#d2d2d2;--accent:#5b5b5b;--accent-light:#c7c7c7;--white:#fff;--shadow:0 24px 60px rgba(0,0,0,.12)}
+    *{box-sizing:border-box}
+    html{font-size:16px;background:var(--ink)}
+    body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);min-height:100vh}
+    button,input,textarea{font:inherit}
+    button{cursor:pointer}
+    .app{min-height:100vh;display:grid;grid-template-columns:minmax(300px,38vw) 1fr}
+    .brand-panel{position:relative;background:var(--ink);color:#fff;padding:34px 46px 42px;display:flex;flex-direction:column;overflow:hidden;min-height:100vh}
+    .brand-panel:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,.58) 48%,#090909 100%),url('/headshot.jpg') center 36%/cover no-repeat;filter:grayscale(1);opacity:.72}
+    .brand-panel:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.12),rgba(0,0,0,.48));pointer-events:none}
+    .brand{font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;letter-spacing:-.02em;position:relative;z-index:1}
+    .eyebrow{margin:auto 0 18px;text-transform:uppercase;letter-spacing:.22em;font-size:.74rem;color:#a8a49e;position:relative;z-index:1}
+    .brand-copy{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.55rem,4.2vw,5rem);line-height:.96;letter-spacing:-.055em;max-width:9ch;margin:0;position:relative;z-index:1}
+    .brand-copy em{color:var(--accent-light);font-weight:normal}
+    .trust{margin-top:28px;display:flex;gap:20px;align-items:center;color:#a8a49e;font-size:.78rem;position:relative;z-index:1}
+    .trust span:first-child{display:inline-flex;align-items:center;gap:8px;color:#d9d5cd}
+    .trust span:first-child:before{content:"";width:6px;height:6px;background:#aaa;border-radius:50%}
+    .panel{min-height:100vh;padding:32px clamp(24px,6vw,96px) 54px;display:flex;flex-direction:column;background:var(--paper)}
+    .topbar{display:flex;align-items:center;gap:18px;min-height:42px}
+    .back{border:0;background:transparent;color:var(--ink);padding:8px 0;display:flex;align-items:center;gap:9px;font-weight:650;opacity:0;pointer-events:none;transition:.2s}
+    .back.show{opacity:1;pointer-events:auto}
+    .progress-wrap{flex:1;height:3px;background:#dcd8d0;max-width:360px;margin-left:auto;border-radius:2px;overflow:hidden}
+    .progress{height:100%;width:0;background:#555;transition:width .35s ease}
+    .step-count{font-size:.78rem;color:var(--muted);min-width:52px;text-align:right}
+    main{width:min(680px,100%);margin:auto;padding:60px 0 30px}
+    .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;color:#666;font-weight:750;margin:0 0 16px}
+    h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.35rem,4vw,4.4rem);line-height:1.01;letter-spacing:-.05em;margin:0 0 16px;font-weight:500}
+    .lede{font-size:1.05rem;line-height:1.6;color:#65615c;max-width:580px;margin:0 0 34px}
+    .answers{display:grid;gap:12px}
+    .answers.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .choice{width:100%;min-height:78px;text-align:left;border:1px solid var(--line);background:rgba(255,255,255,.5);border-radius:16px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px;color:var(--ink);transition:transform .18s,border-color .18s,background .18s,box-shadow .18s}
+    .choice:hover,.choice:focus-visible{transform:translateY(-2px);border-color:#777;background:#fff;box-shadow:0 10px 24px rgba(0,0,0,.06);outline:none}
+    .choice strong{font-size:1.02rem;display:block}
+    .choice small{font-size:.82rem;color:var(--muted);display:block;margin-top:4px;line-height:1.35}
+    .arrow{font-size:1.25rem;color:#555}
+    .quiet-route{border:0;background:transparent;color:#625e58;text-decoration:underline;text-underline-offset:4px;padding:18px 0 0;text-align:left}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    label{display:grid;gap:8px;font-size:.82rem;font-weight:700;color:#4c4945}
+    label.full{grid-column:1/-1}
+    input,textarea,gmp-place-autocomplete{width:100%;border:1px solid var(--line);background:#fff;border-radius:13px;padding:15px 16px;color:var(--ink);outline:none}
+    input:focus,textarea:focus{border-color:#555;box-shadow:0 0 0 3px rgba(0,0,0,.08)}
+    textarea{min-height:112px;resize:vertical}
+    .next{margin-top:22px;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:15px 22px;font-weight:750;min-width:148px;display:inline-flex;justify-content:center;align-items:center;gap:10px}
+    .next:disabled{opacity:.4;cursor:not-allowed}
+    .intro-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .intro-primary{border:0;border-radius:999px;background:var(--ink);color:#fff;padding:16px 24px;font-weight:750}
+    .micro{font-size:.78rem;color:#89857f;margin-top:18px;line-height:1.5}
+    .result{display:grid;gap:16px}
+    .result-card{background:#fff;border:1px solid #dedad2;border-radius:19px;padding:22px 24px;box-shadow:0 10px 35px rgba(0,0,0,.045)}
+    .result-card.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .result-card .number{font-family:Georgia,"Times New Roman",serif;color:#aaa;font-size:1.7rem}
+    .result-card h2{margin:8px 0 8px;font-family:Georgia,"Times New Roman",serif;font-size:1.45rem;font-weight:500}
+    .result-card p{margin:0;color:#666;line-height:1.55;font-size:.92rem}
+    .result-card.primary p{color:#ccc}
+    .result-card .metric{font-weight:800;font-size:.9rem;letter-spacing:.01em;margin:0 0 14px;color:#111}
+    .result-card.primary .metric{color:#fff}
+    .result-card ul{margin:12px 0 0;padding-left:19px;display:grid;gap:7px;font-size:.88rem;line-height:1.45;color:#5f5f5f}
+    .result-card.primary ul{color:#d0d0d0}
+    .result-card .fit{margin-top:15px;padding-top:13px;border-top:1px solid #ddd;font-size:.82rem;line-height:1.45}
+    .result-card.primary .fit{border-color:#333;color:#ddd}
+    .callout{border-left:2px solid #777;padding:2px 0 2px 17px;color:#555;font-size:.9rem;line-height:1.55;margin:22px 0}
+    .address-note{margin:8px 0 0;font-size:.78rem;color:#777;font-weight:500}
+    .action-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;display:grid;gap:10px;margin-bottom:14px}
+    .action-card h2{font-family:Georgia,"Times New Roman",serif;font-size:1.5rem;font-weight:500;margin:0}
+    .action-card p{margin:0;color:#666;line-height:1.5;font-size:.92rem}
+    .action-card ul{margin:4px 0 4px;padding-left:20px;display:grid;gap:7px;color:#555;font-size:.9rem;line-height:1.45}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+    .cta{border-radius:999px;padding:14px 20px;font-weight:750;border:1px solid var(--ink);text-decoration:none;text-align:center}
+    .cta.dark{background:var(--ink);color:#fff}
+    .cta.light{background:transparent;color:var(--ink)}
+    .footer-note{margin-top:auto;padding-top:26px;font-size:.69rem;line-height:1.45;color:#8c8881;max-width:680px}
+    .fade{animation:fade .32s ease both}
+    @keyframes fade{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+    @media(max-width:900px){.app{display:block}.brand-panel{min-height:auto;padding:22px 24px 24px}.brand-panel:before,.brand-panel:after,.eyebrow,.brand-copy,.trust{display:none}.panel{min-height:calc(100vh - 72px);padding:18px 22px 34px}main{padding:44px 0 24px}.progress-wrap{max-width:none}.answers.grid{grid-template-columns:1fr}}
+    @media(max-width:520px){h1{font-size:2.4rem}.form-grid{grid-template-columns:1fr}label.full{grid-column:auto}.choice{min-height:70px;padding:16px}.cta{width:100%}.panel{padding-inline:17px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="brand-panel" aria-label="Mortgage Stevie">
+      <div class="brand">Mortgage Stevie</div>
+      <p class="eyebrow">Mortgage &amp; investor funding</p>
+      <p class="brand-copy">Clarity for your <em>next move.</em></p>
+      <div class="trust"><span>Guided match</span><span>No hard credit pull</span></div>
+    </aside>
+    <section class="panel">
+      <header class="topbar">
+        <button class="back" id="back" type="button" aria-label="Go back">← Back</button>
+        <div class="progress-wrap" aria-hidden="true"><div class="progress" id="progress"></div></div>
+        <span class="step-count" id="stepCount"></span>
+      </header>
+      <main id="screen" aria-live="polite"></main>
+      <p class="footer-note">This short questionnaire provides a preliminary direction only, not a loan approval, commitment, or guarantee. Program guidelines can change, and final eligibility depends on a complete review.</p>
+    </section>
+  </div>
+  <script>
+    // Integration settings. See INTEGRATIONS.md in the source repository.
+    // Never place SMTP passwords or other private credentials in this browser file.
+    window.STEVIE_CONFIG=Object.assign({
+      googleMapsApiKey:new URLSearchParams(window.location.search).get('googleMapsApiKey')||'',
+      leadWebhookUrl:'/api/lead',
+      leadNotificationEmail:''
+    },window.STEVIE_CONFIG||{});
+  </script>
+  <script>
+    const state={path:null,answers:{},history:[],current:'intro'};
+    const screen=document.querySelector('#screen'),back=document.querySelector('#back'),progress=document.querySelector('#progress'),stepCount=document.querySelector('#stepCount');
+    const credit=[['740+','740 or higher · Excellent'],['700-739','700–739 · Good'],['660-699','660–699 · Fair'],['below660','Below 660'],['unsure','I’m not sure']];
+    const primaryTimelines=[['shopping','Just shopping'],['preapproval','I want to get pre-approved'],['month','Need to close within 30 days'],['two-weeks','Need funding in under 2 weeks']];
+    const investorTimelines=[['shopping','Still looking for a deal'],['30-plus','Property found · 30+ days to close'],['15-30','Need to close in 15–30 days'],['two-weeks','Need to close in under 2 weeks']];
+    const refiTimelines=[['researching','Just researching'],['month-plus','More than 30 days'],['month','Within 30 days'],['two-weeks','Within 2 weeks']];
+    const q={
+      start:{title:'What are you looking to do?',sub:'Choose the move that best describes where you are today.',options:[['purchase','Purchase a property','Primary home or investment'],['refinance','Refinance a property','Change terms or access equity'],['sell','Sell a property','Explore a listing or faster exit']]},
+      purchase_use:{title:'How will the property be used?',sub:'This helps separate home financing from business-purpose programs.',options:[['primary','Primary home','I plan to live there'],['investment','Investment','Rental, flip, or development']]},
+      primary_asset:{title:'What kind of home are you considering?',sub:'Pick the closest match. You can refine it later.',options:[['sfr','Single-family home'],['condo','Condo or townhome'],['multi','Duplex, triplex, or fourplex'],['modular','Modular or manufactured home']]},
+      investment_asset:{title:'What kind of investment is it?',sub:'Choose the closest match.',options:[['rental','Rental property','Single-family or 1–4 units'],['reno','Fix and flip / renovation'],['construction','Ground-up construction'],['multifamily','Commercial multifamily','5+ units'],['storage','Self-storage / commercial']]},
+      unit_count:{title:'How many units are in the property?',sub:'Enter the total number of residential units.',form:[['unit_count','Number of units','number',true]]},
+      deal_stage:{title:'Where are you in the process?',sub:'A rough answer is perfect.',options:[['shopping','Still shopping'],['identified','Property identified'],['contract','Under contract'],['closing','Closing is approaching']]},
+      address:{title:'Where is the property?',sub:'Start typing and choose the address from Google.',form:[['location','Property address','address',true]]},
+      deal_numbers:{title:'What is the expected purchase price?',sub:'A rough number is fine.',form:[['purchase_price','Purchase price','number',true]]},
+      timeline:{title:'When do you need financing?',sub:'Choose the closest deadline.',options:primaryTimelines},
+      credit:{title:'What is your estimated credit score?',sub:'No hard pull. Just choose the closest range.',options:credit},
+      experience:{title:'How many similar projects have you completed?',sub:'Count comparable flips, rentals, or builds in the last three years.',options:[['0','This would be my first'],['1-2','1–2 projects'],['3-5','3–5 projects'],['6+','6 or more projects']]},
+      allocated:{title:'How much money do you have available?',sub:'Include funds for the down payment, closing costs, and renovation if needed.',form:[['funds_available','Available funds','number',true]]},
+      refi_use:{title:'What type of property are you refinancing?',sub:'Keep it simple for now.',options:[['primary','Primary home'],['investment','Investment property']]},
+      refi_goal:{title:'What do you want the refinance to accomplish?',sub:'Choose the main objective.',options:[['cashout','Access cash / equity'],['rate','Change the rate or term']]},
+      refi_asset:{title:'What kind of property is it?',sub:'Pick the closest match.',options:[['sfr','Single-family'],['condo','Condo or townhome'],['multi','2–4 units'],['commercial','5+ units / commercial']]},
+      numbers:{title:'Give us the rough numbers.',sub:'Estimates are enough. We are looking for the shape of the deal.',form:[['value','Estimated property value','number',true],['balance','Current mortgage balance','number',true]]},
+      cash_use:{title:'What would you use the funds for?',sub:'This can change which structure is most useful.',options:[['nextdeal','Another investment soon'],['futuredeal','A future investment not yet identified'],['improve','Property improvements'],['liquidity','General liquidity / other']]},
+      sell_asset:{title:'What are you considering selling?',sub:'Choose the closest asset type.',options:[['primary','Primary home'],['multifamily','Multifamily property'],['commercial','Commercial property']]},
+      commercial_type:{title:'What type of commercial property?',sub:'Pick the closest match.',options:[['storage','Self-storage'],['industrial','Industrial'],['retail','Retail or office'],['mixed','Mixed-use'],['other','Other commercial']]},
+      sell_speed:{title:'How quickly would you like to sell?',sub:'We’ll shape the exit around your ideal timing.',options:[['offer','I’m just looking for an offer'],['60','Within 30–60 days'],['30','Within 2–4 weeks'],['urgent','Gone in under 2 weeks']]},
+      sell_reason:{title:'Anything we should know about the sale?',sub:'Optional. A little context can help us suggest a cleaner path.',form:[['reason','Reason for selling (optional)','textarea',false]]},
+      business_purpose:{title:'What do you need funding for?',sub:'Choose the closest match.',options:[['acquisition','Real estate acquisition'],['reno','Renovation or construction'],['non_real_estate','Non-real-estate funding','Business funding, equipment, or operations']]},
+      business_amount:{title:'How much funding are you looking for?',sub:'A rough range is all we need.',options:[['under100','Under $100,000'],['100-500','$100,000–$500,000'],['500-1m','$500,000–$1 million'],['1mplus','$1 million+']]},
+      contact:{title:'Personalize your match.',sub:'Add your details so your recommendation is ready for a conversation with Stevie.',form:[['name','Full name','text',true],['email','Email address','email',true],['phone','Phone number','tel',true]]}
+    };
+    function routeFor(key){
+      const a=state.answers,p=state.path;
+      if(key==='start') return p==='purchase'?'purchase_use':p==='refinance'?'refi_use':p==='sell'?'sell_asset':'business_purpose';
+      if(key==='purchase_use') return a.purchase_use==='primary'?'primary_asset':'investment_asset';
+      if(key==='primary_asset') return 'deal_stage';
+      if(key==='investment_asset') return a.investment_asset==='multifamily'?'unit_count':'deal_stage';
+      if(key==='unit_count') return p==='sell'?'address':'deal_stage';
+      if(key==='deal_stage') return a.deal_stage==='shopping'?'credit':'address';
+      if(key==='address') return p==='purchase'?'deal_numbers':'timeline';
+      if(key==='deal_numbers') return 'timeline';
+      if(key==='timeline') return 'credit';
+      if(key==='credit') return p==='purchase'&&a.deal_stage==='shopping'?'contact':p==='purchase'&&a.purchase_use==='investment'?'experience':p==='purchase'?'allocated':p==='refinance'&&a.refi_goal==='cashout'?'cash_use':'contact';
+      if(key==='experience') return 'allocated';
+      if(key==='allocated') return 'contact';
+      if(key==='refi_use') return 'refi_goal';
+      if(key==='refi_goal') return 'refi_asset';
+      if(key==='refi_asset') return 'address';
+      if(key==='numbers') return 'credit';
+      if(key==='cash_use') return 'contact';
+      if(key==='sell_asset') return a.sell_asset==='commercial'?'commercial_type':a.sell_asset==='multifamily'?'unit_count':'address';
+      if(key==='commercial_type') return 'address';
+      if(key==='sell_speed') return 'sell_reason';
+      if(key==='sell_reason') return 'contact';
+      if(key==='business_purpose') return 'business_amount';
+      if(key==='business_amount') return 'timeline';
+      if(key==='contact') return 'result';
+      return 'contact';
+    }
+    function normalizeNext(current,next){
+      if(current==='address'&&state.path==='sell') return 'sell_speed';
+      if(current==='address'&&state.path==='refinance') return 'numbers';
+      return next;
+    }
+    function total(){if(state.path==='purchase'){const extraUnit=state.answers.investment_asset==='multifamily'?1:0;if(state.answers.deal_stage==='shopping')return 6+extraUnit;return (state.answers.purchase_use==='investment'?11:10)+extraUnit}if(state.path==='refinance')return state.answers.refi_goal==='cashout'?10:9;if(state.path==='sell')return state.answers.sell_asset==='commercial'||state.answers.sell_asset==='multifamily'?7:6;return 6}
+    function updateChrome(){const n=state.history.length;back.classList.toggle('show',n>0);const isIntro=state.current==='intro',isResult=state.current==='result'||state.current==='action';stepCount.textContent=isIntro||isResult?'':`${Math.min(n,total())} / ${total()}`;progress.style.width=isIntro?'0%':isResult?'100%':`${Math.min(94,n/total()*100)}%`}
+    function intro(){state.current='intro';updateChrome();screen.innerHTML=`<div class="fade"><p class="kicker">Find my loan</p><h1>A clearer way to your next move.</h1><p class="lede">Answer a few focused questions. We’ll narrow the most promising financing or selling paths, then you choose how quickly to move.</p><div class="intro-actions"><button class="intro-primary" type="button" id="begin">Find my match →</button><span class="micro">About 2 minutes · No hard credit pull</span></div></div>`;document.querySelector('#begin').onclick=()=>show('start')}
+    function questionFor(key){
+      if(key==='deal_stage'&&state.answers.investment_asset==='construction')return {title:'Where are you in the ground-up process?',sub:'Choose the stage that best describes the project today.',options:[['estimate','Targeting land or getting a rough estimate'],['identified','Land identified'],['contract','Land under contract'],['owned','Land already purchased'],['mid-build','Mid-construction and need more funding']]};
+      if(key==='timeline'){
+        const options=state.path==='refinance'?refiTimelines:state.answers.purchase_use==='investment'?investorTimelines:primaryTimelines;
+        return {...q.timeline,options};
+      }
+      if(key==='address'&&state.answers.investment_asset==='construction')return {title:'Where are you planning to build?',sub:'A city or ZIP code is enough at this stage.',form:[['location','City or ZIP code','text',true]]};
+      if(key==='deal_numbers'&&state.answers.investment_asset==='reno')return {title:'Give us the fix and flip numbers.',sub:'Rough estimates are enough to identify the right lender lane.',form:[['purchase_price','Purchase price','number',true],['renovation_costs','Renovation costs','number',true],['arv','Expected after-repair value (ARV)','number',true],['project_months','Projected project timeline in months','number',true]]};
+      if(key==='deal_numbers'&&state.answers.investment_asset==='construction')return {title:'Give us the ground-up numbers.',sub:'Use your current estimates. These can be refined later.',form:[['land_cost','Land purchase price or current value','number',true],['construction_costs','Estimated construction costs','number',true],['arv','Expected completed value','number',true],['project_months','Projected project timeline in months','number',true]]};
+      return q[key];
+    }
+    function show(key,push=true){if(push&&state.current!=='intro')state.history.push(state.current);else if(push&&state.current==='intro')state.history.push('intro');state.current=key;updateChrome();const item=questionFor(key);screen.innerHTML=`<div class="fade"><p class="kicker">${state.path?label(state.path):'Start here'}</p><h1>${item.title}</h1><p class="lede">${item.sub}</p>${item.options?options(item.options,key):form(item.form,key)}${key==='start'?'<button class="quiet-route" data-path="business" type="button">Need private money or non-real-estate funding?</button>':''}</div>`;wire(key);if(key==='address'&&state.answers.investment_asset!=='construction')initAddressAutocomplete()}
+    function label(v){return ({purchase:'Purchase',refinance:'Refinance',sell:'Sell',business:'Other funding'})[v]||v}
+    function options(arr,key){return `<div class="answers ${arr.length===4?'grid':''}">${arr.map(([v,t,s])=>`<button class="choice" type="button" data-value="${v}"><span><strong>${t}</strong>${s?`<small>${s}</small>`:''}</span><span class="arrow">→</span></button>`).join('')}</div>`}
+    function form(fields,key){return `<form id="questionForm"><div class="form-grid">${fields.map(([name,ph,type,req])=>`<label class="${fields.length===1?'full':''}">${ph}${type==='textarea'?`<textarea name="${name}" ${req?'required':''}>${state.answers[name]||''}</textarea>`:type==='address'?`<span id="googleAddressHost"><input id="propertyLocation" name="${name}" type="text" value="${state.answers[name]||''}" autocomplete="street-address" ${req?'required':''}></span><span class="address-note" id="addressNote">Google address suggestions will appear as you type.</span>`:`<input name="${name}" type="${type}" value="${state.answers[name]||''}" ${req?'required':''} ${type==='number'?'min="0" inputmode="decimal"':''}>`}</label>`).join('')}</div><button class="next" type="submit">Continue <span>→</span></button></form>`}
+    function loadGooglePlaces(key){
+      if(window.google?.maps?.importLibrary)return Promise.resolve();
+      if(window.googlePlacesLoading)return window.googlePlacesLoading;
+      window.googlePlacesLoading=new Promise((resolve,reject)=>{
+        const callback=`stevieGoogleReady${Date.now()}`;
+        window[callback]=()=>{delete window[callback];resolve()};
+        const script=document.createElement('script');
+        script.src=`https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&loading=async&libraries=places&v=weekly&callback=${callback}`;
+        script.async=true;script.onerror=reject;document.head.appendChild(script);
+      });
+      return window.googlePlacesLoading;
+    }
+    async function initAddressAutocomplete(){
+      const host=document.querySelector('#googleAddressHost'),note=document.querySelector('#addressNote');
+      if(!host)return;
+      const key=window.STEVIE_CONFIG?.googleMapsApiKey||'';
+      if(!key){if(note)note.textContent='Enter the address manually. Google autocomplete activates when your Maps key is added.';return}
+      try{
+        await loadGooglePlaces(key);
+        const {PlaceAutocompleteElement}=await google.maps.importLibrary('places');
+        const widget=new PlaceAutocompleteElement();
+        widget.placeholder='Start typing the property address';
+        widget.includedRegionCodes=['us'];
+        const hidden=document.createElement('input');hidden.type='hidden';hidden.name='location';hidden.required=true;hidden.value=state.answers.location||'';
+        widget.addEventListener('gmp-select',async event=>{const place=event.placePrediction.toPlace();await place.fetchFields({fields:['formattedAddress']});hidden.value=place.formattedAddress||'';state.answers.location=hidden.value});
+        host.replaceChildren(widget,hidden);
+        if(note)note.textContent='Powered by Google Places.';
+      }catch(error){if(note)note.textContent='Google suggestions are unavailable right now. Enter the address manually.'}
+    }
+    function wire(key){document.querySelectorAll('[data-value]').forEach(b=>b.onclick=()=>answer(key,b.dataset.value));document.querySelectorAll('[data-path]').forEach(b=>b.onclick=()=>{state.path=b.dataset.path;state.answers.start=b.dataset.path;state.history.push('intro');show('business_purpose',false)});const f=document.querySelector('#questionForm');if(f)f.onsubmit=async e=>{e.preventDefault();const data=new FormData(f);for(const [k,v] of data)state.answers[k]=v;if(key==='contact'){const button=f.querySelector('button');button.disabled=true;button.textContent='Saving your details...';await submitLead()}advance(key)}}
+    function answer(key,value){if(key==='start')state.path=value;state.answers[key]=value;advance(key)}
+    function advance(key){const next=normalizeNext(key,routeFor(key));if(next==='result')result();else show(next)}
+    function numberValue(key){const value=Number(String(state.answers[key]||'').replace(/[^0-9.]/g,''));return Number.isFinite(value)?value:0}
+    function money(value){return value?new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(value):''}
+    function purchaseBasis(){return numberValue('purchase_price')||numberValue('land_cost')}
+    function isStillShopping(){return state.path==='purchase'&&state.answers.deal_stage==='shopping'}
+    function needsPlanningCall(){const price=purchaseBasis(),funds=numberValue('funds_available');return state.path==='purchase'&&price>0&&funds<price*.03}
+    function ceilingText(value,label='Estimated planning ceiling'){return value?`${label}: ${money(value)}`:''}
+    function leadPayload(){
+      const suggestions=state.path==='sell'?[]:isStillShopping()?['Pre-approval or pre-qualification']:recommendations().map(item=>item.title);
+      return {
+        submitted_at:new Date().toISOString(),
+        send_email_to:window.STEVIE_CONFIG.leadNotificationEmail||'',
+        contact:{name:state.answers.name||'',email:state.answers.email||'',phone:state.answers.phone||''},
+        request_type:state.path,
+        deal_highlights:{...state.answers},
+        suggested_paths:suggestions,
+        requires_planning_call:needsPlanningCall(),
+        source:'Mortgage Stevie Find My Loan questionnaire'
+      };
+    }
+    async function submitLead(){
+      const payload=leadPayload();
+      try{sessionStorage.setItem('mortgageStevieLeadPreview',JSON.stringify(payload))}catch(error){}
+      const endpoint=window.STEVIE_CONFIG.leadWebhookUrl;
+      if(!endpoint){state.leadDelivery='preview';return}
+      try{const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!response.ok)throw new Error(`Lead webhook returned ${response.status}`);state.leadDelivery='sent'}catch(error){state.leadDelivery='failed'}
+    }
+    function recommendations(){const a=state.answers,p=state.path;
+      if(p==='purchase'&&a.purchase_use==='primary'){
+        const price=numberValue('purchase_price');
+        const conventional={title:'Conventional loan',metric:price?`${money(price*.75)} to ${money(price*.80)} loan range | 20-25%+ down`:'20-25%+ planning range',bullets:['Often the cleanest option with strong credit','No upfront mortgage-insurance premium','Lower-down conventional programs may also be available'],fit:'Best when you want flexibility and can bring more cash. Compare carefully if preserving cash matters most.'};
+        const fha={title:'FHA loan',metric:price?`${money(price*.965)} estimated base loan | 3.5%+ down`:'3.5%+ down',bullets:['Lower minimum down payment','More forgiving credit guidelines','Mortgage insurance is required'],fit:'Best when minimizing the upfront down payment matters. Compare carefully if long-term mortgage insurance is a concern.'};
+        return ['660-699','below660'].includes(a.credit)?[fha,conventional]:[conventional,fha];
+      }
+      if(p==='purchase'&&a.purchase_use==='investment'){
+        const price=numberValue('purchase_price'),reno=numberValue('renovation_costs'),arv=numberValue('arv');
+        const flipCeiling=price&&arv?Math.min(price+reno,arv*.70):0;
+        const hardMoney={title:'Hard money / bridge loan',metric:[ceilingText(flipCeiling),'About 10-14% interest | 2-5 points'].filter(Boolean).join(' | '),bullets:['Fast closings','Up to 100% LTC may be available','Up to 100% of renovation costs may be available','Built for short-term acquisitions and renovations'],fit:'Best when speed or property condition rules out slower financing. The tradeoff is higher short-term cost.'};
+        const dscr={title:'DSCR rental loan',metric:[ceilingText(price*.85),'As little as 15% down on select programs'].filter(Boolean).join(' | '),bullets:['Qualifies primarily from property cash flow','Long-term fixed-rate options','No-prepayment-penalty options are available'],fit:'Usually the lower-cost fit for a stabilized rental. Pricing and leverage depend on cash flow, credit, and property type.'};
+        if(a.investment_asset==='reno')return [hardMoney,{...dscr,title:'DSCR exit loan',fit:'Best as the long-term refinance after the renovation is complete and the property is producing rent.'}];
+        if(a.investment_asset==='construction'){
+          const land=numberValue('land_cost'),build=numberValue('construction_costs'),completed=numberValue('arv');
+          const constructionCeiling=land&&completed?Math.min((land+build)*.90,completed*.75):0;
+          const construction={title:'Ground-up construction loan',metric:[ceilingText(constructionCeiling),'Up to 90% LTC for the strongest tier'].filter(Boolean).join(' | '),bullets:['Designed for residential ground-up projects','Experience, credit, liquidity, and plans shape leverage','Interest reserves may be available'],fit:'Best when the project is ready for a construction-specific draw structure and documented budget.'};
+          const bridge={title:a.deal_stage==='mid-build'?'Mid-construction bridge loan':'Private-capital structure',metric:'Built around speed and project complexity',bullets:['Can support projects already under construction','Flexible for time-sensitive land or early-stage needs','Can bridge gaps before permanent financing'],fit:'Best when timing or complexity matters more than getting the lowest initial rate.'};
+          return a.deal_stage==='mid-build'?[bridge,construction]:[construction,bridge];
+        }
+        if(a.investment_asset==='multifamily'||a.investment_asset==='storage')return [
+          {title:'Commercial bridge / private money',metric:[ceilingText(price*.75),'Fast, asset-focused execution'].filter(Boolean).join(' | '),bullets:['Useful for 5+ units, self-storage, or transitional assets','Can close before stabilization','Flexible business-plan review'],fit:'Best for acquisitions that need speed, renovation, lease-up, or another value-add plan.'},
+          {title:'Stabilized commercial financing',metric:[ceilingText(price*.70),'Lower-cost long-term option'].filter(Boolean).join(' | '),bullets:['Better fit once income is documented','Longer underwriting timeline','Terms depend on NOI, occupancy, and property type'],fit:'Best when the asset is already stable and the lowest ongoing cost is the priority.'}
+        ];
+        return a.timeline==='two-weeks'?[hardMoney,dscr]:[dscr,hardMoney];
+      }
+      if(p==='refinance'&&a.refi_goal==='cashout'){
+        const value=numberValue('value'),balance=numberValue('balance'),helocLtv=a.refi_use==='primary'?.90:.75,cashoutLtv=a.refi_use==='primary'?.80:.70;
+        const helocFunds=Math.max(0,value*helocLtv-balance),cashoutFunds=Math.max(0,value*cashoutLtv-balance);
+        return [
+          {title:'HELOC / second lien',metric:[ceilingText(helocFunds,'Potential equity available'),a.refi_use==='primary'?'Up to 90% combined LTV':'Up to 75% combined LTV'].filter(Boolean).join(' | '),bullets:['Keeps the current first mortgage in place','Revolving access to equity','Useful when future draws may be needed'],fit:'Best when the current first-mortgage terms are worth preserving. Rates are commonly variable.'},
+          {title:'Cash-out refinance',metric:[ceilingText(cashoutFunds,'Potential cash-out range'),'One new loan and one monthly payment'].filter(Boolean).join(' | '),bullets:['Replaces the existing mortgage','Fixed-rate options may be available','Can provide one larger lump sum'],fit:'Best when replacing the full loan improves the overall structure, not just the amount of cash received.'}
+        ];
+      }
+      if(p==='refinance')return [
+        {title:'Rate-and-term refinance',metric:'Replace the current mortgage',bullets:['May change the rate, payment, or loan term','No cash-out required','Closing costs should be measured against savings'],fit:'Best when the break-even period fits how long you expect to keep the property.'},
+        {title:'Keep the current loan',metric:'No new closing costs',bullets:['Preserves the existing rate and term','A HELOC can still provide separate flexibility','No refinance break-even period'],fit:'Best when the current mortgage is already strong or the savings would take too long to recover.'}
+      ];
+      if(p==='business'&&a.business_purpose==='non_real_estate')return [
+        {title:'Non-real-estate business funding',metric:'Built around business revenue and use of funds',bullets:['May support equipment, operations, or expansion','No property purchase required','Terms depend on business strength and documentation'],fit:'Best when the capital need is tied to the business rather than a real-estate transaction.'},
+        {title:'Asset-backed business funding',metric:'May use eligible business or real-estate assets',bullets:['Can add flexibility when conventional business credit is limited','Collateral and repayment plan are reviewed','Cost depends on the asset and risk'],fit:'Best when available collateral creates a stronger funding path.'}
+      ];
+      return [
+        {title:'Private / business-purpose funding',metric:'Structured around the request',bullets:['Useful for unusual timing or collateral','Flexible deal-by-deal review','Cost depends on risk and structure'],fit:'Best when a standard mortgage does not fit the use of funds.'},
+        {title:'Real-estate-backed alternative',metric:'Equity, bridge, or asset-based',bullets:['May use eligible property as collateral','Can support acquisitions or operations','Requires an equity and exit-strategy review'],fit:'Best when available real-estate equity creates a cleaner path.'}
+      ];
+    }
+    function resultCard(r,i){return `<article class="result-card ${i===0?'primary':''}"><span class="number">0${i+1}</span><h2>${r.title}</h2><p class="metric">${r.metric}</p><ul>${r.bullets.map(x=>`<li>${x}</li>`).join('')}</ul><p class="fit">${r.fit}</p></article>`}
+    function refinanceExamples(){return `<div class="action-card"><h2>When a higher refinance rate can still make sense</h2><p>The new rate is only one part of the decision. A refinance may still improve the full financial picture when it helps you:</p><ul><li>Pay off higher-rate credit cards or personal loans</li><li>Cover tuition or another planned major purchase</li><li>Fund renovations that improve the property</li><li>Consolidate payments and improve monthly cash flow</li><li>Replace short-term or variable debt with a clearer long-term plan</li></ul><p class="micro">The right comparison looks at total monthly obligations, closing costs, break-even timing, and the purpose of the funds.</p></div>`}
+    function sellerResult(){screen.innerHTML=`<div class="fade"><p class="kicker">We have what we need</p><h1>We’ll take it from here.</h1><p class="lede">Stevie’s team will share the property with investor groups and direct buyers, then reach out within 48 hours with the clearest next step.</p><div class="action-card"><h2>Have a question now?</h2><p>Book a quick call to discuss the property, your timing, or what happens next.</p><div class="cta-row"><a class="cta dark" href="https://cal.com/mortgagestevie/discoverycall" target="_top">Book a call</a></div></div><p class="micro">No obligation. Any offer or sale path will be reviewed with you before you decide.</p></div>`}
+    function planningCallResult(){const price=purchaseBasis(),funds=numberValue('funds_available');screen.innerHTML=`<div class="fade"><p class="kicker">Let’s review the numbers</p><h1>A quick call is the best next step.</h1><p class="lede">The available funds are currently below 3% of the ${money(price)} purchase price. That does not automatically mean the deal is out, but we should review the structure before suggesting a product.</p><div class="action-card"><h2>What we’ll look at</h2><p>Available assistance, seller credits, equity, private capital, property type, and the fastest realistic path forward.</p><div class="cta-row"><a class="cta dark" href="https://cal.com/mortgagestevie/discoverycall" target="_top">Book a strategy call</a></div></div><p class="micro">Funds entered: ${money(funds)}. No hard credit pull is required for this conversation.</p></div>`}
+    function result(push=true){if(push)state.history.push(state.current);state.current='result';updateChrome();if(state.path==='sell'){sellerResult();return}if(isStillShopping()){actionPage(false);return}if(needsPlanningCall()){planningCallResult();return}const recs=recommendations();const deliveryWarning=state.leadDelivery==='failed'?'<p class="callout">Your questionnaire could not be delivered automatically. Please book a call or start the application so the details are not lost.</p>':'';const refiSection=state.path==='refinance'?refinanceExamples():'';screen.innerHTML=`<div class="fade"><p class="kicker">Your preliminary match</p><h1>Two options worth comparing.</h1><p class="lede">Here’s the simple version: what each option is good for, and where to be careful.</p><div class="result">${recs.map(resultCard).join('')}</div>${refiSection}<p class="callout">These are planning ranges, not a loan approval or rate quote. Final terms depend on the full deal, credit, documentation, property, and available programs.</p>${deliveryWarning}<button class="next" id="nextStep" type="button">Choose your next step <span>→</span></button></div>`;document.querySelector('#nextStep').onclick=()=>actionPage(true)}
+    function actionPage(push=true){if(push)state.history.push('result');state.current='action';updateChrome();const preapproval=isStillShopping();screen.innerHTML=`<div class="fade"><p class="kicker">Next step</p><h1>${preapproval?'Get pre-approved when you’re ready.':'Move at your pace.'}</h1><p class="lede">${preapproval?'You do not need a property picked out to start. Choose the next step that feels right.':'Talk it through first, or start the application now if you’re ready.'}</p><div class="action-card"><h2>I have questions</h2><p>Book a short strategy call to confirm the best route and review the numbers.</p><div class="cta-row"><a class="cta dark" href="https://cal.com/mortgagestevie/discoverycall" target="_top">Book a strategy call</a></div></div><div class="action-card"><h2>${preapproval?'I want to get pre-approved':'I’m ready to roll'}</h2><p>${preapproval?'Start the application now so we can review your buying range before you choose a property.':'Start the full application now so we can review documents and get the process moving.'}</p><div class="cta-row"><a class="cta dark" href="https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos" target="_top">${preapproval?'Start my pre-approval':'Start my application'}</a></div></div></div>`}
+    back.onclick=()=>{if(!state.history.length)return;const prev=state.history.pop();if(prev==='intro')intro();else if(prev==='result')result(false);else show(prev,false)};
+    function registerWebMCP(){const c=document.modelContext;if(!c?.registerTool)return;const safeKeys=Object.keys(q);c.registerTool({name:'start_mortgage_match',title:'Start mortgage match',description:'Start the visible guided questionnaire with a purchase, refinance, sell, or business funding path.',inputSchema:{type:'object',properties:{path:{type:'string',enum:['purchase','refinance','sell','business']}},required:['path'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute({path}){state.path=path;state.answers.start=path;state.history=['intro'];show(path==='business'?'business_purpose':routeFor('start'),false);return{status:'started',path}}});c.registerTool({name:'get_mortgage_match_state',title:'Read mortgage match state',description:'Read the current questionnaire path, screen, and answer keys without changing the page.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true,untrustedContentHint:false},execute(){return{path:state.path,current_screen:state.current,answered:Object.keys(state.answers)}}})}
+    intro();registerWebMCP();
+  </script>
+</body>
+</html>
