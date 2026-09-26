@@ -1,8 +1,10 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 
 export default function LeadCapturePopup() {
+  const pathname = usePathname()
   const [visible, setVisible] = useState(false)
   const [dismissed, setDismissed] = useState(false)
   const [phone, setPhone] = useState('')
@@ -11,6 +13,7 @@ export default function LeadCapturePopup() {
   const triggered = useRef(false)
 
   useEffect(() => {
+    if (pathname === '/fix-and-flip-calculator') return
     // Don't show if already dismissed in this session
     if (sessionStorage.getItem('leadPopupDismissed')) return
 
@@ -35,7 +38,7 @@ export default function LeadCapturePopup() {
       clearTimeout(timer)
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [pathname])
 
   const dismiss = () => {
     setVisible(false)
@@ -68,7 +71,7 @@ export default function LeadCapturePopup() {
     sessionStorage.setItem('leadPopupDismissed', '1')
   }
 
-  if (!visible || dismissed) return null
+  if (pathname === '/fix-and-flip-calculator' || !visible || dismissed) return null
 
   return (
     <div
