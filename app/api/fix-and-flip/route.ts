@@ -5,7 +5,7 @@ const DEFAULT_NOTIFICATION_EMAIL = 'steviemdegala@gmail.com'
 const DEFAULT_FROM_EMAIL = 'Mortgage Stevie <onboarding@resend.dev>'
 const APPLICATION_URL = 'https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos'
 const BOOKING_URL = 'https://cal.com/mortgagestevie/discoverycall'
-const SELLING_COST_RATE = 0.08
+const SELLING_COST_RATE = 0.06
 
 type Deal = {
   addressKnown: boolean
@@ -292,6 +292,12 @@ function buildPublicResults(deal: Deal, options: InternalOption[]) {
       arv: Math.round(deal.arv),
       purchaseAndRenovation: Math.round(deal.purchasePrice + deal.renovationBudget),
       financingAndFees: best.financingAndFees,
+      carryingCost: best.carryingCost,
+      originationFee: best.originationFee,
+      otherFees: best.otherFees,
+      appraisalFee: best.appraisalFee,
+      titleFee: best.titleFee,
+      payoffFee: best.payoffFee,
       estimatedSellingCosts: best.estimatedSellingCosts,
       totalProjectCost: best.totalProjectCost,
       sellingCostPercent: SELLING_COST_RATE * 100,

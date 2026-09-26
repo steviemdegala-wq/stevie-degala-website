@@ -66,6 +66,12 @@ type DealWarning = {
   arv: number
   purchaseAndRenovation: number
   financingAndFees: number
+  carryingCost: number
+  originationFee: number
+  otherFees: number
+  appraisalFee: number
+  titleFee: number
+  payoffFee: number
   estimatedSellingCosts: number
   totalProjectCost: number
   sellingCostPercent: number
@@ -374,16 +380,27 @@ export default function FixAndFlipCalculatorClient() {
                   <div className="mt-5 grid gap-3 border-t border-[#ddb0a8] pt-5 sm:grid-cols-2">
                     <Metric label="After-repair value" value={money(dealWarning.arv)} primary={false} />
                     <Metric label="Purchase + renovation" value={money(dealWarning.purchaseAndRenovation)} primary={false} />
-                    <Metric label="Financing and fees" value={money(dealWarning.financingAndFees)} primary={false} />
+                    <Metric label="Financing, interest & fees" value={money(dealWarning.financingAndFees)} primary={false} />
                     <Metric label={`Estimated selling costs (${dealWarning.sellingCostPercent}%)`} value={money(dealWarning.estimatedSellingCosts)} primary={false} />
                   </div>
+                  <details className="mt-5 rounded-xl border border-[#ddb0a8] bg-white/60 p-4 text-sm">
+                    <summary className="cursor-pointer font-semibold">See financing cost breakdown</summary>
+                    <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                      <span>Estimated interest: <strong>{money(dealWarning.carryingCost)}</strong></span>
+                      <span>Origination fee: <strong>{money(dealWarning.originationFee)}</strong></span>
+                      <span>Other program fees: <strong>{money(dealWarning.otherFees)}</strong></span>
+                      <span>Estimated appraisal: <strong>{money(dealWarning.appraisalFee)}</strong></span>
+                      <span>Estimated title fees: <strong>{money(dealWarning.titleFee)}</strong></span>
+                      {dealWarning.payoffFee > 0 && <span>Payoff fee: <strong>{money(dealWarning.payoffFee)}</strong></span>}
+                    </div>
+                  </details>
                   <button type="button" onClick={openModal} className="mt-6 rounded-full bg-[#090909] px-6 py-4 font-semibold text-white hover:bg-[#303030]">Discuss this deal or another opportunity</button>
                 </div>}
                 {previewMode && <p className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">Local preview mode: no CRM record or email was sent.</p>}
                 {!previewMode && emailSent && <p role="status" className="mb-6 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-950"><strong>Your results have been emailed.</strong> If they are not in your inbox within a few minutes, please check your spam or promotions folder.</p>}
                 {!previewMode && !emailSent && <p role="status" className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950"><strong>Your request was saved, but we could not confirm email delivery.</strong> Your results are available below. You can retry later or contact Stevie directly.</p>}
                 {manualReview ? <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6"><h2 className="font-serif text-2xl">This deal needs a closer look</h2><p className="mt-2 text-[#666]">Stevie can review the property, state, and deal structure to find the best available path.</p></div> : <div className="grid gap-4">{results.map((option, index) => <ResultCard key={option.label} option={option} primary={index === 0} />)}</div>}
-                <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">This is a planning estimate, not an approval, commitment to lend, or rate quote. Carrying cost reflects estimated interest for the displayed period. Total cash through payoff includes required borrower contributions, unfunded renovation costs, modeled fees, interest, and any listed payoff fee. The margin check assumes selling costs equal to 8% of ARV. It excludes reserve targets, taxes, insurance, utilities, income taxes, and unexpected project costs. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and program availability. *Appraisal and title fees are conservative estimates. Actual third-party charges may vary.</div>
+                <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">This is a planning estimate, not an approval, commitment to lend, or rate quote. Carrying cost reflects estimated interest for the displayed period. Total cash through payoff includes required borrower contributions, unfunded renovation costs, modeled fees, interest, and any listed payoff fee. The margin check assumes selling costs equal to 6% of ARV. It excludes reserve targets, taxes, insurance, utilities, income taxes, and unexpected project costs. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and program availability. *Appraisal and title fees are conservative estimates. Actual third-party charges may vary.</div>
                 {!dealWarning && <div className="mt-8 grid gap-3 sm:grid-cols-2">
                   <a href="https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos" target="_top" className="rounded-full bg-[#090909] px-6 py-4 text-center font-semibold text-white hover:bg-[#303030]">Start my application</a>
                   <button type="button" onClick={openModal} className="rounded-full border border-[#090909] px-6 py-4 font-semibold text-[#090909] hover:bg-white">I have questions. Book a call.</button>
