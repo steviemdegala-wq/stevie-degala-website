@@ -367,11 +367,11 @@ export default function FixAndFlipCalculatorClient() {
                 <p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">{dealWarning ? 'Deal check' : 'Your financing options'}</p>
                 <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{dealWarning ? 'The numbers show a loss.' : manualReview ? "Let's take a closer look." : 'Here are two ways to fund the deal.'}</h1>
                 <p className="mb-8 text-base leading-6 text-[#65615c]">{dealWarning ? "With what you entered, this deal could lose money. We don't want anyone going into a deal that's likely to lose money." : 'These estimates use current program assumptions and should be close to what we may be able to get done. Nothing shown is final.'}</p>
-                {dealWarning && <div className="mb-6 rounded-2xl border border-amber-400 bg-amber-50 p-6 text-amber-950">
-                  <p className="text-xs font-bold uppercase tracking-[.16em]">Projected result</p>
-                  <p className="mt-2 font-serif text-4xl">About {money(dealWarning.estimatedLoss)} loss</p>
+                {dealWarning && <div className="mb-6 rounded-2xl border border-[#c96a5a] bg-[#fff5f2] p-6 text-[#171312]">
+                  <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8d463b]">Projected result</p>
+                  <p className="mt-2 font-serif text-4xl text-[#9b2c20]">About {money(dealWarning.estimatedLoss)} loss</p>
                   <p className="mt-3 max-w-[620px] text-sm leading-6">There just isn't enough room in this deal right now. We are showing the financing path with the lowest projected loss so you can see why. Let's talk it through or look at another deal with better numbers.</p>
-                  <div className="mt-5 grid gap-3 border-t border-amber-300 pt-5 sm:grid-cols-2">
+                  <div className="mt-5 grid gap-3 border-t border-[#ddb0a8] pt-5 sm:grid-cols-2">
                     <Metric label="After-repair value" value={money(dealWarning.arv)} primary={false} />
                     <Metric label="Purchase + renovation" value={money(dealWarning.purchaseAndRenovation)} primary={false} />
                     <Metric label="Financing and fees" value={money(dealWarning.financingAndFees)} primary={false} />
