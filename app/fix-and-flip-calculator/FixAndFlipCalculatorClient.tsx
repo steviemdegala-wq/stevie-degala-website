@@ -51,9 +51,24 @@ type ResultOption = {
   carryingMonths: number
   totalCash: number
   borrowingCost: number
+  estimatedSellingCosts: number
+  financingAndFees: number
+  totalProjectCost: number
+  estimatedProfit: number
   reasons: string[]
   cautions: string[]
   termReview: boolean
+}
+
+type DealWarning = {
+  type: 'projected-loss'
+  estimatedLoss: number
+  arv: number
+  purchaseAndRenovation: number
+  financingAndFees: number
+  estimatedSellingCosts: number
+  totalProjectCost: number
+  sellingCostPercent: number
 }
 
 const initialAnswers: Answers = {
@@ -109,6 +124,7 @@ export default function FixAndFlipCalculatorClient() {
   const [manualReview, setManualReview] = useState(false)
   const [previewMode, setPreviewMode] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
+  const [dealWarning, setDealWarning] = useState<DealWarning | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [suggestions, setSuggestions] = useState<any[]>([])
@@ -217,6 +233,7 @@ export default function FixAndFlipCalculatorClient() {
       setManualReview(Boolean(data.manualReview))
       setPreviewMode(Boolean(data.preview))
       setEmailSent(Boolean(data.email?.borrower))
+      setDealWarning(data.warning ?? null)
       setHistory((items) => [...items, 'contact'])
       setStep('results')
     } catch (err) {
@@ -347,18 +364,30 @@ export default function FixAndFlipCalculatorClient() {
 
             {step === 'results' && (
               <div>
-                <p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">Your financing options</p>
-                <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{manualReview ? "Let's take a closer look." : 'Here are two ways to fund the deal.'}</h1>
-                <p className="mb-8 text-base leading-6 text-[#65615c]">These estimates use current program assumptions and should be close to what we may be able to get done. Nothing shown is final.</p>
+                <p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">{dealWarning ? 'Deal check' : 'Your financing options'}</p>
+                <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{dealWarning ? 'The numbers show a loss.' : manualReview ? "Let's take a closer look." : 'Here are two ways to fund the deal.'}</h1>
+                <p className="mb-8 text-base leading-6 text-[#65615c]">{dealWarning ? "With what you entered, this deal could lose money. We don't want anyone going into a deal that's likely to lose money." : 'These estimates use current program assumptions and should be close to what we may be able to get done. Nothing shown is final.'}</p>
+                {dealWarning && <div className="mb-6 rounded-2xl border border-amber-400 bg-amber-50 p-6 text-amber-950">
+                  <p className="text-xs font-bold uppercase tracking-[.16em]">Projected result</p>
+                  <p className="mt-2 font-serif text-4xl">About {money(dealWarning.estimatedLoss)} loss</p>
+                  <p className="mt-3 max-w-[620px] text-sm leading-6">There just isn't enough room in this deal right now. We are showing the financing path with the lowest projected loss so you can see why. Let's talk it through or look at another deal with better numbers.</p>
+                  <div className="mt-5 grid gap-3 border-t border-amber-300 pt-5 sm:grid-cols-2">
+                    <Metric label="After-repair value" value={money(dealWarning.arv)} primary={false} />
+                    <Metric label="Purchase + renovation" value={money(dealWarning.purchaseAndRenovation)} primary={false} />
+                    <Metric label="Financing and fees" value={money(dealWarning.financingAndFees)} primary={false} />
+                    <Metric label={`Estimated selling costs (${dealWarning.sellingCostPercent}%)`} value={money(dealWarning.estimatedSellingCosts)} primary={false} />
+                  </div>
+                  <button type="button" onClick={openModal} className="mt-6 rounded-full bg-[#090909] px-6 py-4 font-semibold text-white hover:bg-[#303030]">Discuss this deal or another opportunity</button>
+                </div>}
                 {previewMode && <p className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">Local preview mode: no CRM record or email was sent.</p>}
                 {!previewMode && emailSent && <p role="status" className="mb-6 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-950"><strong>Your results have been emailed.</strong> If they are not in your inbox within a few minutes, please check your spam or promotions folder.</p>}
                 {!previewMode && !emailSent && <p role="status" className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950"><strong>Your request was saved, but we could not confirm email delivery.</strong> Your results are available below. You can retry later or contact Stevie directly.</p>}
                 {manualReview ? <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6"><h2 className="font-serif text-2xl">This deal needs a closer look</h2><p className="mt-2 text-[#666]">Stevie can review the property, state, and deal structure to find the best available path.</p></div> : <div className="grid gap-4">{results.map((option, index) => <ResultCard key={option.label} option={option} primary={index === 0} />)}</div>}
-                <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">This is a planning estimate, not an approval, commitment to lend, or rate quote. Carrying cost reflects estimated interest for the displayed period. Total cash through payoff includes required borrower contributions, unfunded renovation costs, modeled fees, interest, and any listed payoff fee. It excludes reserve targets, taxes, insurance, utilities, and selling costs. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and program availability. *Appraisal and title fees are conservative estimates. Actual third-party charges may vary.</div>
-                <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">This is a planning estimate, not an approval, commitment to lend, or rate quote. Carrying cost reflects estimated interest for the displayed period. Total cash through payoff includes required borrower contributions, unfunded renovation costs, modeled fees, interest, and any listed payoff fee. The margin check assumes selling costs equal to 8% of ARV. It excludes reserve targets, taxes, insurance, utilities, income taxes, and unexpected project costs. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and program availability. *Appraisal and title fees are conservative estimates. Actual third-party charges may vary.</div>
+                {!dealWarning && <div className="mt-8 grid gap-3 sm:grid-cols-2">
                   <a href="https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos" target="_top" className="rounded-full bg-[#090909] px-6 py-4 text-center font-semibold text-white hover:bg-[#303030]">Start my application</a>
                   <button type="button" onClick={openModal} className="rounded-full border border-[#090909] px-6 py-4 font-semibold text-[#090909] hover:bg-white">I have questions. Book a call.</button>
-                </div>
+                </div>}
               </div>
             )}
           </main>

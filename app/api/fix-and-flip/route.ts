@@ -5,6 +5,7 @@ const DEFAULT_NOTIFICATION_EMAIL = 'steviemdegala@gmail.com'
 const DEFAULT_FROM_EMAIL = 'Mortgage Stevie <onboarding@resend.dev>'
 const APPLICATION_URL = 'https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos'
 const BOOKING_URL = 'https://cal.com/mortgagestevie/discoverycall'
+const SELLING_COST_RATE = 0.08
 
 type Deal = {
   addressKnown: boolean
@@ -242,6 +243,10 @@ function publicOption(option: InternalOption, index: number, deal: Deal, primary
     else if (option.termMonths > primary.termMonths) advantage = 'More time for the project'
     else advantage = 'Another strong route'
   }
+  const estimatedSellingCosts = deal.arv * SELLING_COST_RATE
+  const financingAndFees = option.borrowingCost + option.appraisalFee + option.titleFee
+  const totalProjectCost = deal.purchasePrice + deal.renovationBudget + financingAndFees + estimatedSellingCosts
+  const estimatedProfit = deal.arv - totalProjectCost
   const labels = { label: `Option ${index + 1}`, advantage }
   return {
     ...labels,
@@ -263,9 +268,34 @@ function publicOption(option: InternalOption, index: number, deal: Deal, primary
     carryingMonths: Math.min(deal.projectMonths, option.termMonths),
     totalCash: Math.round(option.totalCash),
     borrowingCost: Math.round(option.borrowingCost),
+    estimatedSellingCosts: Math.round(estimatedSellingCosts),
+    financingAndFees: Math.round(financingAndFees),
+    totalProjectCost: Math.round(totalProjectCost),
+    estimatedProfit: Math.round(estimatedProfit),
     reasons: option.reasons,
     cautions: option.cautions,
     termReview: deal.projectMonths > option.termMonths,
+  }
+}
+
+function buildPublicResults(deal: Deal, options: InternalOption[]) {
+  const publicOptions = options.slice(0, 2).map((option, index) => publicOption(option, index, deal, options[0]))
+  const projectedLoss = publicOptions.length > 0 && publicOptions.every((option) => option.estimatedProfit < 0)
+  if (!projectedLoss) return { options: publicOptions, warning: null }
+
+  const best = [...publicOptions].sort((a, b) => b.estimatedProfit - a.estimatedProfit)[0]
+  return {
+    options: [{ ...best, label: 'One path to review', advantage: 'Lowest projected loss' }],
+    warning: {
+      type: 'projected-loss',
+      estimatedLoss: Math.abs(best.estimatedProfit),
+      arv: Math.round(deal.arv),
+      purchaseAndRenovation: Math.round(deal.purchasePrice + deal.renovationBudget),
+      financingAndFees: best.financingAndFees,
+      estimatedSellingCosts: best.estimatedSellingCosts,
+      totalProjectCost: best.totalProjectCost,
+      sellingCostPercent: SELLING_COST_RATE * 100,
+    },
   }
 }
 
@@ -316,10 +346,14 @@ async function createCrmLead(contact: Contact, deal: Deal, options: InternalOpti
 }
 
 function buildBorrowerEmail(contact: Contact, deal: Deal, options: InternalOption[]) {
-  const publicOptions = options.slice(0, 2).map((option, index) => publicOption(option, index, deal, options[0]))
+  const result = buildPublicResults(deal, options)
+  const publicOptions = result.options
   const resultRows = publicOptions.map((option) => `<div style="border:1px solid #ddd;border-radius:14px;padding:20px;margin:16px 0"><div style="font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#666">${option.label}</div><h2 style="font-family:Georgia,serif;font-size:24px;margin:4px 0 12px">${option.advantage}</h2><p style="margin:0">Estimated financing: <strong>${money(option.loanAmount)}</strong><br>Cash to get started: <strong>${money(option.startupCash)}</strong><br>Estimated carrying cost: <strong>${money(option.carryingCost)}</strong><br>Estimated total cash through payoff: <strong>${money(option.totalCash)}</strong><br>Rate: ${option.rate.toFixed(2)}% | Term: ${option.termMonths} months</p></div>`).join('')
   const disclaimer = '<p style="color:#666;font-size:12px">These estimates reflect current program assumptions and the information provided. They are intended to be close planning estimates, but they are not final terms, an approval, a commitment to lend, or a rate quote. Appraisal and title charges are estimates and actual third-party fees may vary.</p>'
-  return `<div style="background:#f3f3f1;padding:28px 16px"><div style="font-family:Arial,sans-serif;color:#111;line-height:1.55;max-width:680px;margin:0 auto;background:#fff;border-radius:18px;padding:32px"><div style="font-family:Georgia,serif;font-size:22px;margin-bottom:28px">Mortgage Stevie</div><h1 style="font-family:Georgia,serif;font-size:36px;line-height:1.05;margin:0 0 16px">Your fix-and-flip financing estimate</h1><p>Hi ${escapeHtml(contact.name)}, here are the two financing paths that currently appear strongest for your project.</p>${resultRows}<p style="margin-top:24px"><a href="${APPLICATION_URL}" style="display:inline-block;background:#111;color:#fff;padding:13px 18px;border-radius:999px;text-decoration:none;font-weight:700">Start my application</a></p><p><a href="${BOOKING_URL}" style="color:#111;font-weight:700">I have questions. Book a call.</a></p>${disclaimer}<p style="color:#777;font-size:12px;margin-top:24px">Stevie de Gala · NMLS# 2845865 · NEXA Lending</p></div></div>`
+  const warningHtml = result.warning ? `<div style="background:#fff4e5;border:1px solid #e7b978;border-radius:14px;padding:20px;margin:20px 0"><h2 style="font-family:Georgia,serif;margin:0 0 8px">The numbers show a loss.</h2><p style="margin:0">With what you entered, this deal could lose about <strong>${money(result.warning.estimatedLoss)}</strong>. The estimated project cost is ${money(result.warning.totalProjectCost)} against an ARV of ${money(result.warning.arv)}. We don't want anyone going into a deal that's likely to lose money. Let's talk through why, or look at another deal with better numbers.</p></div>` : ''
+  const intro = result.warning ? `Hi ${escapeHtml(contact.name)}, there just isn't enough room in this deal right now. Here is the financing path with the lowest projected loss so you can see the numbers clearly.` : `Hi ${escapeHtml(contact.name)}, here are the two financing paths that currently appear strongest for your project.`
+  const action = result.warning ? `<p style="margin-top:24px"><a href="${BOOKING_URL}" style="display:inline-block;background:#111;color:#fff;padding:13px 18px;border-radius:999px;text-decoration:none;font-weight:700">Discuss this deal or another opportunity</a></p>` : `<p style="margin-top:24px"><a href="${APPLICATION_URL}" style="display:inline-block;background:#111;color:#fff;padding:13px 18px;border-radius:999px;text-decoration:none;font-weight:700">Start my application</a></p><p><a href="${BOOKING_URL}" style="color:#111;font-weight:700">I have questions. Book a call.</a></p>`
+  return `<div style="background:#f3f3f1;padding:28px 16px"><div style="font-family:Arial,sans-serif;color:#111;line-height:1.55;max-width:680px;margin:0 auto;background:#fff;border-radius:18px;padding:32px"><div style="font-family:Georgia,serif;font-size:22px;margin-bottom:28px">Mortgage Stevie</div><h1 style="font-family:Georgia,serif;font-size:36px;line-height:1.05;margin:0 0 16px">Your fix-and-flip financing estimate</h1><p>${intro}</p>${warningHtml}${resultRows}${action}${disclaimer}<p style="color:#777;font-size:12px;margin-top:24px">Stevie de Gala · NMLS# 2845865 · NEXA Lending</p></div></div>`
 }
 
 async function sendEmails(contact: Contact, deal: Deal, options: InternalOption[], attribution: Attribution) {
@@ -415,7 +449,7 @@ export async function POST(req: NextRequest) {
     preview: previewSubmission,
     captured: { crm, internalEmail: email.internal },
     email,
-    options: options.slice(0, 2).map((option, index) => publicOption(option, index, deal, options[0])),
+    ...buildPublicResults(deal, options),
     manualReview: options.length === 0,
     assumptions: { appraisalFee: 1000, titleFee: 500, asOf: 'Current program assumptions' },
   })
