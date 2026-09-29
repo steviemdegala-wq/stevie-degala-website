@@ -6,7 +6,7 @@ import BookCallButton from '@/components/BookCallButton'
 export const metadata: Metadata = {
   title: 'Private / Hard Money Loans | Northern Colorado | Stevie de Gala',
   description:
-    'Private and hard money loans for real estate investors in Fort Collins, Greeley, Loveland, Windsor, and Northern Colorado. Asset-based lending — no income verification. Close in 7–14 days. NMLS# 2845865',
+    'Private and hard money financing for real estate acquisitions, renovations, bridge needs, and time-sensitive investor projects in Colorado, Texas, and eligible lender markets. NMLS# 2845865.',
   openGraph: {
     title: 'Private / Hard Money Loans | Northern Colorado | Stevie de Gala',
     description:
@@ -23,7 +23,7 @@ const faqSchema = {
       name: 'What is a private or hard money loan?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A private or hard money loan is an asset-based loan secured primarily by the value of the real estate — not your income, employment history, or credit score. Approval is based on the property\'s value and your equity position. This makes private lending ideal for investors who are self-employed, have complex income, or need to move faster than conventional financing allows.',
+        text: 'A private or hard money loan is a business-purpose loan secured by real estate. Lenders commonly emphasize the property, project budget, borrower contribution, experience, liquidity, credit, and exit plan. Requirements vary by lender and deal.',
       },
     },
     {
@@ -31,7 +31,7 @@ const faqSchema = {
       name: 'What are the typical rates and fees on a private hard money loan?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Rates on private hard money loans typically range from 10–12% depending on the deal, your experience level, the property type, and the loan-to-value ratio. Origination fees are typically around 2%, though this can vary by situation. Terms are short — usually 12 to 24 months — and structured for acquisition, renovation, or bridge situations where conventional financing is not available or too slow.',
+        text: 'Rates, points, lender fees, draw fees, third-party costs, term, and extension options vary by program and can change. The useful comparison is total borrowing cost against the project timeline and exit plan, not the note rate alone.',
       },
     },
     {
@@ -39,7 +39,7 @@ const faqSchema = {
       name: 'How fast can a private hard money loan close?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Private hard money loans can close in as little as 7–14 days once the property is identified and underwritten. Because approval is asset-based rather than income-based, the process is streamlined. This speed advantage is the primary reason investors use private lending — it allows non-contingent offers and competitive positioning against bank-dependent buyers.',
+        text: 'Private-money programs can be faster than conventional financing when the deal package, title, appraisal or valuation, insurance, entity documents, and borrower information are ready. The actual closing date depends on the property, lender, documentation, and any issues discovered during review.',
       },
     },
     {
@@ -55,7 +55,7 @@ const faqSchema = {
       name: 'What is the difference between hard money and a fix and flip line of credit?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Hard money loans are single-use, deal-specific loans — every acquisition requires a new application, new underwriting, and new origination fees. A fix and flip line of credit is underwritten once and then revolves: draw, repay, and draw again without reapplying. For investors doing multiple deals per year, a revolving line is significantly more cost-efficient. Hard money is the right tool for one-off deals, first-time investors, or situations that do not fit line-of-credit criteria.',
+        text: 'Hard money is usually deal-specific. Multi-deal programs may be true revolving facilities or an upfront financing preapproval followed by separate property-level loans. Each structure has different underwriting, collateral, fees, and draw mechanics, so the program documents should determine the label.',
       },
     },
     {
@@ -122,29 +122,28 @@ export default function PrivateHardMoneyPage() {
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
             style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
-            Asset-based capital. No income verification. Close in days.
+            Short-term capital built around the property and the plan.
           </h1>
           <p className="text-[#C4C4C4] text-xl leading-relaxed max-w-2xl mb-8">
-            Private hard money lending is underwritten on the property — not your W-2. If the deal makes sense and the numbers work, you can close in 7–14 days, compete with cash buyers, and move before conventional financing can even respond.
+            Private and hard money can support acquisitions, renovation budgets, bridge needs, and properties that are not ready for permanent financing. Stevie compares the deal against configured lender programs and explains the cost, cash requirement, draw process, and exit considerations.
           </p>
           <div className="flex flex-wrap gap-4 mb-12">
-            <BookCallButton variant="solid" label="Talk About Your Deal" />
+            <Link href="/fix-and-flip-calculator" className="rounded-full bg-[#F8F8F8] px-7 py-3.5 text-sm font-semibold text-[#0A0A0A]">Run the Fix &amp; Flip Calculator</Link>
             <Link
-              href="/loans/fix-and-flip"
+              href="/find-my-loan"
               className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors group"
             >
-              Also: Fix &amp; Flip Line of Credit
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
+              Find My Loan
             </Link>
           </div>
 
           {/* Loan terms snapshot */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px border border-[#2E2E2E] rounded-xl overflow-hidden">
             {[
-              { label: 'Interest Rate', value: '10–12%' },
-              { label: 'Origination Fee', value: '~2%' },
-              { label: 'Close Timeline', value: '7–14 days' },
-              { label: 'Loan Basis', value: 'Asset-based' },
+              { label: 'Use', value: 'Business purpose' },
+              { label: 'Structure', value: 'Short term' },
+              { label: 'Renovation', value: 'Draws may apply' },
+              { label: 'Decision', value: 'Lender review' },
             ].map((item) => (
               <div key={item.label} className="bg-[#111111] px-6 py-5">
                 <p className="text-[#555555] text-[10px] uppercase tracking-[0.2em] mb-1">{item.label}</p>
@@ -197,14 +196,14 @@ export default function PrivateHardMoneyPage() {
           </h2>
           <div className="rounded-2xl overflow-hidden border border-[#1E1E1E] bg-[#111111]">
             {[
-              { term: 'Interest Rate', detail: '10–12% depending on deal, LTV, and experience' },
-              { term: 'Origination Fee', detail: 'Approximately 2% — varies by lender and deal profile' },
-              { term: 'Loan Term', detail: '12–24 months — structured for short-term acquisition and renovation' },
-              { term: 'Loan-to-Value', detail: 'Typically up to 65–75% of as-is value or ARV' },
-              { term: 'Income Verification', detail: 'Not required — approval based on property value and equity' },
-              { term: 'Close Timeline', detail: '7–14 days from deal identification to funding' },
-              { term: 'Property Types', detail: 'Single-family, small multifamily, mixed-use, commercial, land' },
-              { term: 'Geographic Focus', detail: 'Northern Colorado — Fort Collins, Greeley, Loveland, Windsor, Timnath' },
+              { term: 'Rate and points', detail: 'Confirmed from current lender pricing after the deal and borrower profile are reviewed' },
+              { term: 'Loan term', detail: 'Short-term and tied to a realistic renovation, sale, refinance, or stabilization plan' },
+              { term: 'Loan amount', detail: 'Usually limited by more than one measure, such as cost, as-is value, after-repair value, and program maximums' },
+              { term: 'Renovation funds', detail: 'May be held back and reimbursed through draws rather than delivered entirely at closing' },
+              { term: 'Liquidity', detail: 'Borrower contribution, closing costs, reserves, contingency, and unfunded costs may be required' },
+              { term: 'Timing', detail: 'Depends on a complete file, property review, valuation, title, insurance, and lender capacity' },
+              { term: 'Property types', detail: 'Eligibility varies; unusual, rural, manufactured, mixed-use, or heavily damaged properties need confirmation' },
+              { term: 'Geography', detail: 'Stevie is licensed in Colorado and Texas; business-purpose program coverage elsewhere depends on the lender and applicable requirements' },
             ].map((row, i) => (
               <div key={i} className="grid grid-cols-[180px_1fr] md:grid-cols-[220px_1fr] border-b border-[#1A1A1A] last:border-b-0">
                 <div className="px-6 py-4 border-r border-[#1A1A1A]">
@@ -230,7 +229,7 @@ export default function PrivateHardMoneyPage() {
             className="text-3xl md:text-4xl text-[#F8F8F8] mb-10 leading-tight"
             style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
-            Hard money vs. Fix &amp; Flip Line of Credit.
+            Hard money vs. an investor line of credit.
           </h2>
           <div className="rounded-2xl overflow-hidden border border-[#1E1E1E]">
             <div className="grid grid-cols-[1fr_140px_160px] border-b border-[#1E1E1E] bg-[#0A0A0A]">
@@ -241,16 +240,16 @@ export default function PrivateHardMoneyPage() {
                 <p className="text-[#444444] text-xs uppercase tracking-widest">Hard Money</p>
               </div>
               <div className="py-4 border-l border-[#1E1E1E] flex items-center justify-center">
-                <p className="text-[#C4C4C4] text-xs uppercase tracking-widest">Fix &amp; Flip Line</p>
+                <p className="text-[#C4C4C4] text-xs uppercase tracking-widest text-center">Line / Hybrid LOC</p>
               </div>
             </div>
             {[
-              { feature: 'Approval process',       hard: 'Per deal',      line: 'Once' },
-              { feature: 'Rate',                    hard: '10–12%',        line: 'High 8s–9%' },
-              { feature: 'Origination fee',         hard: '~2% per deal',  line: 'Paid once' },
-              { feature: 'Reusability',             hard: 'New loan each deal', line: 'Draw & repay' },
-              { feature: 'Best for',                hard: 'First deal or one-off', line: '3+ deals/year' },
-              { feature: 'Close time',              hard: '7–14 days',     line: '~10 days' },
+              { feature: 'Approval process',       hard: 'Property-level',      line: 'Upfront review plus deal review' },
+              { feature: 'Structure',               hard: 'Separate loan',       line: 'Revolving or hybrid line' },
+              { feature: 'Fees',                    hard: 'Per-loan terms',       line: 'Program-specific terms' },
+              { feature: 'Reusability',             hard: 'New loan each deal',  line: 'Reusable, subject to terms' },
+              { feature: 'Best for',                hard: 'A specific opportunity', line: 'Repeat or overlapping projects' },
+              { feature: 'Timing',                  hard: 'Deal dependent',       line: 'Deal dependent' },
             ].map((row, i) => (
               <div key={i} className="grid grid-cols-[1fr_140px_160px] border-b border-[#1A1A1A] last:border-b-0 bg-[#111111]">
                 <div className="px-6 py-4 flex items-center">
@@ -267,11 +266,10 @@ export default function PrivateHardMoneyPage() {
           </div>
           <div className="mt-6 flex gap-4">
             <Link
-              href="/loans/fix-and-flip"
+              href="/loans/investor-line-of-credit"
               className="inline-flex items-center gap-2 text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors group"
             >
-              Learn about the Fix &amp; Flip Line of Credit
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
+              Explore Investor Lines of Credit
             </Link>
           </div>
         </div>

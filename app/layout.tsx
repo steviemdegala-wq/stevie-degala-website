@@ -8,11 +8,11 @@ import LeadCapturePopup from '@/components/LeadCapturePopup'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mortgagestevie.com'),
-  title: 'Stevie de Gala | Physician Loans & Investor Funding — Northern Colorado',
-  description: 'Physician loans and investor lines of credit for Northern Colorado — Fort Collins, Timnath, Windsor, Loveland, Greeley. Licensed mortgage broker. NMLS# 2845865',
+  title: 'Investor Funding & DSCR Loans | Mortgage Stevie',
+  description: 'Hard money, private money, DSCR loans, investor lines of credit, and medical professional home loans with Colorado and Texas mortgage broker Stevie de Gala. NMLS# 2845865.',
   openGraph: {
-    title: 'Stevie de Gala | Physician Loans & Investor Funding — Northern Colorado',
-    description: 'Physician loans and investor lines of credit for Northern Colorado — Fort Collins, Timnath, Windsor, Loveland, Greeley. Licensed mortgage broker. NMLS# 2845865',
+    title: 'Investor Funding & DSCR Loans | Mortgage Stevie',
+    description: 'Financing for acquisitions, renovations, rentals, construction, repeat deal flow, and medical professional home purchases.',
     type: 'website',
   },
 }

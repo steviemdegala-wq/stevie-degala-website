@@ -3,13 +3,13 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'Investment Property Financing | Northern Colorado Investors | Stevie de Gala',
+  title: 'Investor Financing | Hard Money, DSCR & Lines of Credit | Mortgage Stevie',
   description:
-    'DSCR loans, investor lines of credit, bank statement loans, and portfolio financing for real estate investors in Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. A broker who has been in the deal. NMLS# 2845865',
+    'Hard money, private money, DSCR loans, and multi-deal financing for real estate investors in Colorado and Texas. Work with broker and investor Stevie de Gala. NMLS# 2845865.',
   openGraph: {
     title: 'Investment Property Financing | Northern Colorado Real Estate Investors',
     description:
-      'DSCR loans, investor credit lines, and portfolio financing for real estate investors across the Northern Colorado Front Range.',
+      'Hard money, private money, DSCR loans, and investor lines of credit for acquiring, renovating, renting, and building.',
   },
 }
 
@@ -22,7 +22,7 @@ const faqSchema = {
       name: 'What loan programs are available for investment properties in Northern Colorado?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The primary programs for investors in Northern Colorado are DSCR loans (which qualify based on rental income rather than personal income), investor lines of credit (revolving access to portfolio equity), bank statement loans (for self-employed investors), conventional investment property loans, and bridge loans for acquiring properties before your current home sells or before a stabilization refi. Each has a different use case — I run the numbers on all of them against your specific deal before recommending.',
+        text: 'The core investor programs are hard money or private money for acquisitions and renovations, DSCR loans for eligible rental properties, and multi-deal financing structures for repeat acquisitions. Construction, bank-statement, conventional investment, and equity-based options may also be relevant. Each has a different use case and requires lender review.',
       },
     },
     {
@@ -30,7 +30,7 @@ const faqSchema = {
       name: 'What is a DSCR loan and how does it work for Northern Colorado investors?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A DSCR (Debt Service Coverage Ratio) loan qualifies based on the rental income the investment property generates — not on your personal W-2 or tax returns. If the monthly rent covers the loan payment (typically a DSCR of 1.0 or above), you can qualify regardless of your personal income situation. Northern Colorado has strong rental demand across Fort Collins, Greeley, Windsor, and Loveland — making DSCR viable for most stabilized rental acquisitions in this market.',
+        text: 'A DSCR loan places primary emphasis on the eligible property’s rental income rather than conventional personal-income documentation. Lenders also review credit, reserves, value, property type, lease or market rent, and current program rules. Rental income does not guarantee qualification.',
       },
     },
     {
@@ -80,14 +80,19 @@ const breadcrumbSchema = {
 
 const loanProducts = [
   {
+    href: '/loans/private-hard-money',
+    label: 'Hard Money / Private Money',
+    description: 'Deal-specific financing for acquisitions, renovations, bridge needs, and properties that need work before permanent financing.',
+  },
+  {
     href: '/loans/dscr',
     label: 'DSCR Loan',
-    description: 'Qualify on the property\'s rental income — not your personal income. No W-2 or tax returns required. The core product for scaling a rental portfolio.',
+    description: 'Rental-property financing where eligible property income is central to underwriting. Useful for purchases and qualifying refinances.',
   },
   {
     href: '/loans/investor-line-of-credit',
     label: 'Investor Line of Credit',
-    description: 'Revolving credit secured by portfolio equity. Draw for acquisitions, pay back, draw again. No need to refinance existing loans to access capital.',
+    description: 'Plan capital for multiple acquisitions or overlapping projects through a true revolving line or hybrid line structure, depending on the program.',
   },
   {
     href: '/loans/bank-statement',
@@ -160,7 +165,7 @@ export default function InvestorsPage() {
             The right product depends on the deal.
           </h2>
           <p className="text-[#C4C4C4] leading-relaxed mb-12 max-w-2xl">
-            Local lenders give you one or two options. I compare every structure available for your specific situation — and recommend the one that actually fits your strategy.
+            Acquisition price, renovation scope, rental income, available cash, experience, timeline, and exit strategy all affect which structure deserves a closer look.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             {loanProducts.map((product) => (
@@ -177,7 +182,7 @@ export default function InvestorsPage() {
                 </h3>
                 <p className="text-[#444444] text-sm leading-relaxed mb-4">{product.description}</p>
                 <span className="text-[#0A0A0A] text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                  Learn more →
+                  Learn more
                 </span>
               </Link>
             ))}
@@ -200,7 +205,7 @@ export default function InvestorsPage() {
               { label: 'Ground-up development', detail: 'My senior capstone at BYU was a self-storage facility I developed from scratch in Gilmer, Texas. Permitting, financing, construction, lease-up — I ran it.' },
               { label: 'Commercial RE underwriting background', detail: 'Before mortgage brokering, I worked at a commercial real estate AI underwriting software company. I understand how deals are analyzed, not just how loans are processed.' },
               { label: 'Multifamily investment experience', detail: 'I have invested in multifamily properties personally. When I talk about cash flow, DSCR ratios, and portfolio strategy, it is not from a textbook.' },
-              { label: 'Not limited to one lender', detail: 'As a broker, I access dozens of lenders — including portfolio lenders who hold DSCR and investor LOC products that bank-affiliated loan officers cannot offer.' },
+              { label: 'Broker perspective', detail: 'I compare relevant wholesale and specialty lender programs rather than presenting every deal as if one product fits all investors.' },
             ].map((item) => (
               <div key={item.label} className="border-b border-[#2E2E2E] pb-4 grid md:grid-cols-3 gap-4">
                 <span className="text-[#F8F8F8] text-sm font-medium">{item.label}</span>
@@ -264,7 +269,7 @@ export default function InvestorsPage() {
           <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">
             A free 15-minute call is all it takes to find out what better capital could do for your portfolio.
           </p>
-          <BookCallButton variant="solid" />
+          <div className="flex flex-wrap justify-center gap-3"><Link href="/find-my-loan" className="rounded-full bg-[#F8F8F8] px-7 py-3.5 text-sm font-semibold text-[#0A0A0A]">Find My Loan</Link><BookCallButton variant="outline" label="Book a Call" /></div>
         </div>
       </section>
     </main>

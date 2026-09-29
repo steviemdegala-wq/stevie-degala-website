@@ -72,14 +72,12 @@ export default function BlogPage() {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3 flex-shrink-0">
-            <a
-              href="https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/find-my-loan"
               className="inline-block px-6 py-3 text-sm uppercase tracking-widest font-medium transition-all rounded-full bg-[#F8F8F8] text-[#0A0A0A] border border-[#F8F8F8] hover:bg-[#0A0A0A] hover:text-[#F8F8F8]"
             >
               Get Pre-Qualified
-            </a>
+            </Link>
             <BookCallButton variant="outline" label="Get in Touch" />
           </div>
         </div>

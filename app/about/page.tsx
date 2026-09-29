@@ -59,8 +59,10 @@ const personSchema = {
   ],
   worksFor: {
     '@type': 'Organization',
-    name: 'NEXA Mortgage',
+    name: 'Barrett Financial',
+    identifier: { '@type': 'PropertyValue', name: 'NMLS', value: '181106' },
   },
+  email: 'SDegala@BarrettFinancial.com',
   sameAs: [
     'https://www.mortgagestevie.com',
     'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2845865',
@@ -132,10 +134,10 @@ export default function AboutPage() {
                 I&apos;m Stevie.
               </h1>
               <p className="text-[#C4C4C4] text-xl leading-relaxed mb-5">
-                Mortgage consultant, real estate investor, Ironman finisher, Filipino cook, and a person who genuinely loves helping people win.
+                Mortgage broker, real estate investor, Ironman finisher, Filipino cook, and a person who genuinely loves helping people win.
               </p>
               <p className="text-[#888888] text-base leading-relaxed">
-                I specialize in medical professional loans and investor funding. Both are personal — one grew out of watching my dad survive a decade of dialysis, the other out of developing real estate before I had a degree to hang on the wall.
+                I focus first on investor financing and also specialize in home loans for medical professionals. Both are personal — one grew out of developing and underwriting real estate, the other from watching my dad survive a decade of dialysis.
               </p>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 const CRM_URL = 'https://crm-two-beta-90.vercel.app'
-const DEFAULT_NOTIFICATION_EMAIL = 'steviemdegala@gmail.com'
+const DEFAULT_NOTIFICATION_EMAIL = 'SDegala@BarrettFinancial.com'
 const DEFAULT_FROM_EMAIL = 'Mortgage Stevie <onboarding@resend.dev>'
 
 const FIELD_LABELS: Record<string, string> = {

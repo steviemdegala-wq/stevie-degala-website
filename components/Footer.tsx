@@ -1,6 +1,5 @@
 import Link from 'next/link'
 
-const PREQUALIFY_URL = 'https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos'
 const REVIEW_URL = 'https://share.google/ghtLWfMHpWsjIlLz4'
 
 export default function Footer() {
@@ -18,10 +17,11 @@ export default function Footer() {
             >
               Stevie de Gala
             </p>
-            <p className="text-[#888888] text-xs leading-relaxed">Licensed Mortgage Broker.<br />Mortgage Consultant.</p>
+            <p className="text-[#888888] text-xs leading-relaxed">Mortgage Broker.<br />Investor Financing Resource.</p>
             <p className="text-[#888888] text-xs">NMLS# 2845865</p>
-            <p className="text-[#888888] text-xs">NEXA Lending</p>
+            <p className="text-[#888888] text-xs">Barrett Financial · NMLS# 181106</p>
             <a href="tel:+18065082666" className="text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">(806) 508-2666</a>
+            <a href="mailto:SDegala@BarrettFinancial.com" className="text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">SDegala@BarrettFinancial.com</a>
             <p className="text-[#888888] text-xs">Texas · Colorado</p>
             <a href={REVIEW_URL} target="_blank" rel="noopener noreferrer" className="text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">⭐ Leave a Google Review</a>
             <div className="flex gap-3 pt-1">
@@ -36,9 +36,10 @@ export default function Footer() {
           {/* Services */}
           <div className="space-y-3">
             <p className="text-[#F8F8F8] text-xs uppercase tracking-widest mb-4">Services</p>
-            <Link href="/loans/fix-and-flip" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Fix &amp; Flip Line of Credit</Link>
-            <Link href="/loans/doctor-loan" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Physician Loans</Link>
+            <Link href="/loans/private-hard-money" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Hard / Private Money</Link>
             <Link href="/loans/dscr" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">DSCR Investor Loans</Link>
+            <Link href="/loans/investor-line-of-credit" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Investor Line of Credit</Link>
+            <Link href="/who-i-help/medical-professionals" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Medical Home Loans</Link>
             <Link href="/find-my-loan" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Find My Loan</Link>
           </div>
 
@@ -50,7 +51,7 @@ export default function Footer() {
             <Link href="/who-i-help" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Who I Help</Link>
             <Link href="/resources" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Resources</Link>
             <Link href="/blog" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Blog</Link>
-            <a href={PREQUALIFY_URL} target="_blank" rel="noopener noreferrer" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Get Pre-Qualified</a>
+            <Link href="/find-my-loan" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Get Pre-Qualified</Link>
           </div>
 
           {/* Resources */}
@@ -65,9 +66,9 @@ export default function Footer() {
           {/* Who I Help */}
           <div className="space-y-3">
             <p className="text-[#F8F8F8] text-xs uppercase tracking-widest mb-4">Who I Help</p>
+            <Link href="/who-i-help/investors" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Investors</Link>
             <Link href="/who-i-help/first-time" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">First-Time Buyers</Link>
             <Link href="/who-i-help/homeowners" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Homeowners</Link>
-            <Link href="/who-i-help/investors" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Investors</Link>
           </div>
 
         </div>
@@ -80,7 +81,7 @@ export default function Footer() {
             <p className="text-[#888888] text-xs leading-relaxed max-w-xl">
               Rates shown are estimates and are subject to change. Contact me for a personalized quote based on your full financial picture.
             </p>
-            <p className="text-[#888888] text-xs flex-shrink-0">© 2025 Stevie de Gala</p>
+            <p className="text-[#888888] text-xs flex-shrink-0">© 2026 Stevie de Gala</p>
           </div>
           {/* Compliance bar */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2 border-t border-[#1E1E1E]">
@@ -95,7 +96,7 @@ export default function Footer() {
               <span className="text-[#555555] text-[10px] uppercase tracking-widest leading-tight">Equal Housing<br/>Lender</span>
             </div>
             <p className="text-[#555555] text-[10px] leading-relaxed">
-              Excellent Lending with Stevie de Gala &nbsp;·&nbsp; (806) 508-2666 &nbsp;·&nbsp; NMLS# 2845865 &nbsp;·&nbsp; NEXA Lending &nbsp;·&nbsp; This website is for informational purposes and constitutes an advertisement. Not a commitment to lend. All loans subject to credit approval.
+              Excellent Lending with Stevie de Gala &nbsp;·&nbsp; (806) 508-2666 &nbsp;·&nbsp; SDegala@BarrettFinancial.com &nbsp;·&nbsp; Stevie de Gala NMLS# 2845865 &nbsp;·&nbsp; Barrett Financial NMLS# 181106 &nbsp;·&nbsp; This website is for informational purposes and constitutes an advertisement. Not a commitment to lend. All loans subject to credit approval.
             </p>
           </div>
         </div>

@@ -3,10 +3,10 @@ import FixAndFlipCalculatorClient from './FixAndFlipCalculatorClient'
 
 export const metadata: Metadata = {
   title: 'Fix-and-Flip Calculator | Mortgage Stevie',
-  description: 'Estimate fix-and-flip financing, cash needed, and two potential funding paths using current program assumptions.',
+  description: 'Analyze a fix-and-flip deal, estimate profit and cash return, and compare preliminary financing structures from Mortgage Stevie’s renovation programs.',
   openGraph: {
     title: 'Fix-and-Flip Calculator | Mortgage Stevie',
-    description: 'Run the numbers on your next renovation project and compare two potential funding paths.',
+    description: 'Run the numbers on your renovation project and compare preliminary fix-and-flip financing structures.',
     type: 'website',
   },
 }

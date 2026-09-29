@@ -5,25 +5,25 @@ import BookCallButton from '@/components/BookCallButton'
 export const metadata: Metadata = {
   title: 'DSCR Loans | Investor Financing | Northern Colorado | Stevie de Gala',
   description:
-    'DSCR loans for real estate investors in Northern Colorado. Qualify on rental income, not your personal income or tax returns. Fort Collins, Greeley, Loveland, Timnath, Windsor, Severance. NMLS# 2845865',
+    'DSCR rental-property financing and a free portfolio cash flow review for real estate investors. Compare cash flow, leverage, reserves, and responsible growth options. NMLS# 2845865',
 }
 
 const features = [
   {
-    title: 'No Personal Income Verification',
-    body: 'DSCR loans qualify based on the rental income the property generates — not your W-2s, tax returns, or employment history. This makes them ideal for self-employed investors, those with complex tax situations, or anyone with significant write-offs.',
+    title: 'Property Cash Flow Leads',
+    body: 'DSCR programs center qualification on the property’s rental income relative to its housing payment. Personal tax-return income may not be the primary qualifying measure, though credit, reserves, property, and lender guidelines still apply.',
   },
   {
     title: 'Scale Without Bureaucracy',
-    body: 'Traditional investment property loans add each property\'s debt to your personal DTI, which caps how many you can acquire. DSCR loans are evaluated property by property — making it easier to build a portfolio without hitting a conventional loan ceiling.',
+    body: 'Because each property’s cash flow is central to the review, DSCR financing may provide another path when conventional debt-to-income qualification becomes restrictive. Overall credit exposure and program limits still matter.',
   },
   {
     title: 'Long-Term Fixed Options',
-    body: 'DSCR loans are available as 30-year fixed products — not just short-term bridge financing. This gives investors the stability of a locked rate on a rental property without the documentation requirements of a conventional investor loan.',
+    body: 'Depending on current lender offerings, long-term fixed and adjustable structures may be available. Terms, prepayment provisions, and documentation requirements vary by program.',
   },
   {
     title: 'Works for Short-Term Rentals',
-    body: 'Many DSCR programs accept short-term rental income projections (based on market data or existing STR history) in addition to traditional long-term lease income. Ideal for Airbnb or VRBO-style investment properties.',
+    body: 'Some DSCR programs accept short-term-rental history or market-rent analysis. The eligible income method, property location, licensing, and required documentation vary by lender.',
   },
 ]
 
@@ -36,7 +36,7 @@ const faqSchema = {
       name: 'What is a DSCR loan?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A DSCR loan — Debt Service Coverage Ratio loan — is an investment property mortgage that qualifies based on the property\'s rental income rather than the borrower\'s personal income. The DSCR is calculated by dividing the property\'s gross monthly rental income by the monthly loan payment (principal, interest, taxes, insurance, and HOA if applicable). A DSCR of 1.0 means the rental income exactly covers the payment; most lenders want to see 1.1 to 1.25 or higher for the best terms.',
+        text: 'A DSCR loan — Debt Service Coverage Ratio loan — is an investment-property mortgage that centers qualification on the property’s eligible rental income relative to its monthly housing expense. Calculation methods and minimum ratios vary by lender and program.',
       },
     },
     {
@@ -52,7 +52,7 @@ const faqSchema = {
       name: 'What DSCR ratio is needed to qualify?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Most DSCR lenders require a minimum ratio of 1.0 to 1.25. A ratio of 1.0 means the rental income exactly covers the full PITIA payment. Some programs allow ratios below 1.0 (called "no ratio" or "sub-1.0 DSCR") with higher down payments or stronger credit profiles. The higher the ratio, the better the rate and terms typically available. I calculate the projected DSCR for any property you are evaluating before we go further.',
+        text: 'Minimum ratios vary by lender, property, leverage, credit, and other factors. A ratio of 1.0 generally means eligible rental income equals the payment used in the lender’s calculation. Some programs may consider lower ratios with different pricing or leverage. A current program review is required.',
       },
     },
     {
@@ -60,7 +60,7 @@ const faqSchema = {
       name: 'What down payment is required for a DSCR loan?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Most DSCR loan programs require 20–25% down for single-family investment properties. Some programs allow as little as 15% down for stronger borrower profiles. Multi-unit properties typically require 25% or more. Rates and terms improve with larger down payments, and some lenders offer lower rates for borrowers with 30–35% down.',
+        text: 'Required equity varies by lender, credit profile, property type, occupancy, loan purpose, DSCR, and current program guidelines. A larger equity contribution may improve eligibility or pricing, but a current lender quote is needed for exact terms.',
       },
     },
     {
@@ -106,7 +106,7 @@ export default function DSCRLoanPage() {
             Qualify on the property&apos;s income. Not yours.
           </h1>
           <p className="text-[#C4C4C4] text-xl leading-relaxed max-w-2xl mb-6">
-            DSCR loans are the investor tool that conventional lenders do not want to talk about. No W-2s. No tax returns. No personal income verification. If the rent covers the payment, the loan qualifies.
+            DSCR loans center the financing decision on the rental property’s cash flow. Credit, reserves, property eligibility, leverage, and lender guidelines remain part of the review.
           </p>
           <p className="text-[#888888] text-sm max-w-2xl leading-relaxed">
             Available for investment properties throughout Northern Colorado — Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance.
@@ -140,9 +140,9 @@ export default function DSCRLoanPage() {
           </p>
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {[
-              { ratio: '1.25+', label: 'Strong', detail: 'Best rates and terms. Rental income meaningfully exceeds the full payment.' },
-              { ratio: '1.0–1.25', label: 'Standard', detail: 'Qualifies at most lenders. Rental income covers the payment with some cushion.' },
-              { ratio: 'Below 1.0', label: 'Sub-ratio', detail: 'Some lenders allow this with larger down payments and stronger credit. Higher rate.' },
+              { ratio: '1.25+', label: 'Stronger coverage', detail: 'Rental income exceeds the payment used in the calculation. Pricing and approval still depend on the full file.' },
+              { ratio: '1.0–1.25', label: 'Near coverage', detail: 'Rental income covers or modestly exceeds the payment. Program thresholds vary.' },
+              { ratio: 'Below 1.0', label: 'Lower coverage', detail: 'Some programs may consider this with different leverage, reserves, or pricing.' },
             ].map((item) => (
               <div key={item.ratio} className="bg-[#111111] border border-[#2E2E2E] px-6 py-5 rounded-xl">
                 <p className="text-[#F8F8F8] text-2xl font-bold mb-1" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>{item.ratio}</p>
@@ -171,15 +171,33 @@ export default function DSCRLoanPage() {
         </div>
       </section>
 
-      <section className="bg-[#0A0A0A] py-24 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
-            Run the DSCR on a property you are evaluating.
-          </h2>
-          <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">
-            A free 15-minute call to calculate the DSCR, compare programs across lenders, and see if the deal qualifies — before you make an offer.
-          </p>
-          <BookCallButton variant="solid" />
+      <section id="cash-flow-review" className="bg-[#0A0A0A] py-24 px-6 scroll-mt-24">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto">
+            <p className="text-[#8FA9BD] text-xs uppercase tracking-[0.25em] mb-4">Free Portfolio Cash Flow Review</p>
+            <h2 className="text-3xl md:text-5xl text-[#F8F8F8] mb-5" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
+              Make the portfolio work harder for your next move.
+            </h2>
+            <p className="text-[#C4C4C4] text-lg leading-relaxed">
+              Bring your current rentals and growth goals to a free strategy call. We will review where cash flow may be getting squeezed and how much equity or borrowing capacity may be available to help you scale.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5 mt-10">
+            <div className="rounded-2xl border border-[#303030] bg-[#111111] p-7">
+              <p className="text-[#8FA9BD] text-xs uppercase tracking-[0.2em] mb-3">01 · Maximize cash flow</p>
+              <h3 className="text-2xl text-[#F8F8F8] mb-3" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>Find the pressure points.</h3>
+              <p className="text-[#A5A5A5] leading-7">Review debt payments, loan structure, rents, reserves, and upcoming expenses to identify practical opportunities to improve monthly portfolio cash flow.</p>
+            </div>
+            <div className="rounded-2xl border border-[#303030] bg-[#111111] p-7">
+              <p className="text-[#8FA9BD] text-xs uppercase tracking-[0.2em] mb-3">02 · Access capital to scale</p>
+              <h3 className="text-2xl text-[#F8F8F8] mb-3" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>Measure the capital you can put to work.</h3>
+              <p className="text-[#A5A5A5] leading-7">Explore refinance, equity, DSCR, and investor line-of-credit options to estimate how much capital may be available without losing sight of sustainable cash flow.</p>
+            </div>
+          </div>
+          <div className="mt-10 text-center">
+            <BookCallButton variant="solid" label="Book My Free Portfolio Review" />
+            <p className="mx-auto mt-5 max-w-2xl text-xs leading-5 text-[#777]">This is an educational financing review, not tax, legal, or investment advice. Loan availability, proceeds, pricing, and approval depend on lender guidelines and underwriting.</p>
+          </div>
         </div>
       </section>
     </main>

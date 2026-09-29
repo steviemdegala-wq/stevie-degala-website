@@ -31,7 +31,7 @@ Add these environment variables to the Vercel project:
 
 ```text
 RESEND_API_KEY=re_your_private_key
-LEAD_NOTIFICATION_EMAIL=steviemdegala@gmail.com
+LEAD_NOTIFICATION_EMAIL=SDegala@BarrettFinancial.com
 LEAD_FROM_EMAIL=Mortgage Stevie <onboarding@resend.dev>
 ```
 

@@ -2,568 +2,139 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import Script from 'next/script'
-import BookCallButton from '@/components/BookCallButton'
-import RateAlertForm from '@/components/RateAlertForm'
-import FAQ from '@/components/FAQ'
-import MedicalProfessionsTicker from '@/components/MedicalProfessionsTicker'
-import { Building2, Stethoscope } from 'lucide-react'
+import { Building2, Hammer, Home, Layers3, Stethoscope } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Stevie de Gala | Physician Loans & Investor Funding — Northern Colorado',
-  description:
-    "Physician loans and investor lines of credit for Northern Colorado — Fort Collins, Timnath, Windsor, Loveland, Greeley. Zero down for doctors. Revolving capital for real estate investors. NMLS# 2845865",
+  title: 'Investor Funding & DSCR Loans | Mortgage Stevie',
+  description: 'Hard money, private money, DSCR loans, and multi-deal financing for real estate investors. Work with Stevie de Gala, a Colorado and Texas mortgage broker with firsthand investing and underwriting experience. NMLS# 2845865.',
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Stevie de Gala | Physician Loans & Investor Funding — Northern Colorado',
-    description:
-      "Physician loans and investor lines of credit for Northern Colorado — Fort Collins, Timnath, Windsor, Loveland, Greeley. Zero down for doctors. Revolving capital for real estate investors. NMLS# 2845865",
+    title: 'Investor Funding & DSCR Loans | Mortgage Stevie',
+    description: 'Financing for acquisitions, renovations, rental properties, construction, and repeat deal flow—with a broker who understands the deal.',
     type: 'website',
   },
-  alternates: {
-    canonical: '/',
-  },
 }
 
-const localBusinessSchema = {
+const businessSchema = {
   '@context': 'https://schema.org',
   '@type': ['FinancialService', 'LocalBusiness'],
-  '@id': 'https://www.mortgagestevie.com/#business',
-  name: 'Stevie de Gala — Physician Loans & Investor Funding',
-  alternateName: 'Mortgage Stevie',
-  description:
-    "Northern Colorado mortgage broker specializing in medical professional loans and investor lines of credit for real estate investors. Serving Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. NMLS# 2845865.",
-  url: 'https://www.mortgagestevie.com',
-  logo: 'https://www.mortgagestevie.com/opengraph-image',
-  image: 'https://www.mortgagestevie.com/opengraph-image',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Timnath',
-    addressRegion: 'CO',
-    postalCode: '80547',
-    addressCountry: 'US',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 40.52170,
-    longitude: -104.98110,
-  },
-  openingHoursSpecification: [
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '18:00' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:00', closes: '14:00' },
-  ],
-  areaServed: [
-    { '@type': 'City', name: 'Fort Collins', sameAs: 'https://en.wikipedia.org/wiki/Fort_Collins,_Colorado' },
-    { '@type': 'City', name: 'Greeley', sameAs: 'https://en.wikipedia.org/wiki/Greeley,_Colorado' },
-    { '@type': 'City', name: 'Loveland', sameAs: 'https://en.wikipedia.org/wiki/Loveland,_Colorado' },
-    { '@type': 'City', name: 'Timnath', sameAs: 'https://en.wikipedia.org/wiki/Timnath,_Colorado' },
-    { '@type': 'City', name: 'Windsor', sameAs: 'https://en.wikipedia.org/wiki/Windsor,_Colorado' },
-    { '@type': 'City', name: 'Severance', sameAs: 'https://en.wikipedia.org/wiki/Severance,_Colorado' },
-  ],
+  '@id': 'https://mortgagestevie.com/#business',
+  name: 'Mortgage Stevie',
+  founder: { '@type': 'Person', name: 'Stevie de Gala', jobTitle: 'Mortgage Broker', hasCredential: 'NMLS# 2845865' },
+  description: 'Investor financing and medical professional home loans from a mortgage broker licensed in Colorado and Texas.',
+  url: 'https://mortgagestevie.com',
   telephone: '+18065082666',
-  contactPoint: {
-    '@type': 'ContactPoint',
-    telephone: '+18065082666',
-    contactType: 'customer service',
-    url: 'https://www.mortgagestevie.com/find-my-loan',
-    areaServed: 'US',
-    availableLanguage: 'English',
-  },
-  sameAs: [
-    'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2845865',
-    'https://www.facebook.com/stevie.degala/',
-  ],
+  email: 'SDegala@BarrettFinancial.com',
+  parentOrganization: { '@type': 'Organization', name: 'Barrett Financial', identifier: { '@type': 'PropertyValue', name: 'NMLS', value: '181106' } },
+  address: { '@type': 'PostalAddress', addressLocality: 'Timnath', addressRegion: 'CO', addressCountry: 'US' },
+  areaServed: [{ '@type': 'State', name: 'Colorado' }, { '@type': 'State', name: 'Texas' }],
+  sameAs: ['https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2845865', 'https://www.facebook.com/stevie.degala/'],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Mortgage Loan Programs',
+    name: 'Mortgage and investor financing programs',
     itemListElement: [
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Medical Professional Loan', url: 'https://www.mortgagestevie.com/loans/doctor-loan' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Fix & Flip Line of Credit', url: 'https://www.mortgagestevie.com/loans/fix-and-flip' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Investor Line of Credit', url: 'https://www.mortgagestevie.com/loans/investor-line-of-credit' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'DSCR Loan', url: 'https://www.mortgagestevie.com/loans/dscr' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'FHA Loan', url: 'https://www.mortgagestevie.com/loans/fha' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Conventional Loan', url: 'https://www.mortgagestevie.com/loans/conventional' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Jumbo Loan', url: 'https://www.mortgagestevie.com/loans/jumbo' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'USDA Loan', url: 'https://www.mortgagestevie.com/loans/usda' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Refinance', url: 'https://www.mortgagestevie.com/loans/refinance' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'HELOC', url: 'https://www.mortgagestevie.com/loans/heloc' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Bank Statement Loan', url: 'https://www.mortgagestevie.com/loans/bank-statement' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Bridge & Construction Loan', url: 'https://www.mortgagestevie.com/loans/bridge-construction' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hard Money and Private Money', url: 'https://mortgagestevie.com/loans/private-hard-money' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'DSCR Loans', url: 'https://mortgagestevie.com/loans/dscr' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Investor Line of Credit', url: 'https://mortgagestevie.com/loans/investor-line-of-credit' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Medical Professional Home Loans', url: 'https://mortgagestevie.com/who-i-help/medical-professionals' } },
     ],
   },
-  knowsAbout: [
-    'Medical professional loans',
-    'Physician loans',
-    'Doctor loans',
-    'Fix and flip financing',
-    'Investor line of credit',
-    'Hard money lending',
-    'DSCR loans',
-    'FHA loans',
-    'Conventional loans',
-    'Jumbo loans',
-    'USDA loans',
-    'Mortgage refinancing',
-    'HELOC',
-    'Bank statement loans',
-    'Northern Colorado real estate',
-    'Fort Collins mortgage',
-    'Greeley mortgage',
-    'Loveland mortgage',
-    'Timnath mortgage',
-    'Windsor mortgage',
-  ],
-  founder: {
-    '@type': 'Person',
-    name: 'Stevie de Gala',
-    jobTitle: 'Mortgage Loan Consultant',
-    hasCredential: 'NMLS# 2845865',
-    url: 'https://www.mortgagestevie.com/about',
-    worksFor: {
-      '@type': 'Organization',
-      name: 'Stevie de Gala — Physician Loans & Investor Funding',
-    },
-  },
-  priceRange: '$$',
 }
 
-const personSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Stevie de Gala',
-  jobTitle: 'Mortgage Loan Consultant',
-  description:
-    'Northern Colorado mortgage broker specializing in medical professional loans and investor lines of credit for real estate investors. Based in Timnath, CO. NMLS# 2845865.',
-  url: 'https://www.mortgagestevie.com/about',
-  hasCredential: {
-    '@type': 'EducationalOccupationalCredential',
-    credentialCategory: 'license',
-    name: 'NMLS# 2845865',
-    recognizedBy: {
-      '@type': 'Organization',
-      name: 'Nationwide Multistate Licensing System',
-    },
-  },
-  knowsAbout: [
-    'Medical professional loans',
-    'Physician loans',
-    'Fix and flip financing',
-    'Investor line of credit',
-    'DSCR loans for investors',
-    'Northern Colorado real estate market',
-  ],
-  telephone: '+18065082666',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Timnath',
-    addressRegion: 'CO',
-    addressCountry: 'US',
-  },
-}
+const coreProducts = [
+  { number: '01', title: 'Hard Money / Private Money', body: 'Deal-specific financing for acquisitions, renovations, bridge needs, and properties that are not ready for permanent financing. Speed and flexibility can help, but the shorter term and higher cost need to fit the exit plan.', href: '/loans/private-hard-money', link: 'Explore private money' },
+  { number: '02', title: 'DSCR Loans', body: 'Longer-term financing for eligible rental purchases and refinances. The property’s rental income plays a central role, while credit, reserves, value, and program rules still matter.', href: '/loans/dscr', link: 'Explore DSCR loans' },
+  { number: '03', title: 'Investor Line of Credit', body: 'For investors planning several acquisitions or overlapping renovations. Depending on the program, the structure may be a true revolving line or a hybrid line with property-level review.', href: '/loans/investor-line-of-credit', link: 'Explore lines of credit' },
+]
 
+const faqItems = [
+  ['Does Stevie fund every loan directly?', 'No. Stevie is a mortgage broker and financing resource. He compares relevant lender programs and helps structure the request; the selected lender makes the final underwriting and funding decision.'],
+  ['Can a first-time investor use private money?', 'Potentially. Some programs allow newer investors, while pricing, leverage, liquidity, property condition, and the exit plan can change the available structure.'],
+  ['What does a DSCR lender review?', 'Lenders typically review the property’s rental income and expenses, value, credit, reserves, entity and documentation, along with current program requirements. Rental income alone does not guarantee approval.'],
+  ['When should I discuss financing for several deals?', 'Before the projects overlap. A planning conversation can compare deal-by-deal loans, a lender preapproval, or a true revolving facility where available.'],
+  ['Where can Stevie help?', 'Stevie is based in Northern Colorado and licensed in Colorado and Texas. Business-purpose private-money availability outside those states depends on the lender, property location, and applicable requirements.'],
+]
 
 export default function HomePage() {
   return (
     <main>
-      <Script
-        id="schema-local-business"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-      />
-      <Script
-        id="schema-person"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />
+      <Script id="schema-business" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
 
-      {/* Hero */}
-      <section className="min-h-screen bg-[#0A0A0A] relative overflow-hidden flex items-center pt-20">
-        {/* Photo — right half, full section height, no border */}
-        <div className="hidden md:block absolute right-0 inset-y-0 w-1/2 pointer-events-none">
-          <Image
-            src="/headshot.jpg"
-            alt="Stevie de Gala, physician loan consultant serving Northern Colorado — Fort Collins, Greeley, Loveland, Timnath"
-            fill
-            sizes="50vw"
-            className="object-cover object-top grayscale"
-            quality={90}
-            priority
-          />
-          {/* Fade photo into dark background on the left */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #0A0A0A 0%, #0A0A0A 5%, transparent 45%)' }} />
-          {/* Bottom fade */}
-          <div className="absolute inset-x-0 bottom-0 h-32" style={{ background: 'linear-gradient(to top, #0A0A0A, transparent)' }} />
+      <section className="relative flex min-h-[88vh] items-center overflow-hidden bg-[#0A0A0A] px-6 pb-20 pt-28">
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[46%] md:block">
+          <Image src="/headshot.jpg" alt="Stevie de Gala, mortgage broker and real estate investor" fill priority sizes="46vw" className="object-cover object-top grayscale" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0A0A0A_0%,transparent_50%),linear-gradient(0deg,#0A0A0A_0%,transparent_35%)]" />
         </div>
-
-        {/* Text — left side */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-16 md:py-28">
-          <div className="max-w-xl">
-            <p className="text-[#555555] text-xs uppercase tracking-[0.3em] mb-7 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#555555] inline-block" />
-              Northern Colorado
-            </p>
-            <h1
-              className="text-5xl md:text-6xl lg:text-[4.5rem] text-[#F8F8F8] leading-[1.05] mb-6"
-              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-            >
-              Medical Professional Loans & Investor Funding.
-            </h1>
-            <span style={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}>
-              Medical professional loan specialist and investor line of credit broker serving Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance, Northern Colorado. Physician loans, nurse loans, dentist loans. NMLS# 2845865
-            </span>
-            <p className="text-[#888888] text-base md:text-lg leading-relaxed mb-10 max-w-md">
-              Zero down loans for doctors, nurses, dentists, NPs, and many licensed healthcare professionals. Revolving investor lines of credit up to $10M for Northern Colorado real estate investors.
-            </p>
-            <div className="flex flex-col items-start gap-5">
-              <div className="flex flex-wrap items-center gap-3">
-                <a
-                  href="https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-8 py-3.5 text-sm font-medium transition-all rounded-full bg-[#F8F8F8] text-[#0A0A0A] hover:bg-[#DCDCDC]"
-                >
-                  Get Pre-Qualified
-                </a>
-                <BookCallButton variant="outline" label="Get in Touch" />
-              </div>
-              <Link
-                href="/find-my-loan"
-                className="inline-flex items-center gap-2 text-[#555555] text-sm hover:text-[#F8F8F8] transition-colors group"
-              >
-                Not sure which loan fits?
-                <span className="group-hover:translate-x-1 transition-transform">Find out →</span>
-              </Link>
+        <div className="relative z-10 mx-auto w-full max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[.25em] text-[#8FA9BD]">Real Estate Investor Funding</p>
+            <h1 className="max-w-[14ch] font-serif text-5xl leading-[.96] tracking-[-.04em] text-[#F8F8F8] sm:text-6xl lg:text-7xl">Financing for your next deal and the ones after</h1>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#B8B8B8]">Hard money, private money, DSCR loans, and investor lines of credit for investors growing their real estate portfolios. Work with a broker who brings firsthand investing and underwriting experience to the financing discussion.</p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link href="/find-my-loan" className="rounded-full bg-[#F8F8F8] px-7 py-3.5 text-sm font-semibold text-[#0A0A0A] transition hover:bg-white">Find My Loan</Link>
+              <Link href="/who-i-help/investors" className="rounded-full border border-[#666] px-7 py-3.5 text-sm font-semibold text-[#F8F8F8] transition hover:border-white">Explore Investor Financing</Link>
             </div>
-          </div>
-        </div>
-
-        {/* Mobile photo */}
-        <div className="md:hidden absolute inset-0 pointer-events-none">
-          <Image
-            src="/headshot.jpg"
-            alt="Stevie de Gala"
-            fill
-            sizes="100vw"
-            className="object-cover object-top grayscale opacity-20"
-            quality={80}
-            priority
-          />
-        </div>
-      </section>
-
-      {/* Trust Bar */}
-      <section className="bg-[#111111] border-y border-[#2E2E2E] py-5">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-center text-[#888888] text-xs uppercase tracking-[0.25em]">
-            Fort Collins &nbsp;&bull;&nbsp; Greeley &nbsp;&bull;&nbsp; Loveland &nbsp;&bull;&nbsp; Timnath &nbsp;&bull;&nbsp; Windsor &nbsp;&bull;&nbsp; Severance &nbsp;&bull;&nbsp; Northern Colorado
-          </p>
-        </div>
-      </section>
-
-
-      {/* Who I Help */}
-      <section className="bg-[#0A0A0A] py-20 px-6 border-t border-[#1A1A1A]">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-[#444444] text-xs uppercase tracking-[0.25em] mb-4">Who I Help</p>
-          <h2
-            className="text-center text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-12"
-            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-          >
-            Built for your specific situation.
-          </h2>
-          <div className="grid md:grid-cols-2 gap-4">
-
-            {/* Medical Professional */}
-            <div className="rounded-2xl overflow-hidden border border-[#303030]" style={{ background: 'linear-gradient(160deg, #2E2E2E 0%, #181818 40%, #0A0A0A 100%)' }}>
-              <div className="px-8 pt-10 pb-8">
-                <div className="flex items-center gap-2 mb-6">
-                  <Stethoscope size={14} className="text-[#888888]" />
-                  <span className="text-[#888888] text-xs uppercase tracking-[0.2em]">Medical Professional</span>
-                </div>
-                <h3
-                  className="text-3xl text-[#F8F8F8] leading-tight mb-4"
-                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-                >
-                  Medical Professional Home Loans
-                </h3>
-                <p className="text-[#555555] text-sm leading-relaxed mb-6 max-w-sm">
-                  Built for MDs, DOs, NPs, RNs, PAs, dentists, pharmacists, CRNAs, and more. Zero down, no PMI, student loan debt excluded from DTI.
-                </p>
-                <Link
-                  href="/who-i-help/medical-professionals"
-                  className="inline-block border border-[#F8F8F8] text-[#F8F8F8] px-7 py-3 text-sm tracking-wide hover:bg-[#F8F8F8] hover:text-[#0A0A0A] transition-all rounded-full"
-                >
-                  Learn More
-                </Link>
-              </div>
-              <div className="mx-8 mb-8 bg-[#0E0E0E] border border-[#1E1E1E] rounded-xl p-5">
-                <div className="grid grid-cols-2 gap-x-6 gap-y-4">
-                  {[
-                    { label: 'Down Payment', val: '0%' },
-                    { label: 'PMI Required', val: 'None' },
-                    { label: 'Student Debt in DTI', val: 'Excluded' },
-                    { label: 'Max Loan Size', val: '$2M+' },
-                  ].map((item) => (
-                    <div key={item.label}>
-                      <p className="text-[#444444] text-xs mb-1">{item.label}</p>
-                      <p className="text-[#C4C4C4] text-sm font-medium">{item.val}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Real Estate Investor */}
-            <div className="rounded-2xl overflow-hidden border border-[#303030]" style={{ background: 'linear-gradient(160deg, #0A0A0A 0%, #141414 40%, #262626 100%)' }}>
-              <div className="px-8 pt-10 pb-8">
-                <div className="flex items-center gap-2 mb-6">
-                  <Building2 size={14} className="text-[#888888]" />
-                  <span className="text-[#888888] text-xs uppercase tracking-[0.2em]">Real Estate Investor</span>
-                </div>
-                <h3
-                  className="text-3xl text-[#F8F8F8] leading-tight mb-4"
-                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-                >
-                  Investor Funding
-                </h3>
-                <p className="text-[#555555] text-sm leading-relaxed mb-6 max-w-sm">
-                  Pre-approved capital for Northern Colorado real estate investors. Draw, close, repay, repeat — no new loan approval required.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {[
-                    { label: 'Fix & Flip Line of Credit' },
-                    { label: 'Hard Money / Private Funding' },
-                    { label: 'DSCR Loan' },
-                  ].map((p) => (
-                    <Link
-                      key={p.label}
-                      href="/loans/fix-and-flip"
-                      className="text-xs border border-[#333333] text-[#888888] px-3 py-1.5 rounded-full hover:border-[#555555] hover:text-[#C4C4C4] transition-colors"
-                    >
-                      {p.label}
-                    </Link>
-                  ))}
-                </div>
-                <Link
-                  href="/who-i-help/investors"
-                  className="inline-block border border-[#F8F8F8] text-[#F8F8F8] px-7 py-3 text-sm tracking-wide hover:bg-[#F8F8F8] hover:text-[#0A0A0A] transition-all rounded-full"
-                >
-                  Learn More
-                </Link>
-              </div>
-              <div className="mx-8 mb-8 bg-[#0E0E0E] border border-[#1E1E1E] rounded-xl p-5">
-                <div className="grid grid-cols-2 gap-x-6 gap-y-4">
-                  {[
-                    { label: 'Loan Size', val: 'Up to $10M' },
-                    { label: 'Close Time', val: '~10 Days' },
-                    { label: 'Max ARV', val: 'Up to 70%' },
-                    { label: 'Rate', val: 'High 8s–9%' },
-                  ].map((item) => (
-                    <div key={item.label}>
-                      <p className="text-[#444444] text-xs mb-1">{item.label}</p>
-                      <p className="text-[#C4C4C4] text-sm font-medium">{item.val}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
+            <Link href="/who-i-help/medical-professionals" className="mt-7 inline-flex items-center gap-2 text-sm text-[#9C9C9C] underline decoration-[#555] underline-offset-4 hover:text-white"><Stethoscope size={15} />Buying a home as a medical professional?</Link>
           </div>
         </div>
       </section>
 
-      {/* Broker vs Bank */}
-      <section className="bg-[#0A0A0A] py-24 px-6 border-t border-[#1A1A1A]">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-12 text-center">
-            <p className="text-[#444444] text-xs uppercase tracking-[0.25em] mb-4">Why a Broker</p>
-            <h2
-              className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-4"
-              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-            >
-              The bank is not shopping for you.
-            </h2>
-            <p className="text-[#555555] text-base max-w-xl mx-auto leading-relaxed">
-              When you go to a bank, you get one offer — theirs. A broker shops 250+ lenders and brings you the best one.
-            </p>
-          </div>
-
-          {/* 3-column comparison table */}
-          <div className="rounded-2xl overflow-hidden border border-[#1E1E1E]">
-            {/* Header */}
-            <div className="grid grid-cols-[1fr_140px_190px]">
-              <div className="px-6 py-4 bg-[#111111] border-b border-r border-[#1E1E1E]">
-                <p className="text-[#888888] text-xs uppercase tracking-widest">Feature</p>
-              </div>
-              <div className="py-4 bg-[#111111] border-b border-r border-[#1E1E1E] flex items-center justify-center">
-                <p className="text-[#888888] text-xs uppercase tracking-widest">A Bank</p>
-              </div>
-              <div className="py-5 bg-[#F8F8F8] border-b border-[#F8F8F8] flex items-center justify-center">
-                <p className="text-[#0A0A0A] text-xs uppercase tracking-widest font-medium whitespace-nowrap">Working with Stevie</p>
-              </div>
-            </div>
-
-            {[
-              { feature: 'Lenders accessed',          bank: '1',     broker: '250+' },
-              { feature: 'Rate shopping',              bank: '✕',     broker: '✓' },
-              { feature: 'Wholesale pricing',          bank: '✕',     broker: '✓' },
-              { feature: 'Physician loan programs',    bank: 'Rare',  broker: '✓' },
-              { feature: 'DSCR & investor products',   bank: 'Rare',  broker: '✓' },
-              { feature: 'Closing cost competition',   bank: 'Rare',  broker: '✓' },
-              { feature: 'Works for you',              bank: '✕',     broker: '✓' },
-            ].map((row, i) => (
-              <div key={i} className="grid grid-cols-[1fr_140px_190px] border-b border-[#1A1A1A] last:border-b-0">
-                <div className="px-6 py-4 bg-[#111111] border-r border-[#1A1A1A] flex items-center">
-                  <span className="text-[#888888] text-sm">{row.feature}</span>
-                </div>
-                <div className="py-4 bg-[#111111] border-r border-[#1A1A1A] flex items-center justify-center">
-                  <span className={`text-sm ${row.bank === '✓' ? 'text-[#C4C4C4]' : row.bank === '✕' ? 'text-[#2E2E2E]' : 'text-[#444444]'}`}>
-                    {row.bank}
-                  </span>
-                </div>
-                <div className="py-4 bg-[#1C1C1C] flex items-center justify-center">
-                  <span className="text-sm text-[#E8E8E8] font-medium">{row.broker}</span>
-                </div>
-              </div>
+      <section className="border-y border-[#2E2E2E] bg-[#111] px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-xs font-semibold uppercase tracking-[.22em] text-[#8FA9BD]">Core investor financing</p>
+          <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-tight text-[#F8F8F8]">Start with the strategy. Then choose the capital.</h2>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {coreProducts.map((product) => (
+              <article key={product.title} className="flex flex-col rounded-2xl border border-[#303030] bg-[#0A0A0A] p-7">
+                <p className="text-xs font-semibold tracking-[.18em] text-[#6F879A]">{product.number}</p>
+                <h3 className="mt-5 font-serif text-3xl text-white">{product.title}</h3>
+                <p className="mt-4 flex-1 text-sm leading-7 text-[#A7A7A7]">{product.body}</p>
+                <Link href={product.href} className="mt-7 w-max border-b border-[#777] pb-1 text-sm font-semibold text-white">{product.link}</Link>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="bg-[#0A0A0A] py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-[220px_1fr] gap-16 items-start">
-            <div className="md:sticky md:top-32">
-              <h2
-                className="text-[3.5rem] md:text-[4.5rem] leading-none text-[#F8F8F8] font-normal"
-                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-              >
-                FAQ
-              </h2>
-            </div>
-            <div className="border-t border-[#2E2E2E] pt-2">
-              <FAQ />
-            </div>
+      <section className="bg-[#0A0A0A] px-6 py-20">
+        <div className="mx-auto max-w-7xl"><div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+          <div><p className="text-xs font-semibold uppercase tracking-[.22em] text-[#8FA9BD]">Strategies supported</p><h2 className="mt-4 font-serif text-4xl text-white">Match the financing to the business plan.</h2><p className="mt-5 max-w-lg leading-7 text-[#999]">Acquisition price, renovation scope, rental income, financing cost, timing, and exit strategy all change which structure deserves a closer look.</p></div>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              { icon: Hammer, title: 'Fix and flip', body: 'Acquire, renovate, and sell with a clear budget, timeline, and resale plan.', href: '/fix-and-flip-calculator', link: 'Run a deal analysis' },
+              { icon: Home, title: 'Rental portfolio', body: 'Purchase, refinance, and review the portfolio for stronger cash flow and responsible ways to access capital for growth.', href: '/loans/dscr#cash-flow-review', link: 'Get a free portfolio review' },
+              { icon: Building2, title: 'Ground-up construction', body: 'Discuss land, plans, budget, experience, contingencies, draws, and the intended exit.', href: '/loans/bridge-construction', link: 'Discuss a construction project' },
+            ].map((strategy) => <article key={strategy.title} className="rounded-2xl border border-[#292929] bg-[#111] p-6"><strategy.icon className="text-[#8FA9BD]" size={23} /><h3 className="mt-5 font-serif text-2xl text-white">{strategy.title}</h3><p className="mt-3 text-sm leading-6 text-[#999]">{strategy.body}</p><Link href={strategy.href} className="mt-5 inline-block text-sm font-semibold text-white underline decoration-[#555] underline-offset-4">{strategy.link}</Link></article>)}
           </div>
+        </div></div>
+      </section>
+
+      <section className="border-y border-[#2E2E2E] bg-[#F3F3F1] px-6 py-20 text-[#111]">
+        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2 md:items-center">
+          <div><p className="text-xs font-semibold uppercase tracking-[.22em] text-[#50687A]">Experience behind the financing</p><h2 className="mt-4 font-serif text-4xl leading-tight">A deal conversation with someone who has been inside the deal.</h2></div>
+          <div className="space-y-5 text-base leading-7 text-[#4B4B4B]"><p>Stevie developed a self-storage project from the ground up in Gilmer, Texas, then worked in commercial real estate underwriting and helped raise capital for multifamily projects.</p><p>That experience shapes the questions he asks about basis, renovation scope, rent, reserves, carrying cost, timing, and exit—not just the loan amount.</p><Link href="/about" className="inline-block font-semibold text-black underline decoration-[#888] underline-offset-4">About Stevie</Link></div>
         </div>
       </section>
 
-
-      {/* Is This You? — Physician Loans */}
-      <section className="bg-[#0A0A0A] py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-
-          {/* Primary: Medical Professional Loans */}
-          <div className="grid md:grid-cols-2 gap-16 items-start mb-16">
-            {/* Left — copy */}
-            <div>
-              <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Medical Professional Loans</p>
-              <h2
-                className="text-4xl md:text-5xl text-[#F8F8F8] leading-tight mb-5"
-                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-              >
-                Is This You?
-              </h2>
-              <p className="text-[#888888] text-lg leading-relaxed mb-7">
-                If you are in one of these professions, you likely qualify for a medical professional loan — zero down, no PMI, and student debt excluded from your DTI, because your earning potential is the asset, not your savings account.
-              </p>
-              <ul className="space-y-3 mb-10">
-                {[
-                  'Low or zero down payment',
-                  'No private mortgage insurance (PMI)',
-                  'Student loan debt excluded from DTI',
-                  'Available to residents and fellows',
-                ].map((benefit) => (
-                  <li key={benefit} className="flex items-center gap-3 text-[#C4C4C4] text-sm">
-                    <svg className="w-4 h-4 flex-shrink-0 text-[#888888]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/loans/doctor-loan"
-                className="inline-flex items-center gap-3 border border-[#F8F8F8] text-[#F8F8F8] px-7 py-3.5 text-sm tracking-wide hover:bg-[#F8F8F8] hover:text-[#0A0A0A] transition-all group rounded-full"
-              >
-                See If You Qualify
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </Link>
-            </div>
-
-            {/* Right — professions ticker */}
-            <MedicalProfessionsTicker />
-          </div>
-
-          {/* Looking for Another Loan? */}
-          <div className="mt-20 pt-14 border-t border-[#1A1A1A]">
-            <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-6">Looking for Another Loan?</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {[
-                { label: 'Fix & Flip Line of Credit', slug: 'fix-and-flip' },
-                { label: 'DSCR Investor', slug: 'dscr' },
-                { label: 'Conventional', slug: 'conventional' },
-                { label: 'FHA', slug: 'fha' },
-                { label: 'USDA', slug: 'usda' },
-                { label: 'Jumbo', slug: 'jumbo' },
-                { label: 'Refinance', slug: 'refinance' },
-                { label: 'HELOC / Home Equity', slug: 'heloc' },
-                { label: 'Bank Statement', slug: 'bank-statement' },
-                { label: 'Bridge / Construction', slug: 'bridge-construction' },
-              ].map((loan) => (
-                <Link
-                  key={loan.slug}
-                  href={`/loans/${loan.slug}`}
-                  className="group bg-[#111111] border border-[#2E2E2E] px-5 py-4 rounded-lg hover:border-[#555555] hover:bg-[#1A1A1A] transition-all flex items-center justify-between"
-                >
-                  <span className="text-[#888888] text-sm group-hover:text-[#F8F8F8] transition-colors">{loan.label}</span>
-                  <span className="text-[#555555] text-xs group-hover:text-[#888888] group-hover:translate-x-0.5 transition-all">→</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-        </div>
+      <section className="bg-[#0A0A0A] px-6 py-20">
+        <div className="mx-auto max-w-6xl"><p className="text-xs font-semibold uppercase tracking-[.22em] text-[#8FA9BD]">How it works</p><div className="mt-9 grid gap-8 md:grid-cols-3">
+          {[
+            ['01', 'Share the plan', 'Use Find My Loan or the fix-and-flip calculator to describe the property, strategy, timing, and upcoming deal flow.'],
+            ['02', 'Compare relevant programs', 'Stevie reviews the request against applicable lender programs, tradeoffs, documentation, and current availability.'],
+            ['03', 'Move with context', 'Discuss the recommendation, prepare the deal package, and decide whether to apply—without having to repeat the story.'],
+          ].map(([number, title, body]) => <div key={number} className="border-t border-[#3A3A3A] pt-5"><p className="text-xs font-semibold text-[#71899B]">{number}</p><h3 className="mt-4 font-serif text-2xl text-white">{title}</h3><p className="mt-3 text-sm leading-7 text-[#999]">{body}</p></div>)}
+        </div></div>
       </section>
 
-      {/* Rate Alert */}
-      <section className="bg-[#111111] border-y border-[#2E2E2E] py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-3">Rate Watch</p>
-              <h2
-                className="text-2xl md:text-3xl text-[#F8F8F8] leading-tight mb-3"
-                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-              >
-                Rates change daily. Know when they drop.
-              </h2>
-              <p className="text-[#888888] text-sm leading-relaxed">
-                Drop your email and I will reach out personally when rates make a meaningful move — so you are ready to act, not reacting late.
-              </p>
-            </div>
-            <div>
-              <RateAlertForm />
-            </div>
-          </div>
-        </div>
+      <section className="border-y border-[#2E2E2E] bg-[#111] px-6 py-16">
+        <div className="mx-auto flex max-w-6xl flex-col gap-7 md:flex-row md:items-center md:justify-between"><div className="max-w-3xl"><div className="flex items-center gap-2 text-[#8FA9BD]"><Stethoscope size={18} /><p className="text-xs font-semibold uppercase tracking-[.2em]">Second primary specialty</p></div><h2 className="mt-4 font-serif text-3xl text-white">Home loans for medical professionals</h2><p className="mt-3 leading-7 text-[#A7A7A7]">Programs designed around the income, contracts, education debt, and career path of eligible physicians and other medical professionals.</p></div><Link href="/who-i-help/medical-professionals" className="w-max rounded-full border border-[#777] px-6 py-3 text-sm font-semibold text-white hover:border-white">Explore Medical Home Loans</Link></div>
       </section>
 
-      {/* Mid-Page CTA Strip */}
-      <section className="bg-[#F8F8F8] py-20 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2
-            className="text-4xl md:text-5xl text-[#0A0A0A] mb-4 leading-tight"
-            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-          >
-            Better financing starts with one conversation.
-          </h2>
-          <p className="text-[#1A1A1A] text-lg mb-10 leading-relaxed">
-            A free 15-minute call is all it takes to find out whether a physician loan, investor line of credit, fix and flip line, or another structure gives you the best financial outcome.
-          </p>
-          <BookCallButton variant="light" />
-        </div>
+      <section className="bg-[#0A0A0A] px-6 py-20">
+        <div className="mx-auto max-w-4xl"><p className="text-xs font-semibold uppercase tracking-[.22em] text-[#8FA9BD]">Investor FAQs</p><h2 className="mt-4 font-serif text-4xl text-white">Questions worth answering before the term sheet.</h2><div className="mt-9 divide-y divide-[#2D2D2D] border-y border-[#2D2D2D]">{faqItems.map(([question, answer]) => <details key={question} className="group py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 font-semibold text-white"><span>{question}</span><span aria-hidden className="text-[#777] group-open:rotate-45">+</span></summary><p className="max-w-3xl pt-4 text-sm leading-7 text-[#999]">{answer}</p></details>)}</div></div>
       </section>
 
+      <section className="bg-[#F3F3F1] px-6 py-20 text-center text-[#111]"><div className="mx-auto max-w-3xl"><Layers3 className="mx-auto text-[#50687A]" /><h2 className="mt-5 font-serif text-4xl">Start with the deal you are working on.</h2><p className="mx-auto mt-4 max-w-2xl leading-7 text-[#555]">Get a preliminary direction, see what information to prepare, and carry the context into a conversation with Stevie.</p><Link href="/find-my-loan" className="mt-8 inline-block rounded-full bg-[#0A0A0A] px-8 py-4 text-sm font-semibold text-white">Find My Loan</Link></div></section>
     </main>
   )
 }

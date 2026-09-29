@@ -1,275 +1,64 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Script from 'next/script'
-import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'Investor Line of Credit | Fix & Flip Financing | Northern Colorado | Stevie de Gala',
-  description:
-    'Pre-approved revolving lines of credit for fix and flip investors in Fort Collins, Timnath, Windsor, Loveland, and Greeley. Close in ~10 days. Up to $10M. NMLS# 2845865',
+  title: 'Investor Line of Credit | Revolving & Hybrid Options | Mortgage Stevie',
+  description: 'Plan financing for multiple acquisitions and overlapping renovation projects with revolving or hybrid investor line-of-credit options.',
+  alternates: { canonical: '/loans/investor-line-of-credit' },
   openGraph: {
-    title: 'Investor Line of Credit | Fix & Flip Financing | Northern Colorado | Stevie de Gala',
-    description:
-      'Pre-approved revolving credit for fix and flip investors in Northern Colorado. Draw, flip, repay, repeat. Up to $10M.',
+    title: 'Investor Line of Credit | Mortgage Stevie',
+    description: 'Explore revolving and hybrid line-of-credit structures for repeat acquisitions and overlapping projects.',
   },
 }
 
-const features = [
-  {
-    title: 'Pre-Approved Borrower, In-House Deal Review',
-    body: 'You get pre-approved as a borrower for a line up to $10M. Each deal still gets appraised and underwritten — but the appraiser and underwriting team are in-house. No coordinating with third parties. No waiting on external timelines. That is why ~10 days is achievable.',
-  },
-  {
-    title: 'Non-Contingent Offers',
-    body: 'Because the capital is pre-approved and available, you can write non-contingent offers on distressed properties. In a market where speed is leverage, that is a structural advantage most buyers cannot match.',
-  },
-  {
-    title: 'Covers Acquisition and Renovation',
-    body: 'One draw funds the purchase. A second covers the rehab. You are not juggling multiple loan products or waiting on a new approval mid-project — the line handles the full deal cycle.',
-  },
-  {
-    title: 'Draw, Flip, Repay, Repeat',
-    body: 'Close, renovate, sell, pay back the line, and move to the next deal. Your borrower pre-approval carries forward — each new deal goes through in-house appraisal and underwriting, but the whole cycle moves in days, not weeks.',
-  },
+const comparisons = [
+  { title: 'True revolving line', body: 'A credit facility that may allow funds to be borrowed, repaid, and borrowed again within its terms. Collateral, availability, draws, fees, and deal review vary by program.' },
+  { title: 'Hybrid line of credit', body: 'An upfront borrower and line review designed for repeat use, with property-level approval, appraisal, underwriting, and closing requirements that may still apply to each draw or deal.' },
+  { title: 'Deal-by-deal private money', body: 'A separate loan for each acquisition or renovation. It can be the right structure for a specific opportunity, a first project, or a deal outside a facility’s rules.' },
 ]
 
-const useCases = [
-  {
-    title: 'Distressed Property Acquisitions',
-    body: 'Draw on the line to close quickly on undervalued properties before they hit the open market or go to the next buyer in line.',
-  },
-  {
-    title: 'Acquisition + Full Rehab',
-    body: 'Fund both the purchase and the renovation from a single pre-approved line. No separate hard money loan. No mid-project financing gaps.',
-  },
-  {
-    title: 'BRRRR Path',
-    body: 'Use the line for Buy-Rehab. Once the property is stabilized and rented, refinance with a DSCR loan and pay the line back down — ready for the next project.',
-  },
-  {
-    title: 'Running Multiple Projects',
-    body: 'If your line is large enough, you can fund more than one deal at a time. Draw for project A while project B is still under rehab — without waiting on either to close.',
-  },
+const preparation = [
+  'Expected acquisitions or renovations during the next 12 months',
+  'Whether projects are likely to overlap',
+  'Typical purchase price, renovation budget, and property type',
+  'Completed investment projects and current portfolio',
+  'Available liquidity, equity, and preferred borrower entity',
+  'Target markets, timing, and exit strategies',
 ]
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'What is an investor line of credit for fix and flip?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'An investor line of credit for fix and flip is a hybrid revolving credit facility. You get pre-approved as a borrower for a line up to $10M — your financial profile, experience, and track record are underwritten once. Each deal you fund with the line still goes through appraisal and underwriting, but because the appraiser and underwriting team are in-house, the process compresses to ~10 days instead of 30–45. You are pre-approved and the infrastructure is internal — that combination is what makes the speed possible.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How much can I access with a fix and flip line of credit in Northern Colorado?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Lines go up to $10 million depending on your experience and deal history. More experienced investors with a documented track record of completed flips typically qualify for larger lines at better rates. Fort Collins, Timnath, Windsor, and Loveland offer strong deal flow and strong ARVs — both factors that support higher line approvals.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What are the current rates on a fix and flip line of credit?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Current rates are in the high 8s to 9% range depending on experience and deal profile. That is meaningfully lower than traditional hard money, which typically runs 10–15% or higher. The revolving structure also means you are only paying interest on what you have drawn, not on the full line.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How fast can I close with a fix and flip line of credit?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Typically around 10 days once a deal is under contract. Each deal still goes through in-house appraisal and underwriting — but because the entire team is internal rather than third-party, the timeline compresses dramatically. You are already pre-approved as a borrower, so the deal review is the only remaining step. That is what makes a ~10-day close realistic and non-contingent offers credible.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How does a fix and flip line of credit compare to hard money?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Hard money is a single-project loan with external appraisers and underwriters — each deal starts from scratch, which is why timelines run 3–4 weeks or more. The fix and flip line of credit is a hybrid: you are pre-approved as a borrower, and each deal goes through in-house appraisal and underwriting. Because the entire team is internal, the timeline compresses to ~10 days. Hard money rates typically run 10–15%+. The line runs in the high 8s–9%. For investors doing consistent deal volume, the line is faster, cheaper, and built for repeat execution.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I use the line for both acquisition and renovation costs?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. You can draw for the purchase and draw again for the renovation — or structure a single draw that covers both. The line is designed to handle the full fix and flip cycle, not just one piece of it.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What fix and flip markets in Northern Colorado does this cover?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'I work with investors across Fort Collins, Timnath, Windsor, Loveland, Greeley, and Severance. Each market has a different mix of distressed inventory, ARV ceiling, and buyer demand. Fort Collins has the strongest ARVs driven by CSU and employment density. Windsor and Timnath have active appreciation from new construction adjacency. Greeley and Loveland offer lower acquisition costs with solid rental and resale demand.',
-      },
-    },
-  ],
-}
-
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.mortgagestevie.com' },
-    { '@type': 'ListItem', position: 2, name: 'Loans', item: 'https://www.mortgagestevie.com/loans' },
-    { '@type': 'ListItem', position: 3, name: 'Investor Line of Credit', item: 'https://www.mortgagestevie.com/loans/investor-line-of-credit' },
-  ],
-}
+const faq = [
+  ['Is every investor line of credit fully revolving?', 'No. Some programs are true revolving facilities; others are hybrid lines with an upfront borrower review and property-level approval for each deal. Stevie will explain the exact structure before you proceed.'],
+  ['Does an upfront review eliminate underwriting on each deal?', 'Not necessarily. Even with a line or preapproval, a lender may still review the property, appraisal, renovation scope, title, insurance, entity documents, and exit plan.'],
+  ['Is there a guaranteed line amount?', 'No. The available line depends on the program, borrower, portfolio, liquidity, experience, collateral, and each project. Public marketing ranges are not approvals.'],
+  ['Who should explore an investor line of credit?', 'Investors expecting several acquisitions, renovations that may overlap, or repeat deal flow can benefit from arranging a line before the next contract arrives.'],
+]
 
 export default function InvestorLineOfCreditPage() {
   return (
     <main className="pt-16 md:pt-20">
-      <Script id="faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="breadcrumb-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-
-      {/* Hero */}
-      <section className="bg-[#0A0A0A] py-24 md:py-32 px-6">
-        <div className="max-w-4xl mx-auto">
-          <Link href="/loans" className="text-[#888888] text-xs uppercase tracking-widest hover:text-[#F8F8F8] transition-colors flex items-center gap-2 mb-10">
-            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            All Loans
-          </Link>
-          <p className="text-[#888888] text-xs uppercase tracking-widest mb-6">Investor Line of Credit — Fix &amp; Flip — Northern Colorado</p>
-          <h1
-            className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
-            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-          >
-            Capital that moves as fast as your deals do.
-          </h1>
-          <p className="text-[#C4C4C4] text-xl leading-relaxed max-w-2xl mb-6">
-            A hybrid revolving line of credit for fix and flip investors. Get pre-approved as a borrower, then close each deal in ~10 days with in-house appraisal and underwriting — repay when you sell and cycle to the next project.
-          </p>
-          <p className="text-[#888888] text-sm max-w-2xl leading-relaxed mb-10">
-            Serving fix and flip investors across Fort Collins, Greeley, Loveland, Timnath, Windsor, Severance, and Northern Colorado.
-          </p>
-          {/* Loan terms snapshot */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px border border-[#2E2E2E] rounded-xl overflow-hidden">
-            {[
-              { label: 'Line Size', value: 'Up to $10M' },
-              { label: 'Close Timeline', value: '~10 days' },
-              { label: 'Current Rate', value: 'High 8s–9%' },
-              { label: 'Structure', value: 'Pre-approved revolving' },
-            ].map((item) => (
-              <div key={item.label} className="bg-[#111111] px-6 py-5">
-                <p className="text-[#555555] text-[10px] uppercase tracking-[0.2em] mb-1">{item.label}</p>
-                <p className="text-[#F8F8F8] text-lg font-medium" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>{item.value}</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-[#555555] text-xs mt-3">Rate varies by experience and deal profile. Terms subject to lender approval. NMLS# 2845865.</p>
+      <section className="bg-[#0A0A0A] px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-4xl">
+          <Link href="/who-i-help/investors" className="text-xs uppercase tracking-widest text-[#888] hover:text-white">Investor financing</Link>
+          <p className="mt-10 text-xs uppercase tracking-[.22em] text-[#8FA9BD]">Financing for repeat deal flow</p>
+          <h1 className="mt-5 max-w-3xl font-serif text-5xl leading-[1.02] text-white md:text-6xl">Put a line of credit behind your next deals.</h1>
+          <p className="mt-6 max-w-2xl text-xl leading-8 text-[#C4C4C4]">If you expect several acquisitions or renovations in the next year, the conversation is bigger than one loan. Compare a true revolving line, a hybrid line of credit, and deal-by-deal private money on their actual terms.</p>
+          <div className="mt-9 flex flex-wrap gap-3"><Link href="/find-my-loan?goal=multiple-deals" className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black">Discuss an Investor Line</Link><Link href="/fix-and-flip-calculator" className="rounded-full border border-[#666] px-7 py-3.5 text-sm font-semibold text-white">Analyze a Specific Deal</Link></div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
-            Why fix and flip investors use a line of credit.
-          </h2>
-          <p className="text-[#C4C4C4] leading-relaxed mb-12 max-w-2xl">
-            The investors who close more deals are not the ones with the most cash — they are the ones with capital already approved and ready to deploy when the deal shows up.
-          </p>
-          <div className="grid md:grid-cols-2 gap-6">
-            {features.map((f) => (
-              <div key={f.title} className="card-white card-hover border border-[#E5E5E5] bg-white p-8 rounded-xl">
-                <h3 className="text-xl text-[#0A0A0A] mb-4" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>{f.title}</h3>
-                <p className="text-[#444444] text-sm leading-relaxed">{f.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <section className="border-y border-[#2E2E2E] bg-[#111] px-6 py-20"><div className="mx-auto max-w-7xl"><p className="text-xs uppercase tracking-[.22em] text-[#8FA9BD]">Know the structure</p><h2 className="mt-4 max-w-3xl font-serif text-4xl text-white">Similar goal. Different legal and lending mechanics.</h2><div className="mt-10 grid gap-5 md:grid-cols-3">{comparisons.map((item) => <article key={item.title} className="rounded-2xl border border-[#303030] bg-[#0A0A0A] p-7"><h3 className="font-serif text-2xl text-white">{item.title}</h3><p className="mt-4 text-sm leading-7 text-[#A5A5A5]">{item.body}</p></article>)}</div></div></section>
 
-      {/* Use Cases */}
-      <section className="bg-[#0A0A0A] py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">How Investors Use It</p>
-          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
-            Four common applications.
-          </h2>
-          <p className="text-[#C4C4C4] leading-relaxed mb-12 max-w-2xl">
-            Every investor's situation is different — but most of the use cases fall into one of these categories.
-          </p>
-          <div className="grid md:grid-cols-2 gap-6">
-            {useCases.map((u) => (
-              <div key={u.title} className="border border-[#2E2E2E] bg-[#111111] p-8 rounded-xl">
-                <h3 className="text-lg text-[#F8F8F8] mb-3" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>{u.title}</h3>
-                <p className="text-[#888888] text-sm leading-relaxed">{u.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <section className="bg-[#0A0A0A] px-6 py-20"><div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2"><div><p className="text-xs uppercase tracking-[.22em] text-[#8FA9BD]">When it may fit</p><h2 className="mt-4 font-serif text-4xl text-white">Arrange the line before the projects overlap.</h2><p className="mt-5 leading-7 text-[#A5A5A5]">Multiple planned purchases, overlapping projects, or a need to make offers with more confidence can justify an earlier line-of-credit review. One planned deal does not rule it out if you are deliberately building toward repeat acquisitions.</p></div><div><h3 className="font-serif text-2xl text-white">Information to prepare</h3><ul className="mt-5 grid gap-3 text-sm leading-6 text-[#B5B5B5]">{preparation.map((item) => <li key={item} className="border-b border-[#292929] pb-3">{item}</li>)}</ul></div></div></section>
 
-      {/* Who this is for */}
-      <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Who It&apos;s For</p>
-          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-8" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
-            Built for investors doing consistent deal volume.
-          </h2>
-          <div className="space-y-4 mb-10">
-            {[
-              { label: 'Active fix and flip operators', detail: 'If you are closing multiple projects per year in Fort Collins, Timnath, Windsor, or the broader Northern Colorado market, the revolving structure means you are not starting from zero on capital every time.' },
-              { label: 'Investors transitioning from hard money', detail: 'If you have completed several deals and want to stop paying 10–15%+ on single-project hard money loans, a pre-approved line at high 8s–9% is the next step.' },
-              { label: 'BRRRR operators', detail: 'Use the line for the buy-and-rehab phase, then refinance into a DSCR loan once the property is stabilized and rented. Pay the line back down and repeat.' },
-              { label: 'Physicians and high-income professionals flipping on the side', detail: 'High income gives you the qualification strength. A pre-approved line lets you act when deals show up without pulling capital from your practice or primary home.' },
-            ].map((item) => (
-              <div key={item.label} className="border-b border-[#2E2E2E] pb-4 grid md:grid-cols-3 gap-4">
-                <span className="text-[#F8F8F8] text-sm font-medium">{item.label}</span>
-                <span className="text-[#888888] text-sm leading-relaxed md:col-span-2">{item.detail}</span>
-              </div>
-            ))}
-          </div>
-          <div className="flex gap-4 flex-wrap">
-            <Link href="/loans/dscr" className="text-[#5C8AA5] text-sm hover:underline">Compare: DSCR loan →</Link>
-            <Link href="/loans/fix-and-flip" className="text-[#5C8AA5] text-sm hover:underline">Compare: Fix &amp; Flip line →</Link>
-            <Link href="/loans/heloc" className="text-[#5C8AA5] text-sm hover:underline">Compare: HELOC →</Link>
-            <Link href="/who-i-help/investors" className="text-[#5C8AA5] text-sm hover:underline">How I work with investors →</Link>
-          </div>
-        </div>
-      </section>
+      <section className="border-y border-[#2E2E2E] bg-[#F3F3F1] px-6 py-20 text-[#111]"><div className="mx-auto max-w-5xl"><p className="text-xs uppercase tracking-[.22em] text-[#50687A]">Tradeoffs to compare</p><div className="mt-8 grid gap-7 md:grid-cols-3">{[
+        ['Speed versus certainty', 'An upfront review may shorten later conversations, but property-level requirements and lender approval can still control timing.'],
+        ['Availability versus cost', 'Fees, unused-line requirements, interest mechanics, points, and extension terms can make a flexible structure more or less attractive than separate loans.'],
+        ['Line size versus collateral', 'A larger line may require portfolio equity, guaranties, liquidity, or collateral that you would rather preserve.'],
+      ].map(([title, body]) => <div key={title}><h3 className="font-serif text-2xl">{title}</h3><p className="mt-3 text-sm leading-7 text-[#555]">{body}</p></div>)}</div></div></section>
 
-      {/* FAQ */}
-      <section className="bg-[#0A0A0A] py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-12" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
-            Frequently asked questions.
-          </h2>
-          <div className="space-y-6">
-            {faqSchema.mainEntity.map((item) => (
-              <div key={item.name} className="border-b border-[#2E2E2E] pb-6">
-                <p className="text-[#F8F8F8] text-base font-medium mb-3">{item.name}</p>
-                <p className="text-[#888888] text-sm leading-relaxed">{item.acceptedAnswer.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <section className="bg-[#0A0A0A] px-6 py-20"><div className="mx-auto max-w-4xl"><h2 className="font-serif text-4xl text-white">Questions investors ask</h2><div className="mt-8 divide-y divide-[#2D2D2D] border-y border-[#2D2D2D]">{faq.map(([question, answer]) => <details key={question} className="py-5"><summary className="cursor-pointer font-semibold text-white">{question}</summary><p className="max-w-3xl pt-4 text-sm leading-7 text-[#999]">{answer}</p></details>)}</div></div></section>
 
-      {/* CTA */}
-      <section className="bg-[#111111] border-t border-[#2E2E2E] py-24 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl text-[#F8F8F8] mb-4" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>
-            Ready to close your next deal in 10 days?
-          </h2>
-          <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">
-            A free 15-minute call to look at your deal history, determine your line size, and get you set up to close your next flip in 10 days.
-          </p>
-          <BookCallButton variant="solid" />
-        </div>
-      </section>
+      <section className="border-t border-[#2E2E2E] bg-[#111] px-6 py-20 text-center"><div className="mx-auto max-w-3xl"><h2 className="font-serif text-4xl text-white">Map the next 12 months, not just the next closing.</h2><p className="mt-4 leading-7 text-[#AAA]">Share the number of projects you expect, whether they may overlap, and the typical deal profile. Stevie can identify whether a revolving or hybrid line is worth a real lender conversation.</p><Link href="/find-my-loan?goal=multiple-deals" className="mt-8 inline-block rounded-full bg-white px-8 py-4 text-sm font-semibold text-black">Discuss an Investor Line</Link><p className="mx-auto mt-5 max-w-2xl text-xs leading-5 text-[#777]">This page describes planning options, not a prequalification or approval. Line structure, amount, pricing, collateral, and availability are subject to lender requirements and underwriting.</p></div></section>
     </main>
   )
 }

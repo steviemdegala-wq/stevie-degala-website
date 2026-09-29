@@ -11,7 +11,7 @@ declare global {
   }
 }
 
-type Step = 'intro' | 'address' | 'deal' | 'timeline' | 'property' | 'experience' | 'credit' | 'contact' | 'results'
+type Step = 'intro' | 'address' | 'deal' | 'timeline' | 'property' | 'experience' | 'credit' | 'plans' | 'overlap' | 'contact' | 'results'
 
 type Answers = {
   addressKnown: boolean
@@ -21,10 +21,14 @@ type Answers = {
   purchasePrice: string
   renovationBudget: string
   arv: string
+  acquisitionClosingCosts: string
+  monthlyHoldingCosts: string
   projectMonths: string
   propertyType: string
   experience: string
   credit: string
+  plannedDeals: string
+  overlappingProjects: string
   name: string
   email: string
   phone: string
@@ -33,6 +37,7 @@ type Answers = {
 type ResultOption = {
   label: string
   advantage: string
+  program: string
   rate: number
   termMonths: number
   loanAmount: number
@@ -53,8 +58,18 @@ type ResultOption = {
   borrowingCost: number
   estimatedSellingCosts: number
   financingAndFees: number
+  acquisitionClosingCosts: number
+  nonFinancingHoldingCosts: number
   totalProjectCost: number
   estimatedProfit: number
+  estimatedCashContribution: number
+  returnOnCash: number | null
+  breakEvenSalePrice: number
+  sensitivity: {
+    salePriceDownFivePercent: number
+    renovationUpTenPercent: number
+    holdThreeMonthsLonger: number
+  }
   reasons: string[]
   cautions: string[]
   termReview: boolean
@@ -79,10 +94,10 @@ type DealWarning = {
 
 const initialAnswers: Answers = {
   addressKnown: true, address: '', state: '', zip: '', purchasePrice: '', renovationBudget: '', arv: '', projectMonths: '6',
-  propertyType: '', experience: '', credit: '', name: '', email: '', phone: '',
+  acquisitionClosingCosts: '', monthlyHoldingCosts: '', propertyType: '', experience: '', credit: '', plannedDeals: '', overlappingProjects: '', name: '', email: '', phone: '',
 }
 
-const flow: Step[] = ['address', 'deal', 'timeline', 'property', 'experience', 'credit', 'contact']
+const flow: Step[] = ['address', 'deal', 'timeline', 'property', 'experience', 'credit', 'plans', 'overlap', 'contact']
 const states = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY']
 
 function dollars(value: string | number) {
@@ -131,6 +146,7 @@ export default function FixAndFlipCalculatorClient() {
   const [previewMode, setPreviewMode] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
   const [dealWarning, setDealWarning] = useState<DealWarning | null>(null)
+  const [capacityRecommendation, setCapacityRecommendation] = useState<{ title: string; body: string } | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [suggestions, setSuggestions] = useState<any[]>([])
@@ -145,8 +161,26 @@ export default function FixAndFlipCalculatorClient() {
   const update = (field: keyof Answers, value: string) => setAnswers((current) => ({ ...current, [field]: value }))
   const show = (next: Step) => { setHistory((items) => [...items, step]); setError(''); setStep(next) }
   const next = () => {
+    if (step === 'plans' && ['1', 'exploring'].includes(answers.plannedDeals)) {
+      show('contact')
+      return
+    }
     const index = flow.indexOf(step)
     if (index >= 0 && index < flow.length - 1) show(flow[index + 1])
+  }
+
+  const track = (event: string, properties: Record<string, string | number | boolean> = {}) => {
+    ;(window as any).dataLayer?.push({ event, page: 'fix-and-flip-calculator', ...properties })
+  }
+
+  const startCalculator = () => {
+    track('calculator_started')
+    show('address')
+  }
+
+  const bookCall = (placement: string) => {
+    track('booking_clicked', { placement, productCategory: 'fix-and-flip' })
+    openModal()
   }
   const back = () => {
     const previous = history.at(-1)
@@ -221,8 +255,9 @@ export default function FixAndFlipCalculatorClient() {
           deal: {
             addressKnown: answers.addressKnown, address: answers.address, state: answers.state, zip: answers.zip,
             purchasePrice: dollars(answers.purchasePrice), renovationBudget: dollars(answers.renovationBudget), arv: dollars(answers.arv),
+            acquisitionClosingCosts: dollars(answers.acquisitionClosingCosts), monthlyHoldingCosts: dollars(answers.monthlyHoldingCosts),
             projectMonths: Number(answers.projectMonths), propertyType: answers.propertyType, experience: answers.experience,
-            credit: answers.credit,
+            credit: answers.credit, plannedDeals: answers.plannedDeals, overlappingProjects: answers.overlappingProjects,
           },
           attribution: {
             pageUrl: window.location.href,
@@ -240,6 +275,9 @@ export default function FixAndFlipCalculatorClient() {
       setPreviewMode(Boolean(data.preview))
       setEmailSent(Boolean(data.email?.borrower))
       setDealWarning(data.warning ?? null)
+      setCapacityRecommendation(data.capacityRecommendation ?? null)
+      track('calculator_results_viewed', { optionCount: data.options?.length ?? 0, manualReview: Boolean(data.manualReview) })
+      if (data.capacityRecommendation) track('financing_capacity_recommendation_displayed', { productCategory: 'fix-and-flip' })
       setHistory((items) => [...items, 'contact'])
       setStep('results')
     } catch (err) {
@@ -271,6 +309,8 @@ export default function FixAndFlipCalculatorClient() {
     property: ['Property type', 'What type of property is it?', 'Choose the closest match.'],
     experience: ['Your experience', 'How many flips have you completed in the last 3 years?', 'This can change the pricing and amount available.'],
     credit: ['Credit', 'Which range is closest to your credit score?', 'No hard credit pull. You can also choose an option that does not use FICO.'],
+    plans: ['Your next 12 months', 'How many investment properties do you expect to purchase or renovate?', 'This helps Stevie plan beyond this one deal. It does not determine approval.'],
+    overlap: ['Project timing', 'Will any of those projects overlap?', 'A rough answer is enough.'],
     contact: ['One last step', 'Where should we send your results?', 'Enter your details to see the complete comparison now and receive a copy by email.'],
   } as Record<string, string[]>)[step], [step, apiKey, answers.addressKnown])
 
@@ -307,7 +347,7 @@ export default function FixAndFlipCalculatorClient() {
                 <p className="mb-4 text-xs font-bold uppercase tracking-[.18em] text-[#666]">Fix-and-flip calculator</p>
                 <h1 className="mb-5 font-serif text-5xl leading-[1] tracking-[-.045em] sm:text-6xl">Run the numbers on your next flip.</h1>
                 <p className="max-w-[620px] text-lg leading-7 text-[#65615c]">See estimated financing, cash needed to get started, and carrying cost using current renovation programs. The numbers should be close, but nothing shown is final.</p>
-                <button type="button" onClick={() => show('address')} className={buttonClass}>Run my numbers <span>→</span></button>
+                <button type="button" onClick={startCalculator} className={buttonClass}>Run my numbers <span>→</span></button>
                 <p className="mt-4 text-xs text-[#777]">About 2 minutes · No hard credit pull · Free to use</p>
               </div>
             )}
@@ -344,6 +384,12 @@ export default function FixAndFlipCalculatorClient() {
                     ['arv', 'After-repair value (ARV)'],
                   ] as [keyof Answers, string][]).map(([field, label]) => <label key={field} className="block text-sm font-semibold">{label}<div className="relative mt-2"><span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777]">$</span><input required inputMode="numeric" className={`${inputClass} pl-8 text-lg`} value={String(answers[field])} onChange={(e) => update(field, formattedMoney(e.target.value))} placeholder="0" /></div></label>)}
                 </div>
+                <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                  {([
+                    ['acquisitionClosingCosts', 'Acquisition closing costs', 'Title, escrow, legal, transfer and other purchase costs'],
+                    ['monthlyHoldingCosts', 'Other holding costs per month', 'Taxes, insurance, utilities, HOA and maintenance'],
+                  ] as [keyof Answers, string, string][]).map(([field, label, detail]) => <label key={field} className="block text-sm font-semibold">{label}<div className="relative mt-2"><span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777]">$</span><input inputMode="numeric" className={`${inputClass} pl-8`} value={String(answers[field])} onChange={(e) => update(field, formattedMoney(e.target.value))} placeholder="0" /></div><span className="mt-1 block text-xs font-normal leading-5 text-[#777]">{detail}</span></label>)}
+                </div>
                 <p className="mt-4 text-xs leading-5 text-[#777]">Include labor, materials, permits, and a realistic contingency in the renovation budget. Use a supportable resale estimate for ARV.</p>
                 <button className={buttonClass}>Continue <span>→</span></button>
               </form>
@@ -353,6 +399,8 @@ export default function FixAndFlipCalculatorClient() {
             {step === 'property' && options([{value:'sfr',title:'Single-family home'},{value:'condo',title:'Condo or townhome'},{value:'multi',title:'2 to 4 units'},{value:'other',title:'Manufactured, mixed-use, or other',detail:'Manual review may be needed'}], 'propertyType')}
             {step === 'experience' && options([{value:'0',title:'This is my first flip'},{value:'1-2',title:'1 to 2 completed flips'},{value:'3-5',title:'3 to 5 completed flips'},{value:'6+',title:'6 or more completed flips'}], 'experience')}
             {step === 'credit' && options([{value:'800+',title:'800 or higher'},{value:'700+',title:'700 to 799'},{value:'below700',title:'Below 700'},{value:'noCredit',title:'Use an option without a credit-score requirement',detail:'This removes credit-based programs from the comparison'}], 'credit')}
+            {step === 'plans' && options([{value:'1',title:'1'},{value:'2-3',title:'2–3'},{value:'4-6',title:'4–6'},{value:'7+',title:'7+'},{value:'exploring',title:'Still exploring'}], 'plannedDeals')}
+            {step === 'overlap' && options([{value:'yes',title:'Yes, I expect more than one underway'},{value:'no',title:'No, I expect to finish one first'},{value:'unsure',title:'Not sure yet'}], 'overlappingProjects')}
 
             {step === 'contact' && heading && (
               <form onSubmit={submitContact}>
@@ -394,16 +442,16 @@ export default function FixAndFlipCalculatorClient() {
                       {dealWarning.payoffFee > 0 && <span>Payoff fee: <strong>{money(dealWarning.payoffFee)}</strong></span>}
                     </div>
                   </details>
-                  <button type="button" onClick={openModal} className="mt-6 rounded-full bg-[#090909] px-6 py-4 font-semibold text-white hover:bg-[#303030]">Discuss this deal or another opportunity</button>
+                  <button type="button" onClick={() => bookCall('projected-loss')} className="mt-6 rounded-full bg-[#090909] px-6 py-4 font-semibold text-white hover:bg-[#303030]">Discuss this deal or another opportunity</button>
                 </div>}
                 {previewMode && <p className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">Local preview mode: no CRM record or email was sent.</p>}
                 {!previewMode && emailSent && <p role="status" className="mb-6 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-950"><strong>Your results have been emailed.</strong> If they are not in your inbox within a few minutes, please check your spam or promotions folder.</p>}
                 {!previewMode && !emailSent && <p role="status" className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950"><strong>Your request was saved, but we could not confirm email delivery.</strong> Your results are available below. You can retry later or contact Stevie directly.</p>}
                 {manualReview ? <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6"><h2 className="font-serif text-2xl">This deal needs a closer look</h2><p className="mt-2 text-[#666]">Stevie can review the property, state, and deal structure to find the best available path.</p></div> : <div className="grid gap-4">{results.map((option, index) => <ResultCard key={option.label} option={option} primary={index === 0} />)}</div>}
-                <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">This is a planning estimate, not an approval, commitment to lend, or rate quote. Carrying cost reflects estimated interest for the displayed period. Total cash through payoff includes required borrower contributions, unfunded renovation costs, modeled fees, interest, and any listed payoff fee. The margin check assumes selling costs equal to 6% of ARV. It excludes reserve targets, taxes, insurance, utilities, income taxes, and unexpected project costs. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and program availability. *Appraisal and title fees are conservative estimates. Actual third-party charges may vary.</div>
-                {!dealWarning && <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                  <a href="https://prod.lendingpad.com/nexa/f4ccb1fc-693a-4398-9bc4-77bbd6cdc8c8/pos" target="_top" className="rounded-full bg-[#090909] px-6 py-4 text-center font-semibold text-white hover:bg-[#303030]">Start my application</a>
-                  <button type="button" onClick={openModal} className="rounded-full border border-[#090909] px-6 py-4 font-semibold text-[#090909] hover:bg-white">I have questions. Book a call.</button>
+                {capacityRecommendation && <div className="mt-6 rounded-2xl border border-[#9eb3c6] bg-[#eef3f7] p-6"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#49647a]">Multiple-project line of credit</p><h2 className="mt-2 font-serif text-2xl">{capacityRecommendation.title}</h2><p className="mt-3 text-sm leading-6 text-[#4f5961]">{capacityRecommendation.body}</p><button type="button" onClick={() => bookCall('financing-capacity')} className="mt-5 rounded-full bg-[#090909] px-5 py-3 text-sm font-semibold text-white">Discuss an investor line</button></div>}
+                <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">The financing structures shown are preliminary planning estimates, not approvals or commitments to lend. Stevie will review the specific lender match with you after an application or financing discussion. Rates and terms can change and must be confirmed. Interest assumes the full modeled loan is outstanding for the displayed period; renovation draws may reduce actual interest. Total project cost includes the costs you entered, modeled financing, and selling costs equal to 6% of the sale price. It excludes income taxes and unexpected costs not entered. Return on contributed cash means estimated net profit divided by estimated borrower cash invested through payoff. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and current program availability. *Appraisal and title fees are conservative estimates.</div>
+                {!dealWarning && <div className="mt-8">
+                  <button type="button" onClick={() => bookCall('results-primary')} className="rounded-full bg-[#090909] px-6 py-4 text-center font-semibold text-white hover:bg-[#303030]">Discuss this deal with Stevie</button>
                 </div>}
               </div>
             )}
@@ -419,13 +467,24 @@ export default function FixAndFlipCalculatorClient() {
 function ResultCard({ option, primary }: { option: ResultOption; primary: boolean }) {
   return (
     <article className={`rounded-2xl border p-6 shadow-lg ${primary ? 'border-[#090909] bg-[#090909] text-white' : 'border-[#d4d0ca] bg-white text-[#090909]'}`}>
-      <div className="flex items-start justify-between gap-4"><div><p className={`text-xs font-bold uppercase tracking-[.16em] ${primary ? 'text-[#aaa]' : 'text-[#777]'}`}>{option.label}</p><h2 className="mt-1 font-serif text-3xl">{option.advantage}</h2></div><span className={`rounded-full px-3 py-1 text-xs ${primary ? 'bg-white text-black' : 'bg-[#eee] text-black'}`}>{option.rate.toFixed(2)}% · {option.termMonths} mo.</span></div>
+      <div className="flex items-start justify-between gap-4"><div><p className={`text-xs font-bold uppercase tracking-[.16em] ${primary ? 'text-[#aaa]' : 'text-[#777]'}`}>{option.label} · Financing structure</p><h2 className="mt-1 font-serif text-3xl">{option.program}</h2><p className={`mt-1 text-sm ${primary ? 'text-[#aaa]' : 'text-[#666]'}`}>{option.advantage}</p></div><span className={`whitespace-nowrap rounded-full px-3 py-1 text-xs ${primary ? 'bg-white text-black' : 'bg-[#eee] text-black'}`}>{option.rate.toFixed(2)}% · {option.termMonths} mo.</span></div>
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
         <Metric label="Cash to get started" value={money(option.startupCash)} primary={primary} />
         <Metric label={`Estimated carrying cost (${option.carryingMonths} mo.)`} value={money(option.carryingCost)} primary={primary} />
         <Metric label="Estimated total cash through payoff*" value={money(option.totalCash)} primary={primary} />
       </div>
       <p className={`mt-4 text-sm ${primary ? 'text-[#d0d0d0]' : 'text-[#555]'}`}>Estimated financing: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.loanAmount)}</strong>, including up to <strong className={primary ? 'text-white' : 'text-black'}>{money(option.renovationAdvance)}</strong> for renovation.</p>
+      <div className={`mt-5 rounded-xl border p-4 ${primary ? 'border-[#333] bg-[#151515]' : 'border-[#ddd] bg-[#f7f7f7]'}`}>
+        <p className={`text-[10px] font-bold uppercase tracking-[.14em] ${primary ? 'text-[#888]' : 'text-[#777]'}`}>Projected deal economics</p>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          <Metric label="Estimated total project cost" value={money(option.totalProjectCost)} primary={primary} />
+          <Metric label="Estimated net profit" value={money(option.estimatedProfit)} primary={primary} />
+          <Metric label="Estimated cash invested" value={money(option.estimatedCashContribution)} primary={primary} />
+          <Metric label="Return on contributed cash" value={option.returnOnCash === null ? 'Not available' : `${option.returnOnCash.toFixed(1)}%`} primary={primary} />
+          <Metric label="Break-even sale price" value={money(option.breakEvenSalePrice)} primary={primary} />
+        </div>
+        <details className="mt-4 text-sm"><summary className="cursor-pointer font-semibold">See sensitivity checks</summary><div className={`mt-3 grid gap-2 ${primary ? 'text-[#ccc]' : 'text-[#555]'}`}><span>Sale price 5% lower: <strong>{money(option.sensitivity.salePriceDownFivePercent)}</strong> profit</span><span>Renovation 10% over budget: <strong>{money(option.sensitivity.renovationUpTenPercent)}</strong> profit</span><span>Hold 3 months longer: <strong>{money(option.sensitivity.holdThreeMonthsLonger)}</strong> profit</span></div></details>
+      </div>
       <details className={`mt-5 rounded-xl border p-4 text-sm ${primary ? 'border-[#333] bg-[#151515] text-[#d0d0d0]' : 'border-[#ddd] bg-[#f7f7f7] text-[#555]'}`}>
         <summary className="cursor-pointer font-semibold">What is included?</summary>
         <div className="mt-4 grid gap-2">
@@ -433,6 +492,8 @@ function ResultCard({ option, primary }: { option: ResultOption; primary: boolea
           <span>Other program fees: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.otherFees)}</strong></span>
           <span>Estimated appraisal*: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.appraisalFee)}</strong></span>
           <span>Estimated title fees*: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.titleFee)}</strong></span>
+          <span>Acquisition closing costs entered: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.acquisitionClosingCosts)}</strong></span>
+          <span>Other holding costs entered: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.nonFinancingHoldingCosts)}</strong></span>
           {option.payoffFee > 0 && <span>Payoff fee, paid later: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.payoffFee)}</strong></span>}
           {option.reserveTarget > 0 && <span>Estimated reserve target, not a fee: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.reserveTarget)}</strong></span>}
         </div>
