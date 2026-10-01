@@ -50,13 +50,25 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       '@type': 'Person',
       name: 'Stevie de Gala',
       url: `${baseUrl}/about`,
+      jobTitle: 'Mortgage Broker and Investor Financing Resource',
       hasCredential: 'NMLS# 2845865',
+      worksFor: {
+        '@type': 'Organization',
+        name: 'Barrett Financial',
+        identifier: 'NMLS# 181106',
+      },
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Stevie de Gala — Medical Professional Loan Consultant',
+      name: 'Mortgage Stevie',
+      alternateName: 'Stevie de Gala',
       url: baseUrl,
-      logo: { '@type': 'ImageObject', url: `${baseUrl}/opengraph-image` },
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/icon.png`,
+        width: 512,
+        height: 512,
+      },
     },
   }
 
@@ -118,9 +130,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           />
           <div>
             <p className="text-[#F8F8F8] text-sm font-medium mb-0.5">Stevie de Gala</p>
-            <p className="text-[#555555] text-xs uppercase tracking-widest mb-2">NMLS# 2845865 · Mortgage Broker · Northern Colorado</p>
+            <p className="text-[#555555] text-xs uppercase tracking-widest mb-2">Mortgage Broker · Investor Financing · NMLS# 2845865</p>
             <p className="text-[#888888] text-sm leading-relaxed">
-              Physician loan and VA loan specialist serving Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. Licensed in Colorado and Texas.{' '}
+              Stevie helps real estate investors compare hard money, private money, DSCR loans, and investor lines of credit, with medical professional home loans as a second specialty. Licensed in Colorado and Texas through Barrett Financial, NMLS# 181106.{' '}
               <Link href="/about" className="text-[#C4C4C4] hover:text-[#F8F8F8] transition-colors underline underline-offset-2">
                 About Stevie →
               </Link>
