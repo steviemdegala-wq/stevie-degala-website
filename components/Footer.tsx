@@ -20,8 +20,8 @@ export default function Footer() {
             <p className="text-[#888888] text-xs leading-relaxed">Mortgage Broker.<br />Investor Financing Resource.</p>
             <p className="text-[#888888] text-xs">NMLS# 2845865</p>
             <p className="text-[#888888] text-xs">Barrett Financial · NMLS# 181106</p>
-            <a href="tel:+18065082666" className="text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">(806) 508-2666</a>
-            <a href="mailto:SDegala@BarrettFinancial.com" className="text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">SDegala@BarrettFinancial.com</a>
+            <a href="tel:+18065082666" className="block w-fit text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">(806) 508-2666</a>
+            <a href="mailto:SDegala@BarrettFinancial.com" className="block w-fit max-w-full break-words text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">SDegala@BarrettFinancial.com</a>
             <p className="text-[#888888] text-xs">Texas · Colorado</p>
             <a href={REVIEW_URL} target="_blank" rel="noopener noreferrer" className="text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">⭐ Leave a Google Review</a>
             <div className="flex gap-3 pt-1">
