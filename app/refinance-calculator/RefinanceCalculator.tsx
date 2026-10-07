@@ -45,7 +45,12 @@ export default function RefinanceCalculator({ bookingUrl }: { bookingUrl: string
       <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#596451]">Mortgage Stevie · Refinance calculator</p>
       <h1 className="mt-4 font-serif text-4xl leading-tight sm:text-5xl">A new loan. A clearer picture.</h1>
       <p className="mt-4 max-w-2xl text-lg leading-7 text-[#57574f]">See the cash, costs, and payment change before deciding on your next move.</p>
-      <ol aria-label="Calculator progress" className="my-8 flex flex-wrap gap-x-5 gap-y-2 text-sm">{steps.map((name, i) => <li key={name} aria-current={step === i ? 'step' : undefined} className={step === i ? 'font-bold text-[#171717]' : 'text-[#65655d]'}>{i + 1}. {name}</li>)}</ol>
+      <div className="my-8 flex items-center gap-6 sm:gap-12">
+        <div role="progressbar" aria-label="Refinance calculator progress" aria-valuemin={0} aria-valuemax={steps.length} aria-valuenow={step + 1} aria-valuetext={`Step ${step + 1} of ${steps.length}: ${steps[step]}`} className="h-1 flex-1 overflow-hidden rounded-full bg-[#ddd8d1]">
+          <div className="h-full bg-[#555] transition-[width] duration-300 motion-reduce:transition-none" style={{ width: `${((step + 1) / steps.length) * 100}%` }} />
+        </div>
+        <span aria-hidden="true" className="min-w-[40px] text-right text-xs tabular-nums text-[#777]">{step + 1} / {steps.length}</span>
+      </div>
       <section className="rounded-3xl border border-[#deded5] bg-white p-6 shadow-sm sm:p-10">
         <h2 ref={heading} tabIndex={-1} className="mb-6 scroll-mt-24 font-serif text-3xl focus:outline-none">{['What type of refinance are you considering?', 'Start with your home and current loan.', 'What would closing cost?', 'Is the change worth it?', 'Let’s review your refinance.'][step]}</h2>
         {step === 0 && <form onSubmit={next}>
