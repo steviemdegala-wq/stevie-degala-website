@@ -13,7 +13,7 @@ export default function LeadCapturePopup() {
   const triggered = useRef(false)
 
   useEffect(() => {
-    if (pathname === '/fix-and-flip-calculator') return
+    if ((pathname === '/fix-and-flip-calculator' || pathname === '/refinance-calculator')) return
     // Don't show if already dismissed in this session
     if (sessionStorage.getItem('leadPopupDismissed')) return
 
@@ -71,7 +71,7 @@ export default function LeadCapturePopup() {
     sessionStorage.setItem('leadPopupDismissed', '1')
   }
 
-  if (pathname === '/fix-and-flip-calculator' || !visible || dismissed) return null
+  if ((pathname === '/fix-and-flip-calculator' || pathname === '/refinance-calculator') || !visible || dismissed) return null
 
   return (
     <div
