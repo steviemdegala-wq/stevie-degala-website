@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 const CRM_URL = (process.env.CRM_URL ?? 'https://crm-two-beta-90.vercel.app').replace(/\/$/, '')
 const DEFAULT_NOTIFICATION_EMAIL = 'SDegala@BarrettFinancial.com'
 const DEFAULT_FROM_EMAIL = 'Mortgage Stevie <onboarding@resend.dev>'
-const BOOKING_URL = 'https://cal.com/mortgagestevie/discoverycall'
+import { BOOKING_URL } from '@/lib/booking'
 const SELLING_COST_RATE = 0.06
 
 type Deal = {
