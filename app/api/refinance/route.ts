@@ -33,7 +33,6 @@ export async function POST(req: NextRequest) {
     `Current monthly principal and interest: ${money(input.currentPayment)}`,
     `Requested net cash out: ${money(result.cashOut)}`,
     ...(input.type === 'cash-out' ? [`Cash purpose: ${text(body.property?.cashPurpose, 300) || 'Not provided'}`] : []),
-    `Expected holding period: ${input.yearsKeeping} years`,
     `Origination: ${money(result.origination)} (2% of final loan)`,
     'Appraisal: $1,000; title: $500; processing and underwriting: $2,000',
     `Total financed closing costs: ${money(result.closingCosts)}`,
