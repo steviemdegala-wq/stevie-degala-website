@@ -1,5 +1,6 @@
 'use client'
 
+import { APPLICATION_URL } from '@/lib/application'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 import { calculateRefinance, money, RefinanceInput, validRefinance } from '@/lib/refinance'
 
@@ -91,7 +92,7 @@ export default function RefinanceCalculator({ bookingUrl }: { bookingUrl: string
             <label className="mt-6 flex items-start gap-3 text-sm leading-6"><input type="checkbox" required checked={consent} onChange={e => setConsent(e.target.checked)} className="mt-1.5" /><span>I agree to share my contact information and refinance scenario with Mortgage Stevie and be contacted about this request.</span></label>
             <button className={`${buttonClass} mt-6`} disabled={sending}>{sending ? 'Sending…' : 'Send my refinance summary'}</button>
           </form>}
-          <div className="mt-8 border-t border-[#deded5] pt-6"><h3 className="font-serif text-2xl">Set up a refinance call</h3><p className="my-3 text-sm leading-6 text-[#57574f]">Review real program options and confirm pricing with Stevie.</p><a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={`${buttonClass} inline-block`}>Choose a call time ↗</a></div>
+          <div className="mt-8 border-t border-[#deded5] pt-6"><h3 className="font-serif text-2xl">Set up a refinance call</h3><p className="my-3 text-sm leading-6 text-[#57574f]">Review real program options and confirm pricing with Stevie.</p><a href={bookingUrl} target="_blank" rel="noopener noreferrer" className={`${buttonClass} inline-block`}>Choose a call time ↗</a><a href={APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="mt-4 block text-sm font-semibold underline underline-offset-4">Ready to apply? Start my application ↗</a></div>
         </div>}
         {error && <p role="alert" className="mt-5 rounded-lg bg-red-50 p-4 text-sm text-red-800">{error}</p>}
         {step > 0 && <button onClick={() => { setStep(step - 1); setError('') }} disabled={sending} className="mt-6 block text-sm font-semibold underline underline-offset-4">Back</button>}
