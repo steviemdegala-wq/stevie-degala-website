@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 }
 
 const cards = [
-  { href: '/refinance-calculator', label: 'Calculator', headline: 'Refinance', body: 'Compare cash-out and rate-and-term scenarios, closing costs, and the change in your monthly payment.' },
+  { href: '/fix-and-flip-calculator', label: 'Investor tool', headline: 'Fix & Flip Calculator', body: 'See whether your next flip pencils out. Estimate profit, cash needed, and financing costs before making your move.' },
+  { href: '/refinance-calculator', label: 'Homeowner tool', headline: 'Refinance Calculator', body: 'See whether refinancing makes sense. Compare cash-out options, closing costs, payment changes, and payment break-even.' },
   {
     href: '/resources/rates',
     label: 'Current Rates',
