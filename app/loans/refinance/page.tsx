@@ -97,6 +97,7 @@ export default function RefinancePage() {
           >
             Lower your payment, access your equity, or both.
           </h1>
+          <Link href="/refinance-calculator" className="mb-6 inline-block rounded-full bg-white px-7 py-4 font-semibold text-black">Run the Refinance Calculator</Link>
           <p className="text-[#C4C4C4] text-xl leading-relaxed max-w-2xl mb-6">
             A refinance is not always the right move — but when it is, timing and program selection matter. I run the break-even analysis before you commit, so you know the actual numbers before signing anything.
           </p>
