@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 }
 
 const cards = [
+  { href: '/refinance-calculator', label: 'Calculator', headline: 'Refinance', body: 'Compare cash-out and rate-and-term scenarios, closing costs, and the change in your monthly payment.' },
   {
     href: '/resources/rates',
     label: 'Current Rates',
