@@ -1,63 +1,12 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { BOOKING_URL } from '@/lib/booking'
 import { useModalStore } from '@/lib/modalStore'
-
-declare global {
-  interface Window {
-    Cal?: any
-  }
-}
 
 export default function Modal() {
   const { isOpen, closeModal } = useModalStore()
   const overlayRef = useRef<HTMLDivElement>(null)
-  const calLoaded = useRef(false)
-
-  // Initialize Cal.com once on mount
-  useEffect(() => {
-    if (calLoaded.current) return
-    calLoaded.current = true
-
-    ;(function (C: any, A: string, L: string) {
-      const p = (a: any, ar: any) => { a.q.push(ar) }
-      const d = C.document
-      C.Cal = C.Cal || function (...args: any[]) {
-        const cal = C.Cal
-        if (!cal.loaded) {
-          cal.ns = {}
-          cal.q = cal.q || []
-          d.head.appendChild(d.createElement('script')).src = A
-          cal.loaded = true
-        }
-        if (args[0] === L) {
-          const api: any = function () { p(api, arguments) }
-          const namespace = args[1]
-          api.q = api.q || []
-          if (typeof namespace === 'string') {
-            cal.ns[namespace] = cal.ns[namespace] || api
-            p(cal.ns[namespace], args)
-            p(cal, ['initNamespace', namespace])
-          } else {
-            p(cal, args)
-          }
-          return
-        }
-        p(cal, args)
-      }
-    })(window, 'https://app.cal.com/embed/embed.js', 'init')
-
-    window.Cal('init', 'discoverycall', { origin: 'https://app.cal.com' })
-    window.Cal.config = window.Cal.config || {}
-    window.Cal.config.forwardQueryParams = true
-    window.Cal.ns.discoverycall('inline', {
-      elementOrSelector: '#my-cal-inline-discoverycall',
-      config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true' },
-      calLink: 'mortgagestevie/discoverycall',
-    })
-    window.Cal.ns.discoverycall('ui', { hideEventTypeDetails: false, layout: 'month_view' })
-  }, [])
-
   // Keyboard + scroll lock
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -71,6 +20,7 @@ export default function Modal() {
     }
     return () => {
       document.removeEventListener('keydown', handleKey)
+      document.body.style.overflow = ''
     }
   }, [isOpen, closeModal])
 
@@ -88,19 +38,12 @@ export default function Modal() {
         display: isOpen ? 'flex' : 'none',
       }}
     >
-      <div className="relative w-full max-w-4xl" style={{ height: '90vh' }}>
-        <button
-          onClick={closeModal}
-          className="absolute -top-8 right-0 text-[#888888] hover:text-[#F8F8F8] transition-colors text-2xl leading-none z-10"
-          aria-label="Close"
-        >
-          &times;
-        </button>
-
-        <div
-          id="my-cal-inline-discoverycall"
-          style={{ width: '100%', height: '100%', overflow: 'scroll' }}
-        />
+      <div role="dialog" aria-modal="true" aria-label="Book a call with Stevie" className="relative flex w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white" style={{ height: '90dvh' }}>
+        <div className="flex shrink-0 items-center justify-between gap-4 border-b border-gray-200 px-4 py-3 text-[#111111]">
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="text-sm underline underline-offset-4">Open booking in a new tab</a>
+          <button onClick={closeModal} className="flex h-10 w-10 items-center justify-center rounded-full text-3xl hover:bg-gray-100" aria-label="Close booking">&times;</button>
+        </div>
+        {isOpen && <iframe src={BOOKING_URL} title="Schedule a Microsoft Teams call with Stevie de Gala" width="100%" height="100%" scrolling="yes" className="min-h-0 flex-1 border-0" />}
       </div>
     </div>
   )
