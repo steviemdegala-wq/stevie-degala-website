@@ -231,18 +231,17 @@ export default function PrivateHardMoneyPage() {
           >
             Hard money vs. an investor line of credit.
           </h2>
-          <div className="rounded-2xl overflow-hidden border border-[#1E1E1E]">
-            <div className="grid grid-cols-[1fr_140px_160px] border-b border-[#1E1E1E] bg-[#0A0A0A]">
-              <div className="px-6 py-4">
-                <p className="text-[#444444] text-xs uppercase tracking-widest">Feature</p>
-              </div>
-              <div className="py-4 border-l border-[#1E1E1E] flex items-center justify-center">
-                <p className="text-[#444444] text-xs uppercase tracking-widest">Hard Money</p>
-              </div>
-              <div className="py-4 border-l border-[#1E1E1E] flex items-center justify-center">
-                <p className="text-[#C4C4C4] text-xs uppercase tracking-widest text-center">Line / Hybrid LOC</p>
-              </div>
-            </div>
+          <div className="overflow-x-auto rounded-2xl border border-[#444444]" role="region" aria-label="Financing comparison" tabIndex={0}>
+            <table className="w-full min-w-[540px] table-fixed text-center text-base leading-relaxed text-[#E8E8E8]">
+              <caption className="sr-only">Hard money compared with an investor line or hybrid line of credit</caption>
+              <thead className="bg-[#242424] text-[#F8F8F8]">
+                <tr>
+                  {['Feature', 'Hard Money', 'Line / Hybrid LOC'].map((heading) => (
+                    <th key={heading} scope="col" className="border-b border-[#444444] px-4 py-5 text-center text-sm font-semibold uppercase tracking-wider sm:px-6">{heading}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
             {[
               { feature: 'Approval process',       hard: 'Property-level',      line: 'Upfront review plus deal review' },
               { feature: 'Structure',               hard: 'Separate loan',       line: 'Revolving or hybrid line' },
@@ -250,20 +249,17 @@ export default function PrivateHardMoneyPage() {
               { feature: 'Reusability',             hard: 'New loan each deal',  line: 'Reusable, subject to terms' },
               { feature: 'Best for',                hard: 'A specific opportunity', line: 'Repeat or overlapping projects' },
               { feature: 'Timing',                  hard: 'Deal dependent',       line: 'Deal dependent' },
-            ].map((row, i) => (
-              <div key={i} className="grid grid-cols-[1fr_140px_160px] border-b border-[#1A1A1A] last:border-b-0 bg-[#111111]">
-                <div className="px-6 py-4 flex items-center">
-                  <span className="text-[#888888] text-sm">{row.feature}</span>
-                </div>
-                <div className="py-4 border-l border-[#1A1A1A] flex items-center justify-center">
-                  <span className="text-sm text-[#555555]">{row.hard}</span>
-                </div>
-                <div className="py-4 border-l border-[#1A1A1A] flex items-center justify-center">
-                  <span className="text-sm text-[#E0E0E0]">{row.line}</span>
-                </div>
-              </div>
-            ))}
+            ].map((row) => (
+                <tr key={row.feature} className="border-b border-[#383838] last:border-b-0 odd:bg-[#151515] even:bg-[#202020]">
+                  <th scope="row" className="px-4 py-5 text-center font-medium text-[#F8F8F8] sm:px-6">{row.feature}</th>
+                  <td className="border-l border-[#383838] px-4 py-5 sm:px-6">{row.hard}</td>
+                  <td className="border-l border-[#383838] px-4 py-5 sm:px-6">{row.line}</td>
+                </tr>
+              ))}
+              </tbody>
+            </table>
           </div>
+          <p className="mt-3 text-center text-sm text-[#C4C4C4] sm:hidden">Swipe across to compare both options.</p>
           <div className="mt-6 flex gap-4">
             <Link
               href="/loans/investor-line-of-credit"
