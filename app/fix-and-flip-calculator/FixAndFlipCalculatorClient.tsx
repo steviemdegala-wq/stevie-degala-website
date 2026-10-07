@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
+import { APPLICATION_URL } from '@/lib/application'
 import { useModalStore } from '@/lib/modalStore'
 
 declare global {
@@ -452,6 +453,7 @@ export default function FixAndFlipCalculatorClient() {
                 <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">The financing structures shown are preliminary planning estimates, not approvals or commitments to lend. Stevie will review the specific lender match with you after an application or financing discussion. Rates and terms can change and must be confirmed. Interest assumes the full modeled loan is outstanding for the displayed period; renovation draws may reduce actual interest. Total project cost includes the costs you entered, modeled financing, and selling costs equal to 6% of the sale price. It excludes income taxes and unexpected costs not entered. Return on contributed cash means estimated net profit divided by estimated borrower cash invested through payoff. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and current program availability. *Appraisal and title fees are conservative estimates.</div>
                 {!dealWarning && <div className="mt-8">
                   <button type="button" onClick={() => bookCall('results-primary')} className="rounded-full bg-[#090909] px-6 py-4 text-center font-semibold text-white hover:bg-[#303030]">Discuss this deal with Stevie</button>
+                  <a href={APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="mt-4 block text-sm font-semibold underline underline-offset-4">Ready to apply? Start my application ↗</a>
                 </div>}
               </div>
             )}
