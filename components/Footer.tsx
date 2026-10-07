@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { APPLICATION_URL } from '@/lib/application'
 
 const REVIEW_URL = 'https://share.google/ghtLWfMHpWsjIlLz4'
 
@@ -52,6 +53,7 @@ export default function Footer() {
             <Link href="/resources" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Resources</Link>
             <Link href="/blog" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Blog</Link>
             <Link href="/find-my-loan" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Get Pre-Qualified</Link>
+            <a href={APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="block text-[#C4C4C4] text-sm hover:text-white transition-colors">Start My Application ↗</a>
           </div>
 
           {/* Resources */}
