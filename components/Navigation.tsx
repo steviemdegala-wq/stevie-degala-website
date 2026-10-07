@@ -42,7 +42,7 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className={`fixed inset-x-0 top-0 z-40 border-b transition ${scrolled ? 'border-[#2E2E2E] bg-[#0A0A0A]' : 'border-transparent bg-[#0A0A0A]/80 backdrop-blur-md'}`} aria-label="Primary navigation">
+      <nav className={`fixed inset-x-0 top-0 z-40 border-b transition ${scrolled ? 'border-[#2E2E2E] bg-[#0A0A0A]' : 'border-transparent bg-[#0A0A0A]'}`} aria-label="Primary navigation">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-7 px-6 md:h-20">
           <Link href="/" aria-label="Mortgage Stevie home" className="shrink-0 font-serif text-xl tracking-[-.02em] text-white">Mortgage Stevie</Link>
 
