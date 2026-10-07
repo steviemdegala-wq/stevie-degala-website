@@ -10,7 +10,7 @@ const buttonClass = 'rounded-full bg-[#151515] px-7 py-3.5 font-semibold text-wh
 export default function RefinanceCalculator({ bookingUrl }: { bookingUrl: string }) {
   const [step, setStep] = useState(0)
   const [type, setType] = useState<RefinanceInput['type']>('cash-out')
-  const [fields, setFields] = useState({ homeValue: '', balance: '', cashOut: '', currentPayment: '', yearsKeeping: '' })
+  const [fields, setFields] = useState({ homeValue: '', balance: '', cashOut: '', currentPayment: '' })
   const [contact, setContact] = useState({ name: '', email: '', phone: '' })
   const [property, setProperty] = useState({ zip: '', use: 'Primary home', cashPurpose: '' })
   const [consent, setConsent] = useState(false)
@@ -19,7 +19,7 @@ export default function RefinanceCalculator({ bookingUrl }: { bookingUrl: string
   const [error, setError] = useState('')
   const heading = useRef<HTMLHeadingElement>(null)
   useEffect(() => { if (step > 0) { heading.current?.focus({ preventScroll: true }); heading.current?.scrollIntoView({ block: 'start' }) } }, [step])
-  const data: RefinanceInput = { type, homeValue: Number(fields.homeValue), balance: Number(fields.balance), cashOut: type === 'cash-out' ? Number(fields.cashOut) : 0, currentPayment: Number(fields.currentPayment), yearsKeeping: Number(fields.yearsKeeping) }
+  const data: RefinanceInput = { type, homeValue: Number(fields.homeValue), balance: Number(fields.balance), cashOut: type === 'cash-out' ? Number(fields.cashOut) : 0, currentPayment: Number(fields.currentPayment) }
   const result = validRefinance(data) ? calculateRefinance(data) : null
   function next(event: FormEvent) {
     event.preventDefault()
@@ -27,7 +27,7 @@ export default function RefinanceCalculator({ bookingUrl }: { bookingUrl: string
     setError(''); setStep(step + 1)
   }
   function numberField(key: keyof typeof fields, label: string, hint?: string) {
-    return <label className="block font-medium" key={key}>{label}<input className={inputClass} type="number" inputMode="decimal" required min="0.01" max={key === 'yearsKeeping' ? 30 : key === 'currentPayment' ? 1000000 : 100000000} step="any" value={fields[key]} onChange={e => { setFields({ ...fields, [key]: e.target.value }); setSaved(false) }} />{hint && <span className="mt-2 block text-sm font-normal leading-6 text-[#5a5a53]">{hint}</span>}</label>
+    return <label className="block font-medium" key={key}>{label}<input className={inputClass} type="number" inputMode="decimal" required min="0.01" max={key === 'currentPayment' ? 1000000 : 100000000} step="any" value={fields[key]} onChange={e => { setFields({ ...fields, [key]: e.target.value }); setSaved(false) }} />{hint && <span className="mt-2 block text-sm font-normal leading-6 text-[#5a5a53]">{hint}</span>}</label>
   }
   async function submit(event: FormEvent) {
     event.preventDefault(); if (sending || saved) return
@@ -58,7 +58,6 @@ export default function RefinanceCalculator({ bookingUrl }: { bookingUrl: string
             {numberField('balance', 'Current mortgage payoff ($)', 'Include all mortgage balances you intend to pay off.')}
             {type === 'cash-out' && numberField('cashOut', 'Cash you want to receive ($)', 'Enter the cash you want after estimated closing costs. Costs will be added to the new loan.')}
             {numberField('currentPayment', 'Current monthly principal + interest ($)', 'Exclude taxes, homeowners insurance, mortgage insurance, HOA dues, and extra principal payments. Include payments on all loans being paid off.')}
-            {numberField('yearsKeeping', 'Years you expect to keep the new loan', 'Until you sell, refinance again, or pay it off; up to 30 years.')}
           </div>
           {type === 'cash-out' && <p className="mt-6 rounded-xl bg-[#f0f3ed] p-4 text-sm leading-6">We use 75% of home value as a planning guideline for the total new mortgage, including closing costs. Going above that may be difficult, depending on the program.</p>}
           <button className={`${buttonClass} mt-8`}>See closing costs</button>
