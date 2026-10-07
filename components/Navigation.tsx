@@ -56,19 +56,20 @@ export default function Navigation() {
               </div>
             </div>
             <Link href="/who-i-help/medical-professionals" className="text-sm text-[#C4C4C4] hover:text-white">Medical Home Loans</Link>
-            <Link href="/about" className="text-sm text-[#C4C4C4] hover:text-white">About Stevie</Link>
             <div className="group relative">
               <Link href="/resources" className="flex items-center gap-1 text-sm text-[#C4C4C4] hover:text-white">Resources <span aria-hidden className="text-[#777]">⌄</span></Link>
               <div className="absolute left-1/2 top-full hidden -translate-x-1/2 pt-4 group-hover:block group-focus-within:block">
                 <div className="min-w-[220px] rounded-xl border border-[#303030] bg-[#111] p-2 shadow-2xl">
                   <Link href="/blog" className="block rounded-lg px-4 py-2.5 text-sm text-[#C4C4C4] hover:bg-[#1D1D1D] hover:text-white">Investor Articles</Link>
                   <Link href="/resources/rates" className="block rounded-lg px-4 py-2.5 text-sm text-[#C4C4C4] hover:bg-[#1D1D1D] hover:text-white">Current Rates</Link>
+                  <Link href="/fix-and-flip-calculator" className="block rounded-lg px-4 py-2.5 text-sm text-[#C4C4C4] hover:bg-[#1D1D1D] hover:text-white">Fix &amp; Flip Calculator</Link>
                   <Link href="/refinance-calculator" className="block rounded-lg px-4 py-2.5 text-sm text-[#C4C4C4] hover:bg-[#1D1D1D] hover:text-white">Refinance Calculator</Link>
                   <Link href="/resources/mortgage-calculator" className="block rounded-lg px-4 py-2.5 text-sm text-[#C4C4C4] hover:bg-[#1D1D1D] hover:text-white">Mortgage Calculator</Link>
                   <Link href="/loans" className="block rounded-lg px-4 py-2.5 text-sm text-[#C4C4C4] hover:bg-[#1D1D1D] hover:text-white">All Loan Programs</Link>
                 </div>
               </div>
             </div>
+            <Link href="/about" className="text-sm text-[#C4C4C4] hover:text-white">About Stevie</Link>
           </div>
 
           <Link href="/find-my-loan" className="hidden shrink-0 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black hover:bg-[#E5E5E5] md:block">Find My Loan</Link>
@@ -82,10 +83,10 @@ export default function Navigation() {
           <Link href="/who-i-help/investors" onClick={close} className="block border-b border-[#333] py-4 font-serif text-2xl">Investor Financing</Link>
           <div className="grid grid-cols-1 gap-1 border-b border-[#333] py-3 pl-3 sm:grid-cols-2">{investorLinks.map((link) => <Link key={link.href} href={link.href} onClick={close} className="py-2 text-sm text-[#BDBDBD]">{link.label}</Link>)}</div>
           <Link href="/who-i-help/medical-professionals" onClick={close} className="block border-b border-[#333] py-4 font-serif text-2xl">Medical Home Loans</Link>
-          <Link href="/about" onClick={close} className="block border-b border-[#333] py-4 font-serif text-2xl">About Stevie</Link>
           <Link href="/refinance-calculator" onClick={close} className="block border-b border-[#333] py-4 font-serif text-2xl">Refinance Calculator</Link>
           <Link href="/resources" onClick={close} className="block border-b border-[#333] py-4 font-serif text-2xl">Resources</Link>
           <details className="border-b border-[#333] py-4"><summary className="cursor-pointer font-serif text-2xl">Other Mortgage Products</summary><div className="mt-3 grid grid-cols-2 gap-1 pl-3">{otherLoanLinks.map((link) => <Link key={link.href} href={link.href} onClick={close} className="py-2 text-sm text-[#BDBDBD]">{link.label}</Link>)}</div></details>
+          <Link href="/about" onClick={close} className="block border-b border-[#333] py-4 font-serif text-2xl">About Stevie</Link>
           <Link href="/find-my-loan" onClick={close} className="mt-8 block rounded-full bg-white px-6 py-4 text-center font-semibold text-black">Find My Loan</Link>
         </div>
       </div>}
