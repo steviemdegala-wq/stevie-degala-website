@@ -2,9 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
+import { useModalStore } from '@/lib/modalStore'
 
 export default function LeadCapturePopup() {
   const pathname = usePathname()
+  const bookingOpen = useModalStore((state) => state.isOpen)
   const [visible, setVisible] = useState(false)
   const [dismissed, setDismissed] = useState(false)
   const [phone, setPhone] = useState('')
@@ -71,7 +73,7 @@ export default function LeadCapturePopup() {
     sessionStorage.setItem('leadPopupDismissed', '1')
   }
 
-  if ((pathname === '/fix-and-flip-calculator' || pathname === '/refinance-calculator') || !visible || dismissed) return null
+  if ((pathname === '/fix-and-flip-calculator' || pathname === '/refinance-calculator') || bookingOpen || !visible || dismissed) return null
 
   return (
     <div
