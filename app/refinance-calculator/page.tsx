@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import RefinanceCalculator from './RefinanceCalculator'
-import { BOOKING_URL } from '@/lib/booking'
+import { getBookingUrl } from '@/lib/booking'
 
 export const metadata: Metadata = {
   title: 'Refinance Calculator | Mortgage Stevie',
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
   alternates: { canonical: '/refinance-calculator' },
 }
 export default function Page() {
-  return <RefinanceCalculator bookingUrl={process.env.REFINANCE_BOOKING_URL || BOOKING_URL} />
+  return <RefinanceCalculator bookingUrl={process.env.REFINANCE_BOOKING_URL || getBookingUrl('homeowner-mortgage-review')} />
 }
