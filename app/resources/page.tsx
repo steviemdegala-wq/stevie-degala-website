@@ -89,7 +89,7 @@ export default function ResourcesPage() {
           <p className="mb-10 max-w-2xl text-lg text-[#C4C4C4]">Choose the call that fits where you are today. We will talk through your questions and what comes next.</p>
           <div className="grid gap-4 lg:grid-cols-3">
             {(Object.entries(CALLS) as [CallType, typeof CALLS[CallType]][]).map(([callType, call]) => (
-              <article key={callType} className="card-white flex flex-col rounded-xl bg-white p-8 text-[#111111]">
+              <article key={callType} className="flex min-w-0 flex-col rounded-xl bg-white p-8 text-[#111111]">
                 <p className="mb-3 text-xs uppercase tracking-widest text-[#666666]">{call.audience}</p>
                 <h3 className="mb-4 font-serif text-2xl">{call.title}</h3>
                 <p className="mb-8 flex-1 text-sm leading-relaxed text-[#555555]">{call.description}</p>
