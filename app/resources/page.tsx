@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { CALLS, type CallType } from '@/lib/booking'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
@@ -82,6 +83,23 @@ export default function ResourcesPage() {
         </div>
       </section>
 
+      <section id="calls" className="scroll-mt-24 bg-[#111111] px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="mb-4 font-serif text-3xl text-white md:text-4xl">Book a conversation.</h2>
+          <p className="mb-10 max-w-2xl text-lg text-[#C4C4C4]">Choose the call that fits where you are today. We will talk through your questions and what comes next.</p>
+          <div className="grid gap-4 lg:grid-cols-3">
+            {(Object.entries(CALLS) as [CallType, typeof CALLS[CallType]][]).map(([callType, call]) => (
+              <article key={callType} className="card-white flex flex-col rounded-xl bg-white p-8 text-[#111111]">
+                <p className="mb-3 text-xs uppercase tracking-widest text-[#666666]">{call.audience}</p>
+                <h3 className="mb-4 font-serif text-2xl">{call.title}</h3>
+                <p className="mb-8 flex-1 text-sm leading-relaxed text-[#555555]">{call.description}</p>
+                <BookCallButton callType={callType} label={`Book ${call.title}`} variant="light" className="w-full px-4 text-xs" />
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Tool cards */}
       <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
         <div className="max-w-7xl mx-auto">
@@ -150,7 +168,7 @@ export default function ResourcesPage() {
             Have questions about your situation?
           </h2>
           <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">
-            Run the numbers, then let&apos;s talk. A free 15-minute call is all it takes to turn a rough estimate into a real plan.
+            Run the numbers, then let&apos;s talk. Book a Discovery Call to talk through your questions and next steps.
           </p>
           <BookCallButton variant="solid" />
         </div>
