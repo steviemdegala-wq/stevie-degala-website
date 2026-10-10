@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { CALLS, type CallType } from '@/lib/booking'
+import { CALLS } from '@/lib/booking'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
@@ -85,24 +85,23 @@ export default function ResourcesPage() {
 
       <section id="calls" className="scroll-mt-24 bg-[#111111] px-6 py-20">
         <div className="mx-auto max-w-7xl">
-          <h2 className="mb-4 font-serif text-3xl text-white md:text-4xl">Book a conversation.</h2>
-          <p className="mb-10 max-w-2xl text-lg text-[#C4C4C4]">Choose the call that fits where you are today. We will talk through your questions and what comes next.</p>
-          <div className="grid gap-4 lg:grid-cols-3">
-            {(Object.entries(CALLS) as [CallType, typeof CALLS[CallType]][]).map(([callType, call]) => (
-              <article key={callType} className="flex min-w-0 flex-col rounded-xl bg-white p-8 text-[#111111]">
-                <p className="mb-3 text-xs uppercase tracking-widest text-[#666666]">{call.audience}</p>
-                <h3 className="mb-4 font-serif text-2xl">{call.title}</h3>
-                <p className="mb-8 flex-1 text-sm leading-relaxed text-[#555555]">{call.description}</p>
-                <BookCallButton callType={callType} label={`Book ${call.title}`} variant="light" className="w-full px-4 text-xs" />
-              </article>
-            ))}
-          </div>
+          <h2 className="mb-4 font-serif text-3xl text-white md:text-4xl">Book a Call</h2>
+          <p className="mb-10 max-w-2xl text-lg text-[#C4C4C4]">New here? Start with a conversation about your goals and next steps.</p>
+          <article className="flex flex-col gap-8 rounded-xl bg-white p-8 text-[#111111] md:flex-row md:items-center md:justify-between">
+            <div className="max-w-2xl">
+              <h3 className="mb-4 font-serif text-2xl">{CALLS.discoverycall.title}</h3>
+              <p className="text-sm leading-relaxed text-[#555555]">{CALLS.discoverycall.description}</p>
+            </div>
+            <BookCallButton callType="discoverycall" label="Book Discovery Call" variant="light" className="shrink-0" />
+          </article>
         </div>
       </section>
 
       {/* Tool cards */}
-      <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
+      <section id="calculators" className="scroll-mt-24 bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
         <div className="max-w-7xl mx-auto">
+          <h2 className="mb-4 font-serif text-3xl text-white md:text-4xl">Calculators &amp; Tools</h2>
+          <p className="mb-10 text-lg text-[#C4C4C4]">Run your numbers, explore rates, and prepare for your next move.</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {cards.map((card) => (
               <Link
@@ -158,19 +157,23 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-[#111111] border-t border-[#2E2E2E] py-24 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2
-            className="text-3xl md:text-4xl text-[#F8F8F8] mb-4"
-            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-          >
-            Have questions about your situation?
-          </h2>
-          <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">
-            Run the numbers, then let&apos;s talk. Book a Discovery Call to talk through your questions and next steps.
-          </p>
-          <BookCallButton variant="solid" />
+      <section id="reviews" className="scroll-mt-24 border-t border-[#2E2E2E] bg-[#111111] px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="mb-4 font-serif text-3xl text-white md:text-4xl">Mortgage &amp; Portfolio Reviews</h2>
+          <p className="mb-10 max-w-2xl text-lg text-[#C4C4C4]">Already own a home or investment properties? Choose a focused review of your current financing and future plans.</p>
+          <div className="grid gap-4 md:grid-cols-2">
+            {(['investor-portfolio-review', 'homeowner-mortgage-review'] as const).map((callType) => {
+              const call = CALLS[callType]
+              return (
+                <article key={callType} className="flex min-w-0 flex-col rounded-xl bg-white p-8 text-[#111111]">
+                  <p className="mb-3 text-xs uppercase tracking-widest text-[#666666]">{call.audience}</p>
+                  <h3 className="mb-4 font-serif text-2xl">{call.title}</h3>
+                  <p className="mb-8 flex-1 text-sm leading-relaxed text-[#555555]">{call.description}</p>
+                  <BookCallButton callType={callType} label={`Book ${call.title}`} variant="light" className="w-full px-4 text-xs" />
+                </article>
+              )
+            })}
+          </div>
         </div>
       </section>
     </main>
