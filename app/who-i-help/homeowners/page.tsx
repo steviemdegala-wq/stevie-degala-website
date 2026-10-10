@@ -118,7 +118,7 @@ export default function HomeownersPage() {
           <p className="text-[#C4C4C4] text-lg mb-10 leading-relaxed">
             A free 15-minute call costs nothing and could save you thousands.
           </p>
-          <BookCallButton variant="solid" />
+          <BookCallButton variant="solid" label="Book My Mortgage Review" callType="homeowner-mortgage-review" />
         </div>
       </section>
     </main>
