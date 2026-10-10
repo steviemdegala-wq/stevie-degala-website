@@ -5,7 +5,9 @@ const DEFAULT_NOTIFICATION_EMAIL = 'SDegala@BarrettFinancial.com'
 const DEFAULT_FROM_EMAIL = 'Mortgage Stevie <onboarding@resend.dev>'
 
 const FIELD_LABELS: Record<string, string> = {
+  home_goal: 'Primary home financing goal',
   purchase_use: 'Property use',
+  first_time_buyer: 'First-time homebuyer (no home ownership in past three years)',
   primary_asset: 'Home type',
   investment_asset: 'Investment type',
   unit_count: 'Number of units',
@@ -36,6 +38,8 @@ const FIELD_LABELS: Record<string, string> = {
 }
 
 const VALUE_LABELS: Record<string, string> = {
+  yes: 'Yes',
+  no: 'No',
   purchase: 'Purchase',
   refinance: 'Refinance',
   sell: 'Selling',
