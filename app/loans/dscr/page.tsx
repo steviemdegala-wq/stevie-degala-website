@@ -195,7 +195,7 @@ export default function DSCRLoanPage() {
             </div>
           </div>
           <div className="mt-10 text-center">
-            <BookCallButton variant="solid" label="Book My Free Portfolio Review" />
+            <BookCallButton variant="solid" label="Book My Free Portfolio Review" callType="investor-portfolio-review" />
             <p className="mx-auto mt-5 max-w-2xl text-xs leading-5 text-[#777]">This is an educational financing review, not tax, legal, or investment advice. Loan availability, proceeds, pricing, and approval depend on lender guidelines and underwriting.</p>
           </div>
         </div>
