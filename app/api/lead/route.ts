@@ -45,6 +45,7 @@ const VALUE_LABELS: Record<string, string> = {
   sell: 'Selling',
   business: 'Other funding',
   primary: 'Primary home',
+  second: 'Second home',
   investment: 'Investment property',
   rental: 'Rental property',
   reno: 'Fix and flip or renovation',
@@ -138,8 +139,9 @@ function buildLeadSummary(body: Record<string, any>) {
   return [
     `Find My Loan submission: ${requestType}`,
     ...overview.map(({ label, value }) => `${label}: ${value}`),
+    ...(Array.isArray(body.cash_estimates) ? body.cash_estimates.map((estimate: any) => `${estimate.program}: estimated cash needed $${Number(estimate.total || 0).toLocaleString('en-US')}; available $${Number(estimate.available || 0).toLocaleString('en-US')}; ${estimate.equityReview ? 'cash/equity review needed' : !estimate.hasFunds ? 'available funds not entered' : estimate.covered ? 'estimated cash requirement covered' : 'estimated cash shortfall'}`) : []),
     ...(suggestions.length ? ['Suggested paths:', ...suggestions.map((item: unknown) => `* ${String(item)}`)] : []),
-    ...(body.requires_planning_call ? ['Planning call recommended because available funds may need a closer review.'] : []),
+    ...(body.requires_planning_call ? ['Planning call recommended: available funds are below the estimated cash required.'] : []),
   ].join('\n')
 }
 
@@ -201,7 +203,7 @@ async function sendLeadNotification(body: Record<string, any>) {
     'Submission overview',
     ...overview.map(({ label, value }) => `${label}: ${value}`),
     ...(suggestions.length ? ['', 'Suggested paths', ...suggestions.map((item: unknown) => `- ${String(item)}`)] : []),
-    ...(body.requires_planning_call ? ['', 'Planning call recommended because available funds may need a closer review.'] : []),
+    ...(body.requires_planning_call ? ['', 'Planning call recommended: available funds are below the estimated cash required.'] : []),
   ].join('\n')
 
   const response = await fetch('https://api.resend.com/emails', {
