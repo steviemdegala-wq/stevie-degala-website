@@ -18,6 +18,7 @@ type Deal = {
   propertyType: string
   experience: string
   credit: string
+  profileSkipped?: boolean
 }
 
 type Contact = { name: string; email: string; phone: string }
@@ -343,8 +344,8 @@ async function createCrmLead(contact: Contact, deal: Deal, options: InternalOpti
     `ARV: ${money(deal.arv)}`,
     `Project timeline: ${deal.projectMonths} months`,
     `Taxes, insurance, utilities and other holding costs: ${money(deal.monthlyHoldingCosts)} per month`,
-    `Experience: ${deal.experience}`,
-    `Credit: ${deal.credit}`,
+    `Experience: ${deal.profileSkipped ? 'Not collected - not needed for this estimate' : deal.experience}`,
+    `Credit: ${deal.profileSkipped ? 'Not collected - not needed for this estimate' : deal.credit}`,
     attribution.utmSource ? `UTM source: ${attribution.utmSource}` : '',
     attribution.utmMedium ? `UTM medium: ${attribution.utmMedium}` : '',
     attribution.utmCampaign ? `UTM campaign: ${attribution.utmCampaign}` : '',
@@ -357,8 +358,8 @@ async function createCrmLead(contact: Contact, deal: Deal, options: InternalOpti
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Cookie: loginRes.headers.get('set-cookie') ?? '' },
     body: JSON.stringify({
-      name: contact.name,
-      phone: contact.phone,
+      name: contact.name || contact.email,
+      phone: contact.phone || undefined,
       email: contact.email,
       stage: 'New Lead',
       source: 'website-fix-and-flip-calculator',
@@ -379,7 +380,9 @@ function buildBorrowerEmail(contact: Contact, deal: Deal, options: InternalOptio
   const resultRows = publicOptions.map((option) => `<div style="border:1px solid #ddd;border-radius:14px;padding:20px;margin:16px 0"><div style="font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#666">Best preliminary match</div><h2 style="font-family:Georgia,serif;font-size:24px;margin:4px 0 4px">${escapeHtml(option.program)}</h2><p style="margin:0"><strong>Projected profit: ${money(option.estimatedProfit)}</strong><br>Estimated financing: ${money(option.loanAmount)}<br>Cash to get started: ${money(option.startupCash)}<br>Estimated carrying cost: ${money(option.carryingCost)}<br>Total cash needed: ${money(option.totalCash)}<br>Rate: ${option.rate.toFixed(2)}% | Term: ${option.termMonths} months</p></div>`).join('')
   const disclaimer = '<p style="color:#666;font-size:12px">These estimates reflect current program assumptions and the information provided. They are intended to be close planning estimates, but they are not final terms, an approval, a commitment to lend, or a rate quote. Appraisal and title charges are estimates and actual third-party fees may vary.</p>'
   const warningHtml = result.warning ? `<div style="background:#fff4e5;border:1px solid #e7b978;border-radius:14px;padding:20px;margin:20px 0"><h2 style="font-family:Georgia,serif;margin:0 0 8px">The numbers show a loss.</h2><p style="margin:0">With what you entered, this deal could lose about <strong>${money(result.warning.estimatedLoss)}</strong>. The estimated project cost is ${money(result.warning.totalProjectCost)} against an ARV of ${money(result.warning.arv)}. We don't want anyone going into a deal that's likely to lose money. Let's talk through why, or look at another deal with better numbers.</p></div>` : ''
-  const intro = result.warning ? `Hi ${escapeHtml(contact.name)}, there just isn't enough room in this deal right now. Here is the financing path with the lowest projected loss so you can see the numbers clearly.` : `Hi ${escapeHtml(contact.name)}, here is the preliminary financing path that appears strongest for your project.`
+  const intro = result.warning
+    ? contact.name ? `Hi ${escapeHtml(contact.name)}, there just isn't enough room in this deal right now. Here is the financing path with the lowest projected loss so you can see the numbers clearly.` : `There just isn't enough room in this deal right now. Here is the financing path with the lowest projected loss so you can see the numbers clearly.`
+    : contact.name ? `Hi ${escapeHtml(contact.name)}, here is the preliminary financing path that appears strongest for your project.` : 'Here is the preliminary financing path that appears strongest for your project.'
   const action = result.warning ? `<p style="margin-top:24px"><a href="${BOOKING_URL}" style="display:inline-block;background:#111;color:#fff;padding:13px 18px;border-radius:999px;text-decoration:none;font-weight:700">Discuss this deal or another opportunity</a></p>` : `<p style="margin-top:24px"><a href="${BOOKING_URL}" style="display:inline-block;background:#111;color:#fff;padding:13px 18px;border-radius:999px;text-decoration:none;font-weight:700">Discuss this deal with Stevie</a></p>`
   return `<div style="background:#f3f3f1;padding:28px 16px"><div style="font-family:Arial,sans-serif;color:#111;line-height:1.55;max-width:680px;margin:0 auto;background:#fff;border-radius:18px;padding:32px"><div style="font-family:Georgia,serif;font-size:22px;margin-bottom:28px">Mortgage Stevie</div><h1 style="font-family:Georgia,serif;font-size:36px;line-height:1.05;margin:0 0 16px">Your fix-and-flip financing estimate</h1><p>${intro}</p><p style="color:#666">This preliminary match is based on the information you entered. Property location can change eligibility and will be confirmed before a conditional pre-qualification letter is created.</p>${warningHtml}${resultRows}${action}${disclaimer}<p style="color:#777;font-size:12px;margin-top:24px">Stevie de Gala · NMLS# 2845865 · Barrett Financial NMLS# 181106 · SDegala@BarrettFinancial.com</p></div></div>`
 }
@@ -397,7 +400,9 @@ async function sendEmails(contact: Contact, deal: Deal, options: InternalOption[
     attribution.utmCampaign ? `Campaign: ${escapeHtml(attribution.utmCampaign)}` : '',
     attribution.referrer ? `Referrer: ${escapeHtml(attribution.referrer)}` : '',
   ].filter(Boolean).join('<br>')
-  const internalHtml = `<div style="font-family:Arial,sans-serif;color:#111;line-height:1.5;max-width:680px"><h1>New fix-and-flip calculator lead</h1><p><strong>${escapeHtml(contact.name)}</strong><br>${escapeHtml(contact.email)}<br>${escapeHtml(contact.phone)}</p><p>Property address will be collected after results.<br>Purchase ${money(deal.purchasePrice)} | Renovation ${money(deal.renovationBudget)} | ARV ${money(deal.arv)}<br>Estimated monthly holding costs ${money(deal.monthlyHoldingCosts)}<br>${deal.projectMonths} months | Experience ${escapeHtml(deal.experience)} | Credit ${escapeHtml(deal.credit)}</p>${attributionRows ? `<p>${attributionRows}</p>` : ''}<ol>${internalRows}</ol>${disclaimer}</div>`
+  const contactRows = [contact.name ? `<strong>${escapeHtml(contact.name)}</strong>` : '', escapeHtml(contact.email), contact.phone ? escapeHtml(contact.phone) : ''].filter(Boolean).join('<br>')
+  const profile = deal.profileSkipped ? 'Borrower experience and credit were not needed for this estimate.' : `Experience ${escapeHtml(deal.experience)} | Credit ${escapeHtml(deal.credit)}`
+  const internalHtml = `<div style="font-family:Arial,sans-serif;color:#111;line-height:1.5;max-width:680px"><h1>New fix-and-flip calculator lead</h1><p>${contactRows}</p><p>Property address will be collected after results.<br>Purchase ${money(deal.purchasePrice)} | Renovation ${money(deal.renovationBudget)} | ARV ${money(deal.arv)}<br>Estimated monthly holding costs ${money(deal.monthlyHoldingCosts)}<br>${deal.projectMonths} months | ${profile}</p>${attributionRows ? `<p>${attributionRows}</p>` : ''}<ol>${internalRows}</ol>${disclaimer}</div>`
 
   const send = async (to: string[], subject: string, html: string, replyTo?: string) => {
     const response = await fetchWithTimeout('https://api.resend.com/emails', {
@@ -409,7 +414,7 @@ async function sendEmails(contact: Contact, deal: Deal, options: InternalOption[
   }
   const [borrowerResult, internalResult] = await Promise.allSettled([
     send([contact.email], 'Your fix-and-flip financing estimate', borrowerHtml),
-    send([process.env.LEAD_NOTIFICATION_EMAIL ?? DEFAULT_NOTIFICATION_EMAIL], `New fix-and-flip lead: ${contact.name}`, internalHtml, contact.email),
+    send([process.env.LEAD_NOTIFICATION_EMAIL ?? DEFAULT_NOTIFICATION_EMAIL], `New fix-and-flip lead: ${contact.name || contact.email}`, internalHtml, contact.email),
   ])
   if (borrowerResult.status === 'rejected') console.error('Borrower result email failed:', borrowerResult.reason)
   if (internalResult.status === 'rejected') console.error('Internal lead email failed:', internalResult.reason)
@@ -550,8 +555,9 @@ export async function POST(req: NextRequest) {
     monthlyHoldingCosts: asMoney(body.deal?.monthlyHoldingCosts),
     projectMonths: Math.max(1, Math.min(24, Number(body.deal?.projectMonths) || 6)),
     propertyType: String(body.deal?.propertyType ?? ''),
-    experience: String(body.deal?.experience ?? ''),
-    credit: String(body.deal?.credit ?? ''),
+    experience: String(body.deal?.experience ?? '') || '0',
+    credit: String(body.deal?.credit ?? '') || 'noCredit',
+    profileSkipped: Boolean(body.deal?.profileSkipped),
   }
   const bounded = (value: unknown, length: number) => String(value ?? '').trim().slice(0, length)
   const attribution: Attribution = {
@@ -561,12 +567,23 @@ export async function POST(req: NextRequest) {
     utmMedium: bounded(body.attribution?.utmMedium, 100),
     utmCampaign: bounded(body.attribution?.utmCampaign, 150),
   }
-  if (!contact.name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email) || !contact.phone) return NextResponse.json({ error: 'Valid contact information is required.' }, { status: 400 })
+  const action = String(body.action ?? '')
+  const isPreview = action === 'preview'
+  const isPrequalification = action === 'prequalification'
+  if (!isPreview && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email)) return NextResponse.json({ error: 'A valid email address is required.' }, { status: 400 })
+  if (isPrequalification && (!contact.name || !contact.phone)) return NextResponse.json({ error: 'Your name and a valid phone number are required for the pre-qualification letter.' }, { status: 400 })
   if (!deal.purchasePrice || !deal.renovationBudget || !deal.arv) return NextResponse.json({ error: 'Purchase price, renovation budget, and ARV are required.' }, { status: 400 })
   if (!['sfr', 'condo', 'multi', 'other'].includes(deal.propertyType) || !['0', '1-2', '3-5', '6+'].includes(deal.experience) || !['800+', '700+', 'below700', 'noCredit'].includes(deal.credit)) return NextResponse.json({ error: 'Please complete every question before viewing results.' }, { status: 400 })
-  const isPrequalification = body.action === 'prequalification'
   if (isPrequalification && (!deal.address || !/^[A-Z]{2}$/.test(deal.state) || !/^\d{5}$/.test(deal.zip))) return NextResponse.json({ error: 'A complete property address, state, and ZIP code are required.' }, { status: 400 })
   const options = calculateOptions(deal)
+
+  if (isPreview) {
+    return NextResponse.json({
+      ok: true,
+      ...buildPublicResults(deal, options),
+      manualReview: options.length === 0,
+    })
+  }
 
   if (isPrequalification) {
     if (!options.length) return NextResponse.json({ error: 'This property needs a manual program review before a letter can be created. Please contact Stevie.' }, { status: 422 })

@@ -11,7 +11,7 @@ declare global {
   }
 }
 
-type Step = 'intro' | 'deal' | 'timeline' | 'property' | 'experience' | 'credit' | 'contact' | 'results' | 'prequal' | 'letter'
+type Step = 'intro' | 'deal' | 'timeline' | 'property' | 'experience' | 'credit' | 'profit' | 'contact' | 'results' | 'prequal' | 'letter'
 
 type Answers = {
   address: string
@@ -94,7 +94,6 @@ const initialAnswers: Answers = {
   monthlyHoldingCosts: '', propertyType: '', experience: '', credit: '', name: '', email: '', phone: '',
 }
 
-const flow: Step[] = ['deal', 'timeline', 'property', 'experience', 'credit', 'contact']
 const states = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY']
 
 function dollars(value: string | number) {
@@ -153,18 +152,58 @@ export default function FixAndFlipCalculatorClient() {
   const addressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? ''
 
+  const needsBorrowerProfile = useMemo(() => {
+    const purchaseAndRenovation = dollars(answers.purchasePrice) + dollars(answers.renovationBudget)
+    const arv = dollars(answers.arv)
+    const baselineLoan = Math.min(purchaseAndRenovation, arv * 0.7)
+    return !purchaseAndRenovation || !arv || Number(answers.projectMonths) > 6 || baselineLoan < 150000 || purchaseAndRenovation > arv * 0.7
+  }, [answers.purchasePrice, answers.renovationBudget, answers.arv, answers.projectMonths])
+  const flow = useMemo<Step[]>(() => needsBorrowerProfile
+    ? ['deal', 'timeline', 'property', 'experience', 'credit']
+    : ['deal', 'timeline', 'property'], [needsBorrowerProfile])
   const currentIndex = flow.indexOf(step)
-  const progress = step === 'intro' ? 0 : step === 'results' ? 100 : ((currentIndex + 1) / flow.length) * 100
-
-  const update = (field: keyof Answers, value: string) => setAnswers((current) => ({ ...current, [field]: value }))
-  const show = (next: Step) => { setHistory((items) => [...items, step]); setError(''); setStep(next) }
-  const next = () => {
-    const index = flow.indexOf(step)
-    if (index >= 0 && index < flow.length - 1) show(flow[index + 1])
-  }
+  const progress = step === 'intro' ? 0 : ['profit', 'contact', 'results', 'prequal', 'letter'].includes(step) ? 100 : ((currentIndex + 1) / flow.length) * 100
+  const progressLabel = currentIndex >= 0 ? `${currentIndex + 1} / ${flow.length}` : step === 'profit' ? 'Estimate ready' : step === 'contact' ? 'Final step' : step === 'prequal' ? 'Pre-qual' : step === 'letter' ? 'Complete' : ''
 
   const track = (event: string, properties: Record<string, string | number | boolean> = {}) => {
     ;(window as any).dataLayer?.push({ event, page: 'fix-and-flip-calculator', ...properties })
+  }
+  const update = (field: keyof Answers, value: string) => setAnswers((current) => ({ ...current, [field]: value }))
+  const show = (next: Step) => { setHistory((items) => [...items, step]); setError(''); setStep(next) }
+  const dealPayload = (source: Answers) => ({
+    purchasePrice: dollars(source.purchasePrice), renovationBudget: dollars(source.renovationBudget), arv: dollars(source.arv),
+    monthlyHoldingCosts: dollars(source.monthlyHoldingCosts), projectMonths: Number(source.projectMonths), propertyType: source.propertyType,
+    experience: source.experience || '0', credit: source.credit || 'noCredit',
+    profileSkipped: !needsBorrowerProfile,
+  })
+  const loadProfitPreview = async (source: Answers) => {
+    setSubmitting(true)
+    setError('')
+    try {
+      const response = await fetch('/api/fix-and-flip', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'preview', deal: dealPayload(source) }),
+      })
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.error || 'Unable to calculate this estimate.')
+      setResults(data.options ?? [])
+      setManualReview(Boolean(data.manualReview))
+      setDealWarning(data.warning ?? null)
+      track('calculator_profit_previewed', { projectedLoss: Boolean(data.warning), manualReview: Boolean(data.manualReview) })
+      show('profit')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unable to calculate this estimate.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
+  const next = (source = answers) => {
+    const index = flow.indexOf(step)
+    if (index < 0) return
+    track('calculator_step_completed', { step, stepNumber: index + 1, totalSteps: flow.length })
+    if (index < flow.length - 1) show(flow[index + 1])
+    else void loadProfitPreview(source)
   }
 
   const startCalculator = () => {
@@ -246,12 +285,7 @@ export default function FixAndFlipCalculatorClient() {
         signal: controller.signal,
         body: JSON.stringify({
           contact: { name: answers.name, email: answers.email, phone: answers.phone },
-          deal: {
-            purchasePrice: dollars(answers.purchasePrice), renovationBudget: dollars(answers.renovationBudget), arv: dollars(answers.arv),
-            monthlyHoldingCosts: dollars(answers.monthlyHoldingCosts),
-            projectMonths: Number(answers.projectMonths), propertyType: answers.propertyType, experience: answers.experience,
-            credit: answers.credit,
-          },
+          deal: dealPayload(answers),
           attribution: {
             pageUrl: window.location.href,
             referrer: document.referrer,
@@ -268,6 +302,7 @@ export default function FixAndFlipCalculatorClient() {
       setPreviewMode(Boolean(data.preview))
       setEmailSent(Boolean(data.email?.borrower))
       setDealWarning(data.warning ?? null)
+      track('calculator_step_completed', { step: 'contact', stepNumber: flow.length + 1, totalSteps: flow.length + 1 })
       track('calculator_results_viewed', { optionCount: data.options?.length ?? 0, manualReview: Boolean(data.manualReview) })
       setHistory((items) => [...items, 'contact'])
       setStep('results')
@@ -292,12 +327,7 @@ export default function FixAndFlipCalculatorClient() {
         body: JSON.stringify({
           action: 'prequalification',
           contact: { name: answers.name, email: answers.email, phone: answers.phone },
-          deal: {
-            address: answers.address, state: answers.state, zip: answers.zip,
-            purchasePrice: dollars(answers.purchasePrice), renovationBudget: dollars(answers.renovationBudget), arv: dollars(answers.arv),
-            monthlyHoldingCosts: dollars(answers.monthlyHoldingCosts), projectMonths: Number(answers.projectMonths),
-            propertyType: answers.propertyType, experience: answers.experience, credit: answers.credit,
-          },
+          deal: { ...dealPayload(answers), address: answers.address, state: answers.state, zip: answers.zip },
         }),
       })
       if (!response.ok) {
@@ -323,7 +353,7 @@ export default function FixAndFlipCalculatorClient() {
   const options = (items: { value: string; title: string; detail?: string }[], field: keyof Answers) => (
     <div className={`grid gap-3 ${items.length === 4 ? 'sm:grid-cols-2' : ''}`}>
       {items.map((item) => (
-        <button key={item.value} type="button" onClick={() => { update(field, item.value); setTimeout(next, 0) }} className="flex min-h-[76px] w-full items-center justify-between rounded-2xl border border-[#d4d0ca] bg-white/60 px-5 py-4 text-left text-[#090909] hover:-translate-y-0.5 hover:border-[#777] hover:bg-white hover:shadow-lg">
+        <button key={item.value} type="button" disabled={submitting} onClick={() => { const updated = { ...answers, [field]: item.value }; setAnswers(updated); setTimeout(() => next(updated), 0) }} className="flex min-h-[76px] w-full items-center justify-between rounded-2xl border border-[#d4d0ca] bg-white/60 px-5 py-4 text-left text-[#090909] hover:-translate-y-0.5 hover:border-[#777] hover:bg-white hover:shadow-lg disabled:cursor-wait disabled:opacity-60">
           <span><strong className="block text-base">{item.title}</strong>{item.detail && <small className="mt-1 block text-sm text-[#73706b]">{item.detail}</small>}</span><span aria-hidden="true">→</span>
         </button>
       ))}
@@ -336,8 +366,8 @@ export default function FixAndFlipCalculatorClient() {
     property: ['Property type', 'What type of property is it?', 'Choose the closest match.'],
     experience: ['Your experience', 'How many flips have you completed in the last 3 years?', 'This can change the pricing and amount available.'],
     credit: ['Credit', 'Which range is closest to your credit score?', 'No hard credit pull. You can also choose an option that does not use FICO.'],
-    contact: ['One last step', 'Where should we send your results?', 'Enter your details to see the complete comparison now and receive a copy by email.'],
-    prequal: ['Property details', 'Where is the property?', apiKey ? 'Choose an address from Google or enter it manually.' : 'Enter the full address, state, and ZIP code.'],
+    contact: ['Unlock the full estimate', 'Where should we send it?', 'Enter your email to see the complete terms and cost breakdown and receive a copy.'],
+    prequal: ['Pre-qualification details', 'Tell us where the property is.', apiKey ? 'Your email is already filled in. Add your contact details, then choose an address from Google or enter it manually.' : 'Your email is already filled in. Add your contact details and the full property address.'],
   } as Record<string, string[]>)[step], [step, apiKey])
 
   return (
@@ -356,7 +386,7 @@ export default function FixAndFlipCalculatorClient() {
           </div>
         </aside>
 
-        <section className="flex min-h-screen flex-col px-5 pb-10 pt-5 sm:px-9 lg:px-[clamp(40px,6vw,96px)] lg:pt-8">
+        <section className={`flex min-h-screen flex-col px-5 pt-5 sm:px-9 lg:px-[clamp(40px,6vw,96px)] lg:pb-10 lg:pt-8 ${step === 'results' && !dealWarning ? 'pb-28' : 'pb-10'}`}>
           <div className="mb-4 flex items-baseline justify-between gap-4 lg:hidden">
             <Link href="/" className="font-serif text-xl">Mortgage Stevie</Link>
             <span className="text-[10px] font-bold uppercase tracking-[.16em] text-[#777]">Fix &amp; Flip Calculator</span>
@@ -364,7 +394,7 @@ export default function FixAndFlipCalculatorClient() {
           <header className="flex min-h-[42px] items-center gap-4">
             <button type="button" onClick={back} className={`font-semibold ${history.length && step !== 'intro' ? 'opacity-100' : 'pointer-events-none opacity-0'}`}>← Back</button>
             <div className="ml-auto h-1 w-full max-w-[360px] overflow-hidden rounded-full bg-[#ddd8d1]"><div className="h-full bg-[#555] transition-all" style={{ width: `${progress}%` }} /></div>
-            <span className="min-w-[56px] text-right text-xs text-[#777]">{currentIndex >= 0 ? `${currentIndex + 1} / ${flow.length}` : ''}</span>
+            <span className="min-w-[80px] text-right text-xs text-[#777]">{progressLabel}</span>
           </header>
 
           <main className="mx-auto my-auto w-full max-w-[720px] py-12 lg:py-16">
@@ -389,6 +419,11 @@ export default function FixAndFlipCalculatorClient() {
 
             {step === 'prequal' && (
               <form onSubmit={submitPrequalification}>
+                <div className="mb-6 grid gap-4 sm:grid-cols-2">
+                  <label className="text-sm font-semibold sm:col-span-2">Email address<input required type="email" autoComplete="email" className={`${inputClass} mt-2`} value={answers.email} onChange={(e) => update('email', e.target.value)} /></label>
+                  <label className="text-sm font-semibold">Full name<input required autoComplete="name" className={`${inputClass} mt-2`} value={answers.name} onChange={(e) => update('name', e.target.value)} /></label>
+                  <label className="text-sm font-semibold">Phone number<input required type="tel" autoComplete="tel" className={`${inputClass} mt-2`} value={answers.phone} onChange={(e) => update('phone', formattedPhone(e.target.value))} placeholder="555-555-5555" /></label>
+                </div>
                 <>
                   <div className="relative">
                     <label className="mb-2 block text-sm font-semibold">Property address</label>
@@ -441,17 +476,29 @@ export default function FixAndFlipCalculatorClient() {
             {step === 'experience' && options([{value:'0',title:'This is my first flip'},{value:'1-2',title:'1 to 2 completed flips'},{value:'3-5',title:'3 to 5 completed flips'},{value:'6+',title:'6 or more completed flips'}], 'experience')}
             {step === 'credit' && options([{value:'800+',title:'800 or higher'},{value:'700+',title:'700 to 799'},{value:'below700',title:'Below 700'},{value:'noCredit',title:'Use an option without a credit-score requirement',detail:'This removes credit-based programs from the comparison'}], 'credit')}
 
+            {step === 'profit' && (
+              <div>
+                <p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">Your projected result</p>
+                <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{dealWarning ? 'The numbers show a loss.' : manualReview ? "Let's take a closer look." : 'Here is your projected profit.'}</h1>
+                {!dealWarning && !manualReview && results[0] && <div className="my-7 rounded-2xl border border-[#79a98a] bg-[#eff8f1] p-6 text-[#173923]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#47745a]">Projected profit</p><p className="mt-2 font-serif text-5xl text-[#23633c]">{money(results[0].estimatedProfit)}</p><p className="mt-3 text-sm leading-6 text-[#365f45]">A preliminary estimate based on the numbers you entered.</p></div>}
+                {dealWarning && <div className="my-7 rounded-2xl border border-[#c96a5a] bg-[#fff5f2] p-6 text-[#171312]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#8d463b]">Projected result</p><p className="mt-2 font-serif text-4xl text-[#9b2c20]">About {money(dealWarning.estimatedLoss)} loss</p><p className="mt-3 text-sm leading-6">There may not be enough room in this deal with the numbers entered. The full estimate will show where the costs are landing.</p></div>}
+                {manualReview && <div className="my-7 rounded-2xl border border-[#d4d0ca] bg-white p-6"><p className="font-serif text-2xl">This deal needs a closer look.</p><p className="mt-2 text-sm leading-6 text-[#65615c]">A property-specific review is needed to finish the estimate.</p></div>}
+                <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6 sm:p-7">
+                  <h2 className="font-serif text-2xl">See the complete deal breakdown</h2>
+                  <p className="mt-2 text-sm leading-6 text-[#65615c]">Get the estimated financing terms, cash needed, fee breakdown, and pre-qualification path.</p>
+                  <button type="button" onClick={() => { track('full_estimate_requested'); show('contact') }} className={buttonClass}>Email My Full Estimate <span>→</span></button>
+                  <p className="mt-3 text-xs text-[#777]">No hard credit pull. Your information will not be sold.</p>
+                </div>
+              </div>
+            )}
+
             {step === 'contact' && heading && (
               <form onSubmit={submitContact}>
                 <div className="mb-8"><p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">{heading[0]}</p><h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{heading[1]}</h1><p className="text-base leading-6 text-[#65615c]">{heading[2]}</p></div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="text-sm font-semibold sm:col-span-2">Full name<input required autoComplete="name" className={`${inputClass} mt-2`} value={answers.name} onChange={(e) => update('name', e.target.value)} /></label>
-                  <label className="text-sm font-semibold">Email address<input required type="email" autoComplete="email" className={`${inputClass} mt-2`} value={answers.email} onChange={(e) => update('email', e.target.value)} /></label>
-                  <label className="text-sm font-semibold">Phone number<input required type="tel" autoComplete="tel" className={`${inputClass} mt-2`} value={answers.phone} onChange={(e) => update('phone', formattedPhone(e.target.value))} placeholder="555-555-5555" /></label>
-                </div>
-                <p className="mt-4 text-xs leading-5 text-[#777]">By continuing, you agree that Mortgage Stevie may contact you about this financing request. Your information will not be sold.</p>
+                <label className="block max-w-[520px] text-sm font-semibold">Email address<input required type="email" autoComplete="email" className={`${inputClass} mt-2`} value={answers.email} onChange={(e) => update('email', e.target.value)} /></label>
+                <p className="mt-4 text-xs leading-5 text-[#777]">We will email your estimate and may follow up about this financing request. Your information will not be sold.</p>
                 {error && <p role="alert" aria-live="polite" className="mt-4 rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>}
-                <button disabled={submitting} className={buttonClass}>{submitting ? 'Calculating your options...' : 'Show my results'} {!submitting && <span>→</span>}</button>
+                <button disabled={submitting} className={buttonClass}>{submitting ? 'Preparing your full estimate...' : 'Email My Full Estimate'} {!submitting && <span>→</span>}</button>
               </form>
             )}
 
@@ -491,7 +538,7 @@ export default function FixAndFlipCalculatorClient() {
                 {!dealWarning && <div className="mt-8 rounded-2xl border border-[#d4d0ca] bg-white p-6">
                   <h2 className="font-serif text-2xl">Ready to take the next step?</h2>
                   <p className="mt-2 text-sm leading-6 text-[#65615c]">Add the property address so we can confirm location-based eligibility and create a conditional project pre-qualification letter.</p>
-                  <button type="button" onClick={() => show('prequal')} className="mt-5 rounded-full bg-[#090909] px-7 py-4 text-center text-base font-bold text-white hover:bg-[#303030]">Get Pre-Qualified <span>→</span></button>
+                  <button type="button" onClick={() => { track('prequalification_started', { placement: 'results-card' }); show('prequal') }} className="mt-5 rounded-full bg-[#090909] px-7 py-4 text-center text-base font-bold text-white hover:bg-[#303030]">Get Pre-Qualified <span>→</span></button>
                 </div>}
                 <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">The financing structures shown are preliminary planning estimates, not approvals or commitments to lend. Stevie will review the specific lender match with you after an application or financing discussion. Rates and terms can change and must be confirmed. Interest assumes the full modeled loan is outstanding for the displayed period; renovation draws may reduce actual interest. Total project cost includes the costs you entered, modeled financing, and estimated selling costs equal to 3% of the sale price. It excludes income taxes and unexpected costs not entered. Return on contributed cash means estimated net profit divided by estimated borrower cash invested through payoff. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and current program availability. *Appraisal and title fees are conservative estimates.</div>
               </div>
@@ -512,6 +559,8 @@ export default function FixAndFlipCalculatorClient() {
               </div>
             )}
           </main>
+
+          {step === 'results' && !dealWarning && <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-black/10 bg-white/95 p-3 shadow-[0_-8px_30px_rgba(0,0,0,.12)] backdrop-blur lg:hidden"><button type="button" onClick={() => { track('prequalification_started', { placement: 'mobile-sticky' }); show('prequal') }} className="mx-auto block w-full max-w-[720px] rounded-full bg-[#090909] px-6 py-4 text-center font-bold text-white">Get Pre-Qualified <span>→</span></button></div>}
 
           <p className="mx-auto mt-auto w-full max-w-[720px] pt-7 text-[11px] leading-5 text-[#817d77]">Current program assumptions can change. This calculator provides a close planning estimate only, not final terms or a commitment to lend. Stevie de Gala, NMLS# 2845865. Barrett Financial, NMLS# 181106.</p>
         </section>
