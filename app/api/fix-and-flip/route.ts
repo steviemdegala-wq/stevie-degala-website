@@ -183,7 +183,7 @@ function calculateOptions(deal: Deal) {
         titleFee: 500,
         reserveTarget,
         reasons: ['A 12-month modeled term gives the project more breathing room', 'Pricing reflects the experience and credit entered', 'Financing is estimated from the purchase price, renovation budget, and after-repair value'],
-        cautions: ['Requires six months of interest reserves plus 10% of the renovation budget in liquidity', 'The estimate assumes three renovation draws at $200 each'],
+        cautions: ['Requires six months of interest reserves plus 10% of the renovation budget in liquidity'],
       }, deal))
     }
   }
@@ -268,7 +268,7 @@ function publicOption(option: InternalOption, index: number, deal: Deal, primary
     originationFee: Math.round(option.originationFee),
     originationPercent: Math.round(option.originationFee / (option.lender === 'Truly' ? option.loanAmount : deal.purchasePrice) * 10000) / 100,
     otherFees: Math.round(option.otherFees),
-    otherFeeLabel: option.lender === 'Truly' ? 'Estimated renovation draw fees (3 x $200)' : 'Estimated lender fees',
+    otherFeeLabel: option.lender === 'Truly' ? 'Draw fees ($200 each x 3 estimated draws)' : 'Estimated lender fees',
     payoffFee: Math.round(option.payoffFee),
     appraisalFee: option.appraisalFee,
     titleFee: option.titleFee,
