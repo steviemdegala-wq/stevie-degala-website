@@ -158,7 +158,6 @@ export default function FixAndFlipCalculatorClient() {
     const baselineLoan = Math.min(purchaseAndRenovation, arv * 0.7)
     return !purchaseAndRenovation || !arv || Number(answers.projectMonths) > 6 || baselineLoan < 150000 || purchaseAndRenovation > arv * 0.7
   }, [answers.purchasePrice, answers.renovationBudget, answers.arv, answers.projectMonths])
-  const showBorrowerProfile = Boolean(answers.purchasePrice && answers.renovationBudget && answers.arv && needsBorrowerProfile)
   const flow = useMemo<Step[]>(() => ['deal'], [])
   const currentIndex = flow.indexOf(step)
   const progress = step === 'intro' ? 0 : ['profit', 'results', 'prequal', 'letter'].includes(step) ? 100 : ((currentIndex + 1) / flow.length) * 100
@@ -480,14 +479,14 @@ export default function FixAndFlipCalculatorClient() {
                   {choices([{value:'sfr',title:'Single-family home'},{value:'condo',title:'Condo or townhome'},{value:'multi',title:'2 to 4 units'},{value:'other',title:'Manufactured, mixed-use, or other',detail:'Manual review may be needed'}], 'propertyType')}
                 </section>
 
-                {showBorrowerProfile && <section className="rounded-2xl border border-[#d4d0ca] bg-white p-5 shadow-sm sm:p-7">
-                  <div className="mb-5 flex items-center gap-3"><span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#090909] text-xs font-bold text-white">3</span><div><h2 className="font-serif text-2xl">Quick borrower profile</h2><p className="text-xs text-[#777]">No hard credit pull. These answers help identify a potential structure.</p></div></div>
+                <section className="rounded-2xl border border-[#d4d0ca] bg-white p-5 shadow-sm sm:p-7">
+                  <div className="mb-5 flex items-center gap-3"><span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#090909] text-xs font-bold text-white">3</span><div><h2 className="font-serif text-2xl">Quick borrower profile</h2><p className="text-xs text-[#777]">No hard credit pull. These answers help when a financing path uses experience or credit.</p></div></div>
                   <p className="mb-3 text-sm font-semibold">Completed flips in the last 3 years</p>
                   {choices([{value:'0',title:'This is my first flip'},{value:'1-2',title:'1 to 2 completed flips'},{value:'3-5',title:'3 to 5 completed flips'},{value:'6+',title:'6 or more completed flips'}], 'experience')}
                   <div className="my-6 border-t border-[#e4e1dc]" />
                   <p className="mb-3 text-sm font-semibold">Credit range</p>
                   {choices([{value:'800+',title:'800 or higher'},{value:'700+',title:'700 to 799'},{value:'below700',title:'Below 700'},{value:'noCredit',title:'Use an option without a credit-score requirement',detail:'Removes credit-based programs'}], 'credit')}
-                </section>}
+                </section>
                 {error && <p role="alert" className="rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>}
                 <button disabled={submitting} className={`${buttonClass} mt-1 w-full sm:w-auto`}>{submitting ? 'Calculating...' : 'See My Projected Profit'} {!submitting && <span>→</span>}</button>
               </form>
