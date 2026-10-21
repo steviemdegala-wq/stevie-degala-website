@@ -441,9 +441,11 @@ function buildPrequalificationPdf(contact: Contact, deal: Deal, option: Internal
   const property = `${deal.address}, ${deal.state} ${deal.zip}`
   const commands: string[] = []
   const add = (text: string, x: number, y: number, size = 10, bold = false) => {
-    commands.push(`BT /${bold ? 'F2' : 'F1'} ${size} Tf ${x} ${y} Td (${pdfText(text)}) Tj ET`)
+    commands.push(`BT /${bold ? 'F2' : 'F1'} ${size} Tf 0 0 0 rg ${x} ${y} Td (${pdfText(text)}) Tj ET`)
   }
-  add('Mortgage Stevie', 54, 748, 17, true)
+  commands.push('q 0.035 0.035 0.035 rg 62 730 m 82 730 l 86.42 730 90 733.58 90 738 c 90 758 l 90 762.42 86.42 766 82 766 c 62 766 l 57.58 766 54 762.42 54 758 c 54 738 l 54 733.58 57.58 730 62 730 c f Q')
+  commands.push('BT /F3 26 Tf 0.98 0.98 0.98 rg 64 737 Td (S) Tj ET')
+  add('Mortgage Stevie', 102, 743, 17, true)
   add('CONDITIONAL PROJECT FINANCING PRE-QUALIFICATION', 54, 716, 15, true)
   add('PRELIMINARY - NOT A LOAN APPROVAL OR COMMITMENT TO LEND', 54, 696, 9, true)
   add(`Issued: ${issued}   |   Valid through: ${validThrough}`, 54, 674, 9)
@@ -484,9 +486,10 @@ function buildPrequalificationPdf(contact: Contact, deal: Deal, option: Internal
   const objects = [
     '<< /Type /Catalog /Pages 2 0 R >>',
     '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
-    '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>',
+    '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R /F2 5 0 R /F3 6 0 R >> >> /Contents 7 0 R >>',
     '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>',
     '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>',
+    '<< /Type /Font /Subtype /Type1 /BaseFont /Times-Bold >>',
     `<< /Length ${Buffer.byteLength(stream, 'utf8')} >>\nstream\n${stream}\nendstream`,
   ]
   let pdf = '%PDF-1.4\n'

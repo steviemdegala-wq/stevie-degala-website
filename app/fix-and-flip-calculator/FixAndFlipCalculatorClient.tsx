@@ -370,8 +370,13 @@ export default function FixAndFlipCalculatorClient() {
               <div>
                 <p className="mb-4 text-xs font-bold uppercase tracking-[.18em] text-[#666]">Fix-and-flip calculator</p>
                 <h1 className="mb-5 font-serif text-5xl leading-[1] tracking-[-.045em] sm:text-6xl">Run the numbers on your next flip.</h1>
-                <p className="max-w-[620px] text-lg leading-7 text-[#65615c]">See estimated financing, cash needed to get started, and carrying cost using current renovation programs. The numbers should be close, but nothing shown is final.</p>
-                <button type="button" onClick={startCalculator} className={buttonClass}>Run my numbers <span>→</span></button>
+                <p className="hidden max-w-[620px] text-lg leading-7 text-[#65615c] sm:block">See your projected profit, estimated financing terms, and conditional pre-qualification before you make an offer.</p>
+                <ul className="space-y-3 text-base font-semibold text-[#34312e] sm:hidden">
+                  <li className="flex items-center gap-3"><span aria-hidden="true" className="text-[#47745a]">●</span>See your projected profit</li>
+                  <li className="flex items-center gap-3"><span aria-hidden="true" className="text-[#47745a]">●</span>Review estimated financing terms</li>
+                  <li className="flex items-center gap-3"><span aria-hidden="true" className="text-[#47745a]">●</span>Get a conditional pre-qualification</li>
+                </ul>
+                <button type="button" onClick={startCalculator} className={buttonClass}>See My Projected Profit <span>→</span></button>
                 <p className="mt-4 text-xs text-[#777]">About 2 minutes · No hard credit pull · Free to use</p>
               </div>
             )}
@@ -439,7 +444,7 @@ export default function FixAndFlipCalculatorClient() {
                 <p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">{dealWarning ? 'Deal check' : 'Your best financing match'}</p>
                 <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{dealWarning ? 'The numbers show a loss.' : manualReview ? "Let's take a closer look." : 'The best fit for this deal.'}</h1>
                 <p className="mb-8 text-base leading-6 text-[#65615c]">{dealWarning ? "With what you entered, this deal could lose money. We don't want anyone going into a deal that's likely to lose money." : 'This is the strongest preliminary match based on the numbers you entered. Property location can change program eligibility, so it will be confirmed before a pre-qualification letter is created.'}</p>
-                {!dealWarning && !manualReview && results[0] && <div className="mb-6 rounded-2xl border border-[#090909] bg-[#090909] p-6 text-white"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#aaa]">Projected profit</p><p className="mt-2 font-serif text-5xl">{money(results[0].estimatedProfit)}</p></div>}
+                {!dealWarning && !manualReview && results[0] && <div className="mb-6 rounded-2xl border border-[#79a98a] bg-[#eff8f1] p-6 text-[#173923]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#47745a]">Projected profit</p><p className="mt-2 font-serif text-5xl text-[#23633c]">{money(results[0].estimatedProfit)}</p><p className="mt-3 text-sm leading-6 text-[#365f45]">Based on the deal details and preliminary financing shown below.</p></div>}
                 {dealWarning && <div className="mb-6 rounded-2xl border border-[#c96a5a] bg-[#fff5f2] p-6 text-[#171312]">
                   <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8d463b]">Projected result</p>
                   <p className="mt-2 font-serif text-4xl text-[#9b2c20]">About {money(dealWarning.estimatedLoss)} loss</p>
