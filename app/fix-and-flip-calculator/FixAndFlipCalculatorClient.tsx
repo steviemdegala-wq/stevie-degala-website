@@ -158,9 +158,8 @@ export default function FixAndFlipCalculatorClient() {
     const baselineLoan = Math.min(purchaseAndRenovation, arv * 0.7)
     return !purchaseAndRenovation || !arv || Number(answers.projectMonths) > 6 || baselineLoan < 150000 || purchaseAndRenovation > arv * 0.7
   }, [answers.purchasePrice, answers.renovationBudget, answers.arv, answers.projectMonths])
-  const flow = useMemo<Step[]>(() => needsBorrowerProfile
-    ? ['deal', 'timeline', 'property', 'experience', 'credit']
-    : ['deal', 'timeline', 'property'], [needsBorrowerProfile])
+  const showBorrowerProfile = Boolean(answers.purchasePrice && answers.renovationBudget && answers.arv && needsBorrowerProfile)
+  const flow = useMemo<Step[]>(() => ['deal'], [])
   const currentIndex = flow.indexOf(step)
   const progress = step === 'intro' ? 0 : ['profit', 'results', 'prequal', 'letter'].includes(step) ? 100 : ((currentIndex + 1) / flow.length) * 100
   const progressLabel = currentIndex >= 0 ? `${currentIndex + 1} / ${flow.length}` : step === 'profit' ? 'Estimate ready' : step === 'prequal' ? 'Pre-qual' : step === 'letter' ? 'Complete' : ''
@@ -351,7 +350,7 @@ export default function FixAndFlipCalculatorClient() {
 
   const inputClass = 'w-full rounded-xl border border-[#d4d0ca] bg-white px-4 py-4 text-[#090909] outline-none focus:border-[#555] focus:ring-4 focus:ring-black/5'
   const buttonClass = 'mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#090909] px-6 py-4 font-semibold text-white hover:bg-[#303030] disabled:cursor-not-allowed disabled:opacity-50'
-  const unlockForm = (floating = false) => <form onSubmit={submitContact} className={`${floating ? 'relative z-10 mx-2' : ''} rounded-2xl border border-[#d4d0ca] bg-white p-6 shadow-lg sm:p-8`}>
+  const unlockForm = () => <form onSubmit={submitContact} className="rounded-2xl border border-[#d4d0ca] bg-white p-6 shadow-lg sm:p-8">
     <p className="text-xs font-bold uppercase tracking-[.16em] text-[#666]">Your full estimate is ready</p>
     <h2 className="mt-2 font-serif text-2xl sm:text-3xl">Unlock the complete deal breakdown</h2>
     <p className="mt-2 text-sm leading-6 text-[#65615c]">Enter your email to reveal the dollar amounts instantly and receive the complete estimate.</p>
@@ -362,18 +361,18 @@ export default function FixAndFlipCalculatorClient() {
     <p className="mt-3 text-xs text-[#777]">No hard credit pull. Your information will not be sold.</p>
     {error && <p role="alert" aria-live="polite" className="mt-4 rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>}
   </form>
-  const options = (items: { value: string; title: string; detail?: string }[], field: keyof Answers) => (
+  const choices = (items: { value: string; title: string; detail?: string }[], field: keyof Answers) => (
     <div className={`grid gap-3 ${items.length === 4 ? 'sm:grid-cols-2' : ''}`}>
       {items.map((item) => (
-        <button key={item.value} type="button" disabled={submitting} onClick={() => { const updated = { ...answers, [field]: item.value }; setAnswers(updated); setTimeout(() => next(updated), 0) }} className="flex min-h-[76px] w-full items-center justify-between rounded-2xl border border-[#d4d0ca] bg-white/60 px-5 py-4 text-left text-[#090909] hover:-translate-y-0.5 hover:border-[#777] hover:bg-white hover:shadow-lg disabled:cursor-wait disabled:opacity-60">
-          <span><strong className="block text-base">{item.title}</strong>{item.detail && <small className="mt-1 block text-sm text-[#73706b]">{item.detail}</small>}</span><span aria-hidden="true">→</span>
+        <button key={item.value} type="button" disabled={submitting} aria-pressed={answers[field] === item.value} onClick={() => update(field, item.value)} className={`flex min-h-[68px] w-full items-center justify-between rounded-xl border px-4 py-3 text-left transition disabled:cursor-wait disabled:opacity-60 ${answers[field] === item.value ? 'border-[#090909] bg-[#090909] text-white shadow-md' : 'border-[#d4d0ca] bg-white text-[#090909] hover:border-[#777] hover:shadow-md'}`}>
+          <span><strong className="block text-sm">{item.title}</strong>{item.detail && <small className={`mt-1 block text-xs ${answers[field] === item.value ? 'text-[#ccc]' : 'text-[#73706b]'}`}>{item.detail}</small>}</span><span aria-hidden="true">{answers[field] === item.value ? '✓' : ''}</span>
         </button>
       ))}
     </div>
   )
 
   const heading = useMemo(() => ({
-    deal: ['Deal details', 'What are the numbers?', 'Best estimates are fine.'],
+    deal: ['One quick form', 'Tell us about the deal.', 'Best estimates are fine. We only ask the questions needed to produce your projection.'],
     timeline: ['Project timeline', 'How long do you expect to hold the property?', 'Choose the total time from purchase through the completed sale.'],
     property: ['Property type', 'What type of property is it?', 'Choose the closest match.'],
     experience: ['Your experience', 'How many flips have you completed in the last 3 years?', 'This can change the pricing and amount available.'],
@@ -454,38 +453,45 @@ export default function FixAndFlipCalculatorClient() {
             )}
 
             {step === 'deal' && (
-              <form onSubmit={(e) => { e.preventDefault(); next() }}>
-                <div className="grid gap-4 sm:grid-cols-3">
-                  {([
-                    ['purchasePrice', 'Purchase price'],
-                    ['renovationBudget', 'Renovation budget'],
-                    ['arv', 'After-repair value (ARV)'],
-                  ] as [keyof Answers, string][]).map(([field, label]) => <label key={field} className="block text-sm font-semibold">{label}<div className="relative mt-2"><span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777]">$</span><input required inputMode="numeric" className={`${inputClass} pl-8 text-lg`} value={String(answers[field])} onChange={(e) => update(field, formattedMoney(e.target.value))} placeholder="0" /></div></label>)}
-                </div>
-                <label className="mt-5 block text-sm font-semibold">Estimated monthly holding costs<div className="relative mt-2"><span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777]">$</span><input inputMode="numeric" className={`${inputClass} pl-8`} value={answers.monthlyHoldingCosts} onChange={(e) => update('monthlyHoldingCosts', formattedMoney(e.target.value))} placeholder="0" /></div><span className="mt-1 block text-xs font-normal leading-5 text-[#777]">Taxes, insurance, utilities, HOA, and maintenance</span></label>
-                <p className="mt-4 text-xs leading-5 text-[#777]">Include labor, materials, permits, and a realistic contingency in the renovation budget. Use a supportable resale estimate for ARV.</p>
-                <button className={buttonClass}>Continue <span>→</span></button>
-              </form>
-            )}
+              <form onSubmit={(event) => { event.preventDefault(); if (!answers.propertyType || (needsBorrowerProfile && (!answers.experience || !answers.credit))) { setError('Please complete the highlighted deal details before viewing your projection.'); return } next() }} className="space-y-5">
+                <section className="rounded-2xl border border-[#d4d0ca] bg-white p-5 shadow-sm sm:p-7">
+                  <div className="mb-5 flex items-center gap-3"><span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#090909] text-xs font-bold text-white">1</span><div><h2 className="font-serif text-2xl">Deal numbers</h2><p className="text-xs text-[#777]">The core numbers behind your projected profit.</p></div></div>
+                  <div className="grid gap-4 sm:grid-cols-3">
+                    {([
+                      ['purchasePrice', 'Purchase price'],
+                      ['renovationBudget', 'Renovation budget'],
+                      ['arv', 'After-repair value (ARV)'],
+                    ] as [keyof Answers, string][]).map(([field, label]) => <label key={field} className="block text-sm font-semibold">{label}<div className="relative mt-2"><span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777]">$</span><input required inputMode="numeric" className={`${inputClass} pl-8 text-lg`} value={String(answers[field])} onChange={(e) => update(field, formattedMoney(e.target.value))} placeholder="0" /></div></label>)}
+                  </div>
+                  <label className="mt-5 block text-sm font-semibold">Estimated monthly holding costs<div className="relative mt-2"><span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777]">$</span><input inputMode="numeric" className={`${inputClass} pl-8`} value={answers.monthlyHoldingCosts} onChange={(e) => update('monthlyHoldingCosts', formattedMoney(e.target.value))} placeholder="0" /></div><span className="mt-1 block text-xs font-normal leading-5 text-[#777]">Taxes, insurance, utilities, HOA, and maintenance</span></label>
+                </section>
 
-            {step === 'timeline' && (
-              <form onSubmit={(event) => { event.preventDefault(); next() }}>
-                <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6 sm:p-8">
+                <section className="rounded-2xl border border-[#d4d0ca] bg-white p-5 shadow-sm sm:p-7">
+                  <div className="mb-5 flex items-center gap-3"><span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#090909] text-xs font-bold text-white">2</span><div><h2 className="font-serif text-2xl">Timeline and property</h2><p className="text-xs text-[#777]">Used to estimate carrying costs and potential terms.</p></div></div>
                   <div className="flex items-end justify-between gap-4">
                     <label htmlFor="project-months" className="text-sm font-semibold">Projected length of the deal</label>
-                    <output htmlFor="project-months" className="font-serif text-3xl text-[#23633c]">{answers.projectMonths} <span className="font-sans text-sm font-semibold text-[#47745a]">months</span></output>
+                    <output htmlFor="project-months" className="font-serif text-2xl text-[#23633c]">{answers.projectMonths} <span className="font-sans text-xs font-semibold text-[#47745a]">months</span></output>
                   </div>
-                  <input id="project-months" name="projectMonths" type="range" min="1" max="24" step="1" list="project-month-marks" value={answers.projectMonths} onChange={(event) => update('projectMonths', event.target.value)} className="mt-7 h-2 w-full cursor-pointer accent-[#090909]" />
+                  <input id="project-months" name="projectMonths" type="range" min="1" max="24" step="1" list="project-month-marks" value={answers.projectMonths} onChange={(event) => update('projectMonths', event.target.value)} className="mt-5 h-2 w-full cursor-pointer accent-[#090909]" />
                   <datalist id="project-month-marks"><option value="1" /><option value="6" /><option value="12" /><option value="18" /><option value="24" /></datalist>
                   <div className="mt-3 flex justify-between text-[11px] font-semibold text-[#777]" aria-hidden="true"><span>1 mo.</span><span>6 mo.</span><span>12 mo.</span><span>18 mo.</span><span>24 mo.</span></div>
-                  <p className="mt-6 border-t border-[#e4e1dc] pt-5 text-sm leading-6 text-[#65615c]">A month-by-month estimate gives you a more accurate projection of interest and holding costs.</p>
-                </div>
-                <button className={buttonClass}>Continue <span>→</span></button>
+                  <div className="my-6 border-t border-[#e4e1dc]" />
+                  <p className="mb-3 text-sm font-semibold">Property type</p>
+                  {choices([{value:'sfr',title:'Single-family home'},{value:'condo',title:'Condo or townhome'},{value:'multi',title:'2 to 4 units'},{value:'other',title:'Manufactured, mixed-use, or other',detail:'Manual review may be needed'}], 'propertyType')}
+                </section>
+
+                {showBorrowerProfile && <section className="rounded-2xl border border-[#d4d0ca] bg-white p-5 shadow-sm sm:p-7">
+                  <div className="mb-5 flex items-center gap-3"><span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#090909] text-xs font-bold text-white">3</span><div><h2 className="font-serif text-2xl">Quick borrower profile</h2><p className="text-xs text-[#777]">No hard credit pull. These answers help identify a potential structure.</p></div></div>
+                  <p className="mb-3 text-sm font-semibold">Completed flips in the last 3 years</p>
+                  {choices([{value:'0',title:'This is my first flip'},{value:'1-2',title:'1 to 2 completed flips'},{value:'3-5',title:'3 to 5 completed flips'},{value:'6+',title:'6 or more completed flips'}], 'experience')}
+                  <div className="my-6 border-t border-[#e4e1dc]" />
+                  <p className="mb-3 text-sm font-semibold">Credit range</p>
+                  {choices([{value:'800+',title:'800 or higher'},{value:'700+',title:'700 to 799'},{value:'below700',title:'Below 700'},{value:'noCredit',title:'Use an option without a credit-score requirement',detail:'Removes credit-based programs'}], 'credit')}
+                </section>}
+                {error && <p role="alert" className="rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>}
+                <button disabled={submitting} className={`${buttonClass} mt-1 w-full sm:w-auto`}>{submitting ? 'Calculating...' : 'See My Projected Profit'} {!submitting && <span>→</span>}</button>
               </form>
             )}
-            {step === 'property' && options([{value:'sfr',title:'Single-family home'},{value:'condo',title:'Condo or townhome'},{value:'multi',title:'2 to 4 units'},{value:'other',title:'Manufactured, mixed-use, or other',detail:'Manual review may be needed'}], 'propertyType')}
-            {step === 'experience' && options([{value:'0',title:'This is my first flip'},{value:'1-2',title:'1 to 2 completed flips'},{value:'3-5',title:'3 to 5 completed flips'},{value:'6+',title:'6 or more completed flips'}], 'experience')}
-            {step === 'credit' && options([{value:'800+',title:'800 or higher'},{value:'700+',title:'700 to 799'},{value:'below700',title:'Below 700'},{value:'noCredit',title:'Use an option without a credit-score requirement',detail:'This removes credit-based programs from the comparison'}], 'credit')}
 
             {step === 'profit' && (
               <div>
@@ -494,9 +500,15 @@ export default function FixAndFlipCalculatorClient() {
                 {!dealWarning && !manualReview && results[0] && <div className="my-7 rounded-2xl border border-[#79a98a] bg-[#eff8f1] p-6 text-[#173923]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#47745a]">Projected profit</p><p className="mt-2 font-serif text-5xl text-[#23633c]">{money(results[0].estimatedProfit)}</p><p className="mt-3 text-sm leading-6 text-[#365f45]">A preliminary estimate based on the numbers you entered.</p></div>}
                 {dealWarning && <div className="my-7 rounded-2xl border border-[#c96a5a] bg-[#fff5f2] p-6 text-[#171312]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#8d463b]">Projected result</p><p className="mt-2 font-serif text-4xl text-[#9b2c20]">About {money(dealWarning.estimatedLoss)} loss</p><p className="mt-3 text-sm leading-6">There may not be enough room in this deal with the numbers entered. The full estimate will show where the costs are landing.</p></div>}
                 {manualReview && <div className="my-7 rounded-2xl border border-[#d4d0ca] bg-white p-6"><p className="font-serif text-2xl">This deal needs a closer look.</p><p className="mt-2 text-sm leading-6 text-[#65615c]">A property-specific review is needed to finish the estimate.</p></div>}
-                {results[0] && !manualReview ? <div className="mt-7">
-                  {unlockForm(true)}
-                  <div className="pointer-events-none relative z-0 -mt-4 select-none"><ResultCard option={results[0]} primary locked /></div>
+                {results[0] && !manualReview ? <div className="mt-7 space-y-6">
+                  {unlockForm()}
+                  <div className="pointer-events-none select-none"><ResultCard option={results[0]} primary locked /></div>
+                  <div className="pointer-events-auto rounded-2xl border border-[#d4d0ca] bg-white p-6 text-center shadow-sm">
+                    <p className="text-xs font-bold uppercase tracking-[.16em] text-[#666]">Next step</p>
+                    <h2 className="mt-2 font-serif text-2xl">Get your conditional pre-qualification letter</h2>
+                    <p className="mx-auto mt-2 max-w-[520px] text-sm leading-6 text-[#65615c]">Unlock the estimate above, then add the property address to create your letter.</p>
+                    <button type="button" onClick={() => document.querySelector<HTMLInputElement>('input[aria-label="Email address"]')?.focus()} className="mt-4 rounded-full bg-[#090909] px-6 py-3 font-bold text-white">Unlock Estimate to Continue <span>↑</span></button>
+                  </div>
                 </div> : unlockForm()}
               </div>
             )}
