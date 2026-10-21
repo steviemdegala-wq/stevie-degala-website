@@ -182,7 +182,7 @@ function calculateOptions(deal: Deal) {
         appraisalFee: 1000,
         titleFee: 500,
         reserveTarget,
-        reasons: ['A 12-month modeled term gives the renovation more breathing room', 'Pricing rewards stronger experience and credit', `The estimate uses Standard Renovation Tier ${tier} leverage`],
+        reasons: ['A 12-month modeled term gives the project more breathing room', 'Pricing reflects the experience and credit entered', 'Financing is estimated from the purchase price, renovation budget, and after-repair value'],
         cautions: ['Requires six months of interest reserves plus 10% of the renovation budget in liquidity', 'The estimate assumes three renovation draws at $200 each'],
       }, deal))
     }
@@ -259,7 +259,7 @@ function publicOption(option: InternalOption, index: number, deal: Deal, primary
   const labels = { label: index === 0 ? 'Best option' : `Option ${index + 1}`, advantage }
   return {
     ...labels,
-    program: option.program,
+    program: 'Recommended financing estimate',
     rate: option.rate * 100,
     termMonths: option.termMonths,
     loanAmount: Math.round(option.loanAmount),
@@ -268,6 +268,7 @@ function publicOption(option: InternalOption, index: number, deal: Deal, primary
     originationFee: Math.round(option.originationFee),
     originationPercent: Math.round(option.originationFee / (option.lender === 'Truly' ? option.loanAmount : deal.purchasePrice) * 10000) / 100,
     otherFees: Math.round(option.otherFees),
+    otherFeeLabel: option.lender === 'Truly' ? 'Estimated renovation draw fees (3 x $200)' : 'Estimated lender fees',
     payoffFee: Math.round(option.payoffFee),
     appraisalFee: option.appraisalFee,
     titleFee: option.titleFee,
@@ -314,6 +315,7 @@ function buildPublicResults(deal: Deal, options: InternalOption[]) {
       carryingCost: best.carryingCost,
       originationFee: best.originationFee,
       otherFees: best.otherFees,
+      otherFeeLabel: best.otherFeeLabel,
       appraisalFee: best.appraisalFee,
       titleFee: best.titleFee,
       payoffFee: best.payoffFee,
@@ -443,23 +445,27 @@ function buildPrequalificationPdf(contact: Contact, deal: Deal, option: Internal
   const add = (text: string, x: number, y: number, size = 10, bold = false) => {
     commands.push(`BT /${bold ? 'F2' : 'F1'} ${size} Tf 0 0 0 rg ${x} ${y} Td (${pdfText(text)}) Tj ET`)
   }
-  commands.push('q 0.035 0.035 0.035 rg 62 730 m 82 730 l 86.42 730 90 733.58 90 738 c 90 758 l 90 762.42 86.42 766 82 766 c 62 766 l 57.58 766 54 762.42 54 758 c 54 738 l 54 733.58 57.58 730 62 730 c f Q')
-  commands.push('BT /F3 26 Tf 0.98 0.98 0.98 rg 64 737 Td (S) Tj ET')
-  add('Mortgage Stevie', 102, 743, 17, true)
-  add('CONDITIONAL PROJECT FINANCING PRE-QUALIFICATION', 54, 716, 15, true)
-  add('PRELIMINARY - NOT A LOAN APPROVAL OR COMMITMENT TO LEND', 54, 696, 9, true)
-  add(`Issued: ${issued}   |   Valid through: ${validThrough}`, 54, 674, 9)
-  add(`Applicant: ${contact.name}`, 54, 646, 11, true)
-  add(`Property: ${property}`, 54, 626, 10)
-  add(`Purchase price: ${money(deal.purchasePrice)}`, 54, 606, 10)
-  add(`Estimated loan amount: Up to ${money(option.loanAmount)}`, 54, 586, 10)
-  add(`Preliminary program: ${option.program}`, 54, 566, 10)
-  add(`Illustrative rate and term: ${(option.rate * 100).toFixed(2)}% | ${option.termMonths} months`, 54, 546, 10)
+  const rule = (y: number) => commands.push(`q 0.82 0.82 0.82 RG 0.7 w 54 ${y} m 558 ${y} l S Q`)
+  commands.push('q 0.035 0.035 0.035 rg 62 736 m 82 736 l 86.42 736 90 739.58 90 744 c 90 764 l 90 768.42 86.42 772 82 772 c 62 772 l 57.58 772 54 768.42 54 764 c 54 744 l 54 739.58 57.58 736 62 736 c f Q')
+  commands.push('BT /F3 25 Tf 0.98 0.98 0.98 rg 64 745 Td (S) Tj ET')
+  add('Mortgage Stevie', 102, 749, 17, true)
+  rule(724)
+  add('CONDITIONAL PROJECT FINANCING PRE-QUALIFICATION', 54, 699, 15, true)
+  add('PRELIMINARY - NOT A LOAN APPROVAL OR COMMITMENT TO LEND', 54, 677, 9, true)
+  add(`Issued: ${issued}   |   Valid through: ${validThrough}`, 54, 654, 9)
+  rule(637)
+  add(`Applicant: ${contact.name}`, 54, 610, 11, true)
+  add(`Property: ${property}`, 54, 588, 10)
+  add(`Purchase price: ${money(deal.purchasePrice)}`, 54, 566, 10)
+  add(`Estimated loan amount: Up to ${money(option.loanAmount)}`, 54, 544, 10)
+  add(`Illustrative rate and term: ${(option.rate * 100).toFixed(2)}% | ${option.termMonths} months`, 54, 522, 10)
+  rule(505)
 
-  let y = 512
+  let y = 480
   const paragraph = `Based solely on the unverified information submitted through the Mortgage Stevie fix-and-flip calculator, this business-purpose, non-owner-occupied investment project appears conditionally pre-qualified to proceed to full lender review for financing up to the amount shown above.`
   for (const line of wrap(paragraph)) { add(line, 54, y, 9); y -= 14 }
-  y -= 10
+  y -= 4
+  rule(y); y -= 22
   add('Conditions and limitations', 54, y, 11, true); y -= 20
   const conditions = [
     'Receipt of a complete application and all lender-required documentation.',
@@ -474,10 +480,12 @@ function buildPrequalificationPdf(contact: Contact, deal: Deal, option: Internal
     lines.forEach((line, index) => { add(`${index === 0 ? '- ' : '  '}${line}`, 62, y, 8.5); y -= 13 })
     y -= 3
   }
-  y -= 4
+  y -= 1
+  rule(y); y -= 20
   const notice = 'This letter is an automated preliminary pre-qualification, not a credit decision, approval, rate lock, loan agreement, or guarantee of financing. It does not obligate Barrett Financial, any lender, or the applicant. Only a lender-issued written commitment following full underwriting can obligate a lender to fund.'
   for (const line of wrap(notice, 88)) { add(line, 54, y, 8.5, true); y -= 13 }
-  y -= 10
+  y -= 4
+  rule(y); y -= 20
   add('Stevie de Gala | Mortgage Broker | NMLS# 2845865', 54, y, 9, true); y -= 15
   add('Barrett Financial Group, L.L.C. | NMLS# 181106', 54, y, 9); y -= 15
   add('SDegala@BarrettFinancial.com | mortgagestevie.com', 54, y, 9)

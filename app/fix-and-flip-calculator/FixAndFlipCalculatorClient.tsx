@@ -42,6 +42,7 @@ type ResultOption = {
   originationFee: number
   originationPercent: number
   otherFees: number
+  otherFeeLabel: string
   payoffFee: number
   appraisalFee: number
   titleFee: number
@@ -79,6 +80,7 @@ type DealWarning = {
   carryingCost: number
   originationFee: number
   otherFees: number
+  otherFeeLabel: string
   appraisalFee: number
   titleFee: number
   payoffFee: number
@@ -474,7 +476,7 @@ export default function FixAndFlipCalculatorClient() {
                     <div className="mt-4 grid gap-2 sm:grid-cols-2">
                       <span>Estimated interest: <strong>{money(dealWarning.carryingCost)}</strong></span>
                       <span>Origination fee: <strong>{money(dealWarning.originationFee)}</strong></span>
-                      <span>Other program fees: <strong>{money(dealWarning.otherFees)}</strong></span>
+                      <span>{dealWarning.otherFeeLabel}: <strong>{money(dealWarning.otherFees)}</strong></span>
                       <span>Estimated appraisal: <strong>{money(dealWarning.appraisalFee)}</strong></span>
                       <span>Estimated title fees: <strong>{money(dealWarning.titleFee)}</strong></span>
                       {dealWarning.payoffFee > 0 && <span>Payoff fee: <strong>{money(dealWarning.payoffFee)}</strong></span>}
@@ -486,12 +488,12 @@ export default function FixAndFlipCalculatorClient() {
                 {!previewMode && emailSent && <p role="status" className="mb-6 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-950"><strong>Your results have been emailed.</strong> If they are not in your inbox within a few minutes, please check your spam or promotions folder.</p>}
                 {!previewMode && !emailSent && <p role="status" className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950"><strong>Your request was saved, but we could not confirm email delivery.</strong> Your results are available below. You can retry later or contact Stevie directly.</p>}
                 {manualReview ? <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6"><h2 className="font-serif text-2xl">This deal needs a closer look</h2><p className="mt-2 text-[#666]">Stevie can review the property, state, and deal structure to find the best available path.</p></div> : <div className="grid gap-4">{results.map((option, index) => <ResultCard key={option.label} option={option} primary={index === 0} />)}</div>}
-                <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">The financing structures shown are preliminary planning estimates, not approvals or commitments to lend. Stevie will review the specific lender match with you after an application or financing discussion. Rates and terms can change and must be confirmed. Interest assumes the full modeled loan is outstanding for the displayed period; renovation draws may reduce actual interest. Total project cost includes the costs you entered, modeled financing, and estimated selling costs equal to 3% of the sale price. It excludes income taxes and unexpected costs not entered. Return on contributed cash means estimated net profit divided by estimated borrower cash invested through payoff. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and current program availability. *Appraisal and title fees are conservative estimates.</div>
                 {!dealWarning && <div className="mt-8 rounded-2xl border border-[#d4d0ca] bg-white p-6">
                   <h2 className="font-serif text-2xl">Ready to take the next step?</h2>
                   <p className="mt-2 text-sm leading-6 text-[#65615c]">Add the property address so we can confirm location-based eligibility and create a conditional project pre-qualification letter.</p>
                   <button type="button" onClick={() => show('prequal')} className="mt-5 rounded-full bg-[#090909] px-7 py-4 text-center text-base font-bold text-white hover:bg-[#303030]">Get Pre-Qualified <span>→</span></button>
                 </div>}
+                <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">The financing structures shown are preliminary planning estimates, not approvals or commitments to lend. Stevie will review the specific lender match with you after an application or financing discussion. Rates and terms can change and must be confirmed. Interest assumes the full modeled loan is outstanding for the displayed period; renovation draws may reduce actual interest. Total project cost includes the costs you entered, modeled financing, and estimated selling costs equal to 3% of the sale price. It excludes income taxes and unexpected costs not entered. Return on contributed cash means estimated net profit divided by estimated borrower cash invested through payoff. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and current program availability. *Appraisal and title fees are conservative estimates.</div>
               </div>
             )}
 
@@ -543,7 +545,7 @@ function ResultCard({ option, primary }: { option: ResultOption; primary: boolea
         <summary className="cursor-pointer font-semibold">What is included?</summary>
         <div className="mt-4 grid gap-2">
           <span>Origination fee ({option.originationPercent.toFixed(2)}%): <strong className={primary ? 'text-white' : 'text-black'}>{money(option.originationFee)}</strong></span>
-          <span>Other program fees: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.otherFees)}</strong></span>
+          <span>{option.otherFeeLabel}: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.otherFees)}</strong></span>
           <span>Estimated appraisal*: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.appraisalFee)}</strong></span>
           <span>Estimated title fees*: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.titleFee)}</strong></span>
           <span>Other holding costs entered: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.nonFinancingHoldingCosts)}</strong></span>
