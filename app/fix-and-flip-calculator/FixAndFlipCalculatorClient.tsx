@@ -330,7 +330,7 @@ export default function FixAndFlipCalculatorClient() {
 
   const heading = useMemo(() => ({
     deal: ['Deal details', 'What are the numbers?', 'Best estimates are fine.'],
-    timeline: ['Project timeline', 'How long will the project take?', 'Choose the closest realistic timeline.'],
+    timeline: ['Project timeline', 'How long do you expect to hold the property?', 'Choose the total time from purchase through the completed sale.'],
     property: ['Property type', 'What type of property is it?', 'Choose the closest match.'],
     experience: ['Your experience', 'How many flips have you completed in the last 3 years?', 'This can change the pricing and amount available.'],
     credit: ['Credit', 'Which range is closest to your credit score?', 'No hard credit pull. You can also choose an option that does not use FICO.'],
@@ -399,7 +399,7 @@ export default function FixAndFlipCalculatorClient() {
                   <label className="text-sm font-semibold">State<select required className={`${inputClass} mt-2`} value={answers.state} onChange={(e) => update('state', e.target.value)}><option value="">Select</option>{states.map((state) => <option key={state}>{state}</option>)}</select></label>
                   <label className="text-sm font-semibold">ZIP code<input required pattern="[0-9]{5}" inputMode="numeric" maxLength={5} className={`${inputClass} mt-2`} value={answers.zip} onChange={(e) => update('zip', e.target.value.replace(/\D/g, '').slice(0, 5))} /></label>
                 </div>
-                <p className="mt-4 text-xs leading-5 text-[#777]">The letter is a preliminary, conditional pre-qualification based on unverified information. It is not a loan approval or commitment to lend.</p>
+                <p className="mt-4 text-xs leading-5 text-[#777]">If the project passes the automated checks, we will email your conditional pre-qualification letter automatically and make it available to download immediately. It is not a loan approval or commitment to lend.</p>
                 {error && <p role="alert" className="mt-4 rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>}
                 <button disabled={submitting} className={buttonClass}>{submitting ? 'Creating your letter...' : 'Create my letter'} {!submitting && <span>→</span>}</button>
               </form>
@@ -420,7 +420,21 @@ export default function FixAndFlipCalculatorClient() {
               </form>
             )}
 
-            {step === 'timeline' && options([{value:'6',title:'6 months or less'},{value:'12',title:'7 to 12 months'},{value:'18',title:'More than 12 months'}], 'projectMonths')}
+            {step === 'timeline' && (
+              <form onSubmit={(event) => { event.preventDefault(); next() }}>
+                <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6 sm:p-8">
+                  <div className="flex items-end justify-between gap-4">
+                    <label htmlFor="project-months" className="text-sm font-semibold">Projected length of the deal</label>
+                    <output htmlFor="project-months" className="font-serif text-3xl text-[#23633c]">{answers.projectMonths} <span className="font-sans text-sm font-semibold text-[#47745a]">months</span></output>
+                  </div>
+                  <input id="project-months" name="projectMonths" type="range" min="1" max="24" step="1" list="project-month-marks" value={answers.projectMonths} onChange={(event) => update('projectMonths', event.target.value)} className="mt-7 h-2 w-full cursor-pointer accent-[#090909]" />
+                  <datalist id="project-month-marks"><option value="1" /><option value="6" /><option value="12" /><option value="18" /><option value="24" /></datalist>
+                  <div className="mt-3 flex justify-between text-[11px] font-semibold text-[#777]" aria-hidden="true"><span>1 mo.</span><span>6 mo.</span><span>12 mo.</span><span>18 mo.</span><span>24 mo.</span></div>
+                  <p className="mt-6 border-t border-[#e4e1dc] pt-5 text-sm leading-6 text-[#65615c]">A month-by-month estimate gives you a more accurate projection of interest and holding costs.</p>
+                </div>
+                <button className={buttonClass}>Continue <span>→</span></button>
+              </form>
+            )}
             {step === 'property' && options([{value:'sfr',title:'Single-family home'},{value:'condo',title:'Condo or townhome'},{value:'multi',title:'2 to 4 units'},{value:'other',title:'Manufactured, mixed-use, or other',detail:'Manual review may be needed'}], 'propertyType')}
             {step === 'experience' && options([{value:'0',title:'This is my first flip'},{value:'1-2',title:'1 to 2 completed flips'},{value:'3-5',title:'3 to 5 completed flips'},{value:'6+',title:'6 or more completed flips'}], 'experience')}
             {step === 'credit' && options([{value:'800+',title:'800 or higher'},{value:'700+',title:'700 to 799'},{value:'below700',title:'Below 700'},{value:'noCredit',title:'Use an option without a credit-score requirement',detail:'This removes credit-based programs from the comparison'}], 'credit')}
@@ -472,7 +486,7 @@ export default function FixAndFlipCalculatorClient() {
                 {!previewMode && emailSent && <p role="status" className="mb-6 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-950"><strong>Your results have been emailed.</strong> If they are not in your inbox within a few minutes, please check your spam or promotions folder.</p>}
                 {!previewMode && !emailSent && <p role="status" className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950"><strong>Your request was saved, but we could not confirm email delivery.</strong> Your results are available below. You can retry later or contact Stevie directly.</p>}
                 {manualReview ? <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6"><h2 className="font-serif text-2xl">This deal needs a closer look</h2><p className="mt-2 text-[#666]">Stevie can review the property, state, and deal structure to find the best available path.</p></div> : <div className="grid gap-4">{results.map((option, index) => <ResultCard key={option.label} option={option} primary={index === 0} />)}</div>}
-                <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">The financing structures shown are preliminary planning estimates, not approvals or commitments to lend. Stevie will review the specific lender match with you after an application or financing discussion. Rates and terms can change and must be confirmed. Interest assumes the full modeled loan is outstanding for the displayed period; renovation draws may reduce actual interest. Total project cost includes the costs you entered, modeled financing, and selling costs equal to 6% of the sale price. It excludes income taxes and unexpected costs not entered. Return on contributed cash means estimated net profit divided by estimated borrower cash invested through payoff. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and current program availability. *Appraisal and title fees are conservative estimates.</div>
+                <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">The financing structures shown are preliminary planning estimates, not approvals or commitments to lend. Stevie will review the specific lender match with you after an application or financing discussion. Rates and terms can change and must be confirmed. Interest assumes the full modeled loan is outstanding for the displayed period; renovation draws may reduce actual interest. Total project cost includes the costs you entered, modeled financing, and estimated selling costs equal to 3% of the sale price. It excludes income taxes and unexpected costs not entered. Return on contributed cash means estimated net profit divided by estimated borrower cash invested through payoff. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and current program availability. *Appraisal and title fees are conservative estimates.</div>
                 {!dealWarning && <div className="mt-8 rounded-2xl border border-[#d4d0ca] bg-white p-6">
                   <h2 className="font-serif text-2xl">Ready to take the next step?</h2>
                   <p className="mt-2 text-sm leading-6 text-[#65615c]">Add the property address so we can confirm location-based eligibility and create a conditional project pre-qualification letter.</p>
