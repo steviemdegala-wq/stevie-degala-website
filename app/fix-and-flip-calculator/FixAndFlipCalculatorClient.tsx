@@ -2,7 +2,6 @@
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
-import { APPLICATION_URL } from '@/lib/application'
 import { useModalStore } from '@/lib/modalStore'
 
 declare global {
@@ -12,24 +11,20 @@ declare global {
   }
 }
 
-type Step = 'intro' | 'address' | 'deal' | 'timeline' | 'property' | 'experience' | 'credit' | 'plans' | 'overlap' | 'contact' | 'results'
+type Step = 'intro' | 'deal' | 'timeline' | 'property' | 'experience' | 'credit' | 'contact' | 'results' | 'prequal' | 'letter'
 
 type Answers = {
-  addressKnown: boolean
   address: string
   state: string
   zip: string
   purchasePrice: string
   renovationBudget: string
   arv: string
-  acquisitionClosingCosts: string
   monthlyHoldingCosts: string
   projectMonths: string
   propertyType: string
   experience: string
   credit: string
-  plannedDeals: string
-  overlappingProjects: string
   name: string
   email: string
   phone: string
@@ -59,7 +54,6 @@ type ResultOption = {
   borrowingCost: number
   estimatedSellingCosts: number
   financingAndFees: number
-  acquisitionClosingCosts: number
   nonFinancingHoldingCosts: number
   totalProjectCost: number
   estimatedProfit: number
@@ -94,11 +88,11 @@ type DealWarning = {
 }
 
 const initialAnswers: Answers = {
-  addressKnown: true, address: '', state: '', zip: '', purchasePrice: '', renovationBudget: '', arv: '', projectMonths: '6',
-  acquisitionClosingCosts: '', monthlyHoldingCosts: '', propertyType: '', experience: '', credit: '', plannedDeals: '', overlappingProjects: '', name: '', email: '', phone: '',
+  address: '', state: '', zip: '', purchasePrice: '', renovationBudget: '', arv: '', projectMonths: '6',
+  monthlyHoldingCosts: '', propertyType: '', experience: '', credit: '', name: '', email: '', phone: '',
 }
 
-const flow: Step[] = ['address', 'deal', 'timeline', 'property', 'experience', 'credit', 'plans', 'overlap', 'contact']
+const flow: Step[] = ['deal', 'timeline', 'property', 'experience', 'credit', 'contact']
 const states = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY']
 
 function dollars(value: string | number) {
@@ -147,7 +141,8 @@ export default function FixAndFlipCalculatorClient() {
   const [previewMode, setPreviewMode] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
   const [dealWarning, setDealWarning] = useState<DealWarning | null>(null)
-  const [capacityRecommendation, setCapacityRecommendation] = useState<{ title: string; body: string } | null>(null)
+  const [prequalPdfUrl, setPrequalPdfUrl] = useState('')
+  const [prequalEmailSent, setPrequalEmailSent] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [suggestions, setSuggestions] = useState<any[]>([])
@@ -162,10 +157,6 @@ export default function FixAndFlipCalculatorClient() {
   const update = (field: keyof Answers, value: string) => setAnswers((current) => ({ ...current, [field]: value }))
   const show = (next: Step) => { setHistory((items) => [...items, step]); setError(''); setStep(next) }
   const next = () => {
-    if (step === 'plans' && ['1', 'exploring'].includes(answers.plannedDeals)) {
-      show('contact')
-      return
-    }
     const index = flow.indexOf(step)
     if (index >= 0 && index < flow.length - 1) show(flow[index + 1])
   }
@@ -176,7 +167,7 @@ export default function FixAndFlipCalculatorClient() {
 
   const startCalculator = () => {
     track('calculator_started')
-    show('address')
+    show('deal')
   }
 
   const bookCall = (placement: string) => {
@@ -192,7 +183,7 @@ export default function FixAndFlipCalculatorClient() {
   }
 
   useEffect(() => {
-    if (step !== 'address') return
+    if (step !== 'prequal') return
     if (!apiKey) {
       setAddressNote('Google address suggestions are not configured in this local preview. Enter the address manually.')
       return
@@ -254,11 +245,10 @@ export default function FixAndFlipCalculatorClient() {
         body: JSON.stringify({
           contact: { name: answers.name, email: answers.email, phone: answers.phone },
           deal: {
-            addressKnown: answers.addressKnown, address: answers.address, state: answers.state, zip: answers.zip,
             purchasePrice: dollars(answers.purchasePrice), renovationBudget: dollars(answers.renovationBudget), arv: dollars(answers.arv),
-            acquisitionClosingCosts: dollars(answers.acquisitionClosingCosts), monthlyHoldingCosts: dollars(answers.monthlyHoldingCosts),
+            monthlyHoldingCosts: dollars(answers.monthlyHoldingCosts),
             projectMonths: Number(answers.projectMonths), propertyType: answers.propertyType, experience: answers.experience,
-            credit: answers.credit, plannedDeals: answers.plannedDeals, overlappingProjects: answers.overlappingProjects,
+            credit: answers.credit,
           },
           attribution: {
             pageUrl: window.location.href,
@@ -276,9 +266,7 @@ export default function FixAndFlipCalculatorClient() {
       setPreviewMode(Boolean(data.preview))
       setEmailSent(Boolean(data.email?.borrower))
       setDealWarning(data.warning ?? null)
-      setCapacityRecommendation(data.capacityRecommendation ?? null)
       track('calculator_results_viewed', { optionCount: data.options?.length ?? 0, manualReview: Boolean(data.manualReview) })
-      if (data.capacityRecommendation) track('financing_capacity_recommendation_displayed', { productCategory: 'fix-and-flip' })
       setHistory((items) => [...items, 'contact'])
       setStep('results')
     } catch (err) {
@@ -287,6 +275,43 @@ export default function FixAndFlipCalculatorClient() {
         : err instanceof Error ? err.message : 'Unable to calculate your results.')
     } finally {
       window.clearTimeout(timeout)
+      setSubmitting(false)
+    }
+  }
+
+  const submitPrequalification = async (event: FormEvent) => {
+    event.preventDefault()
+    setSubmitting(true)
+    setError('')
+    try {
+      const response = await fetch('/api/fix-and-flip', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'prequalification',
+          contact: { name: answers.name, email: answers.email, phone: answers.phone },
+          deal: {
+            address: answers.address, state: answers.state, zip: answers.zip,
+            purchasePrice: dollars(answers.purchasePrice), renovationBudget: dollars(answers.renovationBudget), arv: dollars(answers.arv),
+            monthlyHoldingCosts: dollars(answers.monthlyHoldingCosts), projectMonths: Number(answers.projectMonths),
+            propertyType: answers.propertyType, experience: answers.experience, credit: answers.credit,
+          },
+        }),
+      })
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}))
+        throw new Error(data.error || 'Unable to create the pre-qualification letter.')
+      }
+      const blob = await response.blob()
+      if (prequalPdfUrl) URL.revokeObjectURL(prequalPdfUrl)
+      setPrequalPdfUrl(URL.createObjectURL(blob))
+      setPrequalEmailSent(response.headers.get('X-Email-Sent') === 'true')
+      track('prequalification_letter_created', { state: answers.state })
+      setHistory((items) => [...items, 'prequal'])
+      setStep('letter')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unable to create the pre-qualification letter.')
+    } finally {
       setSubmitting(false)
     }
   }
@@ -304,16 +329,14 @@ export default function FixAndFlipCalculatorClient() {
   )
 
   const heading = useMemo(() => ({
-    address: ['Property details', 'Where is the property?', answers.addressKnown ? (apiKey ? 'Choose an address from Google or enter it manually.' : 'Enter the full address, state, and ZIP code.') : 'Just tell us which state you are shopping in.'],
     deal: ['Deal details', 'What are the numbers?', 'Best estimates are fine.'],
     timeline: ['Project timeline', 'How long will the project take?', 'Choose the closest realistic timeline.'],
     property: ['Property type', 'What type of property is it?', 'Choose the closest match.'],
     experience: ['Your experience', 'How many flips have you completed in the last 3 years?', 'This can change the pricing and amount available.'],
     credit: ['Credit', 'Which range is closest to your credit score?', 'No hard credit pull. You can also choose an option that does not use FICO.'],
-    plans: ['Your next 12 months', 'How many investment properties do you expect to purchase or renovate?', 'This helps Stevie plan beyond this one deal. It does not determine approval.'],
-    overlap: ['Project timing', 'Will any of those projects overlap?', 'A rough answer is enough.'],
     contact: ['One last step', 'Where should we send your results?', 'Enter your details to see the complete comparison now and receive a copy by email.'],
-  } as Record<string, string[]>)[step], [step, apiKey, answers.addressKnown])
+    prequal: ['Property details', 'Where is the property?', apiKey ? 'Choose an address from Google or enter it manually.' : 'Enter the full address, state, and ZIP code.'],
+  } as Record<string, string[]>)[step], [step, apiKey])
 
   return (
     <div className="fixed inset-0 z-[45] overflow-y-auto bg-[#f5f5f5] text-[#090909]">
@@ -357,22 +380,23 @@ export default function FixAndFlipCalculatorClient() {
               <div className="mb-8"><p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">{heading[0]}</p><h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{heading[1]}</h1><p className="text-base leading-6 text-[#65615c]">{heading[2]}</p></div>
             )}
 
-            {step === 'address' && (
-              <form onSubmit={(e) => { e.preventDefault(); next() }}>
-                {answers.addressKnown && <>
+            {step === 'prequal' && (
+              <form onSubmit={submitPrequalification}>
+                <>
                   <div className="relative">
                     <label className="mb-2 block text-sm font-semibold">Property address</label>
                     <input required className={inputClass} value={answers.address} onChange={(e) => handleAddressInput(e.target.value)} autoComplete="street-address" placeholder="Start typing the property address" />
                     {suggestions.length > 0 && <div className="absolute z-20 mt-2 w-full overflow-hidden rounded-xl border border-[#d4d0ca] bg-white shadow-2xl">{suggestions.map((suggestion, index) => <button key={index} type="button" onClick={() => chooseAddress(suggestion)} className="block w-full border-b border-[#eee] px-4 py-3 text-left text-sm hover:bg-[#f4f4f4]">{suggestion.text?.toString()}</button>)}</div>}
                   </div>
                   <p className="mt-2 text-xs text-[#777]">{addressNote}</p>
-                </>}
-                <div className={`mt-4 grid gap-3 ${answers.addressKnown ? 'grid-cols-[1fr_1.4fr]' : 'grid-cols-1'}`}>
+                </>
+                <div className="mt-4 grid grid-cols-[1fr_1.4fr] gap-3">
                   <label className="text-sm font-semibold">State<select required className={`${inputClass} mt-2`} value={answers.state} onChange={(e) => update('state', e.target.value)}><option value="">Select</option>{states.map((state) => <option key={state}>{state}</option>)}</select></label>
-                  {answers.addressKnown && <label className="text-sm font-semibold">ZIP code<input required pattern="[0-9]{5}" inputMode="numeric" maxLength={5} className={`${inputClass} mt-2`} value={answers.zip} onChange={(e) => update('zip', e.target.value.replace(/\D/g, '').slice(0, 5))} /></label>}
+                  <label className="text-sm font-semibold">ZIP code<input required pattern="[0-9]{5}" inputMode="numeric" maxLength={5} className={`${inputClass} mt-2`} value={answers.zip} onChange={(e) => update('zip', e.target.value.replace(/\D/g, '').slice(0, 5))} /></label>
                 </div>
-                <button className={buttonClass}>Continue <span>→</span></button>
-                <button type="button" onClick={() => setAnswers((current) => ({ ...current, addressKnown: !current.addressKnown, address: '', zip: '' }))} className="ml-4 mt-6 text-sm font-semibold text-[#666] underline underline-offset-4 hover:text-black">{answers.addressKnown ? "I don't have the address yet" : 'I have an address'}</button>
+                <p className="mt-4 text-xs leading-5 text-[#777]">The letter is a preliminary, conditional pre-qualification based on unverified information. It is not a loan approval or commitment to lend.</p>
+                {error && <p role="alert" className="mt-4 rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>}
+                <button disabled={submitting} className={buttonClass}>{submitting ? 'Creating your letter...' : 'Create my letter'} {!submitting && <span>→</span>}</button>
               </form>
             )}
 
@@ -385,12 +409,7 @@ export default function FixAndFlipCalculatorClient() {
                     ['arv', 'After-repair value (ARV)'],
                   ] as [keyof Answers, string][]).map(([field, label]) => <label key={field} className="block text-sm font-semibold">{label}<div className="relative mt-2"><span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777]">$</span><input required inputMode="numeric" className={`${inputClass} pl-8 text-lg`} value={String(answers[field])} onChange={(e) => update(field, formattedMoney(e.target.value))} placeholder="0" /></div></label>)}
                 </div>
-                <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                  {([
-                    ['acquisitionClosingCosts', 'Acquisition closing costs', 'Title, escrow, legal, transfer and other purchase costs'],
-                    ['monthlyHoldingCosts', 'Other holding costs per month', 'Taxes, insurance, utilities, HOA and maintenance'],
-                  ] as [keyof Answers, string, string][]).map(([field, label, detail]) => <label key={field} className="block text-sm font-semibold">{label}<div className="relative mt-2"><span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777]">$</span><input inputMode="numeric" className={`${inputClass} pl-8`} value={String(answers[field])} onChange={(e) => update(field, formattedMoney(e.target.value))} placeholder="0" /></div><span className="mt-1 block text-xs font-normal leading-5 text-[#777]">{detail}</span></label>)}
-                </div>
+                <label className="mt-5 block text-sm font-semibold">Estimated monthly holding costs<div className="relative mt-2"><span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777]">$</span><input inputMode="numeric" className={`${inputClass} pl-8`} value={answers.monthlyHoldingCosts} onChange={(e) => update('monthlyHoldingCosts', formattedMoney(e.target.value))} placeholder="0" /></div><span className="mt-1 block text-xs font-normal leading-5 text-[#777]">Taxes, insurance, utilities, HOA, and maintenance</span></label>
                 <p className="mt-4 text-xs leading-5 text-[#777]">Include labor, materials, permits, and a realistic contingency in the renovation budget. Use a supportable resale estimate for ARV.</p>
                 <button className={buttonClass}>Continue <span>→</span></button>
               </form>
@@ -400,8 +419,6 @@ export default function FixAndFlipCalculatorClient() {
             {step === 'property' && options([{value:'sfr',title:'Single-family home'},{value:'condo',title:'Condo or townhome'},{value:'multi',title:'2 to 4 units'},{value:'other',title:'Manufactured, mixed-use, or other',detail:'Manual review may be needed'}], 'propertyType')}
             {step === 'experience' && options([{value:'0',title:'This is my first flip'},{value:'1-2',title:'1 to 2 completed flips'},{value:'3-5',title:'3 to 5 completed flips'},{value:'6+',title:'6 or more completed flips'}], 'experience')}
             {step === 'credit' && options([{value:'800+',title:'800 or higher'},{value:'700+',title:'700 to 799'},{value:'below700',title:'Below 700'},{value:'noCredit',title:'Use an option without a credit-score requirement',detail:'This removes credit-based programs from the comparison'}], 'credit')}
-            {step === 'plans' && options([{value:'1',title:'1'},{value:'2-3',title:'2–3'},{value:'4-6',title:'4–6'},{value:'7+',title:'7+'},{value:'exploring',title:'Still exploring'}], 'plannedDeals')}
-            {step === 'overlap' && options([{value:'yes',title:'Yes, I expect more than one underway'},{value:'no',title:'No, I expect to finish one first'},{value:'unsure',title:'Not sure yet'}], 'overlappingProjects')}
 
             {step === 'contact' && heading && (
               <form onSubmit={submitContact}>
@@ -419,9 +436,10 @@ export default function FixAndFlipCalculatorClient() {
 
             {step === 'results' && (
               <div>
-                <p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">{dealWarning ? 'Deal check' : 'Your financing options'}</p>
-                <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{dealWarning ? 'The numbers show a loss.' : manualReview ? "Let's take a closer look." : 'Here are two ways to fund the deal.'}</h1>
-                <p className="mb-8 text-base leading-6 text-[#65615c]">{dealWarning ? "With what you entered, this deal could lose money. We don't want anyone going into a deal that's likely to lose money." : 'These estimates use current program assumptions and should be close to what we may be able to get done. Nothing shown is final.'}</p>
+                <p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">{dealWarning ? 'Deal check' : 'Your best financing match'}</p>
+                <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{dealWarning ? 'The numbers show a loss.' : manualReview ? "Let's take a closer look." : 'The best fit for this deal.'}</h1>
+                <p className="mb-8 text-base leading-6 text-[#65615c]">{dealWarning ? "With what you entered, this deal could lose money. We don't want anyone going into a deal that's likely to lose money." : 'This is the strongest preliminary match based on the numbers you entered. Property location can change program eligibility, so it will be confirmed before a pre-qualification letter is created.'}</p>
+                {!dealWarning && !manualReview && results[0] && <div className="mb-6 rounded-2xl border border-[#090909] bg-[#090909] p-6 text-white"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#aaa]">Projected profit</p><p className="mt-2 font-serif text-5xl">{money(results[0].estimatedProfit)}</p></div>}
                 {dealWarning && <div className="mb-6 rounded-2xl border border-[#c96a5a] bg-[#fff5f2] p-6 text-[#171312]">
                   <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8d463b]">Projected result</p>
                   <p className="mt-2 font-serif text-4xl text-[#9b2c20]">About {money(dealWarning.estimatedLoss)} loss</p>
@@ -449,17 +467,32 @@ export default function FixAndFlipCalculatorClient() {
                 {!previewMode && emailSent && <p role="status" className="mb-6 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-950"><strong>Your results have been emailed.</strong> If they are not in your inbox within a few minutes, please check your spam or promotions folder.</p>}
                 {!previewMode && !emailSent && <p role="status" className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950"><strong>Your request was saved, but we could not confirm email delivery.</strong> Your results are available below. You can retry later or contact Stevie directly.</p>}
                 {manualReview ? <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6"><h2 className="font-serif text-2xl">This deal needs a closer look</h2><p className="mt-2 text-[#666]">Stevie can review the property, state, and deal structure to find the best available path.</p></div> : <div className="grid gap-4">{results.map((option, index) => <ResultCard key={option.label} option={option} primary={index === 0} />)}</div>}
-                {capacityRecommendation && <div className="mt-6 rounded-2xl border border-[#9eb3c6] bg-[#eef3f7] p-6"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#49647a]">Multiple-project line of credit</p><h2 className="mt-2 font-serif text-2xl">{capacityRecommendation.title}</h2><p className="mt-3 text-sm leading-6 text-[#4f5961]">{capacityRecommendation.body}</p><button type="button" onClick={() => bookCall('financing-capacity')} className="mt-5 rounded-full bg-[#090909] px-5 py-3 text-sm font-semibold text-white">Discuss an investor line</button></div>}
                 <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">The financing structures shown are preliminary planning estimates, not approvals or commitments to lend. Stevie will review the specific lender match with you after an application or financing discussion. Rates and terms can change and must be confirmed. Interest assumes the full modeled loan is outstanding for the displayed period; renovation draws may reduce actual interest. Total project cost includes the costs you entered, modeled financing, and selling costs equal to 6% of the sale price. It excludes income taxes and unexpected costs not entered. Return on contributed cash means estimated net profit divided by estimated borrower cash invested through payoff. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and current program availability. *Appraisal and title fees are conservative estimates.</div>
-                {!dealWarning && <div className="mt-8">
-                  <button type="button" onClick={() => bookCall('results-primary')} className="rounded-full bg-[#090909] px-6 py-4 text-center font-semibold text-white hover:bg-[#303030]">Discuss this deal with Stevie</button>
-                  <a href={APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="mt-4 block text-sm font-semibold underline underline-offset-4">Ready to apply? Start my application ↗</a>
+                {!dealWarning && <div className="mt-8 rounded-2xl border border-[#d4d0ca] bg-white p-6">
+                  <h2 className="font-serif text-2xl">Ready to take the next step?</h2>
+                  <p className="mt-2 text-sm leading-6 text-[#65615c]">Add the property address so we can confirm location-based eligibility and create a conditional project pre-qualification letter.</p>
+                  <button type="button" onClick={() => show('prequal')} className="mt-5 rounded-full bg-[#090909] px-7 py-4 text-center text-base font-bold text-white hover:bg-[#303030]">Get Pre-Qualified <span>→</span></button>
                 </div>}
+              </div>
+            )}
+
+            {step === 'letter' && (
+              <div>
+                <p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">Conditional pre-qualification</p>
+                <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">Your letter is ready.</h1>
+                <p className="max-w-[620px] text-base leading-6 text-[#65615c]">Download the PDF, or open it to print or save another copy. The letter clearly states that it is preliminary, conditional, and subject to full lender review.</p>
+                {prequalEmailSent && <p className="mt-5 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-950">A copy was also sent to <strong>{answers.email}</strong>.</p>}
+                {!prequalEmailSent && <p className="mt-5 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950">The PDF is ready, but email delivery could not be confirmed. Please download a copy below.</p>}
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <a href={prequalPdfUrl} download="conditional-project-prequalification.pdf" className="rounded-full bg-[#090909] px-6 py-4 font-bold text-white hover:bg-[#303030]">Download PDF</a>
+                  <a href={prequalPdfUrl} target="_blank" rel="noreferrer" className="rounded-full border border-[#090909] bg-white px-6 py-4 font-semibold text-[#090909] hover:bg-[#f0f0f0]">Open to print or save</a>
+                </div>
+                <p className="mt-6 text-xs leading-5 text-[#777]">This letter is not a loan approval, commitment to lend, or guarantee of financing. Final terms require a complete application and lender underwriting.</p>
               </div>
             )}
           </main>
 
-          <p className="mx-auto mt-auto w-full max-w-[720px] pt-7 text-[11px] leading-5 text-[#817d77]">Current program assumptions can change. This calculator provides a close planning estimate only, not final terms or a commitment to lend. NMLS# 2845865.</p>
+          <p className="mx-auto mt-auto w-full max-w-[720px] pt-7 text-[11px] leading-5 text-[#817d77]">Current program assumptions can change. This calculator provides a close planning estimate only, not final terms or a commitment to lend. Stevie de Gala, NMLS# 2845865. Barrett Financial, NMLS# 181106.</p>
         </section>
       </div>
     </div>
@@ -473,14 +506,14 @@ function ResultCard({ option, primary }: { option: ResultOption; primary: boolea
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
         <Metric label="Cash to get started" value={money(option.startupCash)} primary={primary} />
         <Metric label={`Estimated carrying cost (${option.carryingMonths} mo.)`} value={money(option.carryingCost)} primary={primary} />
-        <Metric label="Estimated total cash through payoff*" value={money(option.totalCash)} primary={primary} />
+        <Metric label="Total cost*" value={money(option.totalCash)} primary={primary} />
       </div>
+      <p className={`mt-3 text-xs leading-5 ${primary ? 'text-[#aaa]' : 'text-[#666]'}`}>Total cost here means the estimated cash required through payoff: cash to get started, any renovation amount not financed, carrying cost, and applicable payoff fees.</p>
       <p className={`mt-4 text-sm ${primary ? 'text-[#d0d0d0]' : 'text-[#555]'}`}>Estimated financing: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.loanAmount)}</strong>, including up to <strong className={primary ? 'text-white' : 'text-black'}>{money(option.renovationAdvance)}</strong> for renovation.</p>
       <div className={`mt-5 rounded-xl border p-4 ${primary ? 'border-[#333] bg-[#151515]' : 'border-[#ddd] bg-[#f7f7f7]'}`}>
         <p className={`text-[10px] font-bold uppercase tracking-[.14em] ${primary ? 'text-[#888]' : 'text-[#777]'}`}>Projected deal economics</p>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           <Metric label="Estimated total project cost" value={money(option.totalProjectCost)} primary={primary} />
-          <Metric label="Estimated net profit" value={money(option.estimatedProfit)} primary={primary} />
           <Metric label="Estimated cash invested" value={money(option.estimatedCashContribution)} primary={primary} />
           <Metric label="Return on contributed cash" value={option.returnOnCash === null ? 'Not available' : `${option.returnOnCash.toFixed(1)}%`} primary={primary} />
           <Metric label="Break-even sale price" value={money(option.breakEvenSalePrice)} primary={primary} />
@@ -494,7 +527,6 @@ function ResultCard({ option, primary }: { option: ResultOption; primary: boolea
           <span>Other program fees: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.otherFees)}</strong></span>
           <span>Estimated appraisal*: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.appraisalFee)}</strong></span>
           <span>Estimated title fees*: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.titleFee)}</strong></span>
-          <span>Acquisition closing costs entered: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.acquisitionClosingCosts)}</strong></span>
           <span>Other holding costs entered: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.nonFinancingHoldingCosts)}</strong></span>
           {option.payoffFee > 0 && <span>Payoff fee, paid later: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.payoffFee)}</strong></span>}
           {option.reserveTarget > 0 && <span>Estimated reserve target, not a fee: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.reserveTarget)}</strong></span>}
