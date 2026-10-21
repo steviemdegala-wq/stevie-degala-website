@@ -11,7 +11,7 @@ declare global {
   }
 }
 
-type Step = 'intro' | 'deal' | 'timeline' | 'property' | 'experience' | 'credit' | 'profit' | 'contact' | 'results' | 'prequal' | 'letter'
+type Step = 'intro' | 'deal' | 'timeline' | 'property' | 'experience' | 'credit' | 'profit' | 'results' | 'prequal' | 'letter'
 
 type Answers = {
   address: string
@@ -162,8 +162,8 @@ export default function FixAndFlipCalculatorClient() {
     ? ['deal', 'timeline', 'property', 'experience', 'credit']
     : ['deal', 'timeline', 'property'], [needsBorrowerProfile])
   const currentIndex = flow.indexOf(step)
-  const progress = step === 'intro' ? 0 : ['profit', 'contact', 'results', 'prequal', 'letter'].includes(step) ? 100 : ((currentIndex + 1) / flow.length) * 100
-  const progressLabel = currentIndex >= 0 ? `${currentIndex + 1} / ${flow.length}` : step === 'profit' ? 'Estimate ready' : step === 'contact' ? 'Final step' : step === 'prequal' ? 'Pre-qual' : step === 'letter' ? 'Complete' : ''
+  const progress = step === 'intro' ? 0 : ['profit', 'results', 'prequal', 'letter'].includes(step) ? 100 : ((currentIndex + 1) / flow.length) * 100
+  const progressLabel = currentIndex >= 0 ? `${currentIndex + 1} / ${flow.length}` : step === 'profit' ? 'Estimate ready' : step === 'prequal' ? 'Pre-qual' : step === 'letter' ? 'Complete' : ''
 
   const track = (event: string, properties: Record<string, string | number | boolean> = {}) => {
     ;(window as any).dataLayer?.push({ event, page: 'fix-and-flip-calculator', ...properties })
@@ -273,6 +273,7 @@ export default function FixAndFlipCalculatorClient() {
 
   const submitContact = async (event: FormEvent) => {
     event.preventDefault()
+    track('full_estimate_requested', { placement: 'inline-email' })
     setSubmitting(true)
     setError('')
     const controller = new AbortController()
@@ -302,9 +303,9 @@ export default function FixAndFlipCalculatorClient() {
       setPreviewMode(Boolean(data.preview))
       setEmailSent(Boolean(data.email?.borrower))
       setDealWarning(data.warning ?? null)
-      track('calculator_step_completed', { step: 'contact', stepNumber: flow.length + 1, totalSteps: flow.length + 1 })
+      track('calculator_step_completed', { step: 'email_unlock', stepNumber: flow.length + 1, totalSteps: flow.length + 1 })
       track('calculator_results_viewed', { optionCount: data.options?.length ?? 0, manualReview: Boolean(data.manualReview) })
-      setHistory((items) => [...items, 'contact'])
+      setHistory((items) => [...items, step])
       setStep('results')
     } catch (err) {
       setError(err instanceof DOMException && err.name === 'AbortError'
@@ -350,6 +351,17 @@ export default function FixAndFlipCalculatorClient() {
 
   const inputClass = 'w-full rounded-xl border border-[#d4d0ca] bg-white px-4 py-4 text-[#090909] outline-none focus:border-[#555] focus:ring-4 focus:ring-black/5'
   const buttonClass = 'mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#090909] px-6 py-4 font-semibold text-white hover:bg-[#303030] disabled:cursor-not-allowed disabled:opacity-50'
+  const unlockForm = (floating = false) => <form onSubmit={submitContact} className={`${floating ? 'relative z-10 mx-2' : ''} rounded-2xl border border-[#d4d0ca] bg-white p-5 shadow-lg sm:p-7`}>
+    <p className="text-xs font-bold uppercase tracking-[.16em] text-[#666]">Your full estimate is ready</p>
+    <h2 className="mt-2 font-serif text-2xl sm:text-3xl">Unlock the complete deal breakdown</h2>
+    <p className="mt-2 text-sm leading-6 text-[#65615c]">Enter your email to reveal the dollar amounts instantly and receive the complete estimate.</p>
+    <div className="mt-5 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto]">
+      <label><span className="sr-only">Email address</span><input required type="email" autoComplete="email" inputMode="email" aria-label="Email address" className={inputClass} value={answers.email} onChange={(e) => update('email', e.target.value)} placeholder="Email address" /></label>
+      <button disabled={submitting} className="inline-flex min-h-[56px] items-center justify-center gap-2 rounded-full bg-[#090909] px-6 py-3 font-semibold text-white hover:bg-[#303030] disabled:cursor-not-allowed disabled:opacity-50">{submitting ? 'Unlocking...' : 'Unlock & Email My Full Estimate'} {!submitting && <span>→</span>}</button>
+    </div>
+    <p className="mt-3 text-xs text-[#777]">No hard credit pull. Your information will not be sold.</p>
+    {error && <p role="alert" aria-live="polite" className="mt-4 rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>}
+  </form>
   const options = (items: { value: string; title: string; detail?: string }[], field: keyof Answers) => (
     <div className={`grid gap-3 ${items.length === 4 ? 'sm:grid-cols-2' : ''}`}>
       {items.map((item) => (
@@ -366,7 +378,6 @@ export default function FixAndFlipCalculatorClient() {
     property: ['Property type', 'What type of property is it?', 'Choose the closest match.'],
     experience: ['Your experience', 'How many flips have you completed in the last 3 years?', 'This can change the pricing and amount available.'],
     credit: ['Credit', 'Which range is closest to your credit score?', 'No hard credit pull. You can also choose an option that does not use FICO.'],
-    contact: ['Unlock the full estimate', 'Where should we send it?', 'Enter your email to see the complete terms and cost breakdown and receive a copy.'],
     prequal: ['Pre-qualification details', 'Tell us where the property is.', apiKey ? 'Your email is already filled in. Add your contact details, then choose an address from Google or enter it manually.' : 'Your email is already filled in. Add your contact details and the full property address.'],
   } as Record<string, string[]>)[step], [step, apiKey])
 
@@ -413,7 +424,7 @@ export default function FixAndFlipCalculatorClient() {
               </div>
             )}
 
-            {heading && step !== 'contact' && (
+            {heading && (
               <div className="mb-8"><p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">{heading[0]}</p><h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{heading[1]}</h1><p className="text-base leading-6 text-[#65615c]">{heading[2]}</p></div>
             )}
 
@@ -484,31 +495,10 @@ export default function FixAndFlipCalculatorClient() {
                 {dealWarning && <div className="my-7 rounded-2xl border border-[#c96a5a] bg-[#fff5f2] p-6 text-[#171312]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#8d463b]">Projected result</p><p className="mt-2 font-serif text-4xl text-[#9b2c20]">About {money(dealWarning.estimatedLoss)} loss</p><p className="mt-3 text-sm leading-6">There may not be enough room in this deal with the numbers entered. The full estimate will show where the costs are landing.</p></div>}
                 {manualReview && <div className="my-7 rounded-2xl border border-[#d4d0ca] bg-white p-6"><p className="font-serif text-2xl">This deal needs a closer look.</p><p className="mt-2 text-sm leading-6 text-[#65615c]">A property-specific review is needed to finish the estimate.</p></div>}
                 {results[0] && !manualReview ? <div className="mt-7">
-                  <div className="rounded-2xl border border-[#d4d0ca] bg-white p-5 shadow-sm sm:p-7">
-                    <p className="text-xs font-bold uppercase tracking-[.16em] text-[#666]">Your full estimate is ready</p>
-                    <h2 className="mt-2 font-serif text-2xl sm:text-3xl">Unlock the complete deal breakdown</h2>
-                    <p className="mt-2 text-sm leading-6 text-[#65615c]">Enter your email to unlock the potential financing structure, cash needed, fee breakdown, and pre-qualification path.</p>
-                    <button type="button" onClick={() => { track('full_estimate_requested'); show('contact') }} className={buttonClass}>Email My Full Estimate <span>→</span></button>
-                    <p className="mt-3 text-xs text-[#777]">No hard credit pull. Your information will not be sold.</p>
-                  </div>
-                  <div className="pointer-events-none mt-4 select-none"><ResultCard option={results[0]} primary locked /></div>
-                </div> : <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6 sm:p-7">
-                  <h2 className="font-serif text-2xl">See the complete deal breakdown</h2>
-                  <p className="mt-2 text-sm leading-6 text-[#65615c]">Get the estimated financing terms, cash needed, fee breakdown, and pre-qualification path.</p>
-                  <button type="button" onClick={() => { track('full_estimate_requested'); show('contact') }} className={buttonClass}>Email My Full Estimate <span>→</span></button>
-                  <p className="mt-3 text-xs text-[#777]">No hard credit pull. Your information will not be sold.</p>
-                </div>}
+                  {unlockForm(true)}
+                  <div className="pointer-events-none relative z-0 -mt-4 select-none"><ResultCard option={results[0]} primary locked /></div>
+                </div> : unlockForm()}
               </div>
-            )}
-
-            {step === 'contact' && heading && (
-              <form onSubmit={submitContact}>
-                <div className="mb-8"><p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">{heading[0]}</p><h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{heading[1]}</h1><p className="text-base leading-6 text-[#65615c]">{heading[2]}</p></div>
-                <label className="block max-w-[520px] text-sm font-semibold">Email address<input required type="email" autoComplete="email" className={`${inputClass} mt-2`} value={answers.email} onChange={(e) => update('email', e.target.value)} /></label>
-                <p className="mt-4 text-xs leading-5 text-[#777]">We will email your estimate and may follow up about this financing request. Your information will not be sold.</p>
-                {error && <p role="alert" aria-live="polite" className="mt-4 rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>}
-                <button disabled={submitting} className={buttonClass}>{submitting ? 'Preparing your full estimate...' : 'Email My Full Estimate'} {!submitting && <span>→</span>}</button>
-              </form>
             )}
 
             {step === 'results' && (
