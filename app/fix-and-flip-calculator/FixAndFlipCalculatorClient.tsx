@@ -351,13 +351,13 @@ export default function FixAndFlipCalculatorClient() {
 
   const inputClass = 'w-full rounded-xl border border-[#d4d0ca] bg-white px-4 py-4 text-[#090909] outline-none focus:border-[#555] focus:ring-4 focus:ring-black/5'
   const buttonClass = 'mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#090909] px-6 py-4 font-semibold text-white hover:bg-[#303030] disabled:cursor-not-allowed disabled:opacity-50'
-  const unlockForm = (floating = false) => <form onSubmit={submitContact} className={`${floating ? 'relative z-10 mx-2' : ''} rounded-2xl border border-[#d4d0ca] bg-white p-5 shadow-lg sm:p-7`}>
+  const unlockForm = (floating = false) => <form onSubmit={submitContact} className={`${floating ? 'relative z-10 mx-2' : ''} rounded-2xl border border-[#d4d0ca] bg-white p-6 shadow-lg sm:p-8`}>
     <p className="text-xs font-bold uppercase tracking-[.16em] text-[#666]">Your full estimate is ready</p>
     <h2 className="mt-2 font-serif text-2xl sm:text-3xl">Unlock the complete deal breakdown</h2>
     <p className="mt-2 text-sm leading-6 text-[#65615c]">Enter your email to reveal the dollar amounts instantly and receive the complete estimate.</p>
-    <div className="mt-5 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto]">
+    <div className="mt-6 grid gap-4 sm:grid-cols-2">
       <label><span className="sr-only">Email address</span><input required type="email" autoComplete="email" inputMode="email" aria-label="Email address" className={inputClass} value={answers.email} onChange={(e) => update('email', e.target.value)} placeholder="Email address" /></label>
-      <button disabled={submitting} className="inline-flex min-h-[56px] items-center justify-center gap-2 rounded-full bg-[#090909] px-6 py-3 font-semibold text-white hover:bg-[#303030] disabled:cursor-not-allowed disabled:opacity-50">{submitting ? 'Unlocking...' : 'Unlock & Email My Full Estimate'} {!submitting && <span>→</span>}</button>
+      <button disabled={submitting} className="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-full bg-[#090909] px-6 py-3 font-semibold text-white hover:bg-[#303030] disabled:cursor-not-allowed disabled:opacity-50">{submitting ? 'Unlocking...' : 'Unlock & Email My Full Estimate'} {!submitting && <span aria-hidden="true" className="text-lg">↓</span>}</button>
     </div>
     <p className="mt-3 text-xs text-[#777]">No hard credit pull. Your information will not be sold.</p>
     {error && <p role="alert" aria-live="polite" className="mt-4 rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>}
@@ -535,9 +535,9 @@ export default function FixAndFlipCalculatorClient() {
                 {!previewMode && !emailSent && <p role="status" className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950"><strong>Your request was saved, but we could not confirm email delivery.</strong> Your results are available below. You can retry later or contact Stevie directly.</p>}
                 {manualReview ? <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6"><h2 className="font-serif text-2xl">This deal needs a closer look</h2><p className="mt-2 text-[#666]">Stevie can review the property, state, and deal structure to identify a potential financing path.</p></div> : <div className="grid gap-4">{results.map((option, index) => <ResultCard key={option.label} option={option} primary={index === 0} />)}</div>}
                 {!dealWarning && <div className="mt-8 rounded-2xl border border-[#d4d0ca] bg-white p-6">
-                  <h2 className="font-serif text-2xl">Ready to take the next step?</h2>
+                  <h2 className="font-serif text-2xl">Ready for your conditional pre-qualification letter?</h2>
                   <p className="mt-2 text-sm leading-6 text-[#65615c]">Add the property address so we can confirm location-based eligibility and create a conditional project pre-qualification letter.</p>
-                  <button type="button" onClick={() => { track('prequalification_started', { placement: 'results-card' }); show('prequal') }} className="mt-5 rounded-full bg-[#090909] px-7 py-4 text-center text-base font-bold text-white hover:bg-[#303030]">Get Pre-Qualified <span>→</span></button>
+                  <button type="button" onClick={() => { track('prequalification_started', { placement: 'results-card' }); show('prequal') }} className="mt-5 rounded-full bg-[#090909] px-7 py-4 text-center text-base font-bold text-white hover:bg-[#303030]">Get My Conditional Pre-Qualification Letter <span>→</span></button>
                 </div>}
                 <div className="mt-7 border-l-2 border-[#777] pl-4 text-sm leading-6 text-[#555]">The financing structures shown are preliminary planning estimates, not approvals or commitments to lend. Stevie will review the specific lender match with you after an application or financing discussion. Rates and terms can change and must be confirmed. Interest assumes the full modeled loan is outstanding for the displayed period; renovation draws may reduce actual interest. Total project cost includes the costs you entered, modeled financing, and estimated selling costs equal to 3% of the sale price. It excludes income taxes and unexpected costs not entered. Return on contributed cash means estimated net profit divided by estimated borrower cash invested through payoff. Final eligibility, pricing, fees, cash needed, and timing depend on lender review, appraisal, title, documentation, property condition, and current program availability. *Appraisal and title fees are conservative estimates.</div>
               </div>
@@ -559,7 +559,7 @@ export default function FixAndFlipCalculatorClient() {
             )}
           </main>
 
-          {step === 'results' && !dealWarning && <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-black/10 bg-white/95 p-3 shadow-[0_-8px_30px_rgba(0,0,0,.12)] backdrop-blur lg:hidden"><button type="button" onClick={() => { track('prequalification_started', { placement: 'mobile-sticky' }); show('prequal') }} className="mx-auto block w-full max-w-[720px] rounded-full bg-[#090909] px-6 py-4 text-center font-bold text-white">Get Pre-Qualified <span>→</span></button></div>}
+          {step === 'results' && !dealWarning && <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-black/10 bg-white/95 p-3 shadow-[0_-8px_30px_rgba(0,0,0,.12)] backdrop-blur lg:hidden"><button type="button" onClick={() => { track('prequalification_started', { placement: 'mobile-sticky' }); show('prequal') }} className="mx-auto block w-full max-w-[720px] rounded-full bg-[#090909] px-6 py-4 text-center font-bold text-white">Get My Pre-Qualification Letter <span>→</span></button></div>}
 
           <p className="mx-auto mt-auto w-full max-w-[720px] pt-7 text-[11px] leading-5 text-[#817d77]">Current program assumptions can change. This calculator provides a close planning estimate only, not final terms or a commitment to lend. Stevie de Gala, NMLS# 2845865. Barrett Financial, NMLS# 181106.</p>
         </section>
@@ -572,7 +572,7 @@ function ResultCard({ option, primary, locked = false }: { option: ResultOption;
   return (
     <article className={`rounded-2xl border p-6 shadow-lg ${primary ? 'border-[#090909] bg-[#090909] text-white' : 'border-[#d4d0ca] bg-white text-[#090909]'}`}>
       <div className="flex flex-col items-start justify-between gap-4 sm:flex-row"><div><p className={`text-xs font-bold uppercase tracking-[.16em] ${primary ? 'text-[#aaa]' : 'text-[#777]'}`}>Potential financing structure</p><h2 className="mt-1 font-serif text-3xl">{option.program}</h2><p className={`mt-1 text-sm ${primary ? 'text-[#aaa]' : 'text-[#666]'}`}>{option.advantage}</p></div><span className={`whitespace-nowrap rounded-full px-3 py-1 text-xs ${primary ? 'bg-white text-black' : 'bg-[#eee] text-black'}`}>{option.rate.toFixed(2)}% · {option.termMonths}-month term</span></div>
-      <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
         <Metric label="Cash to get started" value={money(option.startupCash)} primary={primary} locked={locked} />
         <Metric label={`Estimated carrying cost (${option.carryingMonths} mo.)`} value={money(option.carryingCost)} primary={primary} locked={locked} />
         <Metric label="Total cost*" value={money(option.totalCash)} primary={primary} locked={locked} />
@@ -581,7 +581,7 @@ function ResultCard({ option, primary, locked = false }: { option: ResultOption;
       <p className={`mt-4 text-sm ${primary ? 'text-[#d0d0d0]' : 'text-[#555]'}`}>Estimated financing: <SensitiveValue locked={locked} className={primary ? 'text-white' : 'text-black'}>{money(option.loanAmount)}</SensitiveValue>, including up to <SensitiveValue locked={locked} className={primary ? 'text-white' : 'text-black'}>{money(option.renovationAdvance)}</SensitiveValue> for renovation.</p>
       <div className={`mt-5 rounded-xl border p-4 ${primary ? 'border-[#333] bg-[#151515]' : 'border-[#ddd] bg-[#f7f7f7]'}`}>
         <p className={`text-[10px] font-bold uppercase tracking-[.14em] ${primary ? 'text-[#888]' : 'text-[#777]'}`}>Projected deal economics</p>
-        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+        <div className="mt-3 grid gap-4 sm:grid-cols-2">
           <Metric label="Estimated total project cost" value={money(option.totalProjectCost)} primary={primary} locked={locked} />
           <Metric label="Estimated cash invested" value={money(option.estimatedCashContribution)} primary={primary} locked={locked} />
           <Metric label="Return on contributed cash" value={option.returnOnCash === null ? 'Not available' : `${option.returnOnCash.toFixed(1)}%`} primary={primary} />
@@ -598,7 +598,7 @@ function ResultCard({ option, primary, locked = false }: { option: ResultOption;
           <span>Estimated title fees*: <SensitiveValue locked={locked} className={primary ? 'text-white' : 'text-black'}>{money(option.titleFee)}</SensitiveValue></span>
           <span>Other holding costs entered: <SensitiveValue locked={locked} className={primary ? 'text-white' : 'text-black'}>{money(option.nonFinancingHoldingCosts)}</SensitiveValue></span>
           {option.payoffFee > 0 && <span>Payoff fee, paid later: <SensitiveValue locked={locked} className={primary ? 'text-white' : 'text-black'}>{money(option.payoffFee)}</SensitiveValue></span>}
-          {option.reserveTarget > 0 && <span>Estimated reserve target, not a fee: <SensitiveValue locked={locked} className={primary ? 'text-white' : 'text-black'}>{money(option.reserveTarget)}</SensitiveValue></span>}
+          {option.reserveTarget > 0 && <span>Illustrative reserve target, confirmed by lender: <SensitiveValue locked={locked} className={primary ? 'text-white' : 'text-black'}>{money(option.reserveTarget)}</SensitiveValue></span>}
         </div>
       </details>
       <ul className={`mt-5 grid gap-2 pl-5 text-sm ${primary ? 'text-[#d0d0d0]' : 'text-[#555]'}`}>{option.reasons.map((reason) => <li key={reason} className="list-disc">{reason}</li>)}</ul>
@@ -613,5 +613,5 @@ function SensitiveValue({ children, locked, className = '' }: { children: ReactN
 }
 
 function Metric({ label, value, primary, locked = false }: { label: string; value: string; primary: boolean; locked?: boolean }) {
-  return <div><p className={`text-[10px] uppercase tracking-[.14em] ${primary ? 'text-[#888]' : 'text-[#777]'}`}>{label}</p>{locked ? <><p aria-hidden="true" className="mt-1 select-none text-lg font-semibold blur-[5px]">{value}</p><span className="sr-only">Amount available after email unlock</span></> : <p className="mt-1 text-lg font-semibold">{value}</p>}</div>
+  return <div><p className={`text-[11px] font-extrabold uppercase tracking-[.13em] sm:min-h-[2.25rem] ${primary ? 'text-[#d0d0d0]' : 'text-[#555]'}`}>{label}</p>{locked ? <><p aria-hidden="true" className="mt-1 select-none text-lg font-semibold blur-[5px]">{value}</p><span className="sr-only">Amount available after email unlock</span></> : <p className="mt-1 text-lg font-semibold">{value}</p>}</div>
 }

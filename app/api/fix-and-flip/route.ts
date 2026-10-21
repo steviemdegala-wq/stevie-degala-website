@@ -168,7 +168,7 @@ function calculateOptions(deal: Deal) {
       const renovationAdvance = Math.max(0, Math.min(deal.renovationBudget, loanAmount - purchaseAdvance))
       const topPricing = deal.experience === '6+' && ficoValue(deal.credit) >= 700
       const rate = topPricing ? 0.1025 : 0.115
-      const reserveTarget = loanAmount * rate / 12 * 6 + deal.renovationBudget * 0.1
+      const reserveTarget = loanAmount * rate / 12 * 3
       options.push(createOption({
         lender: 'Truly',
         program: 'Longer-term renovation financing',
@@ -184,7 +184,7 @@ function calculateOptions(deal: Deal) {
         titleFee: 500,
         reserveTarget,
         reasons: ['A 12-month modeled term gives the project more breathing room', 'Pricing reflects the experience and credit entered', 'Financing is estimated from the purchase price, renovation budget, and after-repair value'],
-        cautions: ['Requires six months of interest reserves plus 10% of the renovation budget in liquidity'],
+        cautions: [],
       }, deal))
     }
   }
