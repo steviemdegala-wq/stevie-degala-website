@@ -236,7 +236,7 @@ function calculateOptions(deal: Deal) {
 }
 
 function publicOption(option: InternalOption, index: number, deal: Deal, primary?: InternalOption) {
-  let advantage = 'Best overall fit'
+  let advantage = 'Potential fit based on the information entered'
   if (index > 0 && primary) {
     if (option.cashNeeded < primary.cashNeeded) advantage = 'Lower estimated cash needed'
     else if (option.borrowingCost < primary.borrowingCost) advantage = 'Lower estimated borrowing cost'
@@ -257,7 +257,7 @@ function publicOption(option: InternalOption, index: number, deal: Deal, primary
   const renovationOverrunProfit = estimatedProfit - deal.renovationBudget * 0.1
   const extensionMonths = Math.min(3, Math.max(0, option.termMonths - deal.projectMonths))
   const longerHoldProfit = estimatedProfit - deal.monthlyHoldingCosts * 3 - option.loanAmount * option.rate * extensionMonths / 12
-  const labels = { label: index === 0 ? 'Best option' : `Option ${index + 1}`, advantage }
+  const labels = { label: index === 0 ? 'Potential option' : `Potential option ${index + 1}`, advantage }
   return {
     ...labels,
     program: 'Recommended financing estimate',
@@ -377,12 +377,12 @@ async function createCrmLead(contact: Contact, deal: Deal, options: InternalOpti
 function buildBorrowerEmail(contact: Contact, deal: Deal, options: InternalOption[]) {
   const result = buildPublicResults(deal, options)
   const publicOptions = result.options
-  const resultRows = publicOptions.map((option) => `<div style="border:1px solid #ddd;border-radius:14px;padding:20px;margin:16px 0"><div style="font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#666">Best preliminary match</div><h2 style="font-family:Georgia,serif;font-size:24px;margin:4px 0 4px">${escapeHtml(option.program)}</h2><p style="margin:0"><strong>Projected profit: ${money(option.estimatedProfit)}</strong><br>Estimated financing: ${money(option.loanAmount)}<br>Cash to get started: ${money(option.startupCash)}<br>Estimated carrying cost: ${money(option.carryingCost)}<br>Total cash needed: ${money(option.totalCash)}<br>Rate: ${option.rate.toFixed(2)}% | Term: ${option.termMonths} months</p></div>`).join('')
+  const resultRows = publicOptions.map((option) => `<div style="border:1px solid #ddd;border-radius:14px;padding:20px;margin:16px 0"><div style="font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#666">Potential financing structure</div><h2 style="font-family:Georgia,serif;font-size:24px;margin:4px 0 4px">${escapeHtml(option.program)}</h2><p style="margin:0"><strong>Projected profit: ${money(option.estimatedProfit)}</strong><br>Estimated financing: ${money(option.loanAmount)}<br>Cash to get started: ${money(option.startupCash)}<br>Estimated carrying cost: ${money(option.carryingCost)}<br>Total cash needed: ${money(option.totalCash)}<br>Rate: ${option.rate.toFixed(2)}% | ${option.termMonths}-month term</p></div>`).join('')
   const disclaimer = '<p style="color:#666;font-size:12px">These estimates reflect current program assumptions and the information provided. They are intended to be close planning estimates, but they are not final terms, an approval, a commitment to lend, or a rate quote. Appraisal and title charges are estimates and actual third-party fees may vary.</p>'
   const warningHtml = result.warning ? `<div style="background:#fff4e5;border:1px solid #e7b978;border-radius:14px;padding:20px;margin:20px 0"><h2 style="font-family:Georgia,serif;margin:0 0 8px">The numbers show a loss.</h2><p style="margin:0">With what you entered, this deal could lose about <strong>${money(result.warning.estimatedLoss)}</strong>. The estimated project cost is ${money(result.warning.totalProjectCost)} against an ARV of ${money(result.warning.arv)}. We don't want anyone going into a deal that's likely to lose money. Let's talk through why, or look at another deal with better numbers.</p></div>` : ''
   const intro = result.warning
     ? contact.name ? `Hi ${escapeHtml(contact.name)}, there just isn't enough room in this deal right now. Here is the financing path with the lowest projected loss so you can see the numbers clearly.` : `There just isn't enough room in this deal right now. Here is the financing path with the lowest projected loss so you can see the numbers clearly.`
-    : contact.name ? `Hi ${escapeHtml(contact.name)}, here is the preliminary financing path that appears strongest for your project.` : 'Here is the preliminary financing path that appears strongest for your project.'
+    : contact.name ? `Hi ${escapeHtml(contact.name)}, here is a potential financing path based on the information entered for your project.` : 'Here is a potential financing path based on the information entered for your project.'
   const action = result.warning ? `<p style="margin-top:24px"><a href="${BOOKING_URL}" style="display:inline-block;background:#111;color:#fff;padding:13px 18px;border-radius:999px;text-decoration:none;font-weight:700">Discuss this deal or another opportunity</a></p>` : `<p style="margin-top:24px"><a href="${BOOKING_URL}" style="display:inline-block;background:#111;color:#fff;padding:13px 18px;border-radius:999px;text-decoration:none;font-weight:700">Discuss this deal with Stevie</a></p>`
   return `<div style="background:#f3f3f1;padding:28px 16px"><div style="font-family:Arial,sans-serif;color:#111;line-height:1.55;max-width:680px;margin:0 auto;background:#fff;border-radius:18px;padding:32px"><div style="font-family:Georgia,serif;font-size:22px;margin-bottom:28px">Mortgage Stevie</div><h1 style="font-family:Georgia,serif;font-size:36px;line-height:1.05;margin:0 0 16px">Your fix-and-flip financing estimate</h1><p>${intro}</p><p style="color:#666">This preliminary match is based on the information you entered. Property location can change eligibility and will be confirmed before a conditional pre-qualification letter is created.</p>${warningHtml}${resultRows}${action}${disclaimer}<p style="color:#777;font-size:12px;margin-top:24px">Stevie de Gala · NMLS# 2845865 · Barrett Financial NMLS# 181106 · SDegala@BarrettFinancial.com</p></div></div>`
 }

@@ -483,12 +483,23 @@ export default function FixAndFlipCalculatorClient() {
                 {!dealWarning && !manualReview && results[0] && <div className="my-7 rounded-2xl border border-[#79a98a] bg-[#eff8f1] p-6 text-[#173923]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#47745a]">Projected profit</p><p className="mt-2 font-serif text-5xl text-[#23633c]">{money(results[0].estimatedProfit)}</p><p className="mt-3 text-sm leading-6 text-[#365f45]">A preliminary estimate based on the numbers you entered.</p></div>}
                 {dealWarning && <div className="my-7 rounded-2xl border border-[#c96a5a] bg-[#fff5f2] p-6 text-[#171312]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#8d463b]">Projected result</p><p className="mt-2 font-serif text-4xl text-[#9b2c20]">About {money(dealWarning.estimatedLoss)} loss</p><p className="mt-3 text-sm leading-6">There may not be enough room in this deal with the numbers entered. The full estimate will show where the costs are landing.</p></div>}
                 {manualReview && <div className="my-7 rounded-2xl border border-[#d4d0ca] bg-white p-6"><p className="font-serif text-2xl">This deal needs a closer look.</p><p className="mt-2 text-sm leading-6 text-[#65615c]">A property-specific review is needed to finish the estimate.</p></div>}
-                <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6 sm:p-7">
+                {results[0] && !manualReview ? <div className="relative mt-7 max-h-[760px] overflow-hidden rounded-2xl bg-[#090909]">
+                  <div aria-hidden="true" className="pointer-events-none select-none blur-[6px] opacity-70"><ResultCard option={results[0]} primary locked /></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/25 to-black/80">
+                    <div className="absolute left-4 right-4 top-20 rounded-2xl border border-white/60 bg-white/95 p-5 shadow-2xl backdrop-blur-sm sm:left-8 sm:right-8 sm:top-28 sm:p-7">
+                      <p className="text-xs font-bold uppercase tracking-[.16em] text-[#666]">Your full estimate is ready</p>
+                      <h2 className="mt-2 font-serif text-2xl sm:text-3xl">See the complete deal breakdown</h2>
+                      <p className="mt-2 text-sm leading-6 text-[#65615c]">Unlock the potential financing structure, cash needed, fee breakdown, and pre-qualification path.</p>
+                      <button type="button" onClick={() => { track('full_estimate_requested'); show('contact') }} className={buttonClass}>Email My Full Estimate <span>→</span></button>
+                      <p className="mt-3 text-xs text-[#777]">No hard credit pull. Your information will not be sold.</p>
+                    </div>
+                  </div>
+                </div> : <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6 sm:p-7">
                   <h2 className="font-serif text-2xl">See the complete deal breakdown</h2>
                   <p className="mt-2 text-sm leading-6 text-[#65615c]">Get the estimated financing terms, cash needed, fee breakdown, and pre-qualification path.</p>
                   <button type="button" onClick={() => { track('full_estimate_requested'); show('contact') }} className={buttonClass}>Email My Full Estimate <span>→</span></button>
                   <p className="mt-3 text-xs text-[#777]">No hard credit pull. Your information will not be sold.</p>
-                </div>
+                </div>}
               </div>
             )}
 
@@ -504,9 +515,9 @@ export default function FixAndFlipCalculatorClient() {
 
             {step === 'results' && (
               <div>
-                <p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">{dealWarning ? 'Deal check' : 'Your best financing match'}</p>
-                <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{dealWarning ? 'The numbers show a loss.' : manualReview ? "Let's take a closer look." : 'The best fit for this deal.'}</h1>
-                <p className="mb-8 text-base leading-6 text-[#65615c]">{dealWarning ? "With what you entered, this deal could lose money. We don't want anyone going into a deal that's likely to lose money." : 'This is the strongest preliminary match based on the numbers you entered. Property location can change program eligibility, so it will be confirmed before a pre-qualification letter is created.'}</p>
+                <p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">{dealWarning ? 'Deal check' : 'Potential financing structure'}</p>
+                <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{dealWarning ? 'The numbers show a loss.' : manualReview ? "Let's take a closer look." : 'A potential fit for this deal.'}</h1>
+                <p className="mb-8 text-base leading-6 text-[#65615c]">{dealWarning ? "With what you entered, this deal could lose money. We don't want anyone going into a deal that's likely to lose money." : 'This preliminary structure is based on the numbers you entered. Property location can change program eligibility, so it will be confirmed before a pre-qualification letter is created.'}</p>
                 {!dealWarning && !manualReview && results[0] && <div className="mb-6 rounded-2xl border border-[#79a98a] bg-[#eff8f1] p-6 text-[#173923]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#47745a]">Projected profit</p><p className="mt-2 font-serif text-5xl text-[#23633c]">{money(results[0].estimatedProfit)}</p><p className="mt-3 text-sm leading-6 text-[#365f45]">Based on the deal details and preliminary financing shown below.</p></div>}
                 {dealWarning && <div className="mb-6 rounded-2xl border border-[#c96a5a] bg-[#fff5f2] p-6 text-[#171312]">
                   <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8d463b]">Projected result</p>
@@ -534,7 +545,7 @@ export default function FixAndFlipCalculatorClient() {
                 {previewMode && <p className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">Local preview mode: no CRM record or email was sent.</p>}
                 {!previewMode && emailSent && <p role="status" className="mb-6 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-950"><strong>Your results have been emailed.</strong> If they are not in your inbox within a few minutes, please check your spam or promotions folder.</p>}
                 {!previewMode && !emailSent && <p role="status" className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950"><strong>Your request was saved, but we could not confirm email delivery.</strong> Your results are available below. You can retry later or contact Stevie directly.</p>}
-                {manualReview ? <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6"><h2 className="font-serif text-2xl">This deal needs a closer look</h2><p className="mt-2 text-[#666]">Stevie can review the property, state, and deal structure to find the best available path.</p></div> : <div className="grid gap-4">{results.map((option, index) => <ResultCard key={option.label} option={option} primary={index === 0} />)}</div>}
+                {manualReview ? <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6"><h2 className="font-serif text-2xl">This deal needs a closer look</h2><p className="mt-2 text-[#666]">Stevie can review the property, state, and deal structure to identify a potential financing path.</p></div> : <div className="grid gap-4">{results.map((option, index) => <ResultCard key={option.label} option={option} primary={index === 0} />)}</div>}
                 {!dealWarning && <div className="mt-8 rounded-2xl border border-[#d4d0ca] bg-white p-6">
                   <h2 className="font-serif text-2xl">Ready to take the next step?</h2>
                   <p className="mt-2 text-sm leading-6 text-[#65615c]">Add the property address so we can confirm location-based eligibility and create a conditional project pre-qualification letter.</p>
@@ -569,10 +580,10 @@ export default function FixAndFlipCalculatorClient() {
   )
 }
 
-function ResultCard({ option, primary }: { option: ResultOption; primary: boolean }) {
+function ResultCard({ option, primary, locked = false }: { option: ResultOption; primary: boolean; locked?: boolean }) {
   return (
     <article className={`rounded-2xl border p-6 shadow-lg ${primary ? 'border-[#090909] bg-[#090909] text-white' : 'border-[#d4d0ca] bg-white text-[#090909]'}`}>
-      <div className="flex items-start justify-between gap-4"><div><p className={`text-xs font-bold uppercase tracking-[.16em] ${primary ? 'text-[#aaa]' : 'text-[#777]'}`}>{option.label} · Financing structure</p><h2 className="mt-1 font-serif text-3xl">{option.program}</h2><p className={`mt-1 text-sm ${primary ? 'text-[#aaa]' : 'text-[#666]'}`}>{option.advantage}</p></div><span className={`whitespace-nowrap rounded-full px-3 py-1 text-xs ${primary ? 'bg-white text-black' : 'bg-[#eee] text-black'}`}>{option.rate.toFixed(2)}% · {option.termMonths} mo.</span></div>
+      <div className="flex flex-col items-start justify-between gap-4 sm:flex-row"><div><p className={`text-xs font-bold uppercase tracking-[.16em] ${primary ? 'text-[#aaa]' : 'text-[#777]'}`}>Potential financing structure</p><h2 className="mt-1 font-serif text-3xl">{option.program}</h2><p className={`mt-1 text-sm ${primary ? 'text-[#aaa]' : 'text-[#666]'}`}>{option.advantage}</p></div><span className={`whitespace-nowrap rounded-full px-3 py-1 text-xs ${primary ? 'bg-white text-black' : 'bg-[#eee] text-black'}`}>{option.rate.toFixed(2)}% · {option.termMonths}-month term</span></div>
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
         <Metric label="Cash to get started" value={money(option.startupCash)} primary={primary} />
         <Metric label={`Estimated carrying cost (${option.carryingMonths} mo.)`} value={money(option.carryingCost)} primary={primary} />
@@ -588,10 +599,10 @@ function ResultCard({ option, primary }: { option: ResultOption; primary: boolea
           <Metric label="Return on contributed cash" value={option.returnOnCash === null ? 'Not available' : `${option.returnOnCash.toFixed(1)}%`} primary={primary} />
           <Metric label="Break-even sale price" value={money(option.breakEvenSalePrice)} primary={primary} />
         </div>
-        <details className="mt-4 text-sm"><summary className="cursor-pointer font-semibold">See sensitivity checks</summary><div className={`mt-3 grid gap-2 ${primary ? 'text-[#ccc]' : 'text-[#555]'}`}><span>Sale price 5% lower: <strong>{money(option.sensitivity.salePriceDownFivePercent)}</strong> profit</span><span>Renovation 10% over budget: <strong>{money(option.sensitivity.renovationUpTenPercent)}</strong> profit</span><span>Hold 3 months longer: <strong>{money(option.sensitivity.holdThreeMonthsLonger)}</strong> profit</span></div></details>
+        <details className="mt-4 text-sm"><summary tabIndex={locked ? -1 : undefined} className="cursor-pointer font-semibold">See sensitivity checks</summary><div className={`mt-3 grid gap-2 ${primary ? 'text-[#ccc]' : 'text-[#555]'}`}><span>Sale price 5% lower: <strong>{money(option.sensitivity.salePriceDownFivePercent)}</strong> profit</span><span>Renovation 10% over budget: <strong>{money(option.sensitivity.renovationUpTenPercent)}</strong> profit</span><span>Hold 3 months longer: <strong>{money(option.sensitivity.holdThreeMonthsLonger)}</strong> profit</span></div></details>
       </div>
       <details className={`mt-5 rounded-xl border p-4 text-sm ${primary ? 'border-[#333] bg-[#151515] text-[#d0d0d0]' : 'border-[#ddd] bg-[#f7f7f7] text-[#555]'}`}>
-        <summary className="cursor-pointer font-semibold">What is included?</summary>
+        <summary tabIndex={locked ? -1 : undefined} className="cursor-pointer font-semibold">What is included?</summary>
         <div className="mt-4 grid gap-2">
           <span>Origination fee ({option.originationPercent.toFixed(2)}%): <strong className={primary ? 'text-white' : 'text-black'}>{money(option.originationFee)}</strong></span>
           <span>{option.otherFeeLabel}: <strong className={primary ? 'text-white' : 'text-black'}>{money(option.otherFees)}</strong></span>
