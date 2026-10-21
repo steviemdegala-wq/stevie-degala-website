@@ -260,7 +260,7 @@ function publicOption(option: InternalOption, index: number, deal: Deal, primary
   const labels = { label: index === 0 ? 'Potential option' : `Potential option ${index + 1}`, advantage }
   return {
     ...labels,
-    program: 'Recommended financing estimate',
+    program: 'Financing estimate',
     rate: option.rate * 100,
     termMonths: option.termMonths,
     loanAmount: Math.round(option.loanAmount),
