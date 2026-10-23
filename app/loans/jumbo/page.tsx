@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/loans/jumbo' },
   title: 'Jumbo Loans | Northern Colorado | Stevie de Gala',
   description:
     'Jumbo loans for high-value home purchases in Fort Collins, Loveland, and Northern Colorado. Loan amounts above the conforming limit with competitive rates for strong borrower profiles. NMLS# 2845865',

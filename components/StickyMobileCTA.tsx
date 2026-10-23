@@ -1,16 +1,11 @@
-'use client'
-
 import Link from 'next/link'
+import { BUSINESS } from '@/lib/business'
 
 export default function StickyMobileCTA() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-[#0A0A0A] border-t border-[#2E2E2E] px-5 py-4">
-      <Link
-        href="/find-my-loan"
-        className="block w-full text-center bg-[#F8F8F8] text-[#0A0A0A] py-3.5 text-sm uppercase tracking-widest font-medium rounded-full hover:bg-[#C4C4C4] transition-colors"
-      >
-        Find My Loan
-      </Link>
+    <div className="fixed bottom-0 inset-x-0 z-40 grid grid-cols-2 gap-3 border-t border-[#2E2E2E] bg-[#0A0A0A] px-5 py-3 md:hidden">
+      <a href={`tel:${BUSINESS.telephone}`} className="rounded-full border border-[#777] px-4 py-3 text-center text-sm font-semibold text-white">Call Stevie</a>
+      <Link href="/contact" className="rounded-full bg-white px-4 py-3 text-center text-sm font-semibold text-black">Deal Review</Link>
     </div>
   )
 }

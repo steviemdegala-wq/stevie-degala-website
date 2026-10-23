@@ -40,7 +40,7 @@ export default function InvestorLineOfCreditPage() {
         <div className="mx-auto max-w-4xl">
           <Link href="/who-i-help/investors" className="text-xs uppercase tracking-widest text-[#888] hover:text-white">Investor financing</Link>
           <p className="mt-10 text-xs uppercase tracking-[.22em] text-[#8FA9BD]">Financing for repeat deal flow</p>
-          <h1 className="mt-5 max-w-3xl font-serif text-5xl leading-[1.02] text-white md:text-6xl">Put a line of credit behind your next deals.</h1>
+          <h1 className="mt-5 max-w-3xl font-serif text-5xl leading-[1.02] text-white md:text-6xl">Investor lines of credit for Northern Colorado deals.</h1>
           <p className="mt-6 max-w-2xl text-xl leading-8 text-[#C4C4C4]">If you expect several acquisitions or renovations in the next year, the conversation is bigger than one loan. Compare a true revolving line, a hybrid line of credit, and deal-by-deal private money on their actual terms.</p>
           <div className="mt-9 flex flex-wrap gap-3"><Link href="/find-my-loan?goal=multiple-deals" className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black">Discuss an Investor Line</Link><Link href="/fix-and-flip-calculator" className="rounded-full border border-[#666] px-7 py-3.5 text-sm font-semibold text-white">Analyze a Specific Deal</Link></div>
         </div>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/loans/doctor-loan' },
   title: 'Medical Professional Loan | Physician Loan | Northern Colorado | Stevie de Gala',
   description:
     'Medical professional loans for MD, DO, NP, RN, PA, DDS, PharmD, CRNA, and more in Northern Colorado. Zero down, no PMI, student debt excluded from DTI. Fort Collins, Greeley, Loveland, Timnath, Windsor. NMLS# 2845865',

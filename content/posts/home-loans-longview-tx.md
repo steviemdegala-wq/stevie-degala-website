@@ -58,7 +58,7 @@ A mortgage broker shops multiple lenders on your behalf. Instead of going to one
 
 This matters a lot in Longview, where buyers come from all kinds of financial backgrounds. Whether you are a first generation homebuyer figuring this out for the very first time, or you are relocating from Tyler and looking to put down roots in Gregg County, a local broker understands the landscape and knows what programs fit people here.
 
-Stevie De Gala is a licensed mortgage broker serving Longview and the surrounding East Texas area. She works in this market every day and knows what local lenders are looking for.
+Stevie De Gala is a licensed mortgage broker serving Longview and the surrounding East Texas area. He works in this market every day and knows what local lenders are looking for.
 
 ## FAQ: Home Loans in Longview TX
 

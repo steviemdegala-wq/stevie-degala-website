@@ -5,9 +5,10 @@ import BookCallButton from '@/components/BookCallButton'
 import PDFViewer from '@/components/PDFViewer'
 
 export const metadata: Metadata = {
-  title: 'Blog — Physician Loans, VA Loans & Northern Colorado Mortgage Insights | Stevie de Gala',
+  alternates: { canonical: '/blog' },
+  title: 'Investor Financing & Northern Colorado Mortgage Insights | Stevie de Gala',
   description:
-    'Mortgage education for medical professionals, veterans, and real estate investors in Northern Colorado. Physician loan guides, VA loan breakdowns, market updates for Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance.',
+    'Investor financing and mortgage education from Stevie de Gala: DSCR, private money, lines of credit, and Northern Colorado markets, with medical professional and VA loan resources.',
 }
 
 const pdfResources = [
@@ -68,7 +69,7 @@ export default function BlogPage() {
               Insights &amp; Education
             </h1>
             <p className="text-[#888888] text-base leading-relaxed max-w-xl">
-              Mortgage guides for medical professionals, veterans, and investors — focused on Northern Colorado and the loan programs that matter most to each group.
+              Investor financing guides, deal-structure explanations, and Northern Colorado mortgage education. Medical professional and VA home-loan resources are also available.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3 flex-shrink-0">

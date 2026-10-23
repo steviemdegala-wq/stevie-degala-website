@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/resources/loan-checklists' },
   title: 'Loan Checklists — Stevie De Gala',
   description: 'Download loan checklists for Conventional and FHA mortgages. Know exactly what documents you need before you apply.',
 }

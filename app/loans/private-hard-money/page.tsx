@@ -4,6 +4,7 @@ import Script from 'next/script'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/loans/private-hard-money' },
   title: 'Private / Hard Money Loans | Northern Colorado | Stevie de Gala',
   description:
     'Private and hard money financing for real estate acquisitions, renovations, bridge needs, and time-sensitive investor projects in Colorado, Texas, and eligible lender markets. NMLS# 2845865.',

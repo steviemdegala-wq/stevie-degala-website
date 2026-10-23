@@ -67,9 +67,10 @@ export default function Navigation() {
               </div>
             </div>
             <Link href="/about" className="text-sm text-[#C4C4C4] hover:text-white">About Stevie</Link>
+            <Link href="/contact" className="text-sm text-[#C4C4C4] hover:text-white">Contact</Link>
           </div>
 
-          <Link href="/find-my-loan" className="hidden shrink-0 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black hover:bg-[#E5E5E5] md:block">Find My Loan</Link>
+          <Link href="/contact" className="hidden shrink-0 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black hover:bg-[#E5E5E5] md:block">Talk to Stevie</Link>
           <button type="button" onClick={() => setMobileOpen(true)} className="flex flex-col gap-1.5 p-2 lg:hidden" aria-label="Open menu" aria-expanded={mobileOpen}><span className="block h-px w-6 bg-white" /><span className="block h-px w-6 bg-white" /><span className="block h-px w-4 bg-white" /></button>
         </div>
       </nav>
@@ -87,7 +88,8 @@ export default function Navigation() {
           <Link href="/resources#reviews" onClick={close} className="block py-3 pl-3 text-sm text-[#BDBDBD]">Reviews</Link>
           <details className="border-b border-[#333] py-4"><summary className="cursor-pointer font-serif text-2xl">Other Mortgage Products</summary><div className="mt-3 grid grid-cols-2 gap-1 pl-3">{otherLoanLinks.map((link) => <Link key={link.href} href={link.href} onClick={close} className="py-2 text-sm text-[#BDBDBD]">{link.label}</Link>)}</div></details>
           <Link href="/about" onClick={close} className="block border-b border-[#333] py-4 font-serif text-2xl">About Stevie</Link>
-          <Link href="/find-my-loan" onClick={close} className="mt-8 block rounded-full bg-white px-6 py-4 text-center font-semibold text-black">Find My Loan</Link>
+          <Link href="/contact" onClick={close} className="mt-8 block rounded-full bg-white px-6 py-4 text-center font-semibold text-black">Contact Stevie</Link>
+          <Link href="/find-my-loan" onClick={close} className="mt-4 block text-center text-sm text-[#BDBDBD] underline">Or use the loan finder</Link>
         </div>
       </div>}
     </>

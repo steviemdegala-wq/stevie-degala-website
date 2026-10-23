@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import FixAndFlipCalculatorClient from './FixAndFlipCalculatorClient'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/fix-and-flip-calculator' },
   title: 'Fix-and-Flip Calculator | Mortgage Stevie',
   description: 'Analyze a fix-and-flip deal, estimate profit and cash return, and compare preliminary financing structures from Mortgage Stevie’s renovation programs.',
   openGraph: {

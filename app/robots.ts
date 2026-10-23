@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://www.mortgagestevie.com/sitemap.xml',
+    sitemap: 'https://mortgagestevie.com/sitemap.xml',
   }
 }

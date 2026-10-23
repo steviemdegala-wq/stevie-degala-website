@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import FindMyLoanClient from './FindMyLoanClient'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/find-my-loan' },
   title: 'Find My Loan | Mortgage Loan Matcher | Stevie de Gala',
   description:
     'Answer a few questions and find the right financing path for your situation. Free, no account required. Northern Colorado mortgage broker NMLS# 2845865.',

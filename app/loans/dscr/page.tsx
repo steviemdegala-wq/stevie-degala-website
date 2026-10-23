@@ -3,7 +3,8 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'DSCR Loans | Investor Financing | Northern Colorado | Stevie de Gala',
+  alternates: { canonical: '/loans/dscr' },
+  title: 'DSCR Loans in Fort Collins & Northern Colorado | Stevie de Gala',
   description:
     'DSCR rental-property financing and a free portfolio cash flow review for real estate investors. Compare cash flow, leverage, reserves, and responsible growth options. NMLS# 2845865',
 }
@@ -14,7 +15,7 @@ const features = [
     body: 'DSCR programs center qualification on the property’s rental income relative to its housing payment. Personal tax-return income may not be the primary qualifying measure, though credit, reserves, property, and lender guidelines still apply.',
   },
   {
-    title: 'Scale Without Bureaucracy',
+    title: 'An Alternative to Conventional Qualification',
     body: 'Because each property’s cash flow is central to the review, DSCR financing may provide another path when conventional debt-to-income qualification becomes restrictive. Overall credit exposure and program limits still matter.',
   },
   {
@@ -68,7 +69,7 @@ const faqSchema = {
       name: 'Can I use a DSCR loan for a short-term rental or Airbnb property?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Many DSCR programs accept short-term rental income based on STR market data (from platforms like AirDNA) or existing rental history for properties already operating as STRs. The qualifying income is typically calculated as a percentage of projected gross short-term rental revenue. Northern Colorado\'s proximity to Rocky Mountain National Park and the outdoor recreation economy supports strong STR demand in some markets.',
+        text: 'Some programs consider eligible short-term rentals, but the income calculation, documentation, property eligibility, and local operating rules vary. Review the property location, supported rental income, and current lender requirements before relying on projected revenue.',
       },
     },
     {
@@ -76,7 +77,7 @@ const faqSchema = {
       name: 'How does a DSCR loan affect my personal credit or debt ratios?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The DSCR loan will appear on your credit report and does count toward your overall debt picture if you apply for other credit. However, because DSCR loans qualify on property income rather than your personal income, acquiring investment properties via DSCR does not consume the DTI capacity you would need for a primary residence physician loan or VA loan. Many investors use DSCR specifically to keep their personal loan capacity available for primary residence financing.',
+        text: 'Credit reporting, guarantees, and how rental debt is treated on a future mortgage vary by lender and loan structure. DSCR qualification does not guarantee that a loan has no effect on your personal credit or future borrowing capacity. Review both the investment loan and any planned primary-home financing before choosing a structure.',
       },
     },
   ],
@@ -103,7 +104,7 @@ export default function DSCRLoanPage() {
             className="text-4xl md:text-5xl lg:text-6xl text-[#F8F8F8] leading-tight mb-6"
             style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
-            Qualify on the property&apos;s income. Not yours.
+            DSCR loans for Northern Colorado rental investors.
           </h1>
           <p className="text-[#C4C4C4] text-xl leading-relaxed max-w-2xl mb-6">
             DSCR loans center the financing decision on the rental property’s cash flow. Credit, reserves, property eligibility, leverage, and lender guidelines remain part of the review.

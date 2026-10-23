@@ -4,6 +4,7 @@ import BookCallButton from '@/components/BookCallButton'
 import PhysicianLoanCalculator from '@/components/PhysicianLoanCalculator'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/who-i-help/medical-professionals' },
   title: 'Physician Loans for Medical Professionals | Northern Colorado | Stevie de Gala',
   description:
     'Physician loans for doctors, nurses, and medical professionals in Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. Low or zero down, no PMI, student debt excluded from DTI. MD, DO, NP, CRNA, PA, RN, PharmD, DVM, and more. NMLS# 2845865',

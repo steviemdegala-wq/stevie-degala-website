@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/who-i-help/veterans' },
   title: 'VA Home Loans for Veterans in Northern Colorado | Stevie de Gala',
   description:
     'VA loans for veterans and active duty military in Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. Zero down, no PMI, competitive rates. VA purchase, cash-out refinance, and IRRRL. NMLS# 2845865',

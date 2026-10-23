@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/loans/refinance' },
   title: 'Refinance | Lower Your Rate or Access Equity | Northern Colorado | Stevie de Gala',
   description:
     'Rate and term refinance, cash-out refinance, and VA IRRRL in Northern Colorado. Lower your monthly payment, access home equity, or remove PMI. Fort Collins, Greeley, Loveland, Timnath, Windsor. NMLS# 2845865',

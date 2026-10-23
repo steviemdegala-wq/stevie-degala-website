@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import { BUSINESS } from '@/lib/business'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/about' },
   title: 'About Stevie de Gala | Medical Professional Loans & Investor Funding | Northern Colorado',
   description:
     "I specialize in medical professional loans and investor funding because both are personal. My dad was on dialysis for eight years. I developed a self-storage facility from the ground up and raised capital for multifamily — I work with investors because I am one. NMLS# 2845865",
@@ -16,13 +18,14 @@ export const metadata: Metadata = {
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${BUSINESS.url}/#stevie-de-gala`,
   name: 'Stevie de Gala',
-  url: 'https://www.mortgagestevie.com/about',
-  image: 'https://www.mortgagestevie.com/headshot.jpg',
+  url: 'https://mortgagestevie.com/about',
+  image: 'https://mortgagestevie.com/headshot.jpg',
   jobTitle: 'Mortgage Broker',
   description:
     'Licensed mortgage broker specializing in medical professional loans and investor funding in Northern Colorado. Based in Timnath, CO. NMLS# 2845865.',
-  telephone: '+18065082666',
+  telephone: BUSINESS.telephone,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Timnath',
@@ -64,7 +67,9 @@ const personSchema = {
   },
   email: 'SDegala@BarrettFinancial.com',
   sameAs: [
-    'https://www.mortgagestevie.com',
+    BUSINESS.googleProfile,
+    BUSINESS.instagram,
+    'https://mortgagestevie.com',
     'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2845865',
     'https://www.facebook.com/stevie.degala/',
   ],
@@ -74,8 +79,8 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.mortgagestevie.com' },
-    { '@type': 'ListItem', position: 2, name: 'About', item: 'https://www.mortgagestevie.com/about' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mortgagestevie.com' },
+    { '@type': 'ListItem', position: 2, name: 'About', item: 'https://mortgagestevie.com/about' },
   ],
 }
 

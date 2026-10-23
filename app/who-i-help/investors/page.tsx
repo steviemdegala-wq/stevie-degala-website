@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/who-i-help/investors' },
   title: 'Investor Financing | Hard Money, DSCR & Lines of Credit | Mortgage Stevie',
   description:
     'Hard money, private money, DSCR loans, and multi-deal financing for real estate investors in Colorado and Texas. Work with broker and investor Stevie de Gala. NMLS# 2845865.',

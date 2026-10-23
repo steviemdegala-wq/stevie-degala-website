@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/loans/investor-loc' },
   title: 'Investor Line of Credit | Northern Colorado Real Estate | Stevie de Gala',
   description:
     'Revolving lines of credit for real estate investors in Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. Access capital for acquisitions, renovations, and deal flow without refinancing. NMLS# 2845865',

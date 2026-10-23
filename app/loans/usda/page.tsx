@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/loans/usda' },
   title: 'USDA Loans | Northern Colorado Rural Areas | Stevie de Gala',
   description:
     'USDA rural development loans for eligible areas in and around Northern Colorado. Zero down payment, competitive rates, and income-based eligibility. NMLS# 2845865',
