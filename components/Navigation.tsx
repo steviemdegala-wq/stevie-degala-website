@@ -60,6 +60,7 @@ export default function Navigation() {
               <Link href="/resources" className="flex items-center gap-1 text-sm text-[#C4C4C4] hover:text-white">Resources <span aria-hidden className="text-[#777]">⌄</span></Link>
               <div className="absolute left-1/2 top-full hidden -translate-x-1/2 pt-4 group-hover:block group-focus-within:block">
                 <div className="min-w-[220px] rounded-xl border border-[#303030] bg-[#111] p-2 shadow-2xl">
+                  <Link href="/fix-and-flip-calculator" className="block rounded-lg px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#1D1D1D]">Fix &amp; Flip Calculator</Link>
                   <Link href="/resources#calls" className="block rounded-lg px-4 py-2.5 text-sm text-[#C4C4C4] hover:bg-[#1D1D1D] hover:text-white">Book a Call</Link>
                   <Link href="/resources#calculators" className="block rounded-lg px-4 py-2.5 text-sm text-[#C4C4C4] hover:bg-[#1D1D1D] hover:text-white">Calculators</Link>
                   <Link href="/resources#reviews" className="block rounded-lg px-4 py-2.5 text-sm text-[#C4C4C4] hover:bg-[#1D1D1D] hover:text-white">Reviews</Link>
@@ -81,7 +82,7 @@ export default function Navigation() {
           <Link href="/who-i-help/investors" onClick={close} className="block border-b border-[#333] py-4 font-serif text-2xl">Investor Financing</Link>
           <div className="grid grid-cols-1 gap-1 border-b border-[#333] py-3 pl-3 sm:grid-cols-2">{investorLinks.map((link) => <Link key={link.href} href={link.href} onClick={close} className="py-2 text-sm text-[#BDBDBD]">{link.label}</Link>)}</div>
           <Link href="/who-i-help/medical-professionals" onClick={close} className="block border-b border-[#333] py-4 font-serif text-2xl">Medical Home Loans</Link>
-          <Link href="/refinance-calculator" onClick={close} className="block border-b border-[#333] py-4 font-serif text-2xl">Refinance Calculator</Link>
+          <Link href="/fix-and-flip-calculator" onClick={close} className="block border-b border-[#333] py-4 font-serif text-2xl">Fix &amp; Flip Calculator</Link>
           <Link href="/resources" onClick={close} className="block border-b border-[#333] py-4 font-serif text-2xl">Resources</Link>
           <Link href="/resources#calls" onClick={close} className="block py-3 pl-3 text-sm text-[#BDBDBD]">Book a Call</Link>
           <Link href="/resources#calculators" onClick={close} className="block py-3 pl-3 text-sm text-[#BDBDBD]">Calculators</Link>
