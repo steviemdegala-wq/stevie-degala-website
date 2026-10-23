@@ -5,7 +5,7 @@ import BookCallButton from '@/components/BookCallButton'
 export const metadata: Metadata = {
   alternates: { canonical: '/resources/loan-checklists' },
   title: 'Loan Checklists — Stevie De Gala',
-  description: 'Download loan checklists for Conventional and FHA mortgages. Know exactly what documents you need before you apply.',
+  description: 'Download loan checklists for Conventional, FHA, VA, DSCR, and hard money loans. Know exactly what documents you need before you apply.',
 }
 
 const checklists = [
@@ -20,6 +20,13 @@ const checklists = [
     title: 'VA Loan Prequalification Checklist',
     description: 'Documents veterans and active-duty service members need to prequalify for a VA loan — service records, income verification, and more.',
     href: '/checklists/va-loan-prequalification-checklist.pdf',
+    label: 'Checklist',
+    aspectRatio: '612 / 792',
+  },
+  {
+    title: 'DSCR & Hard Money Loan Checklist',
+    description: 'A simple starting point for investment property financing — ID, bank statements, property details, title and insurance contacts, and entity documents.',
+    href: '/checklists/dscr-and-hard-money-checklist.pdf',
     label: 'Checklist',
     aspectRatio: '612 / 792',
   },

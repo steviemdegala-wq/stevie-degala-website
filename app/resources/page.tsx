@@ -42,7 +42,7 @@ const cards = [
     href: '/resources/loan-checklists',
     label: 'Checklist',
     headline: 'Loan Checklists',
-    body: 'Know exactly what documents to gather before you apply. Conventional and FHA checklists ready to download.',
+    body: 'Know exactly what documents to gather before you apply. Conventional, FHA, VA, DSCR, and hard money checklists ready to download.',
   },
 ]
 
