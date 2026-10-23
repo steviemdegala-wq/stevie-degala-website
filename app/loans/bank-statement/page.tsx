@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/loans/bank-statement' },
   title: 'Bank Statement Loans | Self-Employed Borrowers | Northern Colorado | Stevie de Gala',
   description:
     'Bank statement loans for self-employed borrowers, business owners, and 1099 contractors in Northern Colorado. Qualify on deposits, not tax returns. Fort Collins, Greeley, Loveland, Timnath, Windsor. NMLS# 2845865',

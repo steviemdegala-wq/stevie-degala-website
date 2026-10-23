@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/loans/fha' },
   title: 'FHA Loans | Northern Colorado | Stevie de Gala',
   description:
     'FHA loans in Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. Low down payment, flexible credit requirements starting at 580. A strong option while building toward a physician or conventional loan. NMLS# 2845865',

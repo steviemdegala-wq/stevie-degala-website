@@ -52,7 +52,7 @@ The Weld County job market is strong across energy, agriculture, healthcare, and
 
 Building a home involves a lot of moving parts, and having a local mortgage broker who understands the Windsor market can make the process much less stressful. A broker can shop your loan across multiple lenders to find the best rate and program for your situation. They can also help you understand how different loan options affect your monthly payment once the build is done.
 
-Stevie De Gala is a licensed mortgage broker serving Windsor and the broader Northern Colorado area, including Weld County. She works with buyers to find new construction loan programs that fit real budgets and real timelines.
+Stevie De Gala is a licensed mortgage broker serving Windsor and the broader Northern Colorado area, including Weld County. He works with buyers to find new construction loan programs that fit real budgets and real timelines.
 
 ## FAQ: New Construction Loans in Windsor CO
 

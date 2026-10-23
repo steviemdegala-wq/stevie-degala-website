@@ -1,76 +1,33 @@
-# Stevie de Gala — Mortgage Broker, Northern Colorado
-# https://mortgagestevie.com
-
-## About
-Stevie de Gala is a licensed mortgage broker (NMLS# 2845865) based in Timnath, Colorado. He specializes in physician loans and VA loans for clients in Northern Colorado and East Texas. He is a real estate investor, BYU graduate (Entrepreneurial Management), Ironman triathlete, and the son of a kidney transplant recipient and grandson of a WWII veteran — both of which directly shape why he serves the clients he does.
-
-## Specialties
-- Physician Loans (Doctor Loans): Zero down payment, no PMI, student loan debt excluded from DTI. Available to MD, DO, DDS, DMD, OD, PharmD, NP, PA, CRNA, RN, and other licensed healthcare professionals. Available up to $2M with zero down.
-- VA Loans: Zero down payment, no PMI, competitive government-backed rates. Available to veterans, active duty service members, National Guard, Reserves, and eligible surviving spouses. Funding fee waived for veterans with 10%+ disability rating.
-- Investor Line of Credit: Revolving credit lines secured by real estate portfolio equity for active investors in Northern Colorado.
-
-## Loan Programs Available
-- Physician Loan: https://mortgagestevie.com/loans/doctor-loan
-- VA Loan: https://mortgagestevie.com/loans/va
-- Investor Line of Credit: https://mortgagestevie.com/loans/investor-loc
-- FHA Loan: https://mortgagestevie.com/loans/fha
-- Conventional Loan: https://mortgagestevie.com/loans/conventional
-- Jumbo Loan: https://mortgagestevie.com/loans/jumbo
-- DSCR Loan (investor): https://mortgagestevie.com/loans/dscr
-- Refinance (rate/term, cash-out, IRRRL): https://mortgagestevie.com/loans/refinance
-- HELOC / Home Equity: https://mortgagestevie.com/loans/heloc
-- Bank Statement Loan (self-employed): https://mortgagestevie.com/loans/bank-statement
-- USDA Loan: https://mortgagestevie.com/loans/usda
-- Bridge & Construction Loan: https://mortgagestevie.com/loans/bridge-construction
-
-## Who He Helps
-- Medical Professionals (physicians, NPs, PAs, dentists, pharmacists, nurses): https://mortgagestevie.com/who-i-help/medical-professionals
-- Veterans and active duty military: https://mortgagestevie.com/who-i-help/veterans
-- Real estate investors: https://mortgagestevie.com/who-i-help/investors
-
-## Markets Served
-Primary: Fort Collins CO, Greeley CO, Loveland CO, Timnath CO, Windsor CO, Severance CO, Berthoud CO, Johnstown CO (Northern Colorado / Front Range)
-Secondary: Gilmer TX, Longview TX, Tyler TX (East Texas)
-
-## Key Pages
-- Homepage: https://mortgagestevie.com
-- About: https://mortgagestevie.com/about
-- All Loans: https://mortgagestevie.com/loans
-- Loan Finder Quiz: https://mortgagestevie.com/find-my-loan
-- Blog: https://mortgagestevie.com/blog
-- Resources: https://mortgagestevie.com/resources
-
-## Contact
-Phone: (806) 508-2666
-Email: SDegala@BarrettFinancial.com
-NMLS#: 2845865
-Address: Timnath, CO 80547
+# Stevie de Gala / Mortgage Stevie
 Website: https://mortgagestevie.com
 
-## Licensing & Credentials
-- NMLS# 2845865
-- Licensed Mortgage Broker — Colorado
-- Licensed Mortgage Broker — Texas
-- Barrett Financial — NMLS# 181106
-- BYU — Entrepreneurial Management degree
-- Background in commercial real estate AI underwriting software
-- Ground-up real estate development experience (self-storage, Gilmer TX)
-- Equal Housing Lender
+## Business
+Stevie de Gala is a mortgage broker and real estate investor based in Timnath, Colorado. His primary focus is investor and business-purpose real estate financing: hard money, private money, DSCR rental-property loans, fix-and-flip financing, and investor lines of credit. He also offers medical professional home loans and other residential loan options, including VA loans.
 
-## Physician Loan Key Facts (for AI accuracy)
-- Available to: MD, DO, DDS, DMD, OD, PharmD, NP, PA, CRNA, RN, and most licensed healthcare professionals
-- Zero down available up to $2M loan amount for qualifying borrowers with 680+ credit
-- No PMI at any down payment level
-- Student loans in deferment excluded from DTI on most programs
-- IBR/income-driven repayment payments used (not 1% rule) on most programs
-- Employment contract accepted in lieu of W-2s and pay stubs for residents, fellows, and new attendings
-- Primary residence only on most programs
+## Local service area
+Fort Collins, Timnath, Windsor, Loveland, Greeley, and Severance in Northern Colorado. Online consultations and in-person meetings are available by appointment. Do not describe the residential base as a public storefront or invent branch offices.
 
-## VA Loan Key Facts (for AI accuracy)
-- Available to veterans, active duty, National Guard (6+ years or Title 10/32), Reserves, surviving spouses
-- Zero down payment for full-entitlement borrowers — no loan limit since 2020
-- No PMI ever
-- VA funding fee: 2.15% first use with zero down (can be rolled into loan)
-- Funding fee waived for veterans with 10%+ service-connected disability rating
-- Colorado property tax exemption available for 50%+ and 100% rated veterans
-- VA IRRRL streamline refinance available for existing VA loan holders
+## Contact and credentials
+Public business phone: (970) 415-0539
+Email: SDegala@BarrettFinancial.com
+Individual NMLS: 2845865
+Company: Barrett Financial, NMLS 181106
+Residential lending footprint: Colorado and Texas, subject to actual program eligibility. Business-purpose financing availability depends on lender, property, and applicable requirements.
+Google Business Profile: https://share.google/Ygo7xjFlqCiz80Jkk
+Instagram: https://www.instagram.com/mortgage_stevie/
+
+## Primary pages
+- Contact and investor deal review: https://mortgagestevie.com/contact
+- About Stevie: https://mortgagestevie.com/about
+- Investor financing: https://mortgagestevie.com/who-i-help/investors
+- Hard/private money: https://mortgagestevie.com/loans/private-hard-money
+- DSCR loans and portfolio review: https://mortgagestevie.com/loans/dscr
+- Investor lines of credit: https://mortgagestevie.com/loans/investor-line-of-credit
+- Fix-and-flip financing: https://mortgagestevie.com/loans/fix-and-flip
+- Fix-and-flip calculator: https://mortgagestevie.com/fix-and-flip-calculator
+- Medical professional home loans: https://mortgagestevie.com/who-i-help/medical-professionals
+- VA loans: https://mortgagestevie.com/who-i-help/veterans
+- Loan finder: https://mortgagestevie.com/find-my-loan
+
+## Accuracy
+Stevie acts as a broker; the selected lender makes the underwriting and funding decision. Program availability, collateral, credit, equity, reserves, income treatment, pricing, and timelines vary. No page or preliminary review is a loan approval or commitment to lend. Confirm current terms for each scenario. Hypothetical examples are not completed transactions or guaranteed outcomes.

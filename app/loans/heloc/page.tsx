@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/loans/heloc' },
   title: 'HELOC | Home Equity Line of Credit | Northern Colorado | Stevie de Gala',
   description:
     'Home equity lines of credit (HELOC) in Northern Colorado. Access your equity without refinancing your first mortgage. Flexible draw and repayment for homeowners in Fort Collins, Greeley, Loveland, and Timnath. NMLS# 2845865',

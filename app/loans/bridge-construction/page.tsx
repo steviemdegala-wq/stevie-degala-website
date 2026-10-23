@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/loans/bridge-construction' },
   title: 'Bridge & Construction Loans | Northern Colorado | Stevie de Gala',
   description:
     'Bridge loans and construction financing in Northern Colorado. Buy your next home before selling, or finance a new build from ground up. Fort Collins, Greeley, Loveland, Timnath, Windsor, Severance. NMLS# 2845865',

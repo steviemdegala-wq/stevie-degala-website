@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { APPLICATION_URL } from '@/lib/application'
+import { BUSINESS } from '@/lib/business'
 
 const REVIEW_URL = 'https://share.google/ghtLWfMHpWsjIlLz4'
 
@@ -21,9 +22,11 @@ export default function Footer() {
             <p className="text-[#888888] text-xs leading-relaxed">Mortgage Broker.<br />Investor Financing Resource.</p>
             <p className="text-[#888888] text-xs">NMLS# 2845865</p>
             <p className="text-[#888888] text-xs">Barrett Financial · NMLS# 181106</p>
-            <a href="tel:+18065082666" className="block w-fit text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">(806) 508-2666</a>
+            <a href={`tel:${BUSINESS.telephone}`} className="block w-fit text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">{BUSINESS.phone}</a>
             <a href="mailto:SDegala@BarrettFinancial.com" className="block w-fit max-w-full break-words text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">SDegala@BarrettFinancial.com</a>
-            <p className="text-[#888888] text-xs">Texas · Colorado</p>
+            <p className="text-[#888888] text-xs">Based in Timnath · Serving Northern Colorado</p>
+            <p className="text-[#888888] text-xs">Licensed in Colorado &amp; Texas</p>
+            <Link href="/contact" className="block text-[#C4C4C4] text-sm hover:text-white">Contact Stevie</Link>
             <a href={REVIEW_URL} target="_blank" rel="noopener noreferrer" className="text-[#888888] text-xs hover:text-[#F8F8F8] transition-colors">⭐ Leave a Google Review</a>
             <div className="flex gap-3 pt-1">
               <a href="https://www.facebook.com/stevie.degala/" target="_blank" aria-label="Facebook" className="text-[#888888] hover:text-[#F8F8F8] transition-colors" rel="noopener noreferrer">

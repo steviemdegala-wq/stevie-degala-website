@@ -44,7 +44,7 @@ Building new means you get to pick your finishes, your floor plan, and sometimes
 
 Building a home is one of the biggest financial decisions you will ever make. Having a local mortgage broker in your corner makes the process much smoother. A broker can compare options from multiple lenders, help you find the best interest rate, and make sure the loan timeline fits your construction schedule.
 
-Stevie De Gala is a licensed mortgage broker serving Fort Collins and the greater Larimer County area. She can help you understand your options and find a new construction loan that fits your plans and your budget.
+Stevie De Gala is a licensed mortgage broker serving Fort Collins and the greater Larimer County area. He can help you understand your options and find a new construction loan that fits your plans and your budget.
 
 ## FAQ: New Construction Loans in Fort Collins
 

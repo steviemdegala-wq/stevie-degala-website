@@ -13,6 +13,7 @@ const FIELD_LABELS: Record<string, string> = {
   unit_count: 'Number of units',
   deal_stage: 'Deal stage',
   location: 'Property location',
+  financing_need: 'Financing need',
   purchase_price: 'Purchase price',
   renovation_costs: 'Renovation costs',
   construction_costs: 'Construction costs',
@@ -40,6 +41,7 @@ const FIELD_LABELS: Record<string, string> = {
 const VALUE_LABELS: Record<string, string> = {
   yes: 'Yes',
   no: 'No',
+  deal_review: 'Deal review',
   purchase: 'Purchase',
   refinance: 'Refinance',
   sell: 'Selling',
@@ -137,7 +139,12 @@ function buildLeadSummary(body: Record<string, any>) {
   const overview = buildLeadOverview(body)
   const suggestions = Array.isArray(body.suggested_paths) ? body.suggested_paths : []
   return [
-    `Find My Loan submission: ${requestType}`,
+    `Website inquiry: ${requestType}`,
+    ...(body.message ? [`Message: ${String(body.message).slice(0, 2000)}`] : []),
+    ...['utm_source', 'utm_medium', 'utm_campaign', 'landing_page', 'referrer_host'].flatMap((key) => {
+      const value = body.attribution?.[key]
+      return typeof value === 'string' ? [`${key}: ${value.slice(0, 200)}`] : []
+    }),
     ...overview.map(({ label, value }) => `${label}: ${value}`),
     ...(Array.isArray(body.cash_estimates) ? body.cash_estimates.map((estimate: any) => `${estimate.program}: estimated cash needed $${Number(estimate.total || 0).toLocaleString('en-US')}; available $${Number(estimate.available || 0).toLocaleString('en-US')}; ${estimate.equityReview ? 'cash/equity review needed' : !estimate.hasFunds ? 'available funds not entered' : estimate.covered ? 'estimated cash requirement covered' : 'estimated cash shortfall'}`) : []),
     ...(suggestions.length ? ['Suggested paths:', ...suggestions.map((item: unknown) => `* ${String(item)}`)] : []),
@@ -152,6 +159,7 @@ function inferLoanType(body: Record<string, any>) {
     formatAnswer('investment_asset', highlights.investment_asset),
     formatAnswer('refi_use', highlights.refi_use),
     formatAnswer('refi_goal', highlights.refi_goal),
+    formatAnswer('financing_need', highlights.financing_need),
   ].filter(Boolean)
   const requestType = VALUE_LABELS[body.request_type] ?? body.request_type ?? 'Website inquiry'
   return details.length ? `${requestType}: ${details.join(', ')}` : String(requestType)
@@ -179,6 +187,7 @@ async function sendLeadNotification(body: Record<string, any>) {
   const sender = process.env.LEAD_FROM_EMAIL ?? DEFAULT_FROM_EMAIL
   const overview = buildLeadOverview(body)
   const suggestions = Array.isArray(body.suggested_paths) ? body.suggested_paths : []
+  const messageHtml = body.message ? `<p><strong>Message:</strong> ${escapeHtml(String(body.message).slice(0, 2000))}</p>` : ''
   const name = String(contact.name || 'Website Lead')
   const phone = String(contact.phone || 'Not provided')
   const email = String(contact.email || 'Not provided')
@@ -192,15 +201,16 @@ async function sendLeadNotification(body: Record<string, any>) {
   const planningCall = body.requires_planning_call
     ? '<p style="padding:12px 14px;background:#f2f2f2;border-radius:8px"><strong>Planning call recommended:</strong> Available funds may need a closer review against the purchase price.</p>'
     : ''
-  const html = `<div style="font-family:Arial,sans-serif;color:#111;line-height:1.5;max-width:680px"><h1 style="font-size:24px;margin-bottom:8px">New Find My Loan submission</h1><p style="color:#666;margin-top:0">${escapeHtml(requestType)}</p><h2 style="font-size:18px;margin:28px 0 10px">Borrower</h2><table><tr><td style="padding:7px 12px 7px 0;color:#666">Name</td><td style="padding:7px 0;font-weight:600">${escapeHtml(name)}</td></tr><tr><td style="padding:7px 12px 7px 0;color:#666">Phone</td><td style="padding:7px 0;font-weight:600">${escapeHtml(phone)}</td></tr><tr><td style="padding:7px 12px 7px 0;color:#666">Email</td><td style="padding:7px 0;font-weight:600">${escapeHtml(email)}</td></tr></table><h2 style="font-size:18px;margin:28px 0 10px">Submission overview</h2><table>${detailRows || '<tr><td>No additional details were provided.</td></tr>'}</table>${suggestionList}${planningCall}<p style="color:#777;font-size:12px;margin-top:30px">Submitted from the Mortgage Stevie Find My Loan questionnaire.</p></div>`
+  const html = `<div style="font-family:Arial,sans-serif;color:#111;line-height:1.5;max-width:680px"><h1 style="font-size:24px;margin-bottom:8px">New website inquiry</h1><p style="color:#666;margin-top:0">${escapeHtml(requestType)}</p><h2 style="font-size:18px;margin:28px 0 10px">Borrower</h2><table><tr><td style="padding:7px 12px 7px 0;color:#666">Name</td><td style="padding:7px 0;font-weight:600">${escapeHtml(name)}</td></tr><tr><td style="padding:7px 12px 7px 0;color:#666">Phone</td><td style="padding:7px 0;font-weight:600">${escapeHtml(phone)}</td></tr><tr><td style="padding:7px 12px 7px 0;color:#666">Email</td><td style="padding:7px 0;font-weight:600">${escapeHtml(email)}</td></tr></table><h2 style="font-size:18px;margin:28px 0 10px">Submission overview</h2><table>${detailRows || '<tr><td>No additional details were provided.</td></tr>'}</table>${suggestionList}${planningCall}${messageHtml}<p style="color:#777;font-size:12px;margin-top:30px">Submitted from the Mortgage Stevie website.</p></div>`
   const text = [
-    'New Find My Loan submission',
+    'New website inquiry',
     `Request type: ${requestType}`,
     `Name: ${name}`,
     `Phone: ${phone}`,
     `Email: ${email}`,
     '',
     'Submission overview',
+    ...(body.message ? [`Message: ${String(body.message).slice(0, 2000)}`] : []),
     ...overview.map(({ label, value }) => `${label}: ${value}`),
     ...(suggestions.length ? ['', 'Suggested paths', ...suggestions.map((item: unknown) => `- ${String(item)}`)] : []),
     ...(body.requires_planning_call ? ['', 'Planning call recommended: available funds are below the estimated cash required.'] : []),
@@ -208,6 +218,7 @@ async function sendLeadNotification(body: Record<string, any>) {
 
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
+      signal: AbortSignal.timeout(10000),
     headers: {
       Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
@@ -239,14 +250,18 @@ function normalizeUsPhone(value: unknown) {
 }
 
 export async function POST(req: NextRequest) {
-  const body = await req.json()
+  let body: Record<string, any>
+  try {
+    body = await req.json()
+    if (!body || typeof body !== 'object' || Array.isArray(body) || (body.contact && (typeof body.contact !== 'object' || Array.isArray(body.contact)))) throw new Error('Invalid request')
+  } catch {
+    return NextResponse.json({ error: 'Please check your request and try again.' }, { status: 400 })
+  }
   const contact = body.contact ?? body
   const { name, phone, email } = contact
   const normalizedPhone = normalizeUsPhone(phone)
   const requestType = typeof body.request_type === 'string' ? body.request_type : ''
-  const source = requestType
-    ? `website-find-my-loan:${requestType}`
-    : body.source
+  const source = body.source || (requestType ? `website-find-my-loan:${requestType}` : 'website')
 
   if (!normalizedPhone) {
     return NextResponse.json({ error: 'A valid 10-digit US phone number is required' }, { status: 400 })
@@ -254,10 +269,12 @@ export async function POST(req: NextRequest) {
   if (body.contact && typeof body.contact === 'object') body.contact.phone = normalizedPhone
   else body.phone = normalizedPhone
 
+  let crmSaved = false
   try {
     // Authenticate with CRM
     const loginRes = await fetch(`${CRM_URL}/api/auth/login`, {
       method: 'POST',
+      signal: AbortSignal.timeout(10000),
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password: process.env.CRM_PASSWORD }),
     })
@@ -271,6 +288,7 @@ export async function POST(req: NextRequest) {
     // Create lead in pipeline
     const leadRes = await fetch(`${CRM_URL}/api/pipeline`, {
       method: 'POST',
+      signal: AbortSignal.timeout(10000),
       headers: {
         'Content-Type': 'application/json',
         'Cookie': sessionCookie,
@@ -282,7 +300,7 @@ export async function POST(req: NextRequest) {
         stage: 'New Lead',
         source: source ?? 'website',
         role: 'Borrower',
-        tags: ['Find My Loan', VALUE_LABELS[requestType] ?? requestType].filter(Boolean),
+        tags: [body.source === 'website-contact' ? 'Website deal review' : 'Find My Loan', VALUE_LABELS[requestType] ?? requestType].filter(Boolean),
         loanType: inferLoanType(body),
         loanAmount: inferLoanAmount(body),
         notes: buildLeadSummary(body),
@@ -293,11 +311,11 @@ export async function POST(req: NextRequest) {
       throw new Error(`CRM pipeline POST failed: ${leadRes.status}`)
     }
 
-    const lead = await leadRes.json()
-    console.log('Lead created:', lead.id)
+    await leadRes.json()
+    crmSaved = true
   } catch (err) {
     console.error('CRM error:', err)
-    // Still return ok so a CRM outage does not block the questionnaire.
+    // Email remains an independent capture path.
   }
 
   let emailSent = false
@@ -305,8 +323,11 @@ export async function POST(req: NextRequest) {
     emailSent = await sendLeadNotification(body)
   } catch (err) {
     console.error('Lead email error:', err)
-    // Still return ok so an email outage does not block the questionnaire.
+    // CRM remains an independent capture path.
   }
 
-  return NextResponse.json({ ok: true, emailSent })
+  if (!crmSaved && !emailSent) {
+    return NextResponse.json({ ok: false, error: 'Your request could not be delivered. Please try again or contact Stevie directly.' }, { status: 503 })
+  }
+  return NextResponse.json({ ok: true, crmSaved, emailSent })
 }

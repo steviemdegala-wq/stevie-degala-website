@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/loans/conventional' },
   title: 'Conventional Loans | Northern Colorado | Stevie de Gala',
   description:
     'Conventional loans in Fort Collins, Greeley, Loveland, Timnath, Windsor, and Severance. 3–20% down, competitive rates, no MIP. Best terms for well-qualified buyers. NMLS# 2845865',

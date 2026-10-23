@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-export const alt = 'Stevie de Gala — Northern Colorado Medical Professional Loan Consultant'
+export const alt = 'Stevie de Gala — Northern Colorado Investor Mortgage Broker'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -50,10 +50,10 @@ export default async function Image() {
               maxWidth: '900px',
             }}
           >
-            Medical Professional Loan Consultant.
+            Investor Financing. Northern Colorado.
           </div>
           <p style={{ color: '#C4C4C4', fontSize: '22px', lineHeight: 1.5, maxWidth: '700px', fontFamily: 'Georgia, serif' }}>
-            Physician loans, VA loans, and investor financing. Fort Collins · Greeley · Loveland · Timnath · Windsor · Severance.
+            Hard money, DSCR loans, and investor lines of credit. Fort Collins · Greeley · Loveland · Timnath · Windsor · Severance.
           </p>
         </div>
 

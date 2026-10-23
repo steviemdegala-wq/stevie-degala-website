@@ -4,6 +4,7 @@ import BookCallButton from '@/components/BookCallButton'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/resources/mortgage-calculator' },
   title: 'Mortgage Payment Calculator, Stevie de Gala',
   description: 'Calculate your estimated monthly mortgage payment based on loan amount, interest rate, and term.',
 }

@@ -4,7 +4,8 @@ import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import Modal from '@/components/Modal'
 import StickyMobileCTA from '@/components/StickyMobileCTA'
-import LeadCapturePopup from '@/components/LeadCapturePopup'
+import LeadAttribution from '@/components/LeadAttribution'
+
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mortgagestevie.com'),
@@ -33,9 +34,9 @@ export default function RootLayout({
         />
       </head>
       <body className="pb-[72px] md:pb-0">
+        <LeadAttribution />
         <Navigation />
         <Modal />
-        <LeadCapturePopup />
         {children}
         <Footer />
         <StickyMobileCTA />
