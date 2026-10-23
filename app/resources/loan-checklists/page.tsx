@@ -10,6 +10,13 @@ export const metadata: Metadata = {
 
 const checklists = [
   {
+    title: 'DSCR & Hard Money Loan Checklist',
+    description: 'A simple starting point for investment property financing — ID, bank statements, property details, title and insurance contacts, and entity documents.',
+    href: '/checklists/dscr-and-hard-money-checklist.pdf',
+    label: 'Checklist',
+    aspectRatio: '612 / 792',
+  },
+  {
     title: 'Conventional & FHA Loan Checklist',
     description: 'Everything you need to gather before applying for a Conventional or FHA loan — income documents, asset statements, ID, and more.',
     href: '/checklists/conventional-and-fha-checklist.pdf',
@@ -23,13 +30,7 @@ const checklists = [
     label: 'Checklist',
     aspectRatio: '612 / 792',
   },
-  {
-    title: 'DSCR & Hard Money Loan Checklist',
-    description: 'A simple starting point for investment property financing — ID, bank statements, property details, title and insurance contacts, and entity documents.',
-    href: '/checklists/dscr-and-hard-money-checklist.pdf',
-    label: 'Checklist',
-    aspectRatio: '612 / 792',
-  },
+
 ]
 
 export default function LoanChecklistsPage() {
