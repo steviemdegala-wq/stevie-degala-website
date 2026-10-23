@@ -62,6 +62,8 @@ export default function Footer() {
           {/* Resources */}
           <div className="space-y-3">
             <p className="text-[#F8F8F8] text-xs uppercase tracking-widest mb-4">Resources</p>
+            <Link href="/fix-and-flip-calculator" className="block text-[#C4C4C4] text-sm font-medium hover:text-white transition-colors">Fix &amp; Flip Calculator</Link>
+            <Link href="/refinance-calculator" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Refinance Calculator</Link>
             <Link href="/resources#calls" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Book a Call</Link>
             <Link href="/resources#reviews" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Mortgage &amp; Portfolio Reviews</Link>
             <Link href="/resources/rates" className="block text-[#888888] text-sm hover:text-[#F8F8F8] transition-colors">Current Rates</Link>

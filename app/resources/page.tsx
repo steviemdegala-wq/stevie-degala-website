@@ -4,8 +4,8 @@ import { CALLS } from '@/lib/booking'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'Mortgage Rates, Calculators, and Tools, Stevie de Gala',
-  description: 'Mortgage payment calculator, DTI calculator, qualification estimator, and current rates for Texas and Colorado.',
+  title: 'Fix & Flip Calculator & Investor Resources | Stevie de Gala',
+  description: 'Run the fix-and-flip calculator to estimate project profit, cash needed, and financing costs. Investor tools, mortgage calculators, rates, and deal reviews with Stevie de Gala.',
   alternates: {
     canonical: '/resources',
   },
@@ -78,22 +78,10 @@ export default function ResourcesPage() {
             The more you know, the better your decisions.
           </h1>
           <p className="text-[#C4C4C4] text-xl leading-relaxed">
-            I put these tools together because informed clients make smarter moves. Run your numbers, understand your options, and when you are ready to talk, I am here.
+            Start with your next investment. Use the fix-and-flip calculator to estimate project profit, cash needed, and financing costs, then explore the tools and financing options that fit your plan.
           </p>
-        </div>
-      </section>
-
-      <section id="calls" className="scroll-mt-24 bg-[#111111] px-6 py-20">
-        <div className="mx-auto max-w-7xl">
-          <h2 className="mb-4 font-serif text-3xl text-white md:text-4xl">Book a Call</h2>
-          <p className="mb-10 max-w-2xl text-lg text-[#C4C4C4]">New here? Start with a conversation about your goals and next steps.</p>
-          <article className="flex flex-col gap-8 rounded-xl bg-white p-8 text-[#111111] md:flex-row md:items-center md:justify-between">
-            <div className="max-w-2xl">
-              <h3 className="mb-4 font-serif text-2xl">{CALLS.discoverycall.title}</h3>
-              <p className="text-sm leading-relaxed text-[#555555]">{CALLS.discoverycall.description}</p>
-            </div>
-            <BookCallButton callType="discoverycall" label="Book Discovery Call" variant="light" className="shrink-0" />
-          </article>
+          <Link href="/fix-and-flip-calculator" className="mt-8 inline-block rounded-full bg-white px-7 py-4 text-sm font-semibold text-black hover:bg-[#E5E5E5]">Run the Fix &amp; Flip Calculator</Link>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-[#999]">Plan an acquisition, renovation, and exit using your own assumptions. Estimates are a starting point for a financing conversation.</p>
         </div>
       </section>
 
@@ -130,6 +118,21 @@ export default function ResourcesPage() {
           </div>
         </div>
       </section>
+
+      <section id="calls" className="scroll-mt-24 bg-[#111111] px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="mb-4 font-serif text-3xl text-white md:text-4xl">Book a Call</h2>
+          <p className="mb-10 max-w-2xl text-lg text-[#C4C4C4]">New here? Start with a conversation about your goals and next steps.</p>
+          <article className="flex flex-col gap-8 rounded-xl bg-white p-8 text-[#111111] md:flex-row md:items-center md:justify-between">
+            <div className="max-w-2xl">
+              <h3 className="mb-4 font-serif text-2xl">{CALLS.discoverycall.title}</h3>
+              <p className="text-sm leading-relaxed text-[#555555]">{CALLS.discoverycall.description}</p>
+            </div>
+            <BookCallButton callType="discoverycall" label="Book Discovery Call" variant="light" className="shrink-0" />
+          </article>
+        </div>
+      </section>
+
 
       {/* Education Cards */}
       <section className="bg-[#0A0A0A] py-20 px-6">

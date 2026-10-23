@@ -47,7 +47,7 @@ export default function HomePage() {
             <p className="mt-4 max-w-2xl text-sm leading-6 text-[#A7A7A7]">Serving Fort Collins, Timnath, Windsor, Loveland, Greeley, and Severance. Online consultations and in-person meetings by appointment.</p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link href="/contact" className="rounded-full bg-[#F8F8F8] px-7 py-3.5 text-sm font-semibold text-[#0A0A0A] transition hover:bg-white">Request an Investor Deal Review</Link>
-              <Link href="/who-i-help/investors" className="rounded-full border border-[#666] px-7 py-3.5 text-sm font-semibold text-[#F8F8F8] transition hover:border-white">Explore Investor Financing</Link>
+              <Link href="/fix-and-flip-calculator" className="rounded-full border border-[#666] px-7 py-3.5 text-sm font-semibold text-[#F8F8F8] transition hover:border-white">Run the Fix &amp; Flip Calculator</Link>
             </div>
             <a href={`tel:${BUSINESS.telephone}`} className="mt-5 inline-block text-sm font-semibold text-white underline underline-offset-4">Call {BUSINESS.phone}</a>
             <Link href="/who-i-help/medical-professionals" className="mt-7 inline-flex items-center gap-2 text-sm text-[#9C9C9C] underline decoration-[#555] underline-offset-4 hover:text-white"><Stethoscope size={15} />Buying a home as a medical professional?</Link>
