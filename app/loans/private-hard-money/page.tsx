@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Script from 'next/script'
 import BookCallButton from '@/components/BookCallButton'
+import FixFlipInvite from '@/components/FixFlipInvite'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/loans/private-hard-money' },
@@ -297,6 +298,8 @@ export default function PrivateHardMoneyPage() {
           </div>
         </div>
       </section>
+
+      <FixFlipInvite />
 
       {/* CTA */}
       <section className="bg-[#111111] border-t border-[#2E2E2E] py-24 px-6">

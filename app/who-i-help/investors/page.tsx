@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import BookCallButton from '@/components/BookCallButton'
+import FixFlipInvite from '@/components/FixFlipInvite'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/who-i-help/investors' },
@@ -257,6 +258,8 @@ export default function InvestorsPage() {
           </div>
         </div>
       </section>
+
+      <FixFlipInvite />
 
       {/* CTA */}
       <section className="bg-[#111111] border-t border-[#2E2E2E] py-24 px-6">

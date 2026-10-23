@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { marked } from 'marked'
 import { getAllPosts, getPost } from '@/lib/posts'
 import BookCallButton from '@/components/BookCallButton'
+import FixFlipInvite from '@/components/FixFlipInvite'
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }))
@@ -140,6 +141,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </section>
+
+      {post.slug.startsWith('fix-and-flip-loans-') && <FixFlipInvite />}
 
       {/* CTA */}
       <section className="bg-[#111111] border-t border-[#2E2E2E] py-16 px-6">

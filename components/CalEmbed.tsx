@@ -2,6 +2,9 @@
 
 import { useEffect, useId, useRef } from 'react'
 import { type CallType } from '@/lib/booking'
+import { getLeadAttribution } from '@/lib/attribution'
+import { trackEvent } from '@/lib/analytics'
+import { createBookingTracker } from '@/lib/bookingAnalytics'
 
 export default function CalEmbed({ callType }: { callType: CallType }) {
   const instanceId = useId().replace(/[^a-zA-Z0-9]/g, '')
@@ -16,21 +19,32 @@ export default function CalEmbed({ callType }: { callType: CallType }) {
     target.id = `cal-${namespace}`
     target.style.cssText = 'width:100%;height:100%;overflow:auto'
     container.appendChild(target)
+    const attribution = getLeadAttribution()
+    const config = { layout: 'month_view', useSlotsViewOnSmallScreen: 'true',
+      ...Object.fromEntries(['utm_source', 'utm_medium', 'utm_campaign'].flatMap(key => {
+        const value = attribution[key as keyof typeof attribution]
+        return value ? [[key, value]] : []
+      })) }
     const script = document.createElement('script')
     script.textContent = `
       (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
       Cal("init", "${namespace}", {origin:"https://app.cal.com"});
-      Cal.config = Cal.config || {};
-      Cal.config.forwardQueryParams = true;
       Cal.ns["${namespace}"]("inline", {
         elementOrSelector:"#${target.id}",
-        config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+        config: ${JSON.stringify(config).replace(/</g, '\\u003c')},
         calLink: "mortgage-stevie/${callType}"
       });
       Cal.ns["${namespace}"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
     `
     container.appendChild(script)
-    return () => { container.replaceChildren() }
+    const api = (window as any).Cal?.ns?.[namespace]
+    const onBooking = createBookingTracker(callType)
+    api?.('on', { action: 'bookingSuccessfulV2', callback: onBooking })
+    trackEvent('booking_started', { call_type: callType })
+    return () => {
+      api?.('off', { action: 'bookingSuccessfulV2', callback: onBooking })
+      container.replaceChildren()
+    }
   }, [callType, instanceId])
 
   return <div ref={containerRef} className="h-full min-h-0 w-full overflow-auto" />

@@ -22,7 +22,7 @@ type Deal = {
 }
 
 type Contact = { name: string; email: string; phone: string }
-type Attribution = { pageUrl: string; referrer: string; utmSource: string; utmMedium: string; utmCampaign: string }
+type Attribution = { pageUrl: string; referrer: string; landingPage: string; utmSource: string; utmMedium: string; utmCampaign: string }
 
 type InternalOption = {
   lender: 'TC Lending' | 'Truly' | 'Bench'
@@ -350,6 +350,7 @@ async function createCrmLead(contact: Contact, deal: Deal, options: InternalOpti
     attribution.utmMedium ? `UTM medium: ${attribution.utmMedium}` : '',
     attribution.utmCampaign ? `UTM campaign: ${attribution.utmCampaign}` : '',
     attribution.referrer ? `Referrer: ${attribution.referrer}` : '',
+    attribution.landingPage ? `Landing page: ${attribution.landingPage}` : '',
     attribution.pageUrl ? `Submitted from: ${attribution.pageUrl}` : '',
     '',
     ...options.slice(0, 1).map((option, index) => `${index + 1}. ${option.lender} | Loan ${money(option.loanAmount)} | Cash needed ${money(option.cashNeeded)} | ${option.rate * 100}% | ${option.termMonths} months`),
@@ -399,6 +400,7 @@ async function sendEmails(contact: Contact, deal: Deal, options: InternalOption[
     attribution.utmMedium ? `Medium: ${escapeHtml(attribution.utmMedium)}` : '',
     attribution.utmCampaign ? `Campaign: ${escapeHtml(attribution.utmCampaign)}` : '',
     attribution.referrer ? `Referrer: ${escapeHtml(attribution.referrer)}` : '',
+    attribution.landingPage ? `Landing page: ${escapeHtml(attribution.landingPage)}` : '',
   ].filter(Boolean).join('<br>')
   const contactRows = [contact.name ? `<strong>${escapeHtml(contact.name)}</strong>` : '', escapeHtml(contact.email), contact.phone ? escapeHtml(contact.phone) : ''].filter(Boolean).join('<br>')
   const profile = deal.profileSkipped ? 'Borrower experience and credit were not needed for this estimate.' : `Experience ${escapeHtml(deal.experience)} | Credit ${escapeHtml(deal.credit)}`
@@ -562,6 +564,7 @@ export async function POST(req: NextRequest) {
   const bounded = (value: unknown, length: number) => String(value ?? '').trim().slice(0, length)
   const attribution: Attribution = {
     pageUrl: bounded(body.attribution?.pageUrl, 500),
+    landingPage: bounded(body.attribution?.landingPage, 300),
     referrer: bounded(body.attribution?.referrer, 500),
     utmSource: bounded(body.attribution?.utmSource, 100),
     utmMedium: bounded(body.attribution?.utmMedium, 100),
