@@ -3,6 +3,8 @@
 import { FormEvent, ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useModalStore } from '@/lib/modalStore'
+import { getCalculatorAttribution } from '@/lib/attribution'
+import { trackEvent } from '@/lib/analytics'
 
 declare global {
   interface Window {
@@ -132,7 +134,7 @@ function loadGooglePlaces(key: string) {
   return window.fixFlipGoogleLoading
 }
 
-export default function FixAndFlipCalculatorClient() {
+export default function FixAndFlipCalculatorClient({ children }: { children?: ReactNode }) {
   const { openModal } = useModalStore()
   const [step, setStep] = useState<Step>('intro')
   const [answers, setAnswers] = useState<Answers>(initialAnswers)
@@ -164,7 +166,7 @@ export default function FixAndFlipCalculatorClient() {
   const progressLabel = currentIndex >= 0 ? `${currentIndex + 1} / ${flow.length}` : step === 'profit' ? 'Estimate ready' : step === 'prequal' ? 'Pre-qual' : step === 'letter' ? 'Complete' : ''
 
   const track = (event: string, properties: Record<string, string | number | boolean> = {}) => {
-    ;(window as any).dataLayer?.push({ event, page: 'fix-and-flip-calculator', ...properties })
+    trackEvent(event, { page: 'fix-and-flip-calculator', ...properties })
   }
   const update = (field: keyof Answers, value: string) => setAnswers((current) => ({ ...current, [field]: value }))
   const show = (next: Step) => { setHistory((items) => [...items, step]); setError(''); setStep(next) }
@@ -277,7 +279,6 @@ export default function FixAndFlipCalculatorClient() {
     const controller = new AbortController()
     const timeout = window.setTimeout(() => controller.abort(), 20000)
     try {
-      const search = new URLSearchParams(window.location.search)
       const response = await fetch('/api/fix-and-flip', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -285,13 +286,7 @@ export default function FixAndFlipCalculatorClient() {
         body: JSON.stringify({
           contact: { name: answers.name, email: answers.email, phone: answers.phone },
           deal: dealPayload(answers),
-          attribution: {
-            pageUrl: window.location.href,
-            referrer: document.referrer,
-            utmSource: search.get('utm_source') ?? '',
-            utmMedium: search.get('utm_medium') ?? '',
-            utmCampaign: search.get('utm_campaign') ?? '',
-          },
+          attribution: getCalculatorAttribution(),
         }),
       })
       const data = await response.json()
@@ -300,6 +295,7 @@ export default function FixAndFlipCalculatorClient() {
       setManualReview(Boolean(data.manualReview))
       setPreviewMode(Boolean(data.preview))
       setEmailSent(Boolean(data.email?.borrower))
+      if (!data.preview && (data.captured?.crm || data.captured?.internalEmail)) track('generate_lead', { method: 'calculator_email_unlock' })
       setDealWarning(data.warning ?? null)
       track('calculator_step_completed', { step: 'email_unlock', stepNumber: flow.length + 1, totalSteps: flow.length + 1 })
       track('calculator_results_viewed', { optionCount: data.options?.length ?? 0, manualReview: Boolean(data.manualReview) })
@@ -337,7 +333,7 @@ export default function FixAndFlipCalculatorClient() {
       if (prequalPdfUrl) URL.revokeObjectURL(prequalPdfUrl)
       setPrequalPdfUrl(URL.createObjectURL(blob))
       setPrequalEmailSent(response.headers.get('X-Email-Sent') === 'true')
-      track('prequalification_letter_created', { state: answers.state })
+      track('prequalification_letter_created')
       setHistory((items) => [...items, 'prequal'])
       setStep('letter')
     } catch (err) {
@@ -419,6 +415,7 @@ export default function FixAndFlipCalculatorClient() {
                 </ul>
                 <button type="button" onClick={startCalculator} className={buttonClass}>See My Projected Profit <span>→</span></button>
                 <p className="mt-4 text-xs text-[#777]">About 2 minutes · No hard credit pull · Free to use</p>
+                {children}
               </div>
             )}
 

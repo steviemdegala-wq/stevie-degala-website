@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import Modal from '@/components/Modal'
 import StickyMobileCTA from '@/components/StickyMobileCTA'
 import LeadAttribution from '@/components/LeadAttribution'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({
       </head>
       <body className="pb-[72px] md:pb-0">
         <LeadAttribution />
+        <GoogleAnalytics />
         <Navigation />
         <Modal />
         {children}

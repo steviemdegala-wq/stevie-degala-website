@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import FixAndFlipCalculatorClient from './FixAndFlipCalculatorClient'
+import CalculatorGuide from './CalculatorGuide'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/fix-and-flip-calculator' },
@@ -13,5 +14,5 @@ export const metadata: Metadata = {
 }
 
 export default function FixAndFlipCalculatorPage() {
-  return <FixAndFlipCalculatorClient />
+  return <FixAndFlipCalculatorClient><CalculatorGuide /></FixAndFlipCalculatorClient>
 }

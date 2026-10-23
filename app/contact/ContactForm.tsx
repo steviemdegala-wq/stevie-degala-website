@@ -2,6 +2,8 @@
 
 import { useState, type FormEvent } from 'react'
 import { BUSINESS } from '@/lib/business'
+import { getLeadAttribution } from '@/lib/attribution'
+import { trackEvent } from '@/lib/analytics'
 
 const fieldClass = 'mt-2 w-full rounded-xl border border-[#444] bg-[#0A0A0A] px-4 py-3 text-base text-white outline-none focus:border-[#8FA9BD] focus:ring-1 focus:ring-[#8FA9BD]'
 
@@ -20,8 +22,7 @@ export default function ContactForm() {
       setError('Please enter a 10-digit US phone number.'); setStatus('error'); return
     }
     setStatus('sending'); setError('')
-    let attribution = {}
-    try { attribution = JSON.parse(sessionStorage.getItem('mortgage-stevie-attribution') || '{}') } catch { /* Contact works without browser storage. */ }
+    const attribution = getLeadAttribution()
     try {
       const response = await fetch('/api/lead', {
         method: 'POST',
@@ -37,6 +38,7 @@ export default function ContactForm() {
       })
       const result = await response.json()
       if (!response.ok || result.ok !== true) throw new Error(result.error || 'Your request could not be delivered. Please try again or call Stevie directly.')
+      trackEvent('generate_lead', { method: 'contact_form', page: 'contact' })
       setStatus('sent'); form.reset()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Your request could not be delivered. Please call Stevie directly.'); setStatus('error')
