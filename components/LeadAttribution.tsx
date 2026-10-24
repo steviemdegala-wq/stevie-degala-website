@@ -4,6 +4,6 @@ import { useEffect } from 'react'
 import { getLeadAttribution } from '@/lib/attribution'
 
 export default function LeadAttribution() {
-  useEffect(() => { getLeadAttribution() }, [])
+  useEffect(() => { if (window.location.pathname !== "/fix-and-flip-calculator/chatgpt") getLeadAttribution() }, [])
   return null
 }

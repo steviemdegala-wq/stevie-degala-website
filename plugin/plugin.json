@@ -1,0 +1,47 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "mortgage-stevie-fix-and-flip",
+  "version": "0.1.0",
+  "description": "Estimate fix-and-flip financing, cash needed and project profitability. Optionally save the deal and request a conditional project letter with Mortgage Stevie.",
+  "author": {
+    "name": "Stevie de Gala",
+    "email": "SDegala@BarrettFinancial.com",
+    "url": "https://mortgagestevie.com"
+  },
+  "homepage": "https://mortgagestevie.com/fix-and-flip-calculator",
+  "keywords": [
+    "fix-and-flip",
+    "real-estate",
+    "financing",
+    "investor",
+    "calculator"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Mortgage Stevie Fix & Flip",
+        "shortDescription": "Estimate flip financing and cash needed",
+        "longDescription": "Run a preliminary financing and out-of-pocket cost estimate using Mortgage Stevie\u2019s existing calculator. See profit and downside scenarios before optionally saving/emailing the deal or requesting a conditional project letter. Not an approval or guaranteed terms.",
+        "developerName": "Stevie de Gala",
+        "category": "Productivity",
+        "capabilities": [
+          "Read"
+        ],
+        "websiteURL": "https://mortgagestevie.com",
+        "privacyPolicyURL": "https://mortgagestevie.com/calculator-privacy",
+        "termsOfServiceURL": "https://mortgagestevie.com/calculator-terms",
+        "defaultPrompt": [
+          "What financing could I get for this fix-and-flip deal?",
+          "How much cash would I need out of pocket for this flip?"
+        ],
+        "brandColor": "#090909",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png",
+        "screenshots": [
+          "./assets/screenshot-estimate.png",
+          "./assets/screenshot-contact.png"
+        ]
+      }
+    }
+  }
+}

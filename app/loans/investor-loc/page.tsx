@@ -188,7 +188,7 @@ export default function InvestorLOCPage() {
             Four common applications.
           </h2>
           <p className="text-[#C4C4C4] leading-relaxed mb-12 max-w-2xl">
-            Every real estate investor's situation is different — but most of the use cases fall into one of these categories.
+            Every real estate investor&apos;s situation is different — but most of the use cases fall into one of these categories.
           </p>
           <div className="grid md:grid-cols-2 gap-6">
             {useCases.map((u) => (
@@ -204,7 +204,7 @@ export default function InvestorLOCPage() {
       {/* Who this is for */}
       <section className="bg-[#111111] border-y border-[#2E2E2E] py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Who It's For</p>
+          <p className="text-[#888888] text-xs uppercase tracking-[0.25em] mb-4">Who It&apos;s For</p>
           <h2
             className="text-3xl md:text-4xl text-[#F8F8F8] leading-tight mb-8"
             style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}

@@ -22,3 +22,5 @@ yarn-error.log*
 # misc
 *.pem
 .vercel
+
+.local-plugin-preview-url

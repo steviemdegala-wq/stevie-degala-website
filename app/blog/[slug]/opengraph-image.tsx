@@ -4,8 +4,9 @@ import { getPost } from '@/lib/posts'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-export default async function Image({ params }: { params: { slug: string } }) {
-  const post = getPost(params.slug)
+export default async function Image({ params }: { params: Promise<{ slug: string }>  }) {
+  const { slug } = await params
+  const post = getPost(slug)
   const title = post?.title ?? 'Mortgage Insights — Stevie de Gala'
   const excerpt = post?.excerpt ?? 'Physician loans, VA loans, and mortgage advice for Northern Colorado.'
 

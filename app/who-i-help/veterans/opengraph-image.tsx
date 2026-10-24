@@ -47,7 +47,7 @@ export default async function Image() {
             You earned this benefit. Let&apos;s make sure you actually use it.
           </div>
           <p style={{ color: '#C4C4C4', fontSize: '22px', lineHeight: 1.5, maxWidth: '700px', fontFamily: 'Georgia, serif' }}>
-            VA purchase loans, cash-out refinance, and IRRRL. Northern Colorado's VA specialist.
+            VA purchase loans, cash-out refinance, and IRRRL. Northern Colorado&apos;s VA specialist.
           </p>
         </div>
 

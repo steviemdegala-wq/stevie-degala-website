@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {},
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  turbopack: { root: __dirname },
   typescript: {
     ignoreBuildErrors: false,
   },
