@@ -4,31 +4,38 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "rm -rf .next && next dev",
-    "build": "next build",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "test:plugin": "node scripts/verify-plugin.cjs",
+    "preview:plugin": "node scripts/preview-plugin.cjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
     "@types/node": "^25.9.1",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.5.0",
     "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.6",
+    "eslint-config-next": "16.4.3",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.16.0",
     "marked": "^18.0.5",
-    "next": "^14.2.35",
+    "next": "16.4.3",
     "postcss": "^8.5.15",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "recharts": "^3.8.1",
     "tailwindcss": "^3.4.19",
     "typescript": "^6.0.3",
+    "zod": "4.6.7",
     "zustand": "^5.0.13"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }

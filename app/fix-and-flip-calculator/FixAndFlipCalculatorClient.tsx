@@ -136,6 +136,7 @@ function loadGooglePlaces(key: string) {
 
 export default function FixAndFlipCalculatorClient({ children }: { children?: ReactNode }) {
   const { openModal } = useModalStore()
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? ''
   const [step, setStep] = useState<Step>('intro')
   const [answers, setAnswers] = useState<Answers>(initialAnswers)
   const [history, setHistory] = useState<Step[]>([])
@@ -149,11 +150,9 @@ export default function FixAndFlipCalculatorClient({ children }: { children?: Re
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [suggestions, setSuggestions] = useState<any[]>([])
-  const [addressNote, setAddressNote] = useState('Start typing for Google address suggestions, or enter the address manually.')
+  const [addressNote, setAddressNote] = useState(apiKey ? 'Start typing for Google address suggestions, or enter the address manually.' : 'Google address suggestions are not configured in this local preview. Enter the address manually.')
   const placesToken = useRef<any>(null)
   const addressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? ''
-
   const needsBorrowerProfile = useMemo(() => {
     const purchaseAndRenovation = dollars(answers.purchasePrice) + dollars(answers.renovationBudget)
     const arv = dollars(answers.arv)
@@ -225,10 +224,7 @@ export default function FixAndFlipCalculatorClient({ children }: { children?: Re
 
   useEffect(() => {
     if (step !== 'prequal') return
-    if (!apiKey) {
-      setAddressNote('Google address suggestions are not configured in this local preview. Enter the address manually.')
-      return
-    }
+    if (!apiKey) return
     loadGooglePlaces(apiKey)
       .then(async () => {
         const { AutocompleteSessionToken } = await window.google.maps.importLibrary('places')
@@ -518,7 +514,7 @@ export default function FixAndFlipCalculatorClient({ children }: { children?: Re
                 {dealWarning && <div className="mb-6 rounded-2xl border border-[#c96a5a] bg-[#fff5f2] p-6 text-[#171312]">
                   <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8d463b]">Projected result</p>
                   <p className="mt-2 font-serif text-4xl text-[#9b2c20]">About {money(dealWarning.estimatedLoss)} loss</p>
-                  <p className="mt-3 max-w-[620px] text-sm leading-6">There just isn't enough room in this deal right now. We are showing the financing path with the lowest projected loss so you can see why. Let's talk it through or look at another deal with better numbers.</p>
+                  <p className="mt-3 max-w-[620px] text-sm leading-6">There just isn&apos;t enough room in this deal right now. We are showing the financing path with the lowest projected loss so you can see why. Let&apos;s talk it through or look at another deal with better numbers.</p>
                   <div className="mt-5 grid gap-3 border-t border-[#ddb0a8] pt-5 sm:grid-cols-2">
                     <Metric label="After-repair value" value={money(dealWarning.arv)} primary={false} />
                     <Metric label="Purchase + renovation" value={money(dealWarning.purchaseAndRenovation)} primary={false} />

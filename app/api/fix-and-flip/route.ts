@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { BOOKING_URL } from '@/lib/booking'
+import { decodeScenario, calculatorDeal, PLUGIN_CONSENT_VERSION, type PluginScenario } from '@/lib/flip-plugin'
+import { savePluginDeal, deliveryKey, type Delivery } from '@/lib/plugin-crm'
 
 const CRM_URL = (process.env.CRM_URL ?? 'https://crm-two-beta-90.vercel.app').replace(/\/$/, '')
 const DEFAULT_NOTIFICATION_EMAIL = 'SDegala@BarrettFinancial.com'
@@ -388,7 +390,7 @@ function buildBorrowerEmail(contact: Contact, deal: Deal, options: InternalOptio
   return `<div style="background:#f3f3f1;padding:28px 16px"><div style="font-family:Arial,sans-serif;color:#111;line-height:1.55;max-width:680px;margin:0 auto;background:#fff;border-radius:18px;padding:32px"><div style="font-family:Georgia,serif;font-size:22px;margin-bottom:28px">Mortgage Stevie</div><h1 style="font-family:Georgia,serif;font-size:36px;line-height:1.05;margin:0 0 16px">Your fix-and-flip financing estimate</h1><p>${intro}</p><p style="color:#666">This preliminary match is based on the information you entered. Property location can change eligibility and will be confirmed before a conditional pre-qualification letter is created.</p>${warningHtml}${resultRows}${action}${disclaimer}<p style="color:#777;font-size:12px;margin-top:24px">Stevie de Gala · NMLS# 2845865 · Barrett Financial NMLS# 181106 · SDegala@BarrettFinancial.com</p></div></div>`
 }
 
-async function sendEmails(contact: Contact, deal: Deal, options: InternalOption[], attribution: Attribution) {
+async function sendEmails(contact: Contact, deal: Deal, options: InternalOption[], attribution: Attribution, idempotency?: string, alreadySent?: Delivery) {
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) return { borrower: false, internal: false }
   const sender = process.env.LEAD_FROM_EMAIL ?? DEFAULT_FROM_EMAIL
@@ -406,17 +408,18 @@ async function sendEmails(contact: Contact, deal: Deal, options: InternalOption[
   const profile = deal.profileSkipped ? 'Borrower experience and credit were not needed for this estimate.' : `Experience ${escapeHtml(deal.experience)} | Credit ${escapeHtml(deal.credit)}`
   const internalHtml = `<div style="font-family:Arial,sans-serif;color:#111;line-height:1.5;max-width:680px"><h1>New fix-and-flip calculator lead</h1><p>${contactRows}</p><p>Property address will be collected after results.<br>Purchase ${money(deal.purchasePrice)} | Renovation ${money(deal.renovationBudget)} | ARV ${money(deal.arv)}<br>Estimated monthly holding costs ${money(deal.monthlyHoldingCosts)}<br>${deal.projectMonths} months | ${profile}</p>${attributionRows ? `<p>${attributionRows}</p>` : ''}<ol>${internalRows}</ol>${disclaimer}</div>`
 
-  const send = async (to: string[], subject: string, html: string, replyTo?: string) => {
+  const send = async (to: string[], subject: string, html: string, replyTo?: string, kind = 'borrower') => {
+    if (alreadySent?.[kind as 'borrower' | 'internal']) return
     const response = await fetchWithTimeout('https://api.resend.com/emails', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', ...(idempotency ? { 'Idempotency-Key': `${idempotency}-${kind}` } : {}) },
       body: JSON.stringify({ from: sender, to, subject, html, reply_to: replyTo }),
     })
     if (!response.ok) throw new Error(`Resend email failed: ${response.status}`)
   }
   const [borrowerResult, internalResult] = await Promise.allSettled([
     send([contact.email], 'Your fix-and-flip financing estimate', borrowerHtml),
-    send([process.env.LEAD_NOTIFICATION_EMAIL ?? DEFAULT_NOTIFICATION_EMAIL], `New fix-and-flip lead: ${contact.name || contact.email}`, internalHtml, contact.email),
+    send([process.env.LEAD_NOTIFICATION_EMAIL ?? DEFAULT_NOTIFICATION_EMAIL], `New fix-and-flip lead: ${contact.name || contact.email}`, internalHtml, contact.email, 'internal'),
   ])
   if (borrowerResult.status === 'rejected') console.error('Borrower result email failed:', borrowerResult.reason)
   if (internalResult.status === 'rejected') console.error('Internal lead email failed:', internalResult.reason)
@@ -520,14 +523,14 @@ function buildPrequalificationPdf(contact: Contact, deal: Deal, option: Internal
   return Buffer.from(pdf, 'utf8')
 }
 
-async function sendPrequalificationLetter(contact: Contact, deal: Deal, option: InternalOption, pdf: Buffer) {
+async function sendPrequalificationLetter(contact: Contact, deal: Deal, option: InternalOption, pdf: Buffer, idempotency?: string) {
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) return false
   const property = `${escapeHtml(deal.address)}, ${escapeHtml(deal.state)} ${escapeHtml(deal.zip)}`
   const html = `<div style="font-family:Arial,sans-serif;line-height:1.55;color:#111"><h1>Your conditional project pre-qualification letter</h1><p>Hi ${escapeHtml(contact.name)},</p><p>Your preliminary letter for <strong>${property}</strong> is attached. It reflects an estimated loan amount up to <strong>${money(option.loanAmount)}</strong> based on the unverified information you provided.</p><p>This is not a loan approval, commitment to lend, rate lock, or guarantee of financing. Final eligibility and terms require a complete application and lender underwriting.</p><p>Stevie de Gala | NMLS# 2845865<br>Barrett Financial Group, L.L.C. | NMLS# 181106<br>SDegala@BarrettFinancial.com</p></div>`
   const response = await fetchWithTimeout('https://api.resend.com/emails', {
     method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', ...(idempotency ? { 'Idempotency-Key': idempotency } : {}) },
     body: JSON.stringify({
       from: process.env.LEAD_FROM_EMAIL ?? DEFAULT_FROM_EMAIL,
       to: [contact.email],
@@ -542,6 +545,16 @@ async function sendPrequalificationLetter(contact: Contact, deal: Deal, option: 
 export async function POST(req: NextRequest) {
   let body: any
   try { body = await req.json() } catch { return NextResponse.json({ error: 'Invalid request.' }, { status: 400 }) }
+  let pluginScenario: PluginScenario | undefined
+  if (body.pluginToken) {
+    try { pluginScenario = decodeScenario(String(body.pluginToken)) } catch { return NextResponse.json({ error: 'This estimate link is invalid or expired. Please run a new estimate.' }, { status: 400 }) }
+    if (!['preview', 'save', 'prequalification'].includes(body.action)) return NextResponse.json({ error: 'Invalid action.' }, { status: 400 })
+    if (body.action !== 'preview' && (body.consent !== true || body.consentVersion !== PLUGIN_CONSENT_VERSION)) return NextResponse.json({ error: 'Please agree to share your details with Stevie for this estimate.' }, { status: 400 })
+    const property = body.deal || {}
+    if (body.action === 'prequalification' && property.state !== pluginScenario.deal.state) return NextResponse.json({ error: 'The state must match your estimate. Run a new estimate to change states.' }, { status: 400 })
+    body.deal = { ...calculatorDeal(pluginScenario.deal), address: String(property.address || '').slice(0, 250), zip: String(property.zip || '').slice(0, 10) }
+    body.attribution = { pageUrl: '/fix-and-flip-calculator/chatgpt', landingPage: '/fix-and-flip-calculator/chatgpt', utmSource: 'chatgpt', utmMedium: 'calculator', utmCampaign: 'fix_flip_financing' }
+  }
   const contact: Contact = {
     name: String(body.contact?.name ?? '').trim().slice(0, 120),
     email: String(body.contact?.email ?? '').trim().toLowerCase().slice(0, 254),
@@ -574,7 +587,7 @@ export async function POST(req: NextRequest) {
   const isPreview = action === 'preview'
   const isPrequalification = action === 'prequalification'
   if (!isPreview && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email)) return NextResponse.json({ error: 'A valid email address is required.' }, { status: 400 })
-  if (isPrequalification && (!contact.name || !contact.phone)) return NextResponse.json({ error: 'Your name and a valid phone number are required for the pre-qualification letter.' }, { status: 400 })
+  if ((isPrequalification || (pluginScenario && !isPreview)) && (!contact.name || !contact.phone)) return NextResponse.json({ error: pluginScenario && !isPrequalification ? 'Your name and a valid phone number are required to save this estimate.' : 'Your name and a valid phone number are required for the pre-qualification letter.' }, { status: 400 })
   if (!deal.purchasePrice || !deal.renovationBudget || !deal.arv) return NextResponse.json({ error: 'Purchase price, renovation budget, and ARV are required.' }, { status: 400 })
   if (!['sfr', 'condo', 'multi', 'other'].includes(deal.propertyType) || !['0', '1-2', '3-5', '6+'].includes(deal.experience) || !['800+', '700+', 'below700', 'noCredit'].includes(deal.credit)) return NextResponse.json({ error: 'Please complete every question before viewing results.' }, { status: 400 })
   if (isPrequalification && (!deal.address || !/^[A-Z]{2}$/.test(deal.state) || !/^\d{5}$/.test(deal.zip))) return NextResponse.json({ error: 'A complete property address, state, and ZIP code are required.' }, { status: 400 })
@@ -583,20 +596,31 @@ export async function POST(req: NextRequest) {
   if (isPreview) {
     return NextResponse.json({
       ok: true,
+      ...(pluginScenario ? { inputs: calculatorDeal(pluginScenario.deal) } : {}),
       ...buildPublicResults(deal, options),
       manualReview: options.length === 0,
     })
   }
 
+  if (pluginScenario && isPrequalification && (!options.length || publicOption(options[0], 0, deal, options[0]).estimatedProfit < 0)) return NextResponse.json({ error: 'This scenario needs a manual review before a conditional project letter can be created. Please contact Stevie.' }, { status: 422 })
+  let pluginDelivery: Delivery | undefined
+  if (pluginScenario && !isPreview) {
+    try { pluginDelivery = await savePluginDeal(pluginScenario, contact, isPrequalification ? 'prequalification_requested' : 'estimate_saved', deal, options[0]?.loanAmount || 0) }
+    catch { return NextResponse.json({ error: 'We could not save your deal right now. Your information is still here. Please retry; no email was sent.' }, { status: 503 }) }
+  }
   if (isPrequalification) {
     if (!options.length) return NextResponse.json({ error: 'This property needs a manual program review before a letter can be created. Please contact Stevie.' }, { status: 422 })
     const bestPublic = publicOption(options[0], 0, deal, options[0])
     if (bestPublic.estimatedProfit < 0) return NextResponse.json({ error: 'The current numbers show a projected loss, so an automated pre-qualification letter cannot be created. Please review the deal with Stevie.' }, { status: 422 })
     const pdf = buildPrequalificationPdf(contact, deal, options[0])
-    const emailed = process.env.NODE_ENV === 'development' ? true : await sendPrequalificationLetter(contact, deal, options[0], pdf).catch((error) => {
+    const emailed = pluginDelivery?.letter || (!pluginScenario && process.env.NODE_ENV === 'development') ? true : await sendPrequalificationLetter(contact, deal, options[0], pdf, pluginScenario ? deliveryKey(pluginScenario, contact.email, 'letter') : undefined).catch((error) => {
       console.error('Pre-qualification email failed:', error)
       return false
     })
+    if (pluginScenario) {
+      try { await savePluginDeal(pluginScenario, contact, 'project_letter_created', deal, options[0].loanAmount, { letter: emailed }) }
+      catch { return NextResponse.json({ error: 'Your letter was created but its CRM status could not be confirmed. Please retry.' }, { status: 503 }) }
+    }
     return new NextResponse(new Uint8Array(pdf), {
       headers: {
         'Content-Type': 'application/pdf',
@@ -607,6 +631,12 @@ export async function POST(req: NextRequest) {
     })
   }
 
+  if (pluginScenario) {
+    const email = await sendEmails(contact, deal, options, attribution, deliveryKey(pluginScenario, contact.email, 'estimate'), pluginDelivery).catch(() => ({ borrower: false, internal: false }))
+    try { await savePluginDeal(pluginScenario, contact, 'estimate_saved', deal, options[0]?.loanAmount || 0, email) }
+    catch { return NextResponse.json({ error: 'Your deal was saved, but delivery status could not be confirmed. Please retry.' }, { status: 503 }) }
+    return NextResponse.json({ ok: true, captured: { crm: true, internalEmail: email.internal }, email, ...buildPublicResults(deal, options), manualReview: !options.length })
+  }
   const previewSubmission = process.env.NODE_ENV === 'development'
   let crm = false
   let email = { borrower: false, internal: false }

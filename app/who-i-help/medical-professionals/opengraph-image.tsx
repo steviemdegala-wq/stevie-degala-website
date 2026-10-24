@@ -54,7 +54,7 @@ export default async function Image() {
             A physician loan built for the way you actually earn.
           </div>
           <p style={{ color: '#C4C4C4', fontSize: '22px', lineHeight: 1.5, maxWidth: '700px', fontFamily: 'Georgia, serif' }}>
-            Zero down. No PMI. Student debt treated differently. Northern Colorado's specialist.
+            Zero down. No PMI. Student debt treated differently. Northern Colorado&apos;s specialist.
           </p>
         </div>
 

@@ -1,17 +1,22 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useSyncExternalStore } from 'react'
 import Script from 'next/script'
+import { usePathname } from 'next/navigation'
 
 const MEASUREMENT_ID = 'G-F4H0ZB38JD'
+const subscribe = () => () => {}
+const productionHost = () => ['mortgagestevie.com', 'www.mortgagestevie.com'].includes(window.location.hostname)
 
 export default function GoogleAnalytics() {
-  const [enabled, setEnabled] = useState(false)
+  const pathname = usePathname()
+  const enabled = useSyncExternalStore(subscribe, productionHost, () => false)
   useEffect(() => {
     // Local checks and deployment previews must not inflate production traffic.
-    setEnabled(['mortgagestevie.com', 'www.mortgagestevie.com'].includes(window.location.hostname))
-  }, [])
-  if (!enabled) return null
+    const privateCalculator = pathname === '/fix-and-flip-calculator/chatgpt'
+    ;(window as unknown as Record<string, unknown>)[`ga-disable-${MEASUREMENT_ID}`] = privateCalculator
+  }, [pathname])
+  if (!enabled || pathname === '/fix-and-flip-calculator/chatgpt') return null
   return <>
     <Script id="mortgage-stevie-analytics" strategy="afterInteractive">{`
       window.dataLayer = window.dataLayer || [];
