@@ -141,6 +141,7 @@ export default function FixAndFlipCalculatorClient({ children }: { children?: Re
   const [history, setHistory] = useState<Step[]>([])
   const [results, setResults] = useState<ResultOption[]>([])
   const [manualReview, setManualReview] = useState(false)
+  const [reviewReason, setReviewReason] = useState('')
   const [previewMode, setPreviewMode] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
   const [dealWarning, setDealWarning] = useState<DealWarning | null>(null)
@@ -189,6 +190,7 @@ export default function FixAndFlipCalculatorClient({ children }: { children?: Re
       if (!response.ok) throw new Error(data.error || 'Unable to calculate this estimate.')
       setResults(data.options ?? [])
       setManualReview(Boolean(data.manualReview))
+      setReviewReason(data.reviewReason || '')
       setDealWarning(data.warning ?? null)
       track('calculator_profit_previewed', { projectedLoss: Boolean(data.warning), manualReview: Boolean(data.manualReview) })
       show('profit')
@@ -293,6 +295,7 @@ export default function FixAndFlipCalculatorClient({ children }: { children?: Re
       if (!response.ok) throw new Error(data.error || 'Unable to calculate your results.')
       setResults(data.options ?? [])
       setManualReview(Boolean(data.manualReview))
+      setReviewReason(data.reviewReason || '')
       setPreviewMode(Boolean(data.preview))
       setEmailSent(Boolean(data.email?.borrower))
       if (!data.preview && (data.captured?.crm || data.captured?.internalEmail)) track('generate_lead', { method: 'calculator_email_unlock' })
@@ -492,19 +495,19 @@ export default function FixAndFlipCalculatorClient({ children }: { children?: Re
             {step === 'profit' && (
               <div>
                 <p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">Your projected result</p>
-                <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{dealWarning ? 'The numbers show a loss.' : manualReview ? "Let's take a closer look." : 'Here is your projected profit.'}</h1>
-                {!dealWarning && !manualReview && results[0] && <div className="my-7 rounded-2xl border border-[#79a98a] bg-[#eff8f1] p-6 text-[#173923]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#47745a]">Projected profit</p><p className="mt-2 font-serif text-5xl text-[#23633c]">{money(results[0].estimatedProfit)}</p><p className="mt-3 text-sm leading-6 text-[#365f45]">A preliminary estimate based on the numbers you entered.</p></div>}
+                <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{dealWarning ? 'The numbers show a loss.' : manualReview ? 'Here is the projected result.' : 'Here is your projected profit.'}</h1>
+                {!dealWarning && results[0] && <div className="my-7 rounded-2xl border border-[#79a98a] bg-[#eff8f1] p-6 text-[#173923]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#47745a]">Projected profit</p><p className="mt-2 font-serif text-5xl text-[#23633c]">{money(results[0].estimatedProfit)}</p><p className="mt-3 text-sm leading-6 text-[#365f45]">A preliminary estimate based on the numbers you entered.</p></div>}
                 {dealWarning && <div className="my-7 rounded-2xl border border-[#c96a5a] bg-[#fff5f2] p-6 text-[#171312]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#8d463b]">Projected result</p><p className="mt-2 font-serif text-4xl text-[#9b2c20]">About {money(dealWarning.estimatedLoss)} loss</p><p className="mt-3 text-sm leading-6">There may not be enough room in this deal with the numbers entered. The full estimate will show where the costs are landing.</p></div>}
-                {manualReview && <div className="my-7 rounded-2xl border border-[#d4d0ca] bg-white p-6"><p className="font-serif text-2xl">This deal needs a closer look.</p><p className="mt-2 text-sm leading-6 text-[#65615c]">A property-specific review is needed to finish the estimate.</p></div>}
-                {results[0] && !manualReview ? <div className="mt-7 space-y-6">
+                {manualReview && <div className="my-7 rounded-2xl border border-[#d4d0ca] bg-white p-6"><p className="font-serif text-2xl">Specialized financing review</p><p className="mt-2 text-sm leading-6 text-[#65615c]">{reviewReason || 'Your projected profit or loss is shown using illustrative financing assumptions. A lender match still needs review.'}</p><button type="button" onClick={() => bookCall('specialized-financing')} className="mt-4 rounded-full bg-[#090909] px-6 py-3 font-semibold text-white">Discuss specialized financing</button></div>}
+                {results[0] ? <div className="mt-7 space-y-6">
                   {unlockForm()}
                   <div className="pointer-events-none select-none"><ResultCard option={results[0]} primary locked /></div>
-                  <div className="pointer-events-auto rounded-2xl border border-[#d4d0ca] bg-white p-6 text-center shadow-sm">
+                  {!manualReview && <div className="pointer-events-auto rounded-2xl border border-[#d4d0ca] bg-white p-6 text-center shadow-sm">
                     <p className="text-xs font-bold uppercase tracking-[.16em] text-[#666]">Next step</p>
                     <h2 className="mt-2 font-serif text-2xl">Get your conditional pre-qualification letter</h2>
                     <p className="mx-auto mt-2 max-w-[520px] text-sm leading-6 text-[#65615c]">Unlock the estimate above, then add the property address to create your letter.</p>
                     <button type="button" onClick={() => document.querySelector<HTMLInputElement>('input[aria-label="Email address"]')?.focus()} className="mt-4 rounded-full bg-[#090909] px-6 py-3 font-bold text-white">Unlock Estimate to Continue <span>↑</span></button>
-                  </div>
+                  </div>}
                 </div> : unlockForm()}
               </div>
             )}
@@ -512,9 +515,9 @@ export default function FixAndFlipCalculatorClient({ children }: { children?: Re
             {step === 'results' && (
               <div>
                 <p className="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#666]">{dealWarning ? 'Deal check' : 'Potential financing structure'}</p>
-                <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{dealWarning ? 'The numbers show a loss.' : manualReview ? "Let's take a closer look." : 'A potential fit for this deal.'}</h1>
+                <h1 className="mb-3 font-serif text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">{dealWarning ? 'The numbers show a loss.' : manualReview ? 'Here is the projected result.' : 'A potential fit for this deal.'}</h1>
                 <p className="mb-8 text-base leading-6 text-[#65615c]">{dealWarning ? "With what you entered, this deal could lose money. We don't want anyone going into a deal that's likely to lose money." : 'This preliminary structure is based on the numbers you entered. Property location can change program eligibility, so it will be confirmed before a pre-qualification letter is created.'}</p>
-                {!dealWarning && !manualReview && results[0] && <div className="mb-6 rounded-2xl border border-[#79a98a] bg-[#eff8f1] p-6 text-[#173923]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#47745a]">Projected profit</p><p className="mt-2 font-serif text-5xl text-[#23633c]">{money(results[0].estimatedProfit)}</p><p className="mt-3 text-sm leading-6 text-[#365f45]">Based on the deal details and preliminary financing shown below.</p></div>}
+                {!dealWarning && results[0] && <div className="mb-6 rounded-2xl border border-[#79a98a] bg-[#eff8f1] p-6 text-[#173923]"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#47745a]">Projected profit</p><p className="mt-2 font-serif text-5xl text-[#23633c]">{money(results[0].estimatedProfit)}</p><p className="mt-3 text-sm leading-6 text-[#365f45]">Based on the deal details and preliminary financing shown below.</p></div>}
                 {dealWarning && <div className="mb-6 rounded-2xl border border-[#c96a5a] bg-[#fff5f2] p-6 text-[#171312]">
                   <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8d463b]">Projected result</p>
                   <p className="mt-2 font-serif text-4xl text-[#9b2c20]">About {money(dealWarning.estimatedLoss)} loss</p>
@@ -541,8 +544,8 @@ export default function FixAndFlipCalculatorClient({ children }: { children?: Re
                 {previewMode && <p className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">Local preview mode: no CRM record or email was sent.</p>}
                 {!previewMode && emailSent && <p role="status" className="mb-6 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-950"><strong>Your results have been emailed.</strong> If they are not in your inbox within a few minutes, please check your spam or promotions folder.</p>}
                 {!previewMode && !emailSent && <p role="status" className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950"><strong>Your request was saved, but we could not confirm email delivery.</strong> Your results are available below. You can retry later or contact Stevie directly.</p>}
-                {manualReview ? <div className="rounded-2xl border border-[#d4d0ca] bg-white p-6"><h2 className="font-serif text-2xl">This deal needs a closer look</h2><p className="mt-2 text-[#666]">Stevie can review the property, state, and deal structure to identify a potential financing path.</p></div> : <div className="grid gap-4">{results.map((option, index) => <ResultCard key={option.label} option={option} primary={index === 0} />)}</div>}
-                {!dealWarning && <div className="mt-8 rounded-2xl border border-[#d4d0ca] bg-white p-6">
+                {manualReview && <div className="mb-4 rounded-2xl border border-[#d4d0ca] bg-white p-6"><h2 className="font-serif text-2xl">Specialized financing review</h2><p className="mt-2 text-[#666]">{reviewReason || 'The profit or loss below uses illustrative financing assumptions. A lender match still needs review.'}</p><button type="button" onClick={() => bookCall('specialized-financing')} className="mt-4 rounded-full bg-[#090909] px-6 py-3 font-semibold text-white">Discuss specialized financing</button></div>}<div className="grid gap-4">{results.map((option, index) => <ResultCard key={option.label} option={option} primary={index === 0} />)}</div>
+                {!dealWarning && !manualReview && <div className="mt-8 rounded-2xl border border-[#d4d0ca] bg-white p-6">
                   <h2 className="font-serif text-2xl">Ready for your conditional pre-qualification letter?</h2>
                   <p className="mt-2 text-sm leading-6 text-[#65615c]">Add the property address so we can confirm location-based eligibility and create a conditional project pre-qualification letter.</p>
                   <button type="button" onClick={() => { track('prequalification_started', { placement: 'results-card' }); show('prequal') }} className="mt-5 rounded-full bg-[#090909] px-7 py-4 text-center text-base font-bold text-white hover:bg-[#303030]">Get My Conditional Pre-Qualification Letter <span>→</span></button>
@@ -567,7 +570,7 @@ export default function FixAndFlipCalculatorClient({ children }: { children?: Re
             )}
           </main>
 
-          {step === 'results' && !dealWarning && <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-black/10 bg-white/95 p-3 shadow-[0_-8px_30px_rgba(0,0,0,.12)] backdrop-blur lg:hidden"><button type="button" onClick={() => { track('prequalification_started', { placement: 'mobile-sticky' }); show('prequal') }} className="mx-auto block w-full max-w-[720px] rounded-full bg-[#090909] px-6 py-4 text-center font-bold text-white">Get My Pre-Qualification Letter <span>→</span></button></div>}
+          {step === 'results' && !dealWarning && !manualReview && <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-black/10 bg-white/95 p-3 shadow-[0_-8px_30px_rgba(0,0,0,.12)] backdrop-blur lg:hidden"><button type="button" onClick={() => { track('prequalification_started', { placement: 'mobile-sticky' }); show('prequal') }} className="mx-auto block w-full max-w-[720px] rounded-full bg-[#090909] px-6 py-4 text-center font-bold text-white">Get My Pre-Qualification Letter <span>→</span></button></div>}
 
           <p className="mx-auto mt-auto w-full max-w-[720px] pt-7 text-[11px] leading-5 text-[#817d77]">Current program assumptions can change. This calculator provides a close planning estimate only, not final terms or a commitment to lend. Stevie de Gala, NMLS# 2845865. Barrett Financial, NMLS# 181106.</p>
         </section>
