@@ -122,7 +122,7 @@ function createOption(args: Omit<InternalOption, 'startupCash' | 'cashNeeded' | 
   return { ...args, startupCash, cashNeeded, carryingCost: estimatedInterest, totalCash, borrowingCost }
 }
 
-function calculateOptions(deal: Deal) {
+function calculateOptions(deal: Deal, planningOnly = false) {
   const options: InternalOption[] = []
   const totalCost = deal.purchasePrice + deal.renovationBudget
 
@@ -153,7 +153,7 @@ function calculateOptions(deal: Deal) {
     }, deal))
   }
 
-  const tier = trulyTier(deal.experience, deal.credit)
+  const tier = trulyTier(deal.experience, deal.credit) ?? (planningOnly ? 4 : null)
   const trulyLeverage: Record<number, { ltv: number; ltc: number; ltarv: number }> = {
     1: { ltv: 0.95, ltc: 0.95, ltarv: 0.75 },
     2: { ltv: 0.9, ltc: 0.85, ltarv: 0.7 },
@@ -163,7 +163,7 @@ function calculateOptions(deal: Deal) {
   if (tier) {
     const leverage = trulyLeverage[tier]
     const loanAmount = Math.min(deal.purchasePrice * leverage.ltv + deal.renovationBudget, totalCost * leverage.ltc, deal.arv * leverage.ltarv, 5000000)
-    if (loanAmount >= 100000 && !['NV', 'ND', 'SD', 'VT'].includes(deal.state)) {
+    if (loanAmount > 0 && (planningOnly || (loanAmount >= 100000 && !['NV', 'ND', 'SD', 'VT'].includes(deal.state)))) {
       const purchaseAdvance = Math.min(deal.purchasePrice * leverage.ltv, loanAmount)
       const renovationAdvance = Math.max(0, Math.min(deal.renovationBudget, loanAmount - purchaseAdvance))
       const topPricing = deal.experience === '6+' && ficoValue(deal.credit) >= 700
@@ -300,12 +300,29 @@ function publicOption(option: InternalOption, index: number, deal: Deal, primary
 }
 
 function buildPublicResults(deal: Deal, options: InternalOption[]) {
-  const publicOptions = options.slice(0, 1).map((option, index) => publicOption(option, index, deal, options[0]))
+  // Profitability remains available even when no modeled lender matches.
+  // This fallback is used only for the estimate, never for eligibility or letters.
+  const planningOnly = options.length === 0
+  const estimateOptions = planningOnly ? calculateOptions(deal, true) : options
+  const reviewReason = planningOnly ? (estimateOptions[0]?.loanAmount < 100000
+    ? `The modeled loan amount is ${money(estimateOptions[0].loanAmount)}, below the $100,000 minimum for this financing structure. We’ll need a specialized financing review to discuss flexibility and available options.`
+    : 'The borrower profile or property location does not match the modeled programs. We’ll need a specialized financing review to discuss flexibility and available options.') : null
+  const publicOptions = estimateOptions.slice(0, 1).map((option, index) => {
+    const estimate = publicOption(option, index, deal, estimateOptions[0])
+    return planningOnly ? {
+      ...estimate,
+      program: 'Illustrative financing assumption',
+      advantage: 'Profitability estimate only — financing needs review',
+      reasons: ['Uses modeled financing costs to show projected profit or loss even without a lender match'],
+      cautions: [reviewReason!, 'These are illustrative rate, fee, and leverage assumptions, not available financing terms'],
+    } : estimate
+  })
   const projectedLoss = publicOptions.length > 0 && publicOptions.every((option) => option.estimatedProfit < 0)
-  if (!projectedLoss) return { options: publicOptions, warning: null }
+  if (!projectedLoss) return { options: publicOptions, warning: null, reviewReason }
 
   const best = [...publicOptions].sort((a, b) => b.estimatedProfit - a.estimatedProfit)[0]
   return {
+    reviewReason,
     options: [{ ...best, label: 'One path to review', advantage: 'Lowest projected loss' }],
     warning: {
       type: 'projected-loss',
